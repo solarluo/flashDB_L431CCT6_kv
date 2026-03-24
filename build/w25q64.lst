@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
   13:Core/Src/w25q64.c **** }
   44              		.loc 1 13 1 is_stmt 0 view .LVU2
   45 000e 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 2
 
 
   46              		.cfi_endproc
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
   95              	.L6:
   96 002e 00BF     		.align	2
   97              	.L5:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 3
 
 
   98 0030 00000000 		.word	hspi1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  147              	.LVL10:
  148              		.loc 1 27 15 discriminator 1 view .LVU20
  149 0020 3070     		strb	r0, [r6]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 4
 
 
   28:Core/Src/w25q64.c ****     *type     = W25Q64_ReadWriteByte(0xFF);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  196 0004 1021     		movs	r1, #16
  197 0006 4FF09040 		mov	r0, #1207959552
  198 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 5
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 5
 
 
  199              	.LVL14:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  244              	.L12:
   49:Core/Src/w25q64.c ****     do
  245              		.loc 1 49 5 view .LVU39
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 6
 
 
   50:Core/Src/w25q64.c ****     {
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  292              		.loc 1 59 5 is_stmt 1 view .LVU48
   60:Core/Src/w25q64.c **** 
   61:Core/Src/w25q64.c ****     W25_CS_LOW();
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 7
 
 
  293              		.loc 1 61 5 view .LVU49
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  337 003c 0134     		adds	r4, r4, #1
  338              	.LVL34:
  339              	.L15:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 8
 
 
   68:Core/Src/w25q64.c ****     {
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  384              	.LVL38:
   82:Core/Src/w25q64.c **** 
   83:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(0x20);   // Sector Erase 4KB
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 9
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 9
 
 
  385              		.loc 1 83 5 view .LVU72
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  429              		@ frame_needed = 0, uses_anonymous_args = 0
  430              		.loc 1 95 1 is_stmt 0 view .LVU81
  431 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 10
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 10
 
 
  432              	.LCFI9:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  118:Core/Src/w25q64.c **** 
  119:Core/Src/w25q64.c ****         W25_CS_HIGH();
  462              		.loc 1 119 9 view .LVU90
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 11
 
 
  463 0018 0122     		movs	r2, #1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  503 0046 0022     		movs	r2, #0
  504 0048 1021     		movs	r1, #16
  505 004a 4FF09040 		mov	r0, #1207959552
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 12
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 12
 
 
  506 004e FFF7FEFF 		bl	HAL_GPIO_WritePin
@@ -712,28 +712,28 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 1
  546              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
  547              		.file 9 "Core/Inc/spi.h"
  548              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s 			page 13
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 w25q64.c
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:21     .text.W25Q64_Init:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:27     .text.W25Q64_Init:00000000 W25Q64_Init
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:50     .text.W25Q64_ReadWriteByte:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:56     .text.W25Q64_ReadWriteByte:00000000 W25Q64_ReadWriteByte
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:98     .text.W25Q64_ReadWriteByte:00000030 $d
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:103    .text.W25Q64_ReadJEDECID:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:109    .text.W25Q64_ReadJEDECID:00000000 W25Q64_ReadJEDECID
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:177    .text.W25Q64_WriteEnable:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:183    .text.W25Q64_WriteEnable:00000000 W25Q64_WriteEnable
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:216    .text.W25Q64_WaitBusy:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:222    .text.W25Q64_WaitBusy:00000000 W25Q64_WaitBusy
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:268    .text.W25Q64_Read:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:274    .text.W25Q64_Read:00000000 W25Q64_Read
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:356    .text.W25Q64_EraseSector:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:362    .text.W25Q64_EraseSector:00000000 W25Q64_EraseSector
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:417    .text.W25Q64_Write:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccTg7q3c.s:423    .text.W25Q64_Write:00000000 W25Q64_Write
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:21     .text.W25Q64_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:27     .text.W25Q64_Init:00000000 W25Q64_Init
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:50     .text.W25Q64_ReadWriteByte:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:56     .text.W25Q64_ReadWriteByte:00000000 W25Q64_ReadWriteByte
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:98     .text.W25Q64_ReadWriteByte:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:103    .text.W25Q64_ReadJEDECID:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:109    .text.W25Q64_ReadJEDECID:00000000 W25Q64_ReadJEDECID
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:177    .text.W25Q64_WriteEnable:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:183    .text.W25Q64_WriteEnable:00000000 W25Q64_WriteEnable
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:216    .text.W25Q64_WaitBusy:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:222    .text.W25Q64_WaitBusy:00000000 W25Q64_WaitBusy
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:268    .text.W25Q64_Read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:274    .text.W25Q64_Read:00000000 W25Q64_Read
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:356    .text.W25Q64_EraseSector:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:362    .text.W25Q64_EraseSector:00000000 W25Q64_EraseSector
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:417    .text.W25Q64_Write:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccHh7uRf.s:423    .text.W25Q64_Write:00000000 W25Q64_Write
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

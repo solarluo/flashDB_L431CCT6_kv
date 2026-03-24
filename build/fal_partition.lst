@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
   28:BSP/src/fal_partition.c ****  */
   29:BSP/src/fal_partition.c **** #ifdef FAL_PART_HAS_TABLE_CFG
   30:BSP/src/fal_partition.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 2
 
 
   31:BSP/src/fal_partition.c **** /* check partition table definition */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
   85:BSP/src/fal_partition.c ****             part = &partition_table[i];
   86:BSP/src/fal_partition.c ****             if (strlen(part->name) > part_name_max)
   87:BSP/src/fal_partition.c ****             {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 3
 
 
   88:BSP/src/fal_partition.c ****                 part_name_max = strlen(part->name);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  142:BSP/src/fal_partition.c ****         if (table[i].offset >= (long)flash_dev->len)
  143:BSP/src/fal_partition.c ****         {
  144:BSP/src/fal_partition.c ****             log_e("Initialize failed! Partition(%s) offset address(%ld) out of flash bound(<%d).",
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 4
 
 
  145:BSP/src/fal_partition.c ****                     table[i].name, table[i].offset, flash_dev->len);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  199:BSP/src/fal_partition.c ****     if (new_part == NULL)
  200:BSP/src/fal_partition.c ****     {
  201:BSP/src/fal_partition.c ****         log_e("Initialize failed! No memory for table buffer.");
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 5
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 5
 
 
  202:BSP/src/fal_partition.c ****         goto _exit;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  256:BSP/src/fal_partition.c ****         }
  257:BSP/src/fal_partition.c ****     }
  258:BSP/src/fal_partition.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 6
 
 
  259:BSP/src/fal_partition.c ****     /* load partition table */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  313:BSP/src/fal_partition.c **** #endif
  314:BSP/src/fal_partition.c **** 
  315:BSP/src/fal_partition.c **** #ifndef FAL_PART_HAS_TABLE_CFG
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 7
 
 
  316:BSP/src/fal_partition.c ****     if (new_part)
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
   43              	.LVL1:
   44              		.loc 1 355 34 view .LVU7
   45 0006 8011     		asrs	r0, r0, #6
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 8
 
 
  356:BSP/src/fal_partition.c **** }
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
   86              		.cfi_offset 4, -24
   87              		.cfi_offset 5, -20
   88              		.cfi_offset 6, -16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 9
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 9
 
 
   89              		.cfi_offset 7, -12
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  128              		.loc 1 142 9 is_stmt 1 view .LVU25
  142:BSP/src/fal_partition.c ****         {
  129              		.loc 1 142 21 is_stmt 0 view .LVU26
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 10
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 10
 
 
  130 002a 6A6B     		ldr	r2, [r5, #52]
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  172              	.L13:
  155:BSP/src/fal_partition.c **** 
  173              		.loc 1 155 1 view .LVU39
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 11
 
 
  174              		.align	2
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  206 00d6 0000     		.align	2
  207              	.LC9:
  208 00d8 7C20252D 		.ascii	"| %-*.*s | %-*.*s | 0x%08lx | 0x%08x |\000"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 12
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 12
 
 
  208      2A2E2A73 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  247 000c B8F1000F 		cmp	r8, #0
  248 0010 3CD1     		bne	.L22
   78:BSP/src/fal_partition.c ****     const struct fal_partition *part;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 13
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 13
 
 
  249              		.loc 1 78 67 discriminator 1 view .LVU47
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  294 0054 FFF7FEFF 		bl	printf
  295              	.LVL22:
   99:BSP/src/fal_partition.c ****     for (i = 0; i < partition_table_len; i++)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 14
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 14
 
 
  296              		.loc 1 99 5 discriminator 2 view .LVU57
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  336 0080 FFF7FEFF 		bl	strlen
  337              	.LVL29:
   90:BSP/src/fal_partition.c ****             {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 15
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 15
 
 
  338              		.loc 1 90 16 discriminator 1 view .LVU72
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  382              	.LVL35:
  109:BSP/src/fal_partition.c ****                 FAL_DEV_NAME_MAX, part->flash_name, part->offset, part->len);
  383              		.loc 1 109 9 discriminator 2 view .LVU83
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 16
 
 
  384 00c0 0C48     		ldr	r0, .L26+12
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  431              	.LFE3:
  433              		.section	.text.fal_partition_init,"ax",%progbits
  434              		.align	1
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 17
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 17
 
 
  435              		.global	fal_partition_init
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  477 001a FFF7FEFF 		bl	check_and_update_part_cache
  478              	.LVL42:
  302:BSP/src/fal_partition.c ****     {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 18
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 18
 
 
  479              		.loc 1 302 8 discriminator 1 view .LVU104
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  337:BSP/src/fal_partition.c **** 
  527              		.loc 1 337 5 view .LVU113
  339:BSP/src/fal_partition.c ****     {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 19
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 19
 
 
  528              		.loc 1 339 5 view .LVU114
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  571 0030 00000000 		.word	partition_table_len
  572 0034 00000000 		.word	partition_table
  573              		.cfi_endproc
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 20
 
 
  574              	.LFE6:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  613              	.LFE8:
  615              		.section	.text.fal_set_partition_table_temp,"ax",%progbits
  616              		.align	1
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 21
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 21
 
 
  617              		.global	fal_set_partition_table_temp
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  654              		.loc 1 391 1 view .LVU147
  655 0012 38BD     		pop	{r3, r4, r5, pc}
  656              	.LVL53:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 22
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 22
 
 
  657              	.L50:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  401:BSP/src/fal_partition.c ****  * @return >= 0: successful read data size
  402:BSP/src/fal_partition.c ****  *           -1: error
  403:BSP/src/fal_partition.c ****  */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 23
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 23
 
 
  404:BSP/src/fal_partition.c **** int fal_partition_read(const struct fal_partition *part, uint32_t addr, uint8_t *buf, size_t size)
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  727              	.LVL58:
  419:BSP/src/fal_partition.c ****     if (flash_dev == NULL)
  728              		.loc 1 419 5 is_stmt 1 view .LVU163
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 24
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 24
 
 
  729              		.loc 1 419 8 is_stmt 0 view .LVU164
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  766              		.loc 1 414 9 is_stmt 1 discriminator 1 view .LVU176
  767 003a 1748     		ldr	r0, .L59+8
  768 003c FFF7FEFF 		bl	printf
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 25
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 25
 
 
  769              	.LVL67:
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  811              		.loc 1 428 9 is_stmt 0 view .LVU188
  812 0078 FFF7FEFF 		bl	printf
  813              	.LVL77:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 26
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 26
 
 
  428:BSP/src/fal_partition.c ****     }
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  851              		.global	fal_partition_write
  852              		.syntax unified
  853              		.thumb
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 27
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 27
 
 
  854              		.thumb_func
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  888              	.LVL83:
  889              		.loc 1 453 8 view .LVU202
  890 000a 9842     		cmp	r0, r3
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 28
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 28
 
 
  891 000c 0FD8     		bhi	.L66
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  925              	.LVL89:
  926              	.L66:
  455:BSP/src/fal_partition.c ****         return -1;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 29
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 29
 
 
  927              		.loc 1 455 9 is_stmt 1 view .LVU215
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  463:BSP/src/fal_partition.c ****     }
  970              		.loc 1 463 16 is_stmt 0 view .LVU227
  971 006a 4FF0FF35 		mov	r5, #-1
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 30
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 30
 
 
  972              	.LVL100:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  1014      6572726F 
  1015 006b 206F6620 		.ascii	" of the partition(%s).\000"
  1015      74686520 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 31
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 31
 
 
  1015      70617274 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  1047              		.loc 1 490 17 view .LVU238
  491:BSP/src/fal_partition.c **** 
  492:BSP/src/fal_partition.c ****     if (addr + size > part->len)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 32
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 32
 
 
  1048              		.loc 1 492 5 view .LVU239
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  510:BSP/src/fal_partition.c **** 
  511:BSP/src/fal_partition.c ****     return ret;
  512:BSP/src/fal_partition.c **** }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 33
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 33
 
 
  1085              		.loc 1 512 1 view .LVU254
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  1128              		.loc 1 501 9 discriminator 2 view .LVU265
  1129 005e 0D48     		ldr	r0, .L79+12
  1130 0060 FFF7FEFF 		bl	puts
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 34
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 34
 
 
  1131              	.LVL124:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  513:BSP/src/fal_partition.c **** 
  514:BSP/src/fal_partition.c **** /**
  515:BSP/src/fal_partition.c ****  * erase partition all data
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 35
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 35
 
 
  516:BSP/src/fal_partition.c ****  *
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  1219              		.section	.rodata.__func__.3,"a"
  1220              		.align	2
  1223              	__func__.3:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 36
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 36
 
 
  1224 0000 63686563 		.ascii	"check_and_update_part_cache\000"
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  1265      00000000 
  1265      00000000 
  1265      00
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 37
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 37
 
 
  1266 0074 00000400 		.word	262144
@@ -2174,67 +2174,67 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 1
  1276              		.file 7 "BSP/inc/fal.h"
  1277              		.file 8 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
  1278              		.file 9 "<built-in>"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 38
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 fal_partition.c
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:21     .text.flash_device_find_by_part:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:26     .text.flash_device_find_by_part:00000000 flash_device_find_by_part
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:53     .text.flash_device_find_by_part:00000010 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1246   .bss.partition_table:00000000 partition_table
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1240   .bss.part_flash_cache:00000000 part_flash_cache
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:59     .rodata.check_and_update_part_cache.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:70     .text.check_and_update_part_cache:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:75     .text.check_and_update_part_cache:00000000 check_and_update_part_cache
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:176    .text.check_and_update_part_cache:00000060 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1223   .rodata.__func__.3:00000000 __func__.3
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1229   .bss.partition_table_len:00000000 partition_table_len
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:186    .rodata.fal_show_part_table.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:214    .text.fal_show_part_table:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:220    .text.fal_show_part_table:00000000 fal_show_part_table
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:419    .text.fal_show_part_table:000000e8 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:434    .text.fal_partition_init:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:440    .text.fal_partition_init:00000000 fal_partition_init
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:495    .text.fal_partition_init:0000002c $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1234   .bss.init_ok:00000000 init_ok
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1252   .rodata.partition_table_def:00000000 partition_table_def
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:503    .text.fal_partition_find:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:509    .text.fal_partition_find:00000000 fal_partition_find
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:571    .text.fal_partition_find:00000030 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:577    .text.fal_get_partition_table:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:583    .text.fal_get_partition_table:00000000 fal_get_partition_table
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:610    .text.fal_get_partition_table:0000000c $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:616    .text.fal_set_partition_table_temp:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:622    .text.fal_set_partition_table_temp:00000000 fal_set_partition_table_temp
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:661    .text.fal_set_partition_table_temp:00000014 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:667    .rodata.fal_partition_read.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:679    .text.fal_partition_read:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:685    .text.fal_partition_read:00000000 fal_partition_read
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:827    .text.fal_partition_read:00000090 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1217   .rodata.__func__.2:00000000 __func__.2
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:837    .rodata.fal_partition_write.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:850    .text.fal_partition_write:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:856    .text.fal_partition_write:00000000 fal_partition_write
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:998    .text.fal_partition_write:00000090 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1211   .rodata.__func__.1:00000000 __func__.1
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1008   .rodata.fal_partition_erase.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1021   .text.fal_partition_erase:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1027   .text.fal_partition_erase:00000000 fal_partition_erase
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1161   .text.fal_partition_erase:00000088 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1205   .rodata.__func__.0:00000000 __func__.0
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1171   .text.fal_partition_erase_all:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1177   .text.fal_partition_erase_all:00000000 fal_partition_erase_all
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1202   .rodata.__func__.0:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1208   .rodata.__func__.1:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1214   .rodata.__func__.2:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1220   .rodata.__func__.3:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1226   .bss.partition_table_len:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1235   .bss.init_ok:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1237   .bss.part_flash_cache:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1243   .bss.partition_table:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccuSijD9.s:1249   .rodata.partition_table_def:00000000 $d
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccuSijD9.s 			page 39
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:21     .text.flash_device_find_by_part:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:26     .text.flash_device_find_by_part:00000000 flash_device_find_by_part
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:53     .text.flash_device_find_by_part:00000010 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1246   .bss.partition_table:00000000 partition_table
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1240   .bss.part_flash_cache:00000000 part_flash_cache
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:59     .rodata.check_and_update_part_cache.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:70     .text.check_and_update_part_cache:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:75     .text.check_and_update_part_cache:00000000 check_and_update_part_cache
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:176    .text.check_and_update_part_cache:00000060 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1223   .rodata.__func__.3:00000000 __func__.3
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1229   .bss.partition_table_len:00000000 partition_table_len
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:186    .rodata.fal_show_part_table.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:214    .text.fal_show_part_table:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:220    .text.fal_show_part_table:00000000 fal_show_part_table
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:419    .text.fal_show_part_table:000000e8 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:434    .text.fal_partition_init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:440    .text.fal_partition_init:00000000 fal_partition_init
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:495    .text.fal_partition_init:0000002c $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1234   .bss.init_ok:00000000 init_ok
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1252   .rodata.partition_table_def:00000000 partition_table_def
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:503    .text.fal_partition_find:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:509    .text.fal_partition_find:00000000 fal_partition_find
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:571    .text.fal_partition_find:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:577    .text.fal_get_partition_table:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:583    .text.fal_get_partition_table:00000000 fal_get_partition_table
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:610    .text.fal_get_partition_table:0000000c $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:616    .text.fal_set_partition_table_temp:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:622    .text.fal_set_partition_table_temp:00000000 fal_set_partition_table_temp
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:661    .text.fal_set_partition_table_temp:00000014 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:667    .rodata.fal_partition_read.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:679    .text.fal_partition_read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:685    .text.fal_partition_read:00000000 fal_partition_read
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:827    .text.fal_partition_read:00000090 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1217   .rodata.__func__.2:00000000 __func__.2
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:837    .rodata.fal_partition_write.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:850    .text.fal_partition_write:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:856    .text.fal_partition_write:00000000 fal_partition_write
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:998    .text.fal_partition_write:00000090 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1211   .rodata.__func__.1:00000000 __func__.1
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1008   .rodata.fal_partition_erase.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1021   .text.fal_partition_erase:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1027   .text.fal_partition_erase:00000000 fal_partition_erase
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1161   .text.fal_partition_erase:00000088 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1205   .rodata.__func__.0:00000000 __func__.0
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1171   .text.fal_partition_erase_all:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1177   .text.fal_partition_erase_all:00000000 fal_partition_erase_all
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1202   .rodata.__func__.0:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1208   .rodata.__func__.1:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1214   .rodata.__func__.2:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1220   .rodata.__func__.3:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1226   .bss.partition_table_len:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1235   .bss.init_ok:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1237   .bss.part_flash_cache:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1243   .bss.partition_table:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s:1249   .rodata.partition_table_def:00000000 $d
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccjDN3F0.s 			page 39
 
 
 

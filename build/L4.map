@@ -3189,25 +3189,25 @@ LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib
                 0x08008060       0x18 build/cmsis_os2.o
                 0x08008060                vApplicationGetTimerTaskMemory
  .text.prvHeapInit
-                0x08008078       0x68 build/heap_4.o
+                0x08008078       0x64 build/heap_4.o
  .text.prvInsertBlockIntoFreeList
-                0x080080e0       0x64 build/heap_4.o
+                0x080080dc       0x64 build/heap_4.o
  .text.pvPortMalloc
-                0x08008144      0x104 build/heap_4.o
-                0x08008144                pvPortMalloc
+                0x08008140      0x104 build/heap_4.o
+                0x08008140                pvPortMalloc
  .text.vPortFree
-                0x08008248       0x7c build/heap_4.o
-                0x08008248                vPortFree
+                0x08008244       0x7c build/heap_4.o
+                0x08008244                vPortFree
  .text.prvTaskExitError
-                0x080082c4       0x40 build/port.o
+                0x080082c0       0x40 build/port.o
  .text.prvPortStartFirstTask
-                0x08008304       0x28 build/port.o
+                0x08008300       0x28 build/port.o
  .text.vPortEnableVFP
-                0x0800832c       0x14 build/port.o
+                0x08008328       0x14 build/port.o
  .text.pxPortInitialiseStack
-                0x08008340       0x2c build/port.o
-                0x08008340                pxPortInitialiseStack
- *fill*         0x0800836c        0x4 
+                0x0800833c       0x2c build/port.o
+                0x0800833c                pxPortInitialiseStack
+ *fill*         0x08008368        0x8 
  .text.SVC_Handler
                 0x08008370       0x24 build/port.o
                 0x08008370                SVC_Handler
@@ -3771,7 +3771,7 @@ LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib
  .igot.plt      0x20000090        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 0x20000090                        . = ALIGN (0x4)
 
-.bss            0x20000090     0x2108 load address 0x0800ba18
+.bss            0x20000090     0x2550 load address 0x0800ba18
                 0x20000090                        _sbss = .
                 0x20000090                        __bss_start__ = _sbss
  *(.bss)
@@ -3907,49 +3907,49 @@ LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib
                 0x20001458        0x4 build/heap_4.o
  .bss.pxEnd     0x2000145c        0x4 build/heap_4.o
  .bss.xStart    0x20001460        0x8 build/heap_4.o
- .bss.ucHeap    0x20001468      0xbb8 build/heap_4.o
+ .bss.ucHeap    0x20001468     0x1000 build/heap_4.o
  .bss.ulMaxPRIGROUPValue
-                0x20002020        0x4 build/port.o
+                0x20002468        0x4 build/port.o
  .bss.ucMaxSysCallPriority
-                0x20002024        0x1 build/port.o
- *fill*         0x20002025        0x3 
- .bss.hrtc      0x20002028       0x24 build/rtc.o
-                0x20002028                hrtc
- .bss.__sf      0x2000204c      0x138 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
-                0x2000204c                __sf
+                0x2000246c        0x1 build/port.o
+ *fill*         0x2000246d        0x3 
+ .bss.hrtc      0x20002470       0x24 build/rtc.o
+                0x20002470                hrtc
+ .bss.__sf      0x20002494      0x138 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
+                0x20002494                __sf
  .bss.__stdio_exit_handler
-                0x20002184        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
-                0x20002184                __stdio_exit_handler
- .bss.errno     0x20002188        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reent.o)
-                0x20002188                errno
+                0x200025cc        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
+                0x200025cc                __stdio_exit_handler
+ .bss.errno     0x200025d0        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reent.o)
+                0x200025d0                errno
  .bss.__lock___malloc_recursive_mutex
-                0x2000218c        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x2000218c                __lock___malloc_recursive_mutex
+                0x200025d4        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x200025d4                __lock___malloc_recursive_mutex
  .bss.__lock___sfp_recursive_mutex
-                0x2000218d        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x2000218d                __lock___sfp_recursive_mutex
- *fill*         0x2000218e        0x2 
+                0x200025d5        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x200025d5                __lock___sfp_recursive_mutex
+ *fill*         0x200025d6        0x2 
  .bss.__malloc_sbrk_start
-                0x20002190        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
-                0x20002190                __malloc_sbrk_start
+                0x200025d8        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x200025d8                __malloc_sbrk_start
  .bss.__malloc_free_list
-                0x20002194        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
-                0x20002194                __malloc_free_list
+                0x200025dc        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x200025dc                __malloc_free_list
  *(COMMON)
-                0x20002198                        . = ALIGN (0x4)
-                0x20002198                        _ebss = .
-                0x20002198                        __bss_end__ = _ebss
+                0x200025e0                        . = ALIGN (0x4)
+                0x200025e0                        _ebss = .
+                0x200025e0                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20002198      0x600 load address 0x0800ba18
-                0x20002198                        . = ALIGN (0x8)
+                0x200025e0      0x600 load address 0x0800ba18
+                0x200025e0                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
-                0x20002198                        PROVIDE (_end = .)
-                0x20002398                        . = (. + _Min_Heap_Size)
- *fill*         0x20002198      0x200 
-                0x20002798                        . = (. + _Min_Stack_Size)
- *fill*         0x20002398      0x400 
-                0x20002798                        . = ALIGN (0x8)
+                0x200025e0                        PROVIDE (_end = .)
+                0x200027e0                        . = (. + _Min_Heap_Size)
+ *fill*         0x200025e0      0x200 
+                0x20002be0                        . = (. + _Min_Stack_Size)
+ *fill*         0x200027e0      0x400 
+                0x20002be0                        . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
