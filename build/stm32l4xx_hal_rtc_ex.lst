@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
   27:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****                   ##### How to use this driver #####
   28:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   ==============================================================================
   29:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   [..]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 2
 
 
   30:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     (+) Enable the RTC domain access.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
   84:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****          or Level according to the Tamper filter (if equal to 0 Edge else Level)
   85:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****          value, sampling frequency, NoErase, MaskFlag,  precharge or discharge and
   86:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****          Pull-UP using the HAL_RTCEx_SetTamper() function. You can configure RTC Tamper
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 3
 
 
   87:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****          with interrupt mode using HAL_RTCEx_SetTamper_IT() function.
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  141:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****  ===============================================================================
  142:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****                  ##### RTC TimeStamp and Tamper functions #####
  143:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****  ===============================================================================
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 4
 
 
  144:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  170:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   uint32_t tmpreg;
   46              		.loc 1 170 1 view .LVU8
   47 0008 10B4     		push	{r4}
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 5
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 5
 
 
   48              	.LCFI0:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
   89              		.loc 1 194 22 view .LVU27
   90 0032 8A60     		str	r2, [r1, #8]
  195:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 6
 
 
  196:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   __HAL_RTC_TIMESTAMP_ENABLE(hrtc);
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  132              		.syntax unified
  133              		.thumb
  134              		.thumb_func
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 7
 
 
  136              	HAL_RTCEx_SetTimeStamp_IT:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  157              	.LCFI2:
  158              		.cfi_def_cfa_offset 4
  159              		.cfi_offset 4, -4
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 8
 
 
  160 000a 0346     		mov	r3, r0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  255:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   __HAL_RTC_TIMESTAMP_ENABLE(hrtc);
  200              		.loc 1 255 3 is_stmt 1 view .LVU70
  201 0034 1968     		ldr	r1, [r3]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 9
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 9
 
 
  202 0036 8A68     		ldr	r2, [r1, #8]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  238              	.LCFI3:
  239              		.cfi_restore 4
  240              		.cfi_def_cfa_offset 0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 10
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 10
 
 
  241 006e 7047     		bx	lr
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  287:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_BUSY;
  283              		.loc 1 287 3 view .LVU94
  284              		.loc 1 287 15 is_stmt 0 view .LVU95
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 11
 
 
  285 0010 0222     		movs	r2, #2
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  324 003e 5062     		str	r0, [r2, #36]
  325              		.loc 1 302 3 is_stmt 1 view .LVU112
  303:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 12
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 12
 
 
  304:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_READY;
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  363              		.loc 1 321 3 view .LVU124
  364 0000 90F82030 		ldrb	r3, [r0, #32]	@ zero_extendqisi2
  365 0004 012B     		cmp	r3, #1
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 13
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 13
 
 
  366 0006 1AD0     		beq	.L22
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  403              		.loc 1 338 3 view .LVU141
  339:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  340:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   return HAL_OK;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 14
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 14
 
 
  404              		.loc 1 340 3 view .LVU142
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  446 000e 0223     		movs	r3, #2
  447 0010 80F82130 		strb	r3, [r0, #33]
  354:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 15
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 15
 
 
  355:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Disable the write protection for RTC registers */
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  486 003e 0220     		movs	r0, #2
  487              	.LVL32:
  370:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 16
 
 
  488              		.loc 1 370 1 view .LVU171
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  412:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     sTimeStampDate->Date = (uint8_t)(tmpdate & (RTC_TSDR_DT | RTC_TSDR_DU));
  413:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     sTimeStampDate->WeekDay = (uint8_t)((tmpdate & (RTC_TSDR_WDU)) >> RTC_TSDR_WDU_Pos);
  414:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 17
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 17
 
 
  415:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     /* Check the input parameters format */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  453:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   assert_param(IS_RTC_FORMAT(Format));
  519              		.loc 1 453 3 view .LVU175
  454:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 18
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 18
 
 
  455:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Get the TimeStamp time and date registers values */
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  561              		.loc 1 467 24 is_stmt 0 view .LVU198
  562 002c 0022     		movs	r2, #0
  563 002e EA70     		strb	r2, [r5, #3]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 19
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 19
 
 
  468:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   sTimeStampDate->Month = (uint8_t)((tmpdate & (RTC_TSDR_MT | RTC_TSDR_MU)) >> RTC_TSDR_MU_Pos);
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  597 005a D360     		str	r3, [r2, #12]
  489:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  490:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   return HAL_OK;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 20
 
 
  598              		.loc 1 490 3 view .LVU212
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  482:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     sTimeStampDate->WeekDay = (uint8_t)RTC_Bcd2ToByte(sTimeStampDate->WeekDay);
  637              		.loc 1 482 26 discriminator 1 view .LVU228
  638 0086 A870     		strb	r0, [r5, #2]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 21
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 21
 
 
  483:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   }
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  520:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   }
  521:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  522:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Get interrupt status */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 22
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 22
 
 
  523:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   uint32_t tmp = tamp->MISR;
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  577:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Clear the EXTI's Flag for RTC TimeStamp and Tamper */
  578:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   __HAL_RTC_TAMPER_TIMESTAMP_EXTI_CLEAR_FLAG();
  579:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 23
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 23
 
 
  580:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Get the TimeStamp interrupt source enable status and pending flag status */
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  634:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Get the Tamper3 interrupts source enable status */
  635:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   if (__HAL_RTC_TAMPER_GET_IT_SOURCE(hrtc, RTC_IT_TAMP | RTC_IT_TAMP3) != 0U)
  636:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 24
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 24
 
 
  637:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     if (__HAL_RTC_TAMPER_GET_FLAG(hrtc, RTC_FLAG_TAMP3F) != 0U)
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  672:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** /**
  673:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @brief  Handle TimeStamp polling request.
  674:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @param  hrtc RTC handle
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 25
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 25
 
 
  675:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @param  Timeout Timeout duration
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  693:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     }
  694:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  695:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     if (Timeout != HAL_MAX_DELAY)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 26
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 26
 
 
  721              		.loc 1 695 5 is_stmt 1 view .LVU247
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  706:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_READY;
  760              		.loc 1 706 3 is_stmt 1 view .LVU263
  761              		.loc 1 706 15 is_stmt 0 view .LVU264
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 27
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 27
 
 
  762 004e 0123     		movs	r3, #1
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  787              		@ frame_needed = 0, uses_anonymous_args = 0
  788              		.loc 1 737 1 is_stmt 0 view .LVU270
  789 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 28
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 28
 
 
  790              	.LCFI6:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  753:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   CLEAR_BIT(hrtc->Instance->CR, RTC_CR_WUTE);
  829              		.loc 1 753 3 view .LVU285
  830 0028 0268     		ldr	r2, [r0]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 29
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 29
 
 
  831 002a 9368     		ldr	r3, [r2, #8]
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  790:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   WRITE_REG(hrtc->Instance->WUTR, (uint32_t)WakeUpCounter);
  849              		.loc 1 790 3 view .LVU290
  850 0048 2368     		ldr	r3, [r4]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 30
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 30
 
 
  851 004a 5D61     		str	r5, [r3, #20]
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  887              	.L46:
  768:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #endif
  888              		.loc 1 768 57 view .LVU306
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 31
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 31
 
 
  768:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #endif
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  926              	.LVL62:
  745:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  927              		.loc 1 745 3 discriminator 1 view .LVU324
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 32
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 32
 
 
  928 009c E4E7     		b	.L44
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  830:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* (0x0000<=WUTOCLR<=WUT) */
  831:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   assert_param(WakeUpAutoClr <= WakeUpCounter);
  832:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #endif
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 33
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 33
 
 
  833:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  848:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Poll WUTWF until it is set in RTC_ICSR to make sure the access to wakeup autoreload
  849:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****      counter and to WUCKSEL[2:0] bits is allowed. This step must be skipped in
  850:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****      calendar initialization mode. */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 34
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 34
 
 
  851:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #if defined(STM32L412xx) || defined(STM32L422xx) || defined (STM32L4P5xx) || defined (STM32L4Q5xx)
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1014 004e 9368     		ldr	r3, [r2, #8]
  1015 0050 23F00703 		bic	r3, r3, #7
  1016 0054 2B43     		orrs	r3, r3, r5
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 35
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 35
 
 
  1017 0056 9360     		str	r3, [r2, #8]
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  917:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_READY;
  1043              		.loc 1 917 3 view .LVU357
  1044              		.loc 1 917 15 is_stmt 0 view .LVU358
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 36
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 36
 
 
  1045 0084 0123     		movs	r3, #1
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1082 00a8 B0F57A7F 		cmp	r0, #1000
  1083 00ac F4D9     		bls	.L54
  867:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 37
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 37
 
 
  1084              		.loc 1 867 9 is_stmt 1 view .LVU375
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  927:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @param  hrtc RTC handle
  928:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @retval HAL status
  929:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 38
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 38
 
 
  930:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** HAL_StatusTypeDef HAL_RTCEx_DeactivateWakeUpTimer(RTC_HandleTypeDef *hrtc)
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1166 0028 23F48063 		bic	r3, r3, #1024
  1167 002c 9360     		str	r3, [r2, #8]
  944:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 39
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 39
 
 
  945:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* In case of interrupt mode is used, the interrupt source must disabled */
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  959:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****       /* Process Unlocked */
  960:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****       __HAL_UNLOCK(hrtc);
  1208              		.loc 1 960 7 is_stmt 1 view .LVU418
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 40
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 40
 
 
  1209              		.loc 1 960 7 view .LVU419
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1247              		.align	1
  1248              		.global	HAL_RTCEx_GetWakeUpTimer
  1249              		.syntax unified
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 41
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 41
 
 
  1250              		.thumb
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1000:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   if ((hrtc->Instance->MISR & RTC_MISR_WUTMF) != 0u)
 1001:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   {
 1002:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     /* Immediately clear flags */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 42
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 42
 
 
 1003:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     hrtc->Instance->SCR = RTC_SCR_CWUTF;
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1303              	.LFB241:
  994:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Clear the EXTI's line Flag for RTC WakeUpTimer */
  1304              		.loc 1 994 1 is_stmt 1 view -0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 43
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 43
 
 
  1305              		.cfi_startproc
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1348              	.L74:
  1349 0030 00040140 		.word	1073808384
  1350              		.cfi_endproc
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 44
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 44
 
 
  1351              	.LFE241:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1053:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     if (Timeout != HAL_MAX_DELAY)
  1393              		.loc 1 1053 5 is_stmt 1 view .LVU464
  1394              		.loc 1 1053 8 is_stmt 0 view .LVU465
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 45
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 45
 
 
  1395 0016 B5F1FF3F 		cmp	r5, #-1
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1432 0044 70BD     		pop	{r4, r5, r6, pc}
  1433              		.loc 1 1070 1 view .LVU481
  1434              		.cfi_endproc
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 46
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 46
 
 
  1435              	.LFE243:
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1115:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   *             @arg RTC_SMOOTHCALIB_PLUSPULSES_SET: Add one RTCCLK pulse every 2*11 pulses.
 1116:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   *             @arg RTC_SMOOTHCALIB_PLUSPULSES_RESET: No RTCCLK pulses are added.
 1117:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @param  SmoothCalibMinusPulsesValue Select the value of CALM[8:0] bits.
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 47
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 47
 
 
 1118:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   *          This parameter can be one any value from 0 to 0x000001FF.
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1482 001a 0223     		movs	r3, #2
  1483 001c 80F82130 		strb	r3, [r0, #33]
 1137:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 48
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 48
 
 
 1138:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Disable the write protection for RTC registers */
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1170:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     }
 1171:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   }
 1172:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 49
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 49
 
 
 1173:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Configure the Smooth calibration settings */
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1543              		.loc 1 1148 17 view .LVU518
  1544 0064 8046     		mov	r8, r0
  1545              	.LVL99:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 50
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 50
 
 
 1154:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #endif
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1581              		.loc 1 1168 16 is_stmt 0 view .LVU537
  1582 0090 E4E7     		b	.L85
  1583              	.LVL101:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 51
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 51
 
 
  1584              	.L89:
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1222:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
 1223:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   return HAL_OK;
 1224:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 52
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 52
 
 
 1225:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #endif /* #if defined(STM32L412xx) || defined(STM32L422xx) || defined (STM32L4P5xx) || defined (STM
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1249:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
 1250:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_BUSY;
  1632              		.loc 1 1250 3 view .LVU549
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 53
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 53
 
 
  1633              		.loc 1 1250 15 is_stmt 0 view .LVU550
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1673 0044 F4D9     		bls	.L94
 1265:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     {
 1266:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****       /* Enable the write protection for RTC registers */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 54
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 54
 
 
 1267:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****       __HAL_RTC_WRITEPROTECTION_ENABLE(hrtc);
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1303:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     /* Enable the write protection for RTC registers */
 1304:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     __HAL_RTC_WRITEPROTECTION_ENABLE(hrtc);
 1305:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 55
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 55
 
 
 1306:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     /* Change RTC state */
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1716              	.L97:
 1316:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  1717              		.loc 1 1316 3 is_stmt 1 view .LVU588
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 56
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 56
 
 
 1316:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1754              		.loc 1 1295 9 is_stmt 1 view .LVU606
 1295:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  1755              		.loc 1 1295 9 view .LVU607
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 57
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 57
 
 
  1756 009e 0023     		movs	r3, #0
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1796              		.loc 1 1325 1 view .LVU622
  1797 00be 7047     		bx	lr
  1798              		.cfi_endproc
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 58
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 58
 
 
  1799              	.LFE245:
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1835              		.loc 1 1344 15 is_stmt 0 view .LVU632
  1836 0012 0222     		movs	r2, #2
  1837 0014 83F82120 		strb	r2, [r3, #33]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 59
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 59
 
 
 1345:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1360:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Change RTC state */
 1361:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_READY;
  1877              		.loc 1 1361 3 view .LVU650
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 60
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 60
 
 
  1878              		.loc 1 1361 15 is_stmt 0 view .LVU651
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1917              		.loc 1 1377 3 view .LVU660
  1918              		.loc 1 1377 3 view .LVU661
  1919 0000 90F82030 		ldrb	r3, [r0, #32]	@ zero_extendqisi2
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 61
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 61
 
 
  1920 0004 012B     		cmp	r3, #1
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  1958              		.loc 1 1393 3 view .LVU678
 1394:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
 1395:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   return HAL_OK;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 62
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 62
 
 
  1959              		.loc 1 1395 3 view .LVU679
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2000              		.cfi_offset 14, -4
  2001 000a 0446     		mov	r4, r0
  2002              		.loc 1 1408 3 is_stmt 1 discriminator 2 view .LVU689
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 63
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 63
 
 
  2003 000c 0123     		movs	r3, #1
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2037 0030 10B9     		cbnz	r0, .L118
 1429:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   {
 1430:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     hrtc->State = HAL_RTC_STATE_READY;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 64
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 64
 
 
  2038              		.loc 1 1430 5 is_stmt 1 view .LVU706
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2081              		.align	1
  2082              		.global	HAL_RTCEx_DeactivateRefClock
  2083              		.syntax unified
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 65
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 65
 
 
  2084              		.thumb
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2121 001e 0368     		ldr	r3, [r0]
  2122 0020 5322     		movs	r2, #83
  2123 0022 5A62     		str	r2, [r3, #36]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 66
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 66
 
 
  2124              		.loc 1 1454 3 view .LVU731
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2154              		.loc 1 1478 1 is_stmt 0 view .LVU747
  2155 003e 10BD     		pop	{r4, pc}
  2156              	.LVL135:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 67
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 67
 
 
  2157              	.L134:
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2198              		@ frame_needed = 0, uses_anonymous_args = 0
  2199              		@ link register save eliminated.
 1489:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Process Locked */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 68
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 68
 
 
 1490:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   __HAL_LOCK(hrtc);
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1507:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   __HAL_UNLOCK(hrtc);
  2237              		.loc 1 1507 3 is_stmt 1 view .LVU771
  2238              		.loc 1 1507 3 view .LVU772
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 69
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 69
 
 
  2239 0034 0023     		movs	r3, #0
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2279 0008 0122     		movs	r2, #1
  2280 000a 80F82020 		strb	r2, [r0, #32]
  2281              		.loc 1 1522 3 view .LVU783
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 70
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 70
 
 
 1523:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2317 003a 1846     		mov	r0, r3
  2318              	.LVL145:
  2319              		.loc 1 1541 10 view .LVU801
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 71
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 71
 
 
  2320 003c 7047     		bx	lr
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1572:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Process Unlocked */
 1573:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   __HAL_UNLOCK(hrtc);
 1574:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 72
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 72
 
 
 1575:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   return HAL_OK;
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1629:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_READY;
 1630:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** }
 1631:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 73
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 73
 
 
 1632:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** /**
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1680:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** }
  2351              		.loc 1 1680 1 is_stmt 0 view .LVU806
  2352 0000 7047     		bx	lr
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 74
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 74
 
 
  2353              		.cfi_endproc
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1694:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     if (Timeout != HAL_MAX_DELAY)
  2396              		.loc 1 1694 5 is_stmt 1 view .LVU816
  2397              		.loc 1 1694 8 is_stmt 0 view .LVU817
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 75
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 75
 
 
  2398 0016 B5F1FF3F 		cmp	r5, #-1
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2435 0044 70BD     		pop	{r4, r5, r6, pc}
  2436              		.loc 1 1711 1 view .LVU833
  2437              		.cfi_endproc
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 76
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 76
 
 
  2438              	.LFE253:
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1756:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
 1757:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Check the parameters */
 1758:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   assert_param(IS_RTC_TAMPER(sTamper->Tamper));
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 77
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 77
 
 
 1759:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   assert_param(IS_RTC_TAMPER_TRIGGER(sTamper->Trigger));
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1813:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** /**
 1814:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @brief  Set Tamper.
 1815:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @note   By calling this API we disable the tamper interrupt for all tampers.
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 78
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 78
 
 
 1816:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @param  hrtc RTC handle
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1838:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   hrtc->State = HAL_RTC_STATE_BUSY;
  2481              		.loc 1 1838 3 view .LVU850
  2482              		.loc 1 1838 15 is_stmt 0 view .LVU851
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 79
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 79
 
 
  2483 0012 0223     		movs	r3, #2
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1849:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****                (sTamper->Trigger == RTC_TAMPERTRIGGER_RISINGEDGE ?  0U : RTC_TAMPCR_TAMP1TRG) | \
 1850:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****                (sTamper->NoErase == RTC_TAMPER_ERASE_BACKUP_ENABLE ? 0U : RTC_TAMPCR_TAMP1NOERASE) 
 1851:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****                (sTamper->MaskFlag == RTC_TAMPERMASK_FLAG_ENABLE ? RTC_TAMPCR_TAMP1MF : 0U) \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 80
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 80
 
 
 1852:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****               );
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2562              		.loc 1 1870 6 is_stmt 0 view .LVU877
  2563 0076 12F0200F 		tst	r2, #32
  2564 007a 13D0     		beq	.L162
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 81
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 81
 
 
 1871:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   {
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2606 00b6 496A     		ldr	r1, [r1, #36]
  2607              	.LVL163:
  2608              		.loc 1 1883 3 view .LVU888
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 82
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 82
 
 
  2609 00b8 0A43     		orrs	r2, r2, r1
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2646              	.LVL168:
  2647              	.L166:
  2648              	.LCFI24:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 83
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 83
 
 
  2649              		.cfi_def_cfa_offset 0
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1933:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   if ((sTamper->Trigger == RTC_TAMPERTRIGGER_HIGHLEVEL) || (sTamper->Trigger == RTC_TAMPERTRIGGER_F
 1934:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   {
 1935:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     tmpreg |= (sTamper->Tamper << TAMP_CR2_TAMP1TRG_Pos);
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 84
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 84
 
 
 1936:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   }
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 1986:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   uint32_t tmpreg;
  2674              		.loc 1 1986 3 view .LVU903
 1987:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 85
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 85
 
 
 1988:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Check the parameters */
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2709              		.loc 1 2006 10 view .LVU923
  2710 001c 036C     		ldr	r3, [r0, #64]
  2711              	.LVL172:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 86
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 86
 
 
 2007:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2750              		.loc 1 2022 6 is_stmt 0 view .LVU936
  2751 0058 12F0080F 		tst	r2, #8
  2752 005c 1AD0     		beq	.L188
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 87
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 87
 
 
 2023:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   {
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2792              		.loc 1 2037 5 is_stmt 0 view .LVU948
  2793 009e 23F06403 		bic	r3, r3, #100
  2794 00a2 4C68     		ldr	r4, [r1, #4]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 88
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 88
 
 
  2795 00a4 2243     		orrs	r2, r2, r4
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 2049:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****              (RTC_TAMPCR_TAMPTS | RTC_TAMPCR_TAMPFREQ | RTC_TAMPCR_TAMPFLT | RTC_TAMPCR_TAMPPRCH | 
 2050:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****              sTamper->Filter | sTamper->SamplingFrequency | sTamper->PrechargeDuration | sTamper->T
 2051:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****              sTamper->TimeStampOnTamperDetection \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 89
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 89
 
 
 2052:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****             );
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2874              	.L196:
  2875              	.LCFI26:
  2876              		.cfi_def_cfa_offset 0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 90
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 90
 
 
  2877              		.cfi_restore 4
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 2099:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
 2100:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   return HAL_OK;
 2101:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 91
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 91
 
 
 2102:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #else /* #if defined(STM32L412xx) || defined(STM32L422xx) || defined (STM32L4P5xx) || defined (STM3
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 2126:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   if ((Tamper & RTC_TAMPER_1) != 0U)
  2931              		.loc 1 2126 3 is_stmt 1 view .LVU986
  2932              		.loc 1 2126 6 is_stmt 0 view .LVU987
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 92
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 92
 
 
  2933 0020 11F0010F 		tst	r1, #1
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  2972 005a 0A64     		str	r2, [r1, #64]
  2973              	.L218:
 2142:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 93
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 93
 
 
 2143:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #endif /* RTC_TAMPER3_SUPPORT */
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3008              		@ args = 0, pretend = 0, frame = 0
  3009              		@ frame_needed = 0, uses_anonymous_args = 0
  3010              		.loc 1 2163 1 is_stmt 0 view .LVU1014
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 94
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 94
 
 
  3011 0000 70B5     		push	{r4, r5, r6, lr}
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3055 002a 0320     		movs	r0, #3
  3056 002c 84F82100 		strb	r0, [r4, #33]
 2174:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****         return HAL_TIMEOUT;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 95
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 95
 
 
  3057              		.loc 1 2174 9 is_stmt 1 view .LVU1031
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3091              		.cfi_startproc
  3092              		@ args = 0, pretend = 0, frame = 0
  3093              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 96
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 96
 
 
  3094              		.loc 1 2196 1 is_stmt 0 view .LVU1041
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3138              		.loc 1 2206 21 is_stmt 0 view .LVU1057
  3139 002a 0320     		movs	r0, #3
  3140 002c 84F82100 		strb	r0, [r4, #33]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 97
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 97
 
 
 2207:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****         return HAL_TIMEOUT;
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3174              		.loc 1 2229 1 is_stmt 1 view -0
  3175              		.cfi_startproc
  3176              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 98
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 98
 
 
  3177              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3221              		.loc 1 2239 21 is_stmt 0 view .LVU1084
  3222 0028 0320     		movs	r0, #3
  3223 002a 84F82100 		strb	r0, [r4, #33]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 99
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 99
 
 
 2240:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****         return HAL_TIMEOUT;
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 2260:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @param  hrtc RTC handle
 2261:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   * @retval None
 2262:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 100
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 100
 
 
 2263:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** __weak void HAL_RTCEx_Tamper1EventCallback(RTC_HandleTypeDef *hrtc)
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3292              		.section	.text.HAL_RTCEx_Tamper3EventCallback,"ax",%progbits
  3293              		.align	1
  3294              		.weak	HAL_RTCEx_Tamper3EventCallback
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 101
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 101
 
 
  3295              		.syntax unified
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  578:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
  3334              		.loc 1 578 3 is_stmt 1 view .LVU1105
  3335 0004 2A4B     		ldr	r3, .L257
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 102
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 102
 
 
  3336 0006 4FF40022 		mov	r2, #524288
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3375 0038 1BB1     		cbz	r3, .L250
  619:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     {
  3376              		.loc 1 619 5 is_stmt 1 view .LVU1121
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 103
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 103
 
 
  619:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****     {
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3417              		.loc 1 604 7 view .LVU1135
  3418 006e D368     		ldr	r3, [r2, #12]
  3419 0070 DBB2     		uxtb	r3, r3
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 104
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 104
 
 
  3420 0072 63F40253 		orn	r3, r3, #8320
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3471              	.LFB263:
 2304:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #endif /* RTC_TAMPER3_SUPPORT */
 2305:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 105
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 105
 
 
 2306:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** /**
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 2350:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   tmp = (uint32_t) & (tamp->BKP0R);
 2351:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** #else /* #if defined(STM32L412xx) || defined(STM32L422xx) || defined (STM32L4P5xx) || defined (STM3
 2352:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   /* Check the parameters */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 106
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 106
 
 
 2353:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   assert_param(IS_RTC_BKP(BackupRegister));
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
 2372:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c ****   */
 2373:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** uint32_t HAL_RTCEx_BKUPRead(RTC_HandleTypeDef *hrtc, uint32_t BackupRegister)
 2374:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.c **** {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 107
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 107
 
 
  3519              		.loc 1 2374 1 is_stmt 1 view -0
@@ -6414,95 +6414,95 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 1
  3549              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc_ex.h"
  3550              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
  3551              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 108
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 108
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32l4xx_hal_rtc_ex.c
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:21     .text.HAL_RTCEx_SetTimeStamp:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:27     .text.HAL_RTCEx_SetTimeStamp:00000000 HAL_RTCEx_SetTimeStamp
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:130    .text.HAL_RTCEx_SetTimeStamp_IT:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:136    .text.HAL_RTCEx_SetTimeStamp_IT:00000000 HAL_RTCEx_SetTimeStamp_IT
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:252    .text.HAL_RTCEx_SetTimeStamp_IT:00000074 $d
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:257    .text.HAL_RTCEx_DeactivateTimeStamp:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:263    .text.HAL_RTCEx_DeactivateTimeStamp:00000000 HAL_RTCEx_DeactivateTimeStamp
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:348    .text.HAL_RTCEx_SetInternalTimeStamp:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:354    .text.HAL_RTCEx_SetInternalTimeStamp:00000000 HAL_RTCEx_SetInternalTimeStamp
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:421    .text.HAL_RTCEx_DeactivateInternalTimeStamp:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:427    .text.HAL_RTCEx_DeactivateInternalTimeStamp:00000000 HAL_RTCEx_DeactivateInternalTimeStamp
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:494    .text.HAL_RTCEx_GetTimeStamp:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:500    .text.HAL_RTCEx_GetTimeStamp:00000000 HAL_RTCEx_GetTimeStamp
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:650    .text.HAL_RTCEx_GetTimeStamp:00000094 $d
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:655    .text.HAL_RTCEx_TimeStampEventCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:661    .text.HAL_RTCEx_TimeStampEventCallback:00000000 HAL_RTCEx_TimeStampEventCallback
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:676    .text.HAL_RTCEx_PollForTimeStampEvent:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:682    .text.HAL_RTCEx_PollForTimeStampEvent:00000000 HAL_RTCEx_PollForTimeStampEvent
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:775    .text.HAL_RTCEx_SetWakeUpTimer:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:781    .text.HAL_RTCEx_SetWakeUpTimer:00000000 HAL_RTCEx_SetWakeUpTimer
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:933    .text.HAL_RTCEx_SetWakeUpTimer_IT:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:939    .text.HAL_RTCEx_SetWakeUpTimer_IT:00000000 HAL_RTCEx_SetWakeUpTimer_IT
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1112   .text.HAL_RTCEx_SetWakeUpTimer_IT:000000c8 $d
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1117   .text.HAL_RTCEx_DeactivateWakeUpTimer:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1123   .text.HAL_RTCEx_DeactivateWakeUpTimer:00000000 HAL_RTCEx_DeactivateWakeUpTimer
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1247   .text.HAL_RTCEx_GetWakeUpTimer:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1253   .text.HAL_RTCEx_GetWakeUpTimer:00000000 HAL_RTCEx_GetWakeUpTimer
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1274   .text.HAL_RTCEx_WakeUpTimerEventCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1280   .text.HAL_RTCEx_WakeUpTimerEventCallback:00000000 HAL_RTCEx_WakeUpTimerEventCallback
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1295   .text.HAL_RTCEx_WakeUpTimerIRQHandler:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1301   .text.HAL_RTCEx_WakeUpTimerIRQHandler:00000000 HAL_RTCEx_WakeUpTimerIRQHandler
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1349   .text.HAL_RTCEx_WakeUpTimerIRQHandler:00000030 $d
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1354   .text.HAL_RTCEx_PollForWakeUpTimerEvent:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1360   .text.HAL_RTCEx_PollForWakeUpTimerEvent:00000000 HAL_RTCEx_PollForWakeUpTimerEvent
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1438   .text.HAL_RTCEx_SetSmoothCalib:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1444   .text.HAL_RTCEx_SetSmoothCalib:00000000 HAL_RTCEx_SetSmoothCalib
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1594   .text.HAL_RTCEx_SetSynchroShift:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1600   .text.HAL_RTCEx_SetSynchroShift:00000000 HAL_RTCEx_SetSynchroShift
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1802   .text.HAL_RTCEx_SetCalibrationOutPut:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1808   .text.HAL_RTCEx_SetCalibrationOutPut:00000000 HAL_RTCEx_SetCalibrationOutPut
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1903   .text.HAL_RTCEx_DeactivateCalibrationOutPut:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1909   .text.HAL_RTCEx_DeactivateCalibrationOutPut:00000000 HAL_RTCEx_DeactivateCalibrationOutPut
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1976   .text.HAL_RTCEx_SetRefClock:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:1982   .text.HAL_RTCEx_SetRefClock:00000000 HAL_RTCEx_SetRefClock
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2081   .text.HAL_RTCEx_DeactivateRefClock:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2087   .text.HAL_RTCEx_DeactivateRefClock:00000000 HAL_RTCEx_DeactivateRefClock
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2186   .text.HAL_RTCEx_EnableBypassShadow:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2192   .text.HAL_RTCEx_EnableBypassShadow:00000000 HAL_RTCEx_EnableBypassShadow
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2259   .text.HAL_RTCEx_DisableBypassShadow:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2265   .text.HAL_RTCEx_DisableBypassShadow:00000000 HAL_RTCEx_DisableBypassShadow
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2331   .text.HAL_RTCEx_DisableBypassShadow:00000044 $d
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2336   .text.HAL_RTCEx_AlarmBEventCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2342   .text.HAL_RTCEx_AlarmBEventCallback:00000000 HAL_RTCEx_AlarmBEventCallback
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2357   .text.HAL_RTCEx_PollForAlarmBEvent:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2363   .text.HAL_RTCEx_PollForAlarmBEvent:00000000 HAL_RTCEx_PollForAlarmBEvent
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s 			page 109
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:21     .text.HAL_RTCEx_SetTimeStamp:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:27     .text.HAL_RTCEx_SetTimeStamp:00000000 HAL_RTCEx_SetTimeStamp
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:130    .text.HAL_RTCEx_SetTimeStamp_IT:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:136    .text.HAL_RTCEx_SetTimeStamp_IT:00000000 HAL_RTCEx_SetTimeStamp_IT
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:252    .text.HAL_RTCEx_SetTimeStamp_IT:00000074 $d
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:257    .text.HAL_RTCEx_DeactivateTimeStamp:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:263    .text.HAL_RTCEx_DeactivateTimeStamp:00000000 HAL_RTCEx_DeactivateTimeStamp
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:348    .text.HAL_RTCEx_SetInternalTimeStamp:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:354    .text.HAL_RTCEx_SetInternalTimeStamp:00000000 HAL_RTCEx_SetInternalTimeStamp
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:421    .text.HAL_RTCEx_DeactivateInternalTimeStamp:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:427    .text.HAL_RTCEx_DeactivateInternalTimeStamp:00000000 HAL_RTCEx_DeactivateInternalTimeStamp
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:494    .text.HAL_RTCEx_GetTimeStamp:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:500    .text.HAL_RTCEx_GetTimeStamp:00000000 HAL_RTCEx_GetTimeStamp
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:650    .text.HAL_RTCEx_GetTimeStamp:00000094 $d
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:655    .text.HAL_RTCEx_TimeStampEventCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:661    .text.HAL_RTCEx_TimeStampEventCallback:00000000 HAL_RTCEx_TimeStampEventCallback
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:676    .text.HAL_RTCEx_PollForTimeStampEvent:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:682    .text.HAL_RTCEx_PollForTimeStampEvent:00000000 HAL_RTCEx_PollForTimeStampEvent
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:775    .text.HAL_RTCEx_SetWakeUpTimer:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:781    .text.HAL_RTCEx_SetWakeUpTimer:00000000 HAL_RTCEx_SetWakeUpTimer
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:933    .text.HAL_RTCEx_SetWakeUpTimer_IT:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:939    .text.HAL_RTCEx_SetWakeUpTimer_IT:00000000 HAL_RTCEx_SetWakeUpTimer_IT
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1112   .text.HAL_RTCEx_SetWakeUpTimer_IT:000000c8 $d
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1117   .text.HAL_RTCEx_DeactivateWakeUpTimer:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1123   .text.HAL_RTCEx_DeactivateWakeUpTimer:00000000 HAL_RTCEx_DeactivateWakeUpTimer
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1247   .text.HAL_RTCEx_GetWakeUpTimer:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1253   .text.HAL_RTCEx_GetWakeUpTimer:00000000 HAL_RTCEx_GetWakeUpTimer
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1274   .text.HAL_RTCEx_WakeUpTimerEventCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1280   .text.HAL_RTCEx_WakeUpTimerEventCallback:00000000 HAL_RTCEx_WakeUpTimerEventCallback
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1295   .text.HAL_RTCEx_WakeUpTimerIRQHandler:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1301   .text.HAL_RTCEx_WakeUpTimerIRQHandler:00000000 HAL_RTCEx_WakeUpTimerIRQHandler
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1349   .text.HAL_RTCEx_WakeUpTimerIRQHandler:00000030 $d
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1354   .text.HAL_RTCEx_PollForWakeUpTimerEvent:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1360   .text.HAL_RTCEx_PollForWakeUpTimerEvent:00000000 HAL_RTCEx_PollForWakeUpTimerEvent
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1438   .text.HAL_RTCEx_SetSmoothCalib:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1444   .text.HAL_RTCEx_SetSmoothCalib:00000000 HAL_RTCEx_SetSmoothCalib
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1594   .text.HAL_RTCEx_SetSynchroShift:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1600   .text.HAL_RTCEx_SetSynchroShift:00000000 HAL_RTCEx_SetSynchroShift
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1802   .text.HAL_RTCEx_SetCalibrationOutPut:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1808   .text.HAL_RTCEx_SetCalibrationOutPut:00000000 HAL_RTCEx_SetCalibrationOutPut
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1903   .text.HAL_RTCEx_DeactivateCalibrationOutPut:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1909   .text.HAL_RTCEx_DeactivateCalibrationOutPut:00000000 HAL_RTCEx_DeactivateCalibrationOutPut
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1976   .text.HAL_RTCEx_SetRefClock:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:1982   .text.HAL_RTCEx_SetRefClock:00000000 HAL_RTCEx_SetRefClock
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2081   .text.HAL_RTCEx_DeactivateRefClock:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2087   .text.HAL_RTCEx_DeactivateRefClock:00000000 HAL_RTCEx_DeactivateRefClock
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2186   .text.HAL_RTCEx_EnableBypassShadow:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2192   .text.HAL_RTCEx_EnableBypassShadow:00000000 HAL_RTCEx_EnableBypassShadow
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2259   .text.HAL_RTCEx_DisableBypassShadow:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2265   .text.HAL_RTCEx_DisableBypassShadow:00000000 HAL_RTCEx_DisableBypassShadow
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2331   .text.HAL_RTCEx_DisableBypassShadow:00000044 $d
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2336   .text.HAL_RTCEx_AlarmBEventCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2342   .text.HAL_RTCEx_AlarmBEventCallback:00000000 HAL_RTCEx_AlarmBEventCallback
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2357   .text.HAL_RTCEx_PollForAlarmBEvent:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2363   .text.HAL_RTCEx_PollForAlarmBEvent:00000000 HAL_RTCEx_PollForAlarmBEvent
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s 			page 109
 
 
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2441   .text.HAL_RTCEx_SetTamper:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2447   .text.HAL_RTCEx_SetTamper:00000000 HAL_RTCEx_SetTamper
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2661   .text.HAL_RTCEx_SetTamper_IT:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2667   .text.HAL_RTCEx_SetTamper_IT:00000000 HAL_RTCEx_SetTamper_IT
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2887   .text.HAL_RTCEx_SetTamper_IT:00000110 $d
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2892   .text.HAL_RTCEx_DeactivateTamper:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2898   .text.HAL_RTCEx_DeactivateTamper:00000000 HAL_RTCEx_DeactivateTamper
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:2997   .text.HAL_RTCEx_PollForTamper1Event:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3003   .text.HAL_RTCEx_PollForTamper1Event:00000000 HAL_RTCEx_PollForTamper1Event
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3081   .text.HAL_RTCEx_PollForTamper2Event:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3087   .text.HAL_RTCEx_PollForTamper2Event:00000000 HAL_RTCEx_PollForTamper2Event
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3165   .text.HAL_RTCEx_PollForTamper3Event:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3171   .text.HAL_RTCEx_PollForTamper3Event:00000000 HAL_RTCEx_PollForTamper3Event
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3251   .text.HAL_RTCEx_Tamper1EventCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3257   .text.HAL_RTCEx_Tamper1EventCallback:00000000 HAL_RTCEx_Tamper1EventCallback
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3272   .text.HAL_RTCEx_Tamper2EventCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3278   .text.HAL_RTCEx_Tamper2EventCallback:00000000 HAL_RTCEx_Tamper2EventCallback
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3293   .text.HAL_RTCEx_Tamper3EventCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3299   .text.HAL_RTCEx_Tamper3EventCallback:00000000 HAL_RTCEx_Tamper3EventCallback
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3314   .text.HAL_RTCEx_TamperTimeStampIRQHandler:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3320   .text.HAL_RTCEx_TamperTimeStampIRQHandler:00000000 HAL_RTCEx_TamperTimeStampIRQHandler
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3455   .text.HAL_RTCEx_TamperTimeStampIRQHandler:000000b0 $d
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3463   .text.HAL_RTCEx_BKUPWrite:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3469   .text.HAL_RTCEx_BKUPWrite:00000000 HAL_RTCEx_BKUPWrite
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3510   .text.HAL_RTCEx_BKUPRead:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccl0mnNp.s:3516   .text.HAL_RTCEx_BKUPRead:00000000 HAL_RTCEx_BKUPRead
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2441   .text.HAL_RTCEx_SetTamper:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2447   .text.HAL_RTCEx_SetTamper:00000000 HAL_RTCEx_SetTamper
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2661   .text.HAL_RTCEx_SetTamper_IT:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2667   .text.HAL_RTCEx_SetTamper_IT:00000000 HAL_RTCEx_SetTamper_IT
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2887   .text.HAL_RTCEx_SetTamper_IT:00000110 $d
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2892   .text.HAL_RTCEx_DeactivateTamper:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2898   .text.HAL_RTCEx_DeactivateTamper:00000000 HAL_RTCEx_DeactivateTamper
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:2997   .text.HAL_RTCEx_PollForTamper1Event:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3003   .text.HAL_RTCEx_PollForTamper1Event:00000000 HAL_RTCEx_PollForTamper1Event
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3081   .text.HAL_RTCEx_PollForTamper2Event:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3087   .text.HAL_RTCEx_PollForTamper2Event:00000000 HAL_RTCEx_PollForTamper2Event
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3165   .text.HAL_RTCEx_PollForTamper3Event:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3171   .text.HAL_RTCEx_PollForTamper3Event:00000000 HAL_RTCEx_PollForTamper3Event
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3251   .text.HAL_RTCEx_Tamper1EventCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3257   .text.HAL_RTCEx_Tamper1EventCallback:00000000 HAL_RTCEx_Tamper1EventCallback
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3272   .text.HAL_RTCEx_Tamper2EventCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3278   .text.HAL_RTCEx_Tamper2EventCallback:00000000 HAL_RTCEx_Tamper2EventCallback
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3293   .text.HAL_RTCEx_Tamper3EventCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3299   .text.HAL_RTCEx_Tamper3EventCallback:00000000 HAL_RTCEx_Tamper3EventCallback
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3314   .text.HAL_RTCEx_TamperTimeStampIRQHandler:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3320   .text.HAL_RTCEx_TamperTimeStampIRQHandler:00000000 HAL_RTCEx_TamperTimeStampIRQHandler
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3455   .text.HAL_RTCEx_TamperTimeStampIRQHandler:000000b0 $d
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3463   .text.HAL_RTCEx_BKUPWrite:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3469   .text.HAL_RTCEx_BKUPWrite:00000000 HAL_RTCEx_BKUPWrite
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3510   .text.HAL_RTCEx_BKUPRead:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc4cE4mu.s:3516   .text.HAL_RTCEx_BKUPRead:00000000 HAL_RTCEx_BKUPRead
 
 UNDEFINED SYMBOLS
 RTC_Bcd2ToByte

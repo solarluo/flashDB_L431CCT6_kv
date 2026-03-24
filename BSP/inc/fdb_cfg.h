@@ -21,7 +21,7 @@
 #endif
 
 /* using TSDB (Time series database) feature */
-//#define FDB_USING_TSDB
+#define FDB_USING_TSDB
 
 /* Use fixed-size blobs in TSDB to save flash overhead (8 bytes per entry).
  * Define this to the fixed blob size in bytes when all TSL entries are the same size.

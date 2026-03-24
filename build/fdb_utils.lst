@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
   27:BSP/src/fdb_utils.c ****     0x136c9856, 0x646ba8c0, 0xfd62f97a, 0x8a65c9ec, 0x14015c4f, 0x63066cd9,
   28:BSP/src/fdb_utils.c ****     0xfa0f3d63, 0x8d080df5, 0x3b6e20c8, 0x4c69105e, 0xd56041e4, 0xa2677172,
   29:BSP/src/fdb_utils.c ****     0x3c03e4d1, 0x4b04d447, 0xd20d85fd, 0xa50ab56b, 0x35b5a8fa, 0x42b2986c,
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 2
 
 
   30:BSP/src/fdb_utils.c ****     0xdbbbc9d6, 0xacbcf940, 0x32d86ce3, 0x45df5c75, 0xdcd60dcf, 0xabd13d59,
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
   79:BSP/src/fdb_utils.c ****     const uint8_t *p;
   35              		.loc 1 79 5 view .LVU1
   80:BSP/src/fdb_utils.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 3
 
 
   81:BSP/src/fdb_utils.c ****     p = (const uint8_t *)buf;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
   77              	.L5:
   78              		.align	2
   79              	.L4:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 4
 
 
   80 0024 00000000 		.word	crc32_table
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  117              	.LVL11:
  118              		.loc 1 108 5 view .LVU26
  119 000c FFF7FEFF 		bl	memset
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 5
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 5
 
 
  120              	.LVL12:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  156              		.section	.text._fdb_get_status,"ax",%progbits
  157              		.align	1
  158              		.global	_fdb_get_status
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 6
 
 
  159              		.syntax unified
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  194              		.loc 1 130 23 view .LVU51
  195 0010 1A46     		mov	r2, r3
  196              	.LVL22:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 7
 
 
  197              	.L11:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  148:BSP/src/fdb_utils.c **** {
  149:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
  150:BSP/src/fdb_utils.c ****     size_t byte_index;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 8
 
 
  151:BSP/src/fdb_utils.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  205:BSP/src/fdb_utils.c ****     if (last_data == FDB_BYTE_ERASED) {
  206:BSP/src/fdb_utils.c ****         return FDB_WG_ALIGN(addr);
  207:BSP/src/fdb_utils.c ****     } else {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 9
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 9
 
 
  208:BSP/src/fdb_utils.c ****         return end;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  237:BSP/src/fdb_utils.c **** size_t fdb_blob_read(fdb_db_t db, fdb_blob_t blob)
  238:BSP/src/fdb_utils.c **** {
  239:BSP/src/fdb_utils.c ****     size_t read_len = blob->size;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 10
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 10
 
 
  240:BSP/src/fdb_utils.c **** 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  289              		.loc 1 269 12 discriminator 1 view .LVU81
  290 000c 0028     		cmp	r0, #0
  291 000e 03DB     		blt	.L20
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 11
 
 
  259:BSP/src/fdb_utils.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  325              		.global	_fdb_read_status
  326              		.syntax unified
  327              		.thumb
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 12
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 12
 
 
  328              		.thumb_func
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  371              		.loc 1 175 5 is_stmt 0 discriminator 1 view .LVU98
  372 001c FFF7FEFF 		bl	printf
  373              	.LVL40:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 13
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 13
 
 
  175:BSP/src/fdb_utils.c **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  424 0004 88B0     		sub	sp, sp, #32
  425              	.LCFI5:
  426              		.cfi_def_cfa_offset 64
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 14
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 14
 
 
  427 0006 8246     		mov	r10, r0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  467 0030 12F8202C 		ldrb	r2, [r2, #-32]	@ zero_extendqisi2
  198:BSP/src/fdb_utils.c ****                 addr = start + i;
  468              		.loc 1 198 46 discriminator 1 view .LVU119
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 15
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 15
 
 
  469 0034 FF2A     		cmp	r2, #255
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  509              	.LVL54:
  510              	.L40:
  205:BSP/src/fdb_utils.c ****         return FDB_WG_ALIGN(addr);
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 16
 
 
  511              		.loc 1 205 5 is_stmt 1 view .LVU134
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  559 0002 4B68     		ldr	r3, [r1, #4]
  560              	.LVL59:
  241:BSP/src/fdb_utils.c ****         read_len = blob->saved.len;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 17
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 17
 
 
  561              		.loc 1 241 5 is_stmt 1 view .LVU143
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  604              		.cfi_startproc
  605              		@ args = 0, pretend = 0, frame = 0
  606              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 18
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 18
 
 
  607              		.loc 1 279 1 is_stmt 0 view .LVU155
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  638              		.loc 1 280 15 view .LVU166
  639 0014 0020     		movs	r0, #0
  640 0016 F7E7     		b	.L48
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 19
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 19
 
 
  641              	.L50:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  682              		.loc 1 311 12 discriminator 1 view .LVU177
  683 000c 0028     		cmp	r0, #0
  684 000e 03DB     		blt	.L56
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 20
 
 
  301:BSP/src/fdb_utils.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  723              		@ frame_needed = 0, uses_anonymous_args = 0
  148:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
  724              		.loc 1 148 1 is_stmt 0 view .LVU184
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 21
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 21
 
 
  725 0000 70B5     		push	{r4, r5, r6, lr}
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  765 0020 9DF81C30 		ldrb	r3, [sp, #28]	@ zero_extendqisi2
  766 0024 0093     		str	r3, [sp]
  767 0026 0123     		movs	r3, #1
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 22
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 22
 
 
  768 0028 2218     		adds	r2, r4, r0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  812              	.LVL91:
  153:BSP/src/fdb_utils.c **** 
  813              		.loc 1 153 5 is_stmt 0 discriminator 1 view .LVU209
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 23
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 23
 
 
  814 0050 FFF7FEFF 		bl	printf
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  861              		@ frame_needed = 0, uses_anonymous_args = 0
  324:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
  862              		.loc 1 324 5 view .LVU217
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 24
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 24
 
 
  325:BSP/src/fdb_utils.c ****     size_t align_remain;
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  889              		.loc 1 338 9 is_stmt 1 view .LVU230
  338:BSP/src/fdb_utils.c ****         result = _fdb_flash_write(db, addr, buf, FDB_WG_ALIGN_DOWN(size), false);
  890              		.loc 1 338 18 is_stmt 0 view .LVU231
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 25
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 25
 
 
  891 000c 0023     		movs	r3, #0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  940 0034 BD7CB17E 		.word	2125561021
  941 0038 072DB8E7 		.word	-407360249
  942 003c 911DBF90 		.word	-1866523247
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 26
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 26
 
 
  943 0040 6410B71D 		.word	498536548
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  997 0118 A5E4BF9F 		.word	-1614814043
  998 011c 33D4B8E8 		.word	-390540237
  999 0120 A2C90778 		.word	2013776290
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 27
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 27
 
 
  1000 0124 34F9000F 		.word	251722036
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  1054 01fc AD6CBAC0 		.word	-1061524307
  1055 0200 2083B8ED 		.word	-306674912
  1056 0204 B6B3BF9A 		.word	-1698712650
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 28
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 28
 
 
  1057 0208 0CE2B603 		.word	62317068
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  1111 02e0 BE3BBAC5 		.word	-977650754
  1112 02e4 280BBDB2 		.word	-1296233688
  1113 02e8 925AB42B 		.word	733239954
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 29
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 29
 
 
  1114 02ec 046AB35C 		.word	1555261956
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  1168 03c4 8AC2BACA 		.word	-893730166
  1169 03c8 3093B353 		.word	1404277552
  1170 03cc A6A3B424 		.word	615818150
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 30
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 30
 
 
  1171 03d0 0536D0BA 		.word	-1160759803
@@ -1764,46 +1764,46 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
  1191              		.file 8 "BSP/inc/fal.h"
  1192              		.file 9 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
  1193              		.file 10 "<built-in>"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 31
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s 			page 31
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 fdb_utils.c
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:21     .text.fdb_calc_crc32:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:27     .text.fdb_calc_crc32:00000000 fdb_calc_crc32
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:80     .text.fdb_calc_crc32:00000024 $d
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:926    .rodata.crc32_table:00000000 crc32_table
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:85     .text._fdb_set_status:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:91     .text._fdb_set_status:00000000 _fdb_set_status
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:157    .text._fdb_get_status:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:163    .text._fdb_get_status:00000000 _fdb_get_status
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:229    .text.fdb_blob_make:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:235    .text.fdb_blob_make:00000000 fdb_blob_make
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:256    .text._fdb_flash_read:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:262    .text._fdb_flash_read:00000000 _fdb_flash_read
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:314    .rodata._fdb_read_status.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:324    .text._fdb_read_status:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:330    .text._fdb_read_status:00000000 _fdb_read_status
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:391    .text._fdb_read_status:00000034 $d
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:914    .rodata.__func__.0:00000000 __func__.0
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:399    .text._fdb_continue_ff_addr:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:405    .text._fdb_continue_ff_addr:00000000 _fdb_continue_ff_addr
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:538    .text.fdb_blob_read:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:544    .text.fdb_blob_read:00000000 fdb_blob_read
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:594    .text._fdb_flash_erase:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:600    .text._fdb_flash_erase:00000000 _fdb_flash_erase
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:649    .text._fdb_flash_write:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:655    .text._fdb_flash_write:00000000 _fdb_flash_write
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:707    .rodata._fdb_write_status.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:711    .text._fdb_write_status:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:717    .text._fdb_write_status:00000000 _fdb_write_status
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:840    .text._fdb_write_status:0000006c $d
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:920    .rodata.__func__.1:00000000 __func__.1
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:849    .text._fdb_flash_write_align:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:855    .text._fdb_flash_write_align:00000000 _fdb_flash_write_align
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:911    .rodata.__func__.0:00000000 $d
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:917    .rodata.__func__.1:00000000 $d
-C:\Users\solar\AppData\Local\Temp\cc79IikY.s:923    .rodata.crc32_table:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:21     .text.fdb_calc_crc32:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:27     .text.fdb_calc_crc32:00000000 fdb_calc_crc32
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:80     .text.fdb_calc_crc32:00000024 $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:926    .rodata.crc32_table:00000000 crc32_table
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:85     .text._fdb_set_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:91     .text._fdb_set_status:00000000 _fdb_set_status
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:157    .text._fdb_get_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:163    .text._fdb_get_status:00000000 _fdb_get_status
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:229    .text.fdb_blob_make:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:235    .text.fdb_blob_make:00000000 fdb_blob_make
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:256    .text._fdb_flash_read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:262    .text._fdb_flash_read:00000000 _fdb_flash_read
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:314    .rodata._fdb_read_status.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:324    .text._fdb_read_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:330    .text._fdb_read_status:00000000 _fdb_read_status
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:391    .text._fdb_read_status:00000034 $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:914    .rodata.__func__.0:00000000 __func__.0
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:399    .text._fdb_continue_ff_addr:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:405    .text._fdb_continue_ff_addr:00000000 _fdb_continue_ff_addr
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:538    .text.fdb_blob_read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:544    .text.fdb_blob_read:00000000 fdb_blob_read
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:594    .text._fdb_flash_erase:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:600    .text._fdb_flash_erase:00000000 _fdb_flash_erase
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:649    .text._fdb_flash_write:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:655    .text._fdb_flash_write:00000000 _fdb_flash_write
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:707    .rodata._fdb_write_status.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:711    .text._fdb_write_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:717    .text._fdb_write_status:00000000 _fdb_write_status
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:840    .text._fdb_write_status:0000006c $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:920    .rodata.__func__.1:00000000 __func__.1
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:849    .text._fdb_flash_write_align:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:855    .text._fdb_flash_write_align:00000000 _fdb_flash_write_align
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:911    .rodata.__func__.0:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:917    .rodata.__func__.1:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc2Xpycg.s:923    .rodata.crc32_table:00000000 $d
 
 UNDEFINED SYMBOLS
 memset

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
   27:Core/Src/main.c **** 
   28:Core/Src/main.c **** /* Private includes ----------------------------------------------------------*/
   29:Core/Src/main.c **** /* USER CODE BEGIN Includes */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 2
 
 
   30:Core/Src/main.c **** #include "st7735.h"
@@ -77,92 +77,96 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
   43:Core/Src/main.c **** 
   44:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
   45:Core/Src/main.c **** /* USER CODE BEGIN PTD */
-  46:Core/Src/main.c **** static struct fdb_kvdb kvdb;
+  46:Core/Src/main.c **** 
   47:Core/Src/main.c **** 
-  48:Core/Src/main.c **** static struct fdb_default_kv_node default_kv_nodes[] = {
-  49:Core/Src/main.c ****     {"name", "solar"},
-  50:Core/Src/main.c ****     {"mode", "1"},
-  51:Core/Src/main.c **** };
-  52:Core/Src/main.c **** 
-  53:Core/Src/main.c **** static struct fdb_default_kv default_kv_table = {
-  54:Core/Src/main.c ****     .kvs = default_kv_nodes,
-  55:Core/Src/main.c ****     .num = sizeof(default_kv_nodes) / sizeof(default_kv_nodes[0]),
-  56:Core/Src/main.c **** };
-  57:Core/Src/main.c **** 
-  58:Core/Src/main.c **** static fdb_err_t MX_FlashDB_Init(void)
-  59:Core/Src/main.c **** {
-  60:Core/Src/main.c ****     fdb_err_t result;
+  48:Core/Src/main.c **** static struct fdb_kvdb kvdb;
+  49:Core/Src/main.c **** 
+  50:Core/Src/main.c **** static struct fdb_default_kv_node default_kv_nodes[] = {
+  51:Core/Src/main.c ****     {"name", "solar"},
+  52:Core/Src/main.c ****     {"mode", "1"},
+  53:Core/Src/main.c **** };
+  54:Core/Src/main.c **** 
+  55:Core/Src/main.c **** static struct fdb_default_kv default_kv_table = {
+  56:Core/Src/main.c ****     .kvs = default_kv_nodes,
+  57:Core/Src/main.c ****     .num = sizeof(default_kv_nodes) / sizeof(default_kv_nodes[0]),
+  58:Core/Src/main.c **** };
+  59:Core/Src/main.c **** 
+  60:Core/Src/main.c **** 
   61:Core/Src/main.c **** 
-  62:Core/Src/main.c ****     result = fal_init();
-  63:Core/Src/main.c ****     if (result != FDB_NO_ERR)
-  64:Core/Src/main.c ****     {
-  65:Core/Src/main.c ****         return result;
-  66:Core/Src/main.c ****     }
-  67:Core/Src/main.c **** 
-  68:Core/Src/main.c ****     result = fdb_kvdb_init(&kvdb, "kvdb1", "fdb_kv", &default_kv_table, NULL);
-  69:Core/Src/main.c ****     return result;
-  70:Core/Src/main.c **** }
-  71:Core/Src/main.c **** /* USER CODE END PTD */
-  72:Core/Src/main.c **** 
-  73:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
-  74:Core/Src/main.c **** /* USER CODE BEGIN PD */
-  75:Core/Src/main.c **** 
-  76:Core/Src/main.c **** /* USER CODE END PD */
-  77:Core/Src/main.c **** 
-  78:Core/Src/main.c **** /* Private macro -------------------------------------------------------------*/
-  79:Core/Src/main.c **** /* USER CODE BEGIN PM */
-  80:Core/Src/main.c **** 
-  81:Core/Src/main.c **** /* USER CODE END PM */
-  82:Core/Src/main.c **** 
-  83:Core/Src/main.c **** /* Private variables ---------------------------------------------------------*/
+  62:Core/Src/main.c **** static fdb_err_t MX_FlashDB_Init(void)
+  63:Core/Src/main.c **** {
+  64:Core/Src/main.c ****     fdb_err_t result;
+  65:Core/Src/main.c **** 
+  66:Core/Src/main.c ****     result = fal_init();
+  67:Core/Src/main.c ****     if (result != FDB_NO_ERR)
+  68:Core/Src/main.c ****     {
+  69:Core/Src/main.c ****         return result;
+  70:Core/Src/main.c ****     }
+  71:Core/Src/main.c **** 
+  72:Core/Src/main.c ****     result = fdb_kvdb_init(&kvdb, "kvdb1", "fdb_kv", &default_kv_table, NULL);
+  73:Core/Src/main.c ****     return result;
+  74:Core/Src/main.c **** }
+  75:Core/Src/main.c **** /* USER CODE END PTD */
+  76:Core/Src/main.c **** 
+  77:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
+  78:Core/Src/main.c **** /* USER CODE BEGIN PD */
+  79:Core/Src/main.c **** 
+  80:Core/Src/main.c **** /* USER CODE END PD */
+  81:Core/Src/main.c **** 
+  82:Core/Src/main.c **** /* Private macro -------------------------------------------------------------*/
+  83:Core/Src/main.c **** /* USER CODE BEGIN PM */
   84:Core/Src/main.c **** 
-  85:Core/Src/main.c **** /* USER CODE BEGIN PV */
+  85:Core/Src/main.c **** /* USER CODE END PM */
   86:Core/Src/main.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 3
 
 
-  87:Core/Src/main.c **** /* USER CODE END PV */
+  87:Core/Src/main.c **** /* Private variables ---------------------------------------------------------*/
   88:Core/Src/main.c **** 
-  89:Core/Src/main.c **** /* Private function prototypes -----------------------------------------------*/
-  90:Core/Src/main.c **** void SystemClock_Config(void);
-  91:Core/Src/main.c **** void MX_FREERTOS_Init(void);
-  92:Core/Src/main.c **** /* USER CODE BEGIN PFP */
-  93:Core/Src/main.c **** 
-  94:Core/Src/main.c **** /* USER CODE END PFP */
-  95:Core/Src/main.c **** 
-  96:Core/Src/main.c **** /* Private user code ---------------------------------------------------------*/
-  97:Core/Src/main.c **** /* USER CODE BEGIN 0 */
-  98:Core/Src/main.c **** void UART1_SendString(char *str)
-  99:Core/Src/main.c **** {
-  30              		.loc 1 99 1 view -0
+  89:Core/Src/main.c **** /* USER CODE BEGIN PV */
+  90:Core/Src/main.c **** 
+  91:Core/Src/main.c **** /* USER CODE END PV */
+  92:Core/Src/main.c **** 
+  93:Core/Src/main.c **** /* Private function prototypes -----------------------------------------------*/
+  94:Core/Src/main.c **** void SystemClock_Config(void);
+  95:Core/Src/main.c **** void MX_FREERTOS_Init(void);
+  96:Core/Src/main.c **** /* USER CODE BEGIN PFP */
+  97:Core/Src/main.c **** 
+  98:Core/Src/main.c **** /* USER CODE END PFP */
+  99:Core/Src/main.c **** 
+ 100:Core/Src/main.c **** /* Private user code ---------------------------------------------------------*/
+ 101:Core/Src/main.c **** /* USER CODE BEGIN 0 */
+ 102:Core/Src/main.c **** void UART1_SendString(char *str)
+ 103:Core/Src/main.c **** {
+  30              		.loc 1 103 1 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		.loc 1 99 1 is_stmt 0 view .LVU1
+  34              		.loc 1 103 1 is_stmt 0 view .LVU1
   35 0000 10B5     		push	{r4, lr}
   36              	.LCFI0:
   37              		.cfi_def_cfa_offset 8
   38              		.cfi_offset 4, -8
   39              		.cfi_offset 14, -4
   40 0002 0446     		mov	r4, r0
- 100:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
-  41              		.loc 1 100 5 is_stmt 1 view .LVU2
-  42              		.loc 1 100 48 is_stmt 0 view .LVU3
+ 104:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
+  41              		.loc 1 104 5 is_stmt 1 view .LVU2
+  42              		.loc 1 104 48 is_stmt 0 view .LVU3
   43 0004 FFF7FEFF 		bl	strlen
   44              	.LVL1:
-  45              		.loc 1 100 5 discriminator 1 view .LVU4
+  45              		.loc 1 104 5 discriminator 1 view .LVU4
   46 0008 4FF0FF33 		mov	r3, #-1
   47 000c 82B2     		uxth	r2, r0
   48 000e 2146     		mov	r1, r4
   49 0010 0148     		ldr	r0, .L3
   50 0012 FFF7FEFF 		bl	HAL_UART_Transmit
   51              	.LVL2:
- 101:Core/Src/main.c **** }
-  52              		.loc 1 101 1 view .LVU5
+ 105:Core/Src/main.c **** }
+  52              		.loc 1 105 1 view .LVU5
   53 0016 10BD     		pop	{r4, pc}
   54              	.LVL3:
   55              	.L4:
-  56              		.loc 1 101 1 view .LVU6
+  56              		.loc 1 105 1 view .LVU6
   57              		.align	2
   58              	.L3:
   59 0018 00000000 		.word	huart1
@@ -174,270 +178,287 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
   66              		.syntax unified
   67              		.thumb
   68              		.thumb_func
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 4
+
+
   70              	HAL_TIM_PeriodElapsedCallback:
   71              	.LVL4:
   72              	.LFB239:
- 102:Core/Src/main.c **** /* USER CODE END 0 */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 4
-
-
- 103:Core/Src/main.c **** 
- 104:Core/Src/main.c **** /**
- 105:Core/Src/main.c ****   * @brief  The application entry point.
- 106:Core/Src/main.c ****   * @retval int
- 107:Core/Src/main.c ****   */
- 108:Core/Src/main.c **** int main(void)
- 109:Core/Src/main.c **** {
- 110:Core/Src/main.c **** 
- 111:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
- 112:Core/Src/main.c **** 
- 113:Core/Src/main.c ****   /* USER CODE END 1 */
+ 106:Core/Src/main.c **** /* USER CODE END 0 */
+ 107:Core/Src/main.c **** 
+ 108:Core/Src/main.c **** /**
+ 109:Core/Src/main.c ****   * @brief  The application entry point.
+ 110:Core/Src/main.c ****   * @retval int
+ 111:Core/Src/main.c ****   */
+ 112:Core/Src/main.c **** int main(void)
+ 113:Core/Src/main.c **** {
  114:Core/Src/main.c **** 
- 115:Core/Src/main.c ****   /* MCU Configuration--------------------------------------------------------*/
+ 115:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
  116:Core/Src/main.c **** 
- 117:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- 118:Core/Src/main.c ****   HAL_Init();
- 119:Core/Src/main.c **** 
- 120:Core/Src/main.c ****   /* USER CODE BEGIN Init */
- 121:Core/Src/main.c **** 
- 122:Core/Src/main.c ****   /* USER CODE END Init */
+ 117:Core/Src/main.c ****   /* USER CODE END 1 */
+ 118:Core/Src/main.c **** 
+ 119:Core/Src/main.c ****   /* MCU Configuration--------------------------------------------------------*/
+ 120:Core/Src/main.c **** 
+ 121:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 122:Core/Src/main.c ****   HAL_Init();
  123:Core/Src/main.c **** 
- 124:Core/Src/main.c ****   /* Configure the system clock */
- 125:Core/Src/main.c ****   SystemClock_Config();
- 126:Core/Src/main.c **** 
- 127:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
- 128:Core/Src/main.c **** 
- 129:Core/Src/main.c ****   /* USER CODE END SysInit */
+ 124:Core/Src/main.c ****   /* USER CODE BEGIN Init */
+ 125:Core/Src/main.c **** 
+ 126:Core/Src/main.c ****   /* USER CODE END Init */
+ 127:Core/Src/main.c **** 
+ 128:Core/Src/main.c ****   /* Configure the system clock */
+ 129:Core/Src/main.c ****   SystemClock_Config();
  130:Core/Src/main.c **** 
- 131:Core/Src/main.c ****   /* Initialize all configured peripherals */
- 132:Core/Src/main.c ****   MX_GPIO_Init();
- 133:Core/Src/main.c ****   MX_SPI1_Init();
- 134:Core/Src/main.c ****   MX_I2C2_Init();
- 135:Core/Src/main.c ****   MX_USART1_UART_Init();
- 136:Core/Src/main.c ****   MX_SPI2_Init();
- 137:Core/Src/main.c ****   MX_RTC_Init();
- 138:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
- 139:Core/Src/main.c **** HAL_Delay(100);
- 140:Core/Src/main.c **** 
- 141:Core/Src/main.c **** ST7735_Init();
- 142:Core/Src/main.c **** ST7735_FillScreen(ST7735_WHITE);
- 143:Core/Src/main.c **** 
- 144:Core/Src/main.c **** uint8_t cc = 1;
- 145:Core/Src/main.c **** char msg[128] = {0};
- 146:Core/Src/main.c **** char *value = NULL;
- 147:Core/Src/main.c **** uint8_t mid = 0, type = 0, capacity = 0;
- 148:Core/Src/main.c **** fdb_err_t result_fal;
- 149:Core/Src/main.c **** fdb_err_t result_kv;
- 150:Core/Src/main.c **** fdb_err_t result_set;
- 151:Core/Src/main.c **** 
- 152:Core/Src/main.c **** /* 0. 先读 JEDEC ID，确认 W25Q64 底层正常 */
- 153:Core/Src/main.c **** W25Q64_Init();
- 154:Core/Src/main.c **** W25Q64_ReadJEDECID(&mid, &type, &capacity);
- 155:Core/Src/main.c **** snprintf(msg, sizeof(msg), "JEDEC: %02X %02X %02X\r\n", mid, type, capacity);
- 156:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 157:Core/Src/main.c **** 
- 158:Core/Src/main.c **** /* 1. 单独初始化 FAL */
- 159:Core/Src/main.c **** result_fal = fal_init();
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 5
+ 131:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
+ 132:Core/Src/main.c **** 
+ 133:Core/Src/main.c ****   /* USER CODE END SysInit */
+ 134:Core/Src/main.c **** 
+ 135:Core/Src/main.c ****   /* Initialize all configured peripherals */
+ 136:Core/Src/main.c ****   MX_GPIO_Init();
+ 137:Core/Src/main.c ****   MX_SPI1_Init();
+ 138:Core/Src/main.c ****   MX_I2C2_Init();
+ 139:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 140:Core/Src/main.c ****   MX_SPI2_Init();
+ 141:Core/Src/main.c ****   MX_RTC_Init();
+ 142:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 143:Core/Src/main.c **** HAL_Delay(100);
+ 144:Core/Src/main.c **** 
+ 145:Core/Src/main.c **** ST7735_Init();
+ 146:Core/Src/main.c **** ST7735_FillScreen(ST7735_WHITE);
+ 147:Core/Src/main.c **** 
+ 148:Core/Src/main.c **** uint8_t cc = 1;
+ 149:Core/Src/main.c **** char msg[128] = {0};
+ 150:Core/Src/main.c **** char *value = NULL;
+ 151:Core/Src/main.c **** uint8_t mid = 0, type = 0, capacity = 0;
+ 152:Core/Src/main.c **** fdb_err_t result_fal;
+ 153:Core/Src/main.c **** fdb_err_t result_kv;
+ 154:Core/Src/main.c **** fdb_err_t result_set;
+ 155:Core/Src/main.c **** 
+ 156:Core/Src/main.c **** /* 0. 先读 JEDEC ID，确认 W25Q64 底层正常 */
+ 157:Core/Src/main.c **** W25Q64_Init();
+ 158:Core/Src/main.c **** W25Q64_ReadJEDECID(&mid, &type, &capacity);
+ 159:Core/Src/main.c **** snprintf(msg, sizeof(msg), "JEDEC: %02X %02X %02X\r\n", mid, type, capacity);
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 5
 
 
- 160:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fal_init = %d\r\n", result_fal);
- 161:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 162:Core/Src/main.c **** const struct fal_partition *part;
- 163:Core/Src/main.c **** uint8_t test_wbuf[16] = "hello_flashdb";
- 164:Core/Src/main.c **** uint8_t test_rbuf[16] = {0};
- 165:Core/Src/main.c **** int rlen, wlen, elen;
- 166:Core/Src/main.c **** 
- 167:Core/Src/main.c **** /* 找分区 */
- 168:Core/Src/main.c **** part = fal_partition_find("fdb_kv");
- 169:Core/Src/main.c **** if (part == NULL)
- 170:Core/Src/main.c **** {
- 171:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "partition find failed\r\n");
- 172:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 173:Core/Src/main.c **** }
- 174:Core/Src/main.c **** else
- 175:Core/Src/main.c **** {
- 176:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "partition ok: len=%ld\r\n", part->len);
- 177:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 178:Core/Src/main.c **** 
- 179:Core/Src/main.c ****     /* 先擦除前4KB */
- 180:Core/Src/main.c ****     elen = fal_partition_erase(part, 0, 4096);
- 181:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "erase ret = %d\r\n", elen);
- 182:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 183:Core/Src/main.c **** 
- 184:Core/Src/main.c ****     /* 再写 */
- 185:Core/Src/main.c ****     wlen = fal_partition_write(part, 0, test_wbuf, sizeof(test_wbuf));
- 186:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "write ret = %d\r\n", wlen);
- 187:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 188:Core/Src/main.c **** 
- 189:Core/Src/main.c ****     /* 再读 */
- 190:Core/Src/main.c ****     rlen = fal_partition_read(part, 0, test_rbuf, sizeof(test_rbuf));
- 191:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read ret = %d, data = %s\r\n", rlen, test_rbuf);
- 192:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 193:Core/Src/main.c **** }
- 194:Core/Src/main.c **** /* 2. 单独初始化 KVDB */
- 195:Core/Src/main.c **** result_kv = fdb_kvdb_init(&kvdb, "kvdb1", "fdb_kv", &default_kv_table, NULL);
- 196:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kvdb_init = %d\r\n", result_kv);
- 197:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 198:Core/Src/main.c **** 
- 199:Core/Src/main.c **** /* 3. 写入一个键值 */
- 200:Core/Src/main.c **** result_set = fdb_kv_set(&kvdb, "name", "solar123");
- 201:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kv_set = %d\r\n", result_set);
- 202:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 203:Core/Src/main.c **** 
- 204:Core/Src/main.c **** /* 4. 读取这个键值 */
- 205:Core/Src/main.c **** value = fdb_kv_get(&kvdb, "name");
- 206:Core/Src/main.c **** if (value != NULL)
- 207:Core/Src/main.c **** {
- 208:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "name = %s\r\n", value);
- 209:Core/Src/main.c **** }
- 210:Core/Src/main.c **** else
+ 160:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 161:Core/Src/main.c **** 
+ 162:Core/Src/main.c **** /* 1. 单独初始化 FAL */
+ 163:Core/Src/main.c **** result_fal = fal_init();
+ 164:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fal_init = %d\r\n", result_fal);
+ 165:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 166:Core/Src/main.c **** const struct fal_partition *part;
+ 167:Core/Src/main.c **** uint8_t test_wbuf[16] = "hello_flashdb";
+ 168:Core/Src/main.c **** uint8_t test_rbuf[16] = {0};
+ 169:Core/Src/main.c **** int rlen, wlen, elen;
+ 170:Core/Src/main.c **** 
+ 171:Core/Src/main.c **** /* 找分区 */
+ 172:Core/Src/main.c **** part = fal_partition_find("fdb_kv");
+ 173:Core/Src/main.c **** if (part == NULL)
+ 174:Core/Src/main.c **** {
+ 175:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "partition find failed\r\n");
+ 176:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 177:Core/Src/main.c **** }
+ 178:Core/Src/main.c **** else
+ 179:Core/Src/main.c **** {
+ 180:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "partition ok: len=%ld\r\n", part->len);
+ 181:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 182:Core/Src/main.c **** 
+ 183:Core/Src/main.c ****     /* 先擦除前4KB */
+ 184:Core/Src/main.c ****     elen = fal_partition_erase(part, 0, 4096);
+ 185:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "erase ret = %d\r\n", elen);
+ 186:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 187:Core/Src/main.c **** 
+ 188:Core/Src/main.c ****     /* 再写 */
+ 189:Core/Src/main.c ****     wlen = fal_partition_write(part, 0, test_wbuf, sizeof(test_wbuf));
+ 190:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "write ret = %d\r\n", wlen);
+ 191:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 192:Core/Src/main.c **** 
+ 193:Core/Src/main.c ****     /* 再读 */
+ 194:Core/Src/main.c ****     rlen = fal_partition_read(part, 0, test_rbuf, sizeof(test_rbuf));
+ 195:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read ret = %d, data = %s\r\n", rlen, test_rbuf);
+ 196:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 197:Core/Src/main.c **** }
+ 198:Core/Src/main.c **** /* 2. 单独初始化 KVDB */
+ 199:Core/Src/main.c **** result_kv = fdb_kvdb_init(&kvdb, "kvdb1", "fdb_kv", &default_kv_table, NULL);
+ 200:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kvdb_init = %d\r\n", result_kv);
+ 201:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 202:Core/Src/main.c **** 
+ 203:Core/Src/main.c **** /* 3. 写入一个键值 */
+ 204:Core/Src/main.c **** result_set = fdb_kv_set(&kvdb, "name", "solar123");
+ 205:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kv_set = %d\r\n", result_set);
+ 206:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 207:Core/Src/main.c **** 
+ 208:Core/Src/main.c **** /* 4. 读取这个键值 */
+ 209:Core/Src/main.c **** value = fdb_kv_get(&kvdb, "name");
+ 210:Core/Src/main.c **** if (value != NULL)
  211:Core/Src/main.c **** {
- 212:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read failed\r\n");
+ 212:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "name = %s\r\n", value);
  213:Core/Src/main.c **** }
- 214:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 215:Core/Src/main.c ****     /* USER CODE END 2 */
- 216:Core/Src/main.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 6
+ 214:Core/Src/main.c **** else
+ 215:Core/Src/main.c **** {
+ 216:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read failed\r\n");
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 6
 
 
- 217:Core/Src/main.c ****   /* Init scheduler */
- 218:Core/Src/main.c ****   osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
- 219:Core/Src/main.c ****   MX_FREERTOS_Init();
- 220:Core/Src/main.c **** 
- 221:Core/Src/main.c ****   /* Start scheduler */
- 222:Core/Src/main.c ****   osKernelStart();
- 223:Core/Src/main.c **** 
- 224:Core/Src/main.c ****   /* We should never get here as control is now taken by the scheduler */
- 225:Core/Src/main.c **** 
- 226:Core/Src/main.c ****   /* Infinite loop */
- 227:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
- 228:Core/Src/main.c ****   while (1)
- 229:Core/Src/main.c ****   {
- 230:Core/Src/main.c ****   LCD_ShowUInt(0, 80, cc, ST7735_BLACK, ST7735_WHITE);
- 231:Core/Src/main.c ****   cc++;
- 232:Core/Src/main.c ****   HAL_Delay(500);
- 233:Core/Src/main.c ****     /* USER CODE END WHILE */
- 234:Core/Src/main.c **** 
- 235:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
- 236:Core/Src/main.c ****   }
- 237:Core/Src/main.c ****   /* USER CODE END 3 */
- 238:Core/Src/main.c **** }
- 239:Core/Src/main.c **** 
- 240:Core/Src/main.c **** /**
- 241:Core/Src/main.c ****   * @brief System Clock Configuration
- 242:Core/Src/main.c ****   * @retval None
- 243:Core/Src/main.c ****   */
- 244:Core/Src/main.c **** void SystemClock_Config(void)
- 245:Core/Src/main.c **** {
- 246:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 247:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 248:Core/Src/main.c **** 
- 249:Core/Src/main.c ****   /** Configure the main internal regulator output voltage
- 250:Core/Src/main.c ****   */
- 251:Core/Src/main.c ****   if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
- 252:Core/Src/main.c ****   {
- 253:Core/Src/main.c ****     Error_Handler();
- 254:Core/Src/main.c ****   }
+ 217:Core/Src/main.c **** }
+ 218:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 219:Core/Src/main.c **** 
+ 220:Core/Src/main.c ****     char *c12 = NULL;
+ 221:Core/Src/main.c ****     //har *value = NULL;
+ 222:Core/Src/main.c ****     fdb_kv_set(&kvdb, "status", "running");
+ 223:Core/Src/main.c ****     c12 = fdb_kv_get(&kvdb, "status");
+ 224:Core/Src/main.c ****     if (c12 != NULL)
+ 225:Core/Src/main.c ****     {
+ 226:Core/Src/main.c ****       /* code */
+ 227:Core/Src/main.c ****       snprintf(msg, sizeof(msg), "status = %s\r\n", c12);
+ 228:Core/Src/main.c ****     }
+ 229:Core/Src/main.c ****     else
+ 230:Core/Src/main.c ****     {
+ 231:Core/Src/main.c ****       snprintf(msg, sizeof(msg), "read status failed\r\n");
+ 232:Core/Src/main.c ****     }
+ 233:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);       
+ 234:Core/Src/main.c ****     
+ 235:Core/Src/main.c ****     
+ 236:Core/Src/main.c ****     /* USER CODE END 2 */
+ 237:Core/Src/main.c **** 
+ 238:Core/Src/main.c ****   /* Init scheduler */
+ 239:Core/Src/main.c ****   osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
+ 240:Core/Src/main.c ****   MX_FREERTOS_Init();
+ 241:Core/Src/main.c **** 
+ 242:Core/Src/main.c ****   /* Start scheduler */
+ 243:Core/Src/main.c ****   osKernelStart();
+ 244:Core/Src/main.c **** 
+ 245:Core/Src/main.c ****   /* We should never get here as control is now taken by the scheduler */
+ 246:Core/Src/main.c **** 
+ 247:Core/Src/main.c ****   /* Infinite loop */
+ 248:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
+ 249:Core/Src/main.c ****   while (1)
+ 250:Core/Src/main.c ****   {
+ 251:Core/Src/main.c ****   LCD_ShowUInt(0, 80, cc, ST7735_BLACK, ST7735_WHITE);
+ 252:Core/Src/main.c ****   cc++;
+ 253:Core/Src/main.c ****   HAL_Delay(500);
+ 254:Core/Src/main.c ****     /* USER CODE END WHILE */
  255:Core/Src/main.c **** 
- 256:Core/Src/main.c ****   /** Configure LSE Drive Capability
- 257:Core/Src/main.c ****   */
- 258:Core/Src/main.c ****   HAL_PWR_EnableBkUpAccess();
- 259:Core/Src/main.c ****   __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
+ 256:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
+ 257:Core/Src/main.c ****   }
+ 258:Core/Src/main.c ****   /* USER CODE END 3 */
+ 259:Core/Src/main.c **** }
  260:Core/Src/main.c **** 
- 261:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
- 262:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
- 263:Core/Src/main.c ****   */
- 264:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSE;
- 265:Core/Src/main.c ****   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
- 266:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 267:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
- 268:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 269:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 270:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 1;
- 271:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 10;
- 272:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
- 273:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 7
+ 261:Core/Src/main.c **** /**
+ 262:Core/Src/main.c ****   * @brief System Clock Configuration
+ 263:Core/Src/main.c ****   * @retval None
+ 264:Core/Src/main.c ****   */
+ 265:Core/Src/main.c **** void SystemClock_Config(void)
+ 266:Core/Src/main.c **** {
+ 267:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 268:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 269:Core/Src/main.c **** 
+ 270:Core/Src/main.c ****   /** Configure the main internal regulator output voltage
+ 271:Core/Src/main.c ****   */
+ 272:Core/Src/main.c ****   if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+ 273:Core/Src/main.c ****   {
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 7
 
 
- 274:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
- 275:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 276:Core/Src/main.c ****   {
- 277:Core/Src/main.c ****     Error_Handler();
- 278:Core/Src/main.c ****   }
- 279:Core/Src/main.c **** 
- 280:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
- 281:Core/Src/main.c ****   */
- 282:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 283:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 284:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 285:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 286:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 287:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 288:Core/Src/main.c **** 
- 289:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
- 290:Core/Src/main.c ****   {
- 291:Core/Src/main.c ****     Error_Handler();
- 292:Core/Src/main.c ****   }
- 293:Core/Src/main.c **** }
- 294:Core/Src/main.c **** 
- 295:Core/Src/main.c **** /* USER CODE BEGIN 4 */
- 296:Core/Src/main.c **** 
- 297:Core/Src/main.c **** /* USER CODE END 4 */
- 298:Core/Src/main.c **** 
- 299:Core/Src/main.c **** /**
- 300:Core/Src/main.c ****   * @brief  Period elapsed callback in non blocking mode
- 301:Core/Src/main.c ****   * @note   This function is called  when TIM15 interrupt took place, inside
- 302:Core/Src/main.c ****   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
- 303:Core/Src/main.c ****   * a global variable "uwTick" used as application time base.
- 304:Core/Src/main.c ****   * @param  htim : TIM handle
- 305:Core/Src/main.c ****   * @retval None
- 306:Core/Src/main.c ****   */
- 307:Core/Src/main.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
- 308:Core/Src/main.c **** {
-  73              		.loc 1 308 1 is_stmt 1 view -0
+ 274:Core/Src/main.c ****     Error_Handler();
+ 275:Core/Src/main.c ****   }
+ 276:Core/Src/main.c **** 
+ 277:Core/Src/main.c ****   /** Configure LSE Drive Capability
+ 278:Core/Src/main.c ****   */
+ 279:Core/Src/main.c ****   HAL_PWR_EnableBkUpAccess();
+ 280:Core/Src/main.c ****   __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
+ 281:Core/Src/main.c **** 
+ 282:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
+ 283:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
+ 284:Core/Src/main.c ****   */
+ 285:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSE;
+ 286:Core/Src/main.c ****   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+ 287:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 288:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 289:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 290:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 291:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 1;
+ 292:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 10;
+ 293:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
+ 294:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+ 295:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+ 296:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 297:Core/Src/main.c ****   {
+ 298:Core/Src/main.c ****     Error_Handler();
+ 299:Core/Src/main.c ****   }
+ 300:Core/Src/main.c **** 
+ 301:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
+ 302:Core/Src/main.c ****   */
+ 303:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 304:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 305:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 306:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 307:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 308:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 309:Core/Src/main.c **** 
+ 310:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+ 311:Core/Src/main.c ****   {
+ 312:Core/Src/main.c ****     Error_Handler();
+ 313:Core/Src/main.c ****   }
+ 314:Core/Src/main.c **** }
+ 315:Core/Src/main.c **** 
+ 316:Core/Src/main.c **** /* USER CODE BEGIN 4 */
+ 317:Core/Src/main.c **** 
+ 318:Core/Src/main.c **** /* USER CODE END 4 */
+ 319:Core/Src/main.c **** 
+ 320:Core/Src/main.c **** /**
+ 321:Core/Src/main.c ****   * @brief  Period elapsed callback in non blocking mode
+ 322:Core/Src/main.c ****   * @note   This function is called  when TIM15 interrupt took place, inside
+ 323:Core/Src/main.c ****   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+ 324:Core/Src/main.c ****   * a global variable "uwTick" used as application time base.
+ 325:Core/Src/main.c ****   * @param  htim : TIM handle
+ 326:Core/Src/main.c ****   * @retval None
+ 327:Core/Src/main.c ****   */
+ 328:Core/Src/main.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+ 329:Core/Src/main.c **** {
+  73              		.loc 1 329 1 is_stmt 1 view -0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 8
+
+
   74              		.cfi_startproc
   75              		@ args = 0, pretend = 0, frame = 0
   76              		@ frame_needed = 0, uses_anonymous_args = 0
-  77              		.loc 1 308 1 is_stmt 0 view .LVU8
+  77              		.loc 1 329 1 is_stmt 0 view .LVU8
   78 0000 08B5     		push	{r3, lr}
   79              	.LCFI1:
   80              		.cfi_def_cfa_offset 8
   81              		.cfi_offset 3, -8
   82              		.cfi_offset 14, -4
- 309:Core/Src/main.c ****   /* USER CODE BEGIN Callback 0 */
- 310:Core/Src/main.c **** 
- 311:Core/Src/main.c ****   /* USER CODE END Callback 0 */
- 312:Core/Src/main.c ****   if (htim->Instance == TIM15)
-  83              		.loc 1 312 3 is_stmt 1 view .LVU9
-  84              		.loc 1 312 11 is_stmt 0 view .LVU10
+ 330:Core/Src/main.c ****   /* USER CODE BEGIN Callback 0 */
+ 331:Core/Src/main.c **** 
+ 332:Core/Src/main.c ****   /* USER CODE END Callback 0 */
+ 333:Core/Src/main.c ****   if (htim->Instance == TIM15)
+  83              		.loc 1 333 3 is_stmt 1 view .LVU9
+  84              		.loc 1 333 11 is_stmt 0 view .LVU10
   85 0002 0268     		ldr	r2, [r0]
-  86              		.loc 1 312 6 view .LVU11
+  86              		.loc 1 333 6 view .LVU11
   87 0004 034B     		ldr	r3, .L9
   88 0006 9A42     		cmp	r2, r3
   89 0008 00D0     		beq	.L8
   90              	.LVL5:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 8
-
-
   91              	.L5:
- 313:Core/Src/main.c ****   {
- 314:Core/Src/main.c ****     HAL_IncTick();
- 315:Core/Src/main.c ****   }
- 316:Core/Src/main.c ****   /* USER CODE BEGIN Callback 1 */
- 317:Core/Src/main.c **** 
- 318:Core/Src/main.c ****   /* USER CODE END Callback 1 */
- 319:Core/Src/main.c **** }
-  92              		.loc 1 319 1 view .LVU12
+ 334:Core/Src/main.c ****   {
+ 335:Core/Src/main.c ****     HAL_IncTick();
+ 336:Core/Src/main.c ****   }
+ 337:Core/Src/main.c ****   /* USER CODE BEGIN Callback 1 */
+ 338:Core/Src/main.c **** 
+ 339:Core/Src/main.c ****   /* USER CODE END Callback 1 */
+ 340:Core/Src/main.c **** }
+  92              		.loc 1 340 1 view .LVU12
   93 000a 08BD     		pop	{r3, pc}
   94              	.LVL6:
   95              	.L8:
- 314:Core/Src/main.c ****   }
-  96              		.loc 1 314 5 is_stmt 1 view .LVU13
+ 335:Core/Src/main.c ****   }
+  96              		.loc 1 335 5 is_stmt 1 view .LVU13
   97 000c FFF7FEFF 		bl	HAL_IncTick
   98              	.LVL7:
-  99              		.loc 1 319 1 is_stmt 0 view .LVU14
+  99              		.loc 1 340 1 is_stmt 0 view .LVU14
  100 0010 FBE7     		b	.L5
  101              	.L10:
  102 0012 00BF     		.align	2
@@ -453,23 +474,26 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  113              		.thumb_func
  115              	Error_Handler:
  116              	.LFB240:
- 320:Core/Src/main.c **** 
- 321:Core/Src/main.c **** /**
- 322:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
- 323:Core/Src/main.c ****   * @retval None
- 324:Core/Src/main.c ****   */
- 325:Core/Src/main.c **** void Error_Handler(void)
- 326:Core/Src/main.c **** {
- 117              		.loc 1 326 1 is_stmt 1 view -0
+ 341:Core/Src/main.c **** 
+ 342:Core/Src/main.c **** /**
+ 343:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
+ 344:Core/Src/main.c ****   * @retval None
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 9
+
+
+ 345:Core/Src/main.c ****   */
+ 346:Core/Src/main.c **** void Error_Handler(void)
+ 347:Core/Src/main.c **** {
+ 117              		.loc 1 347 1 is_stmt 1 view -0
  118              		.cfi_startproc
  119              		@ Volatile: function does not return.
  120              		@ args = 0, pretend = 0, frame = 0
  121              		@ frame_needed = 0, uses_anonymous_args = 0
  122              		@ link register save eliminated.
- 327:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
- 328:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
- 329:Core/Src/main.c ****   __disable_irq();
- 123              		.loc 1 329 3 view .LVU16
+ 348:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 349:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
+ 350:Core/Src/main.c ****   __disable_irq();
+ 123              		.loc 1 350 3 view .LVU16
  124              	.LBB4:
  125              	.LBI4:
  126              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
@@ -478,9 +502,6 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
    4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V5.2.0
    5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     08. May 2019
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 9
-
-
    6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
    7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
    8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
@@ -517,6 +538,9 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
   39:Drivers/CMSIS/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
   40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
   41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 10
+
+
   42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
   44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
@@ -538,9 +562,6 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
   60:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   61:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
   62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 10
-
-
   63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
   65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
@@ -577,6 +598,9 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
   96:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 11
+
+
   99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
  101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -598,9 +622,6 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  117:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __COMPILER_BARRIER()                   __ASM volatile("":::"memory")
  118:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  119:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 11
-
-
  120:Drivers/CMSIS/Include/cmsis_gcc.h **** /* #########################  Startup and Lowlevel Init  ######################## */
  121:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  122:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __PROGRAM_START
@@ -637,6 +658,9 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  153:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = pTable->src[i];
  154:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
  155:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 12
+
+
  156:Drivers/CMSIS/Include/cmsis_gcc.h ****  
  157:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (__zero_table_t const* pTable = &__zero_table_start__; pTable < &__zero_table_end__; ++pTable
  158:Drivers/CMSIS/Include/cmsis_gcc.h ****     for(uint32_t i=0u; i<pTable->wlen; ++i) {
@@ -658,9 +682,6 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  174:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __STACK_LIMIT             __StackLimit
  175:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 12
-
-
  177:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE
  178:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE            __Vectors
  179:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -697,6 +718,9 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  208:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  209:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
  129              		.loc 2 209 3 view .LVU18
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 13
+
+
  130              		.syntax unified
  131              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
  132 0000 72B6     		cpsid i
@@ -706,29 +730,26 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  136              	.L12:
  137              	.LBE5:
  138              	.LBE4:
- 330:Core/Src/main.c ****   while (1)
- 139              		.loc 1 330 3 view .LVU19
- 331:Core/Src/main.c ****   {
- 332:Core/Src/main.c ****   }
- 140              		.loc 1 332 3 view .LVU20
- 330:Core/Src/main.c ****   while (1)
- 141              		.loc 1 330 9 view .LVU21
+ 351:Core/Src/main.c ****   while (1)
+ 139              		.loc 1 351 3 view .LVU19
+ 352:Core/Src/main.c ****   {
+ 353:Core/Src/main.c ****   }
+ 140              		.loc 1 353 3 view .LVU20
+ 351:Core/Src/main.c ****   while (1)
+ 141              		.loc 1 351 9 view .LVU21
  142 0002 FEE7     		b	.L12
  143              		.cfi_endproc
  144              	.LFE240:
  146              		.section	.text.SystemClock_Config,"ax",%progbits
  147              		.align	1
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 13
-
-
  148              		.global	SystemClock_Config
  149              		.syntax unified
  150              		.thumb
  151              		.thumb_func
  153              	SystemClock_Config:
  154              	.LFB238:
- 245:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 155              		.loc 1 245 1 view -0
+ 266:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 155              		.loc 1 266 1 view -0
  156              		.cfi_startproc
  157              		@ args = 0, pretend = 0, frame = 88
  158              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -739,168 +760,168 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  163 0002 97B0     		sub	sp, sp, #92
  164              	.LCFI3:
  165              		.cfi_def_cfa_offset 96
- 246:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 166              		.loc 1 246 3 view .LVU23
- 246:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 167              		.loc 1 246 22 is_stmt 0 view .LVU24
+ 267:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 166              		.loc 1 267 3 view .LVU23
+ 267:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 167              		.loc 1 267 22 is_stmt 0 view .LVU24
  168 0004 4422     		movs	r2, #68
  169 0006 0021     		movs	r1, #0
  170 0008 05A8     		add	r0, sp, #20
  171 000a FFF7FEFF 		bl	memset
  172              	.LVL8:
- 247:Core/Src/main.c **** 
- 173              		.loc 1 247 3 is_stmt 1 view .LVU25
- 247:Core/Src/main.c **** 
- 174              		.loc 1 247 22 is_stmt 0 view .LVU26
+ 268:Core/Src/main.c **** 
+ 173              		.loc 1 268 3 is_stmt 1 view .LVU25
+ 268:Core/Src/main.c **** 
+ 174              		.loc 1 268 22 is_stmt 0 view .LVU26
  175 000e 0023     		movs	r3, #0
  176 0010 0093     		str	r3, [sp]
  177 0012 0193     		str	r3, [sp, #4]
  178 0014 0293     		str	r3, [sp, #8]
  179 0016 0393     		str	r3, [sp, #12]
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 14
+
+
  180 0018 0493     		str	r3, [sp, #16]
- 251:Core/Src/main.c ****   {
- 181              		.loc 1 251 3 is_stmt 1 view .LVU27
- 251:Core/Src/main.c ****   {
- 182              		.loc 1 251 7 is_stmt 0 view .LVU28
+ 272:Core/Src/main.c ****   {
+ 181              		.loc 1 272 3 is_stmt 1 view .LVU27
+ 272:Core/Src/main.c ****   {
+ 182              		.loc 1 272 7 is_stmt 0 view .LVU28
  183 001a 4FF40070 		mov	r0, #512
  184 001e FFF7FEFF 		bl	HAL_PWREx_ControlVoltageScaling
  185              	.LVL9:
- 251:Core/Src/main.c ****   {
- 186              		.loc 1 251 6 discriminator 1 view .LVU29
+ 272:Core/Src/main.c ****   {
+ 186              		.loc 1 272 6 discriminator 1 view .LVU29
  187 0022 0028     		cmp	r0, #0
  188 0024 2FD1     		bne	.L18
- 258:Core/Src/main.c ****   __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
- 189              		.loc 1 258 3 is_stmt 1 view .LVU30
+ 279:Core/Src/main.c ****   __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
+ 189              		.loc 1 279 3 is_stmt 1 view .LVU30
  190 0026 FFF7FEFF 		bl	HAL_PWR_EnableBkUpAccess
  191              	.LVL10:
- 259:Core/Src/main.c **** 
- 192              		.loc 1 259 3 view .LVU31
+ 280:Core/Src/main.c **** 
+ 192              		.loc 1 280 3 view .LVU31
  193 002a 1A4A     		ldr	r2, .L21
  194 002c D2F89030 		ldr	r3, [r2, #144]
  195 0030 23F01803 		bic	r3, r3, #24
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 14
-
-
  196 0034 C2F89030 		str	r3, [r2, #144]
- 264:Core/Src/main.c ****   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
- 197              		.loc 1 264 3 view .LVU32
- 264:Core/Src/main.c ****   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
- 198              		.loc 1 264 36 is_stmt 0 view .LVU33
+ 285:Core/Src/main.c ****   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+ 197              		.loc 1 285 3 view .LVU32
+ 285:Core/Src/main.c ****   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+ 198              		.loc 1 285 36 is_stmt 0 view .LVU33
  199 0038 0623     		movs	r3, #6
  200 003a 0593     		str	r3, [sp, #20]
- 265:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 201              		.loc 1 265 3 is_stmt 1 view .LVU34
- 265:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 202              		.loc 1 265 30 is_stmt 0 view .LVU35
+ 286:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 201              		.loc 1 286 3 is_stmt 1 view .LVU34
+ 286:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 202              		.loc 1 286 30 is_stmt 0 view .LVU35
  203 003c 0122     		movs	r2, #1
  204 003e 0792     		str	r2, [sp, #28]
- 266:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
- 205              		.loc 1 266 3 is_stmt 1 view .LVU36
- 266:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
- 206              		.loc 1 266 30 is_stmt 0 view .LVU37
+ 287:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 205              		.loc 1 287 3 is_stmt 1 view .LVU36
+ 287:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 206              		.loc 1 287 30 is_stmt 0 view .LVU37
  207 0040 4FF48073 		mov	r3, #256
  208 0044 0893     		str	r3, [sp, #32]
- 267:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 209              		.loc 1 267 3 is_stmt 1 view .LVU38
- 267:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 210              		.loc 1 267 41 is_stmt 0 view .LVU39
+ 288:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 209              		.loc 1 288 3 is_stmt 1 view .LVU38
+ 288:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 210              		.loc 1 288 41 is_stmt 0 view .LVU39
  211 0046 1023     		movs	r3, #16
  212 0048 0993     		str	r3, [sp, #36]
- 268:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 213              		.loc 1 268 3 is_stmt 1 view .LVU40
- 268:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 214              		.loc 1 268 34 is_stmt 0 view .LVU41
+ 289:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 213              		.loc 1 289 3 is_stmt 1 view .LVU40
+ 289:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 214              		.loc 1 289 34 is_stmt 0 view .LVU41
  215 004a 0223     		movs	r3, #2
  216 004c 0F93     		str	r3, [sp, #60]
- 269:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 1;
- 217              		.loc 1 269 3 is_stmt 1 view .LVU42
- 269:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 1;
- 218              		.loc 1 269 35 is_stmt 0 view .LVU43
+ 290:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 1;
+ 217              		.loc 1 290 3 is_stmt 1 view .LVU42
+ 290:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 1;
+ 218              		.loc 1 290 35 is_stmt 0 view .LVU43
  219 004e 1093     		str	r3, [sp, #64]
- 270:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 10;
- 220              		.loc 1 270 3 is_stmt 1 view .LVU44
- 270:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 10;
- 221              		.loc 1 270 30 is_stmt 0 view .LVU45
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 15
+
+
+ 291:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 10;
+ 220              		.loc 1 291 3 is_stmt 1 view .LVU44
+ 291:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 10;
+ 221              		.loc 1 291 30 is_stmt 0 view .LVU45
  222 0050 1192     		str	r2, [sp, #68]
- 271:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
- 223              		.loc 1 271 3 is_stmt 1 view .LVU46
- 271:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
- 224              		.loc 1 271 30 is_stmt 0 view .LVU47
+ 292:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
+ 223              		.loc 1 292 3 is_stmt 1 view .LVU46
+ 292:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
+ 224              		.loc 1 292 30 is_stmt 0 view .LVU47
  225 0052 0A22     		movs	r2, #10
  226 0054 1292     		str	r2, [sp, #72]
- 272:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
- 227              		.loc 1 272 3 is_stmt 1 view .LVU48
- 272:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
- 228              		.loc 1 272 30 is_stmt 0 view .LVU49
+ 293:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+ 227              		.loc 1 293 3 is_stmt 1 view .LVU48
+ 293:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+ 228              		.loc 1 293 30 is_stmt 0 view .LVU49
  229 0056 0722     		movs	r2, #7
  230 0058 1392     		str	r2, [sp, #76]
- 273:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
- 231              		.loc 1 273 3 is_stmt 1 view .LVU50
- 273:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
- 232              		.loc 1 273 30 is_stmt 0 view .LVU51
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 15
-
-
+ 294:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+ 231              		.loc 1 294 3 is_stmt 1 view .LVU50
+ 294:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+ 232              		.loc 1 294 30 is_stmt 0 view .LVU51
  233 005a 1493     		str	r3, [sp, #80]
- 274:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 234              		.loc 1 274 3 is_stmt 1 view .LVU52
- 274:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 235              		.loc 1 274 30 is_stmt 0 view .LVU53
+ 295:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 234              		.loc 1 295 3 is_stmt 1 view .LVU52
+ 295:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 235              		.loc 1 295 30 is_stmt 0 view .LVU53
  236 005c 1593     		str	r3, [sp, #84]
- 275:Core/Src/main.c ****   {
- 237              		.loc 1 275 3 is_stmt 1 view .LVU54
- 275:Core/Src/main.c ****   {
- 238              		.loc 1 275 7 is_stmt 0 view .LVU55
+ 296:Core/Src/main.c ****   {
+ 237              		.loc 1 296 3 is_stmt 1 view .LVU54
+ 296:Core/Src/main.c ****   {
+ 238              		.loc 1 296 7 is_stmt 0 view .LVU55
  239 005e 05A8     		add	r0, sp, #20
  240 0060 FFF7FEFF 		bl	HAL_RCC_OscConfig
  241              	.LVL11:
- 275:Core/Src/main.c ****   {
- 242              		.loc 1 275 6 discriminator 1 view .LVU56
+ 296:Core/Src/main.c ****   {
+ 242              		.loc 1 296 6 discriminator 1 view .LVU56
  243 0064 88B9     		cbnz	r0, .L19
- 282:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 244              		.loc 1 282 3 is_stmt 1 view .LVU57
- 282:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 245              		.loc 1 282 31 is_stmt 0 view .LVU58
+ 303:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 244              		.loc 1 303 3 is_stmt 1 view .LVU57
+ 303:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 245              		.loc 1 303 31 is_stmt 0 view .LVU58
  246 0066 0F23     		movs	r3, #15
  247 0068 0093     		str	r3, [sp]
- 284:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 248              		.loc 1 284 3 is_stmt 1 view .LVU59
- 284:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 249              		.loc 1 284 34 is_stmt 0 view .LVU60
+ 305:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 248              		.loc 1 305 3 is_stmt 1 view .LVU59
+ 305:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 249              		.loc 1 305 34 is_stmt 0 view .LVU60
  250 006a 0323     		movs	r3, #3
  251 006c 0193     		str	r3, [sp, #4]
- 285:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 252              		.loc 1 285 3 is_stmt 1 view .LVU61
- 285:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 253              		.loc 1 285 35 is_stmt 0 view .LVU62
+ 306:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 252              		.loc 1 306 3 is_stmt 1 view .LVU61
+ 306:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 253              		.loc 1 306 35 is_stmt 0 view .LVU62
  254 006e 0023     		movs	r3, #0
  255 0070 0293     		str	r3, [sp, #8]
- 286:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 256              		.loc 1 286 3 is_stmt 1 view .LVU63
- 286:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 257              		.loc 1 286 36 is_stmt 0 view .LVU64
+ 307:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 256              		.loc 1 307 3 is_stmt 1 view .LVU63
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 16
+
+
+ 307:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 257              		.loc 1 307 36 is_stmt 0 view .LVU64
  258 0072 0393     		str	r3, [sp, #12]
- 287:Core/Src/main.c **** 
- 259              		.loc 1 287 3 is_stmt 1 view .LVU65
- 287:Core/Src/main.c **** 
- 260              		.loc 1 287 36 is_stmt 0 view .LVU66
+ 308:Core/Src/main.c **** 
+ 259              		.loc 1 308 3 is_stmt 1 view .LVU65
+ 308:Core/Src/main.c **** 
+ 260              		.loc 1 308 36 is_stmt 0 view .LVU66
  261 0074 0493     		str	r3, [sp, #16]
- 289:Core/Src/main.c ****   {
- 262              		.loc 1 289 3 is_stmt 1 view .LVU67
- 289:Core/Src/main.c ****   {
- 263              		.loc 1 289 7 is_stmt 0 view .LVU68
+ 310:Core/Src/main.c ****   {
+ 262              		.loc 1 310 3 is_stmt 1 view .LVU67
+ 310:Core/Src/main.c ****   {
+ 263              		.loc 1 310 7 is_stmt 0 view .LVU68
  264 0076 0421     		movs	r1, #4
  265 0078 6846     		mov	r0, sp
  266 007a FFF7FEFF 		bl	HAL_RCC_ClockConfig
  267              	.LVL12:
- 289:Core/Src/main.c ****   {
- 268              		.loc 1 289 6 discriminator 1 view .LVU69
+ 310:Core/Src/main.c ****   {
+ 268              		.loc 1 310 6 discriminator 1 view .LVU69
  269 007e 30B9     		cbnz	r0, .L20
- 293:Core/Src/main.c **** 
- 270              		.loc 1 293 1 view .LVU70
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 16
-
-
+ 314:Core/Src/main.c **** 
+ 270              		.loc 1 314 1 view .LVU70
  271 0080 17B0     		add	sp, sp, #92
  272              	.LCFI4:
  273              		.cfi_remember_state
@@ -910,18 +931,18 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  277              	.L18:
  278              	.LCFI5:
  279              		.cfi_restore_state
- 253:Core/Src/main.c ****   }
- 280              		.loc 1 253 5 is_stmt 1 view .LVU71
+ 274:Core/Src/main.c ****   }
+ 280              		.loc 1 274 5 is_stmt 1 view .LVU71
  281 0086 FFF7FEFF 		bl	Error_Handler
  282              	.LVL13:
  283              	.L19:
- 277:Core/Src/main.c ****   }
- 284              		.loc 1 277 5 view .LVU72
+ 298:Core/Src/main.c ****   }
+ 284              		.loc 1 298 5 view .LVU72
  285 008a FFF7FEFF 		bl	Error_Handler
  286              	.LVL14:
  287              	.L20:
- 291:Core/Src/main.c ****   }
- 288              		.loc 1 291 5 view .LVU73
+ 312:Core/Src/main.c ****   }
+ 288              		.loc 1 312 5 view .LVU73
  289 008e FFF7FEFF 		bl	Error_Handler
  290              	.LVL15:
  291              	.L22:
@@ -937,6 +958,9 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  301      433A2025 
  301      30325820 
  301      25303258 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 17
+
+
  301      20253032 
  302              		.align	2
  303              	.LC1:
@@ -958,9 +982,6 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  311              		.align	2
  312              	.LC5:
  313 0048 70617274 		.ascii	"partition ok: len=%ld\015\012\000"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 17
-
-
  313      6974696F 
  313      6E206F6B 
  313      3A206C65 
@@ -997,6 +1018,9 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  328      5F696E69 
  328      74203D20 
  328      25640D0A 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 18
+
+
  329 00c1 000000   		.align	2
  330              	.LC11:
  331 00c4 736F6C61 		.ascii	"solar123\000"
@@ -1018,730 +1042,826 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 1
  340 00ec 6E616D65 		.ascii	"name = %s\015\012\000"
  340      203D2025 
  340      730D0A00 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 18
-
-
  341              		.align	2
  342              	.LC15:
  343 00f8 72656164 		.ascii	"read failed\015\012\000"
  343      20666169 
  343      6C65640D 
  343      0A00
- 344              		.section	.text.main,"ax",%progbits
- 345              		.align	1
- 346              		.global	main
- 347              		.syntax unified
- 348              		.thumb
- 349              		.thumb_func
- 351              	main:
- 352              	.LFB237:
- 109:Core/Src/main.c **** 
- 353              		.loc 1 109 1 view -0
- 354              		.cfi_startproc
- 355              		@ args = 0, pretend = 0, frame = 168
- 356              		@ frame_needed = 0, uses_anonymous_args = 0
- 357 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 358              	.LCFI6:
- 359              		.cfi_def_cfa_offset 20
- 360              		.cfi_offset 4, -20
- 361              		.cfi_offset 5, -16
- 362              		.cfi_offset 6, -12
- 363              		.cfi_offset 7, -8
- 364              		.cfi_offset 14, -4
- 365 0002 ADB0     		sub	sp, sp, #180
- 366              	.LCFI7:
- 367              		.cfi_def_cfa_offset 200
- 118:Core/Src/main.c **** 
- 368              		.loc 1 118 3 view .LVU75
- 369 0004 FFF7FEFF 		bl	HAL_Init
- 370              	.LVL16:
- 125:Core/Src/main.c **** 
- 371              		.loc 1 125 3 view .LVU76
- 372 0008 FFF7FEFF 		bl	SystemClock_Config
- 373              	.LVL17:
- 132:Core/Src/main.c ****   MX_SPI1_Init();
- 374              		.loc 1 132 3 view .LVU77
- 375 000c FFF7FEFF 		bl	MX_GPIO_Init
- 376              	.LVL18:
- 133:Core/Src/main.c ****   MX_I2C2_Init();
- 377              		.loc 1 133 3 view .LVU78
- 378 0010 FFF7FEFF 		bl	MX_SPI1_Init
- 379              	.LVL19:
- 134:Core/Src/main.c ****   MX_USART1_UART_Init();
- 380              		.loc 1 134 3 view .LVU79
- 381 0014 FFF7FEFF 		bl	MX_I2C2_Init
- 382              	.LVL20:
- 135:Core/Src/main.c ****   MX_SPI2_Init();
- 383              		.loc 1 135 3 view .LVU80
- 384 0018 FFF7FEFF 		bl	MX_USART1_UART_Init
- 385              	.LVL21:
- 136:Core/Src/main.c ****   MX_RTC_Init();
- 386              		.loc 1 136 3 view .LVU81
- 387 001c FFF7FEFF 		bl	MX_SPI2_Init
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 19
+ 344 0106 0000     		.align	2
+ 345              	.LC16:
+ 346 0108 72756E6E 		.ascii	"running\000"
+ 346      696E6700 
+ 347              		.align	2
+ 348              	.LC17:
+ 349 0110 73746174 		.ascii	"status\000"
+ 349      757300
+ 350 0117 00       		.align	2
+ 351              	.LC18:
+ 352 0118 73746174 		.ascii	"status = %s\015\012\000"
+ 352      7573203D 
+ 352      2025730D 
+ 352      0A00
+ 353 0126 0000     		.align	2
+ 354              	.LC19:
+ 355 0128 72656164 		.ascii	"read status failed\015\012\000"
+ 355      20737461 
+ 355      74757320 
+ 355      6661696C 
+ 355      65640D0A 
+ 356              		.section	.text.main,"ax",%progbits
+ 357              		.align	1
+ 358              		.global	main
+ 359              		.syntax unified
+ 360              		.thumb
+ 361              		.thumb_func
+ 363              	main:
+ 364              	.LFB237:
+ 113:Core/Src/main.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 19
 
 
- 388              	.LVL22:
- 137:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
- 389              		.loc 1 137 3 view .LVU82
- 390 0020 FFF7FEFF 		bl	MX_RTC_Init
- 391              	.LVL23:
- 139:Core/Src/main.c **** 
- 392              		.loc 1 139 1 view .LVU83
- 393 0024 6420     		movs	r0, #100
- 394 0026 FFF7FEFF 		bl	HAL_Delay
- 395              	.LVL24:
- 141:Core/Src/main.c **** ST7735_FillScreen(ST7735_WHITE);
- 396              		.loc 1 141 1 view .LVU84
- 397 002a FFF7FEFF 		bl	ST7735_Init
- 398              	.LVL25:
- 142:Core/Src/main.c **** 
- 399              		.loc 1 142 1 view .LVU85
- 400 002e 4FF6FF70 		movw	r0, #65535
- 401 0032 FFF7FEFF 		bl	ST7735_FillScreen
- 402              	.LVL26:
- 144:Core/Src/main.c **** char msg[128] = {0};
- 403              		.loc 1 144 1 view .LVU86
- 145:Core/Src/main.c **** char *value = NULL;
- 404              		.loc 1 145 1 view .LVU87
- 145:Core/Src/main.c **** char *value = NULL;
- 405              		.loc 1 145 6 is_stmt 0 view .LVU88
- 406 0036 0CAD     		add	r5, sp, #48
- 407 0038 8026     		movs	r6, #128
- 408 003a 3246     		mov	r2, r6
- 409 003c 0021     		movs	r1, #0
- 410 003e 2846     		mov	r0, r5
- 411 0040 FFF7FEFF 		bl	memset
- 412              	.LVL27:
- 146:Core/Src/main.c **** uint8_t mid = 0, type = 0, capacity = 0;
- 413              		.loc 1 146 1 is_stmt 1 view .LVU89
- 147:Core/Src/main.c **** fdb_err_t result_fal;
- 414              		.loc 1 147 1 view .LVU90
- 147:Core/Src/main.c **** fdb_err_t result_fal;
- 415              		.loc 1 147 9 is_stmt 0 view .LVU91
- 416 0044 0024     		movs	r4, #0
- 417 0046 8DF82F40 		strb	r4, [sp, #47]
- 147:Core/Src/main.c **** fdb_err_t result_fal;
- 418              		.loc 1 147 18 view .LVU92
- 419 004a 8DF82E40 		strb	r4, [sp, #46]
- 147:Core/Src/main.c **** fdb_err_t result_fal;
- 420              		.loc 1 147 28 view .LVU93
- 421 004e 8DF82D40 		strb	r4, [sp, #45]
- 148:Core/Src/main.c **** fdb_err_t result_kv;
- 422              		.loc 1 148 1 is_stmt 1 view .LVU94
- 149:Core/Src/main.c **** fdb_err_t result_set;
- 423              		.loc 1 149 1 view .LVU95
- 150:Core/Src/main.c **** 
- 424              		.loc 1 150 1 view .LVU96
- 153:Core/Src/main.c **** W25Q64_ReadJEDECID(&mid, &type, &capacity);
- 425              		.loc 1 153 1 view .LVU97
- 426 0052 FFF7FEFF 		bl	W25Q64_Init
- 427              	.LVL28:
- 154:Core/Src/main.c **** snprintf(msg, sizeof(msg), "JEDEC: %02X %02X %02X\r\n", mid, type, capacity);
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 20
+ 365              		.loc 1 113 1 view -0
+ 366              		.cfi_startproc
+ 367              		@ args = 0, pretend = 0, frame = 168
+ 368              		@ frame_needed = 0, uses_anonymous_args = 0
+ 369 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 370              	.LCFI6:
+ 371              		.cfi_def_cfa_offset 20
+ 372              		.cfi_offset 4, -20
+ 373              		.cfi_offset 5, -16
+ 374              		.cfi_offset 6, -12
+ 375              		.cfi_offset 7, -8
+ 376              		.cfi_offset 14, -4
+ 377 0002 ADB0     		sub	sp, sp, #180
+ 378              	.LCFI7:
+ 379              		.cfi_def_cfa_offset 200
+ 122:Core/Src/main.c **** 
+ 380              		.loc 1 122 3 view .LVU75
+ 381 0004 FFF7FEFF 		bl	HAL_Init
+ 382              	.LVL16:
+ 129:Core/Src/main.c **** 
+ 383              		.loc 1 129 3 view .LVU76
+ 384 0008 FFF7FEFF 		bl	SystemClock_Config
+ 385              	.LVL17:
+ 136:Core/Src/main.c ****   MX_SPI1_Init();
+ 386              		.loc 1 136 3 view .LVU77
+ 387 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 388              	.LVL18:
+ 137:Core/Src/main.c ****   MX_I2C2_Init();
+ 389              		.loc 1 137 3 view .LVU78
+ 390 0010 FFF7FEFF 		bl	MX_SPI1_Init
+ 391              	.LVL19:
+ 138:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 392              		.loc 1 138 3 view .LVU79
+ 393 0014 FFF7FEFF 		bl	MX_I2C2_Init
+ 394              	.LVL20:
+ 139:Core/Src/main.c ****   MX_SPI2_Init();
+ 395              		.loc 1 139 3 view .LVU80
+ 396 0018 FFF7FEFF 		bl	MX_USART1_UART_Init
+ 397              	.LVL21:
+ 140:Core/Src/main.c ****   MX_RTC_Init();
+ 398              		.loc 1 140 3 view .LVU81
+ 399 001c FFF7FEFF 		bl	MX_SPI2_Init
+ 400              	.LVL22:
+ 141:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 401              		.loc 1 141 3 view .LVU82
+ 402 0020 FFF7FEFF 		bl	MX_RTC_Init
+ 403              	.LVL23:
+ 143:Core/Src/main.c **** 
+ 404              		.loc 1 143 1 view .LVU83
+ 405 0024 6420     		movs	r0, #100
+ 406 0026 FFF7FEFF 		bl	HAL_Delay
+ 407              	.LVL24:
+ 145:Core/Src/main.c **** ST7735_FillScreen(ST7735_WHITE);
+ 408              		.loc 1 145 1 view .LVU84
+ 409 002a FFF7FEFF 		bl	ST7735_Init
+ 410              	.LVL25:
+ 146:Core/Src/main.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 20
 
 
- 428              		.loc 1 154 1 view .LVU98
- 429 0056 0DF12D02 		add	r2, sp, #45
- 430 005a 0DF12E01 		add	r1, sp, #46
- 431 005e 0DF12F00 		add	r0, sp, #47
- 432 0062 FFF7FEFF 		bl	W25Q64_ReadJEDECID
- 433              	.LVL29:
- 155:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 434              		.loc 1 155 1 view .LVU99
- 435 0066 9DF82D30 		ldrb	r3, [sp, #45]	@ zero_extendqisi2
- 436 006a 0193     		str	r3, [sp, #4]
- 437 006c 9DF82E30 		ldrb	r3, [sp, #46]	@ zero_extendqisi2
- 438 0070 0093     		str	r3, [sp]
- 439 0072 9DF82F30 		ldrb	r3, [sp, #47]	@ zero_extendqisi2
- 440 0076 814A     		ldr	r2, .L31
- 441 0078 3146     		mov	r1, r6
- 442 007a 2846     		mov	r0, r5
- 443 007c FFF7FEFF 		bl	snprintf
- 444              	.LVL30:
- 156:Core/Src/main.c **** 
- 445              		.loc 1 156 1 view .LVU100
- 156:Core/Src/main.c **** 
- 446              		.loc 1 156 44 is_stmt 0 view .LVU101
- 447 0080 2846     		mov	r0, r5
- 448 0082 FFF7FEFF 		bl	strlen
- 449              	.LVL31:
- 156:Core/Src/main.c **** 
- 450              		.loc 1 156 1 discriminator 1 view .LVU102
- 451 0086 7E4F     		ldr	r7, .L31+4
- 452 0088 4FF0FF33 		mov	r3, #-1
- 453 008c 82B2     		uxth	r2, r0
- 454 008e 2946     		mov	r1, r5
- 455 0090 3846     		mov	r0, r7
- 456 0092 FFF7FEFF 		bl	HAL_UART_Transmit
- 457              	.LVL32:
- 159:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fal_init = %d\r\n", result_fal);
- 458              		.loc 1 159 1 is_stmt 1 view .LVU103
- 159:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fal_init = %d\r\n", result_fal);
- 459              		.loc 1 159 14 is_stmt 0 view .LVU104
- 460 0096 FFF7FEFF 		bl	fal_init
- 461              	.LVL33:
- 160:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 462              		.loc 1 160 1 is_stmt 1 view .LVU105
- 463 009a C3B2     		uxtb	r3, r0
- 464 009c 794A     		ldr	r2, .L31+8
- 465 009e 3146     		mov	r1, r6
- 466 00a0 2846     		mov	r0, r5
- 467              	.LVL34:
- 160:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 468              		.loc 1 160 1 is_stmt 0 view .LVU106
- 469 00a2 FFF7FEFF 		bl	snprintf
- 470              	.LVL35:
- 161:Core/Src/main.c **** const struct fal_partition *part;
- 471              		.loc 1 161 1 is_stmt 1 view .LVU107
- 161:Core/Src/main.c **** const struct fal_partition *part;
- 472              		.loc 1 161 44 is_stmt 0 view .LVU108
- 473 00a6 2846     		mov	r0, r5
- 474 00a8 FFF7FEFF 		bl	strlen
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 21
+ 411              		.loc 1 146 1 view .LVU85
+ 412 002e 4FF6FF70 		movw	r0, #65535
+ 413 0032 FFF7FEFF 		bl	ST7735_FillScreen
+ 414              	.LVL26:
+ 148:Core/Src/main.c **** char msg[128] = {0};
+ 415              		.loc 1 148 1 view .LVU86
+ 149:Core/Src/main.c **** char *value = NULL;
+ 416              		.loc 1 149 1 view .LVU87
+ 149:Core/Src/main.c **** char *value = NULL;
+ 417              		.loc 1 149 6 is_stmt 0 view .LVU88
+ 418 0036 0CAD     		add	r5, sp, #48
+ 419 0038 8026     		movs	r6, #128
+ 420 003a 3246     		mov	r2, r6
+ 421 003c 0021     		movs	r1, #0
+ 422 003e 2846     		mov	r0, r5
+ 423 0040 FFF7FEFF 		bl	memset
+ 424              	.LVL27:
+ 150:Core/Src/main.c **** uint8_t mid = 0, type = 0, capacity = 0;
+ 425              		.loc 1 150 1 is_stmt 1 view .LVU89
+ 151:Core/Src/main.c **** fdb_err_t result_fal;
+ 426              		.loc 1 151 1 view .LVU90
+ 151:Core/Src/main.c **** fdb_err_t result_fal;
+ 427              		.loc 1 151 9 is_stmt 0 view .LVU91
+ 428 0044 0024     		movs	r4, #0
+ 429 0046 8DF82F40 		strb	r4, [sp, #47]
+ 151:Core/Src/main.c **** fdb_err_t result_fal;
+ 430              		.loc 1 151 18 view .LVU92
+ 431 004a 8DF82E40 		strb	r4, [sp, #46]
+ 151:Core/Src/main.c **** fdb_err_t result_fal;
+ 432              		.loc 1 151 28 view .LVU93
+ 433 004e 8DF82D40 		strb	r4, [sp, #45]
+ 152:Core/Src/main.c **** fdb_err_t result_kv;
+ 434              		.loc 1 152 1 is_stmt 1 view .LVU94
+ 153:Core/Src/main.c **** fdb_err_t result_set;
+ 435              		.loc 1 153 1 view .LVU95
+ 154:Core/Src/main.c **** 
+ 436              		.loc 1 154 1 view .LVU96
+ 157:Core/Src/main.c **** W25Q64_ReadJEDECID(&mid, &type, &capacity);
+ 437              		.loc 1 157 1 view .LVU97
+ 438 0052 FFF7FEFF 		bl	W25Q64_Init
+ 439              	.LVL28:
+ 158:Core/Src/main.c **** snprintf(msg, sizeof(msg), "JEDEC: %02X %02X %02X\r\n", mid, type, capacity);
+ 440              		.loc 1 158 1 view .LVU98
+ 441 0056 0DF12D02 		add	r2, sp, #45
+ 442 005a 0DF12E01 		add	r1, sp, #46
+ 443 005e 0DF12F00 		add	r0, sp, #47
+ 444 0062 FFF7FEFF 		bl	W25Q64_ReadJEDECID
+ 445              	.LVL29:
+ 159:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 446              		.loc 1 159 1 view .LVU99
+ 447 0066 9DF82D30 		ldrb	r3, [sp, #45]	@ zero_extendqisi2
+ 448 006a 0193     		str	r3, [sp, #4]
+ 449 006c 9DF82E30 		ldrb	r3, [sp, #46]	@ zero_extendqisi2
+ 450 0070 0093     		str	r3, [sp]
+ 451 0072 9DF82F30 		ldrb	r3, [sp, #47]	@ zero_extendqisi2
+ 452 0076 954A     		ldr	r2, .L33
+ 453 0078 3146     		mov	r1, r6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 21
 
 
- 475              	.LVL36:
- 161:Core/Src/main.c **** const struct fal_partition *part;
- 476              		.loc 1 161 1 discriminator 1 view .LVU109
- 477 00ac 4FF0FF33 		mov	r3, #-1
- 478 00b0 82B2     		uxth	r2, r0
- 479 00b2 2946     		mov	r1, r5
- 480 00b4 3846     		mov	r0, r7
- 481 00b6 FFF7FEFF 		bl	HAL_UART_Transmit
- 482              	.LVL37:
- 162:Core/Src/main.c **** uint8_t test_wbuf[16] = "hello_flashdb";
- 483              		.loc 1 162 1 is_stmt 1 view .LVU110
- 163:Core/Src/main.c **** uint8_t test_rbuf[16] = {0};
- 484              		.loc 1 163 1 view .LVU111
- 163:Core/Src/main.c **** uint8_t test_rbuf[16] = {0};
- 485              		.loc 1 163 9 is_stmt 0 view .LVU112
- 486 00ba 734B     		ldr	r3, .L31+12
- 487 00bc 07AD     		add	r5, sp, #28
- 488 00be 0FCB     		ldm	r3, {r0, r1, r2, r3}
- 489 00c0 07C5     		stmia	r5!, {r0, r1, r2}
- 490 00c2 2B80     		strh	r3, [r5]	@ movhi
- 491 00c4 ADF82A40 		strh	r4, [sp, #42]	@ movhi
- 164:Core/Src/main.c **** int rlen, wlen, elen;
- 492              		.loc 1 164 1 is_stmt 1 view .LVU113
- 164:Core/Src/main.c **** int rlen, wlen, elen;
- 493              		.loc 1 164 9 is_stmt 0 view .LVU114
- 494 00c8 0394     		str	r4, [sp, #12]
- 495 00ca 0494     		str	r4, [sp, #16]
- 496 00cc 0594     		str	r4, [sp, #20]
- 497 00ce 0694     		str	r4, [sp, #24]
- 165:Core/Src/main.c **** 
- 498              		.loc 1 165 1 is_stmt 1 view .LVU115
- 168:Core/Src/main.c **** if (part == NULL)
- 499              		.loc 1 168 1 view .LVU116
- 168:Core/Src/main.c **** if (part == NULL)
- 500              		.loc 1 168 8 is_stmt 0 view .LVU117
- 501 00d0 6E48     		ldr	r0, .L31+16
- 502 00d2 FFF7FEFF 		bl	fal_partition_find
- 503              	.LVL38:
- 169:Core/Src/main.c **** {
- 504              		.loc 1 169 1 is_stmt 1 view .LVU118
- 169:Core/Src/main.c **** {
- 505              		.loc 1 169 4 is_stmt 0 view .LVU119
- 506 00d6 0028     		cmp	r0, #0
- 507 00d8 00F0B680 		beq	.L30
- 508 00dc 0546     		mov	r5, r0
- 176:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 509              		.loc 1 176 5 is_stmt 1 view .LVU120
- 510 00de 0CAC     		add	r4, sp, #48
- 511 00e0 836B     		ldr	r3, [r0, #56]
- 512 00e2 6B4A     		ldr	r2, .L31+20
- 513 00e4 8021     		movs	r1, #128
- 514 00e6 2046     		mov	r0, r4
- 515              	.LVL39:
- 176:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 516              		.loc 1 176 5 is_stmt 0 view .LVU121
- 517 00e8 FFF7FEFF 		bl	snprintf
- 518              	.LVL40:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 22
+ 454 007a 2846     		mov	r0, r5
+ 455 007c FFF7FEFF 		bl	snprintf
+ 456              	.LVL30:
+ 160:Core/Src/main.c **** 
+ 457              		.loc 1 160 1 view .LVU100
+ 160:Core/Src/main.c **** 
+ 458              		.loc 1 160 44 is_stmt 0 view .LVU101
+ 459 0080 2846     		mov	r0, r5
+ 460 0082 FFF7FEFF 		bl	strlen
+ 461              	.LVL31:
+ 160:Core/Src/main.c **** 
+ 462              		.loc 1 160 1 discriminator 1 view .LVU102
+ 463 0086 924F     		ldr	r7, .L33+4
+ 464 0088 4FF0FF33 		mov	r3, #-1
+ 465 008c 82B2     		uxth	r2, r0
+ 466 008e 2946     		mov	r1, r5
+ 467 0090 3846     		mov	r0, r7
+ 468 0092 FFF7FEFF 		bl	HAL_UART_Transmit
+ 469              	.LVL32:
+ 163:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fal_init = %d\r\n", result_fal);
+ 470              		.loc 1 163 1 is_stmt 1 view .LVU103
+ 163:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fal_init = %d\r\n", result_fal);
+ 471              		.loc 1 163 14 is_stmt 0 view .LVU104
+ 472 0096 FFF7FEFF 		bl	fal_init
+ 473              	.LVL33:
+ 164:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 474              		.loc 1 164 1 is_stmt 1 view .LVU105
+ 475 009a C3B2     		uxtb	r3, r0
+ 476 009c 8D4A     		ldr	r2, .L33+8
+ 477 009e 3146     		mov	r1, r6
+ 478 00a0 2846     		mov	r0, r5
+ 479              	.LVL34:
+ 164:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 480              		.loc 1 164 1 is_stmt 0 view .LVU106
+ 481 00a2 FFF7FEFF 		bl	snprintf
+ 482              	.LVL35:
+ 165:Core/Src/main.c **** const struct fal_partition *part;
+ 483              		.loc 1 165 1 is_stmt 1 view .LVU107
+ 165:Core/Src/main.c **** const struct fal_partition *part;
+ 484              		.loc 1 165 44 is_stmt 0 view .LVU108
+ 485 00a6 2846     		mov	r0, r5
+ 486 00a8 FFF7FEFF 		bl	strlen
+ 487              	.LVL36:
+ 165:Core/Src/main.c **** const struct fal_partition *part;
+ 488              		.loc 1 165 1 discriminator 1 view .LVU109
+ 489 00ac 4FF0FF33 		mov	r3, #-1
+ 490 00b0 82B2     		uxth	r2, r0
+ 491 00b2 2946     		mov	r1, r5
+ 492 00b4 3846     		mov	r0, r7
+ 493 00b6 FFF7FEFF 		bl	HAL_UART_Transmit
+ 494              	.LVL37:
+ 166:Core/Src/main.c **** uint8_t test_wbuf[16] = "hello_flashdb";
+ 495              		.loc 1 166 1 is_stmt 1 view .LVU110
+ 167:Core/Src/main.c **** uint8_t test_rbuf[16] = {0};
+ 496              		.loc 1 167 1 view .LVU111
+ 167:Core/Src/main.c **** uint8_t test_rbuf[16] = {0};
+ 497              		.loc 1 167 9 is_stmt 0 view .LVU112
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 22
 
 
- 177:Core/Src/main.c **** 
- 519              		.loc 1 177 5 is_stmt 1 view .LVU122
- 177:Core/Src/main.c **** 
- 520              		.loc 1 177 48 is_stmt 0 view .LVU123
- 521 00ec 2046     		mov	r0, r4
- 522 00ee FFF7FEFF 		bl	strlen
- 523              	.LVL41:
- 177:Core/Src/main.c **** 
- 524              		.loc 1 177 5 discriminator 1 view .LVU124
- 525 00f2 634E     		ldr	r6, .L31+4
- 526 00f4 4FF0FF33 		mov	r3, #-1
- 527 00f8 82B2     		uxth	r2, r0
- 528 00fa 2146     		mov	r1, r4
- 529 00fc 3046     		mov	r0, r6
- 530 00fe FFF7FEFF 		bl	HAL_UART_Transmit
- 531              	.LVL42:
- 180:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "erase ret = %d\r\n", elen);
- 532              		.loc 1 180 5 is_stmt 1 view .LVU125
- 180:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "erase ret = %d\r\n", elen);
- 533              		.loc 1 180 12 is_stmt 0 view .LVU126
- 534 0102 4FF48052 		mov	r2, #4096
- 535 0106 0021     		movs	r1, #0
- 536 0108 2846     		mov	r0, r5
- 537 010a FFF7FEFF 		bl	fal_partition_erase
- 538              	.LVL43:
- 539 010e 0346     		mov	r3, r0
- 540              	.LVL44:
- 181:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 541              		.loc 1 181 5 is_stmt 1 view .LVU127
- 542 0110 604A     		ldr	r2, .L31+24
- 543 0112 8021     		movs	r1, #128
- 544 0114 2046     		mov	r0, r4
- 545              	.LVL45:
- 181:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 546              		.loc 1 181 5 is_stmt 0 view .LVU128
- 547 0116 FFF7FEFF 		bl	snprintf
- 548              	.LVL46:
- 182:Core/Src/main.c **** 
- 549              		.loc 1 182 5 is_stmt 1 view .LVU129
- 182:Core/Src/main.c **** 
- 550              		.loc 1 182 48 is_stmt 0 view .LVU130
- 551 011a 2046     		mov	r0, r4
- 552 011c FFF7FEFF 		bl	strlen
- 553              	.LVL47:
- 182:Core/Src/main.c **** 
- 554              		.loc 1 182 5 discriminator 1 view .LVU131
- 555 0120 4FF0FF33 		mov	r3, #-1
- 556 0124 82B2     		uxth	r2, r0
- 557 0126 2146     		mov	r1, r4
- 558 0128 3046     		mov	r0, r6
- 559 012a FFF7FEFF 		bl	HAL_UART_Transmit
- 560              	.LVL48:
- 185:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "write ret = %d\r\n", wlen);
- 561              		.loc 1 185 5 is_stmt 1 view .LVU132
- 185:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "write ret = %d\r\n", wlen);
- 562              		.loc 1 185 12 is_stmt 0 view .LVU133
- 563 012e 1023     		movs	r3, #16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 23
+ 498 00ba 874B     		ldr	r3, .L33+12
+ 499 00bc 07AD     		add	r5, sp, #28
+ 500 00be 0FCB     		ldm	r3, {r0, r1, r2, r3}
+ 501 00c0 07C5     		stmia	r5!, {r0, r1, r2}
+ 502 00c2 2B80     		strh	r3, [r5]	@ movhi
+ 503 00c4 ADF82A40 		strh	r4, [sp, #42]	@ movhi
+ 168:Core/Src/main.c **** int rlen, wlen, elen;
+ 504              		.loc 1 168 1 is_stmt 1 view .LVU113
+ 168:Core/Src/main.c **** int rlen, wlen, elen;
+ 505              		.loc 1 168 9 is_stmt 0 view .LVU114
+ 506 00c8 0394     		str	r4, [sp, #12]
+ 507 00ca 0494     		str	r4, [sp, #16]
+ 508 00cc 0594     		str	r4, [sp, #20]
+ 509 00ce 0694     		str	r4, [sp, #24]
+ 169:Core/Src/main.c **** 
+ 510              		.loc 1 169 1 is_stmt 1 view .LVU115
+ 172:Core/Src/main.c **** if (part == NULL)
+ 511              		.loc 1 172 1 view .LVU116
+ 172:Core/Src/main.c **** if (part == NULL)
+ 512              		.loc 1 172 8 is_stmt 0 view .LVU117
+ 513 00d0 8248     		ldr	r0, .L33+16
+ 514 00d2 FFF7FEFF 		bl	fal_partition_find
+ 515              	.LVL38:
+ 173:Core/Src/main.c **** {
+ 516              		.loc 1 173 1 is_stmt 1 view .LVU118
+ 173:Core/Src/main.c **** {
+ 517              		.loc 1 173 4 is_stmt 0 view .LVU119
+ 518 00d6 0028     		cmp	r0, #0
+ 519 00d8 00F0D480 		beq	.L32
+ 520 00dc 0546     		mov	r5, r0
+ 180:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 521              		.loc 1 180 5 is_stmt 1 view .LVU120
+ 522 00de 0CAC     		add	r4, sp, #48
+ 523 00e0 836B     		ldr	r3, [r0, #56]
+ 524 00e2 7F4A     		ldr	r2, .L33+20
+ 525 00e4 8021     		movs	r1, #128
+ 526 00e6 2046     		mov	r0, r4
+ 527              	.LVL39:
+ 180:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 528              		.loc 1 180 5 is_stmt 0 view .LVU121
+ 529 00e8 FFF7FEFF 		bl	snprintf
+ 530              	.LVL40:
+ 181:Core/Src/main.c **** 
+ 531              		.loc 1 181 5 is_stmt 1 view .LVU122
+ 181:Core/Src/main.c **** 
+ 532              		.loc 1 181 48 is_stmt 0 view .LVU123
+ 533 00ec 2046     		mov	r0, r4
+ 534 00ee FFF7FEFF 		bl	strlen
+ 535              	.LVL41:
+ 181:Core/Src/main.c **** 
+ 536              		.loc 1 181 5 discriminator 1 view .LVU124
+ 537 00f2 774E     		ldr	r6, .L33+4
+ 538 00f4 4FF0FF33 		mov	r3, #-1
+ 539 00f8 82B2     		uxth	r2, r0
+ 540 00fa 2146     		mov	r1, r4
+ 541 00fc 3046     		mov	r0, r6
+ 542 00fe FFF7FEFF 		bl	HAL_UART_Transmit
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 23
 
 
- 564 0130 07AA     		add	r2, sp, #28
- 565 0132 0021     		movs	r1, #0
- 566 0134 2846     		mov	r0, r5
- 567 0136 FFF7FEFF 		bl	fal_partition_write
- 568              	.LVL49:
- 569 013a 0346     		mov	r3, r0
- 570              	.LVL50:
- 186:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 571              		.loc 1 186 5 is_stmt 1 view .LVU134
- 572 013c 564A     		ldr	r2, .L31+28
- 573 013e 8021     		movs	r1, #128
- 574 0140 2046     		mov	r0, r4
- 575              	.LVL51:
- 186:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 576              		.loc 1 186 5 is_stmt 0 view .LVU135
- 577 0142 FFF7FEFF 		bl	snprintf
- 578              	.LVL52:
- 187:Core/Src/main.c **** 
- 579              		.loc 1 187 5 is_stmt 1 view .LVU136
- 187:Core/Src/main.c **** 
- 580              		.loc 1 187 48 is_stmt 0 view .LVU137
- 581 0146 2046     		mov	r0, r4
- 582 0148 FFF7FEFF 		bl	strlen
- 583              	.LVL53:
- 187:Core/Src/main.c **** 
- 584              		.loc 1 187 5 discriminator 1 view .LVU138
- 585 014c 4FF0FF33 		mov	r3, #-1
- 586 0150 82B2     		uxth	r2, r0
- 587 0152 2146     		mov	r1, r4
- 588 0154 3046     		mov	r0, r6
- 589 0156 FFF7FEFF 		bl	HAL_UART_Transmit
- 590              	.LVL54:
- 190:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read ret = %d, data = %s\r\n", rlen, test_rbuf);
- 591              		.loc 1 190 5 is_stmt 1 view .LVU139
- 190:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read ret = %d, data = %s\r\n", rlen, test_rbuf);
- 592              		.loc 1 190 12 is_stmt 0 view .LVU140
- 593 015a 03AF     		add	r7, sp, #12
- 594 015c 1023     		movs	r3, #16
- 595 015e 3A46     		mov	r2, r7
- 596 0160 0021     		movs	r1, #0
- 597 0162 2846     		mov	r0, r5
- 598 0164 FFF7FEFF 		bl	fal_partition_read
- 599              	.LVL55:
- 600 0168 0346     		mov	r3, r0
- 601              	.LVL56:
- 191:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 602              		.loc 1 191 5 is_stmt 1 view .LVU141
- 603 016a 0097     		str	r7, [sp]
- 604 016c 4B4A     		ldr	r2, .L31+32
- 605 016e 8021     		movs	r1, #128
- 606 0170 2046     		mov	r0, r4
- 607              	.LVL57:
- 191:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 608              		.loc 1 191 5 is_stmt 0 view .LVU142
- 609 0172 FFF7FEFF 		bl	snprintf
- 610              	.LVL58:
- 192:Core/Src/main.c **** }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 24
+ 543              	.LVL42:
+ 184:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "erase ret = %d\r\n", elen);
+ 544              		.loc 1 184 5 is_stmt 1 view .LVU125
+ 184:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "erase ret = %d\r\n", elen);
+ 545              		.loc 1 184 12 is_stmt 0 view .LVU126
+ 546 0102 4FF48052 		mov	r2, #4096
+ 547 0106 0021     		movs	r1, #0
+ 548 0108 2846     		mov	r0, r5
+ 549 010a FFF7FEFF 		bl	fal_partition_erase
+ 550              	.LVL43:
+ 551 010e 0346     		mov	r3, r0
+ 552              	.LVL44:
+ 185:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 553              		.loc 1 185 5 is_stmt 1 view .LVU127
+ 554 0110 744A     		ldr	r2, .L33+24
+ 555 0112 8021     		movs	r1, #128
+ 556 0114 2046     		mov	r0, r4
+ 557              	.LVL45:
+ 185:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 558              		.loc 1 185 5 is_stmt 0 view .LVU128
+ 559 0116 FFF7FEFF 		bl	snprintf
+ 560              	.LVL46:
+ 186:Core/Src/main.c **** 
+ 561              		.loc 1 186 5 is_stmt 1 view .LVU129
+ 186:Core/Src/main.c **** 
+ 562              		.loc 1 186 48 is_stmt 0 view .LVU130
+ 563 011a 2046     		mov	r0, r4
+ 564 011c FFF7FEFF 		bl	strlen
+ 565              	.LVL47:
+ 186:Core/Src/main.c **** 
+ 566              		.loc 1 186 5 discriminator 1 view .LVU131
+ 567 0120 4FF0FF33 		mov	r3, #-1
+ 568 0124 82B2     		uxth	r2, r0
+ 569 0126 2146     		mov	r1, r4
+ 570 0128 3046     		mov	r0, r6
+ 571 012a FFF7FEFF 		bl	HAL_UART_Transmit
+ 572              	.LVL48:
+ 189:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "write ret = %d\r\n", wlen);
+ 573              		.loc 1 189 5 is_stmt 1 view .LVU132
+ 189:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "write ret = %d\r\n", wlen);
+ 574              		.loc 1 189 12 is_stmt 0 view .LVU133
+ 575 012e 1023     		movs	r3, #16
+ 576 0130 07AA     		add	r2, sp, #28
+ 577 0132 0021     		movs	r1, #0
+ 578 0134 2846     		mov	r0, r5
+ 579 0136 FFF7FEFF 		bl	fal_partition_write
+ 580              	.LVL49:
+ 581 013a 0346     		mov	r3, r0
+ 582              	.LVL50:
+ 190:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 583              		.loc 1 190 5 is_stmt 1 view .LVU134
+ 584 013c 6A4A     		ldr	r2, .L33+28
+ 585 013e 8021     		movs	r1, #128
+ 586 0140 2046     		mov	r0, r4
+ 587              	.LVL51:
+ 190:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 588              		.loc 1 190 5 is_stmt 0 view .LVU135
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 24
 
 
- 611              		.loc 1 192 5 is_stmt 1 view .LVU143
- 192:Core/Src/main.c **** }
- 612              		.loc 1 192 48 is_stmt 0 view .LVU144
- 613 0176 2046     		mov	r0, r4
- 614 0178 FFF7FEFF 		bl	strlen
- 615              	.LVL59:
- 192:Core/Src/main.c **** }
- 616              		.loc 1 192 5 discriminator 1 view .LVU145
- 617 017c 4FF0FF33 		mov	r3, #-1
- 618 0180 82B2     		uxth	r2, r0
- 619 0182 2146     		mov	r1, r4
- 620 0184 3046     		mov	r0, r6
- 621 0186 FFF7FEFF 		bl	HAL_UART_Transmit
- 622              	.LVL60:
- 623              	.L25:
- 195:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kvdb_init = %d\r\n", result_kv);
- 624              		.loc 1 195 1 is_stmt 1 view .LVU146
- 195:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kvdb_init = %d\r\n", result_kv);
- 625              		.loc 1 195 13 is_stmt 0 view .LVU147
- 626 018a 454D     		ldr	r5, .L31+36
- 627 018c 0023     		movs	r3, #0
- 628 018e 0093     		str	r3, [sp]
- 629 0190 444B     		ldr	r3, .L31+40
- 630 0192 3E4A     		ldr	r2, .L31+16
- 631 0194 4449     		ldr	r1, .L31+44
- 632 0196 2846     		mov	r0, r5
- 633 0198 FFF7FEFF 		bl	fdb_kvdb_init
- 634              	.LVL61:
- 635 019c 0346     		mov	r3, r0
- 636              	.LVL62:
- 196:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 637              		.loc 1 196 1 is_stmt 1 view .LVU148
- 638 019e 0CAC     		add	r4, sp, #48
- 639 01a0 424A     		ldr	r2, .L31+48
- 640 01a2 8021     		movs	r1, #128
- 641 01a4 2046     		mov	r0, r4
- 642 01a6 FFF7FEFF 		bl	snprintf
- 643              	.LVL63:
- 197:Core/Src/main.c **** 
- 644              		.loc 1 197 1 view .LVU149
- 197:Core/Src/main.c **** 
- 645              		.loc 1 197 44 is_stmt 0 view .LVU150
- 646 01aa 2046     		mov	r0, r4
- 647 01ac FFF7FEFF 		bl	strlen
- 648              	.LVL64:
- 197:Core/Src/main.c **** 
- 649              		.loc 1 197 1 discriminator 1 view .LVU151
- 650 01b0 334F     		ldr	r7, .L31+4
- 651 01b2 4FF0FF33 		mov	r3, #-1
- 652 01b6 82B2     		uxth	r2, r0
- 653 01b8 2146     		mov	r1, r4
- 654 01ba 3846     		mov	r0, r7
- 655 01bc FFF7FEFF 		bl	HAL_UART_Transmit
- 656              	.LVL65:
- 200:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kv_set = %d\r\n", result_set);
- 657              		.loc 1 200 1 is_stmt 1 view .LVU152
- 200:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kv_set = %d\r\n", result_set);
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 25
+ 589 0142 FFF7FEFF 		bl	snprintf
+ 590              	.LVL52:
+ 191:Core/Src/main.c **** 
+ 591              		.loc 1 191 5 is_stmt 1 view .LVU136
+ 191:Core/Src/main.c **** 
+ 592              		.loc 1 191 48 is_stmt 0 view .LVU137
+ 593 0146 2046     		mov	r0, r4
+ 594 0148 FFF7FEFF 		bl	strlen
+ 595              	.LVL53:
+ 191:Core/Src/main.c **** 
+ 596              		.loc 1 191 5 discriminator 1 view .LVU138
+ 597 014c 4FF0FF33 		mov	r3, #-1
+ 598 0150 82B2     		uxth	r2, r0
+ 599 0152 2146     		mov	r1, r4
+ 600 0154 3046     		mov	r0, r6
+ 601 0156 FFF7FEFF 		bl	HAL_UART_Transmit
+ 602              	.LVL54:
+ 194:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read ret = %d, data = %s\r\n", rlen, test_rbuf);
+ 603              		.loc 1 194 5 is_stmt 1 view .LVU139
+ 194:Core/Src/main.c ****     snprintf(msg, sizeof(msg), "read ret = %d, data = %s\r\n", rlen, test_rbuf);
+ 604              		.loc 1 194 12 is_stmt 0 view .LVU140
+ 605 015a 03AF     		add	r7, sp, #12
+ 606 015c 1023     		movs	r3, #16
+ 607 015e 3A46     		mov	r2, r7
+ 608 0160 0021     		movs	r1, #0
+ 609 0162 2846     		mov	r0, r5
+ 610 0164 FFF7FEFF 		bl	fal_partition_read
+ 611              	.LVL55:
+ 612 0168 0346     		mov	r3, r0
+ 613              	.LVL56:
+ 195:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 614              		.loc 1 195 5 is_stmt 1 view .LVU141
+ 615 016a 0097     		str	r7, [sp]
+ 616 016c 5F4A     		ldr	r2, .L33+32
+ 617 016e 8021     		movs	r1, #128
+ 618 0170 2046     		mov	r0, r4
+ 619              	.LVL57:
+ 195:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 620              		.loc 1 195 5 is_stmt 0 view .LVU142
+ 621 0172 FFF7FEFF 		bl	snprintf
+ 622              	.LVL58:
+ 196:Core/Src/main.c **** }
+ 623              		.loc 1 196 5 is_stmt 1 view .LVU143
+ 196:Core/Src/main.c **** }
+ 624              		.loc 1 196 48 is_stmt 0 view .LVU144
+ 625 0176 2046     		mov	r0, r4
+ 626 0178 FFF7FEFF 		bl	strlen
+ 627              	.LVL59:
+ 196:Core/Src/main.c **** }
+ 628              		.loc 1 196 5 discriminator 1 view .LVU145
+ 629 017c 4FF0FF33 		mov	r3, #-1
+ 630 0180 82B2     		uxth	r2, r0
+ 631 0182 2146     		mov	r1, r4
+ 632 0184 3046     		mov	r0, r6
+ 633 0186 FFF7FEFF 		bl	HAL_UART_Transmit
+ 634              	.LVL60:
+ 635              	.L25:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 25
 
 
- 658              		.loc 1 200 14 is_stmt 0 view .LVU153
- 659 01c0 3B4E     		ldr	r6, .L31+52
- 660 01c2 3C4A     		ldr	r2, .L31+56
- 661 01c4 3146     		mov	r1, r6
- 662 01c6 2846     		mov	r0, r5
- 663 01c8 FFF7FEFF 		bl	fdb_kv_set
- 664              	.LVL66:
- 665 01cc 0346     		mov	r3, r0
- 666              	.LVL67:
- 201:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 667              		.loc 1 201 1 is_stmt 1 view .LVU154
- 668 01ce 3A4A     		ldr	r2, .L31+60
- 669 01d0 8021     		movs	r1, #128
- 670 01d2 2046     		mov	r0, r4
- 671 01d4 FFF7FEFF 		bl	snprintf
- 672              	.LVL68:
- 202:Core/Src/main.c **** 
- 673              		.loc 1 202 1 view .LVU155
- 202:Core/Src/main.c **** 
- 674              		.loc 1 202 44 is_stmt 0 view .LVU156
- 675 01d8 2046     		mov	r0, r4
- 676 01da FFF7FEFF 		bl	strlen
- 677              	.LVL69:
- 202:Core/Src/main.c **** 
- 678              		.loc 1 202 1 discriminator 1 view .LVU157
- 679 01de 4FF0FF33 		mov	r3, #-1
- 680 01e2 82B2     		uxth	r2, r0
- 681 01e4 2146     		mov	r1, r4
- 682 01e6 3846     		mov	r0, r7
- 683 01e8 FFF7FEFF 		bl	HAL_UART_Transmit
- 684              	.LVL70:
- 205:Core/Src/main.c **** if (value != NULL)
- 685              		.loc 1 205 1 is_stmt 1 view .LVU158
- 205:Core/Src/main.c **** if (value != NULL)
- 686              		.loc 1 205 9 is_stmt 0 view .LVU159
- 687 01ec 3146     		mov	r1, r6
- 688 01ee 2846     		mov	r0, r5
- 689 01f0 FFF7FEFF 		bl	fdb_kv_get
- 690              	.LVL71:
- 206:Core/Src/main.c **** {
- 691              		.loc 1 206 1 is_stmt 1 view .LVU160
- 206:Core/Src/main.c **** {
- 692              		.loc 1 206 4 is_stmt 0 view .LVU161
- 693 01f4 0346     		mov	r3, r0
- 694 01f6 0028     		cmp	r0, #0
- 695 01f8 3AD0     		beq	.L26
- 208:Core/Src/main.c **** }
- 696              		.loc 1 208 5 is_stmt 1 view .LVU162
- 697 01fa 304A     		ldr	r2, .L31+64
- 698 01fc 8021     		movs	r1, #128
- 699 01fe 2046     		mov	r0, r4
- 700              	.LVL72:
- 208:Core/Src/main.c **** }
- 701              		.loc 1 208 5 is_stmt 0 view .LVU163
- 702 0200 FFF7FEFF 		bl	snprintf
- 703              	.LVL73:
- 704              	.L27:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 26
+ 199:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kvdb_init = %d\r\n", result_kv);
+ 636              		.loc 1 199 1 is_stmt 1 view .LVU146
+ 199:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kvdb_init = %d\r\n", result_kv);
+ 637              		.loc 1 199 13 is_stmt 0 view .LVU147
+ 638 018a 594D     		ldr	r5, .L33+36
+ 639 018c 0023     		movs	r3, #0
+ 640 018e 0093     		str	r3, [sp]
+ 641 0190 584B     		ldr	r3, .L33+40
+ 642 0192 524A     		ldr	r2, .L33+16
+ 643 0194 5849     		ldr	r1, .L33+44
+ 644 0196 2846     		mov	r0, r5
+ 645 0198 FFF7FEFF 		bl	fdb_kvdb_init
+ 646              	.LVL61:
+ 647 019c 0346     		mov	r3, r0
+ 648              	.LVL62:
+ 200:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 649              		.loc 1 200 1 is_stmt 1 view .LVU148
+ 650 019e 0CAC     		add	r4, sp, #48
+ 651 01a0 564A     		ldr	r2, .L33+48
+ 652 01a2 8021     		movs	r1, #128
+ 653 01a4 2046     		mov	r0, r4
+ 654 01a6 FFF7FEFF 		bl	snprintf
+ 655              	.LVL63:
+ 201:Core/Src/main.c **** 
+ 656              		.loc 1 201 1 view .LVU149
+ 201:Core/Src/main.c **** 
+ 657              		.loc 1 201 44 is_stmt 0 view .LVU150
+ 658 01aa 2046     		mov	r0, r4
+ 659 01ac FFF7FEFF 		bl	strlen
+ 660              	.LVL64:
+ 201:Core/Src/main.c **** 
+ 661              		.loc 1 201 1 discriminator 1 view .LVU151
+ 662 01b0 474F     		ldr	r7, .L33+4
+ 663 01b2 4FF0FF33 		mov	r3, #-1
+ 664 01b6 82B2     		uxth	r2, r0
+ 665 01b8 2146     		mov	r1, r4
+ 666 01ba 3846     		mov	r0, r7
+ 667 01bc FFF7FEFF 		bl	HAL_UART_Transmit
+ 668              	.LVL65:
+ 204:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kv_set = %d\r\n", result_set);
+ 669              		.loc 1 204 1 is_stmt 1 view .LVU152
+ 204:Core/Src/main.c **** snprintf(msg, sizeof(msg), "fdb_kv_set = %d\r\n", result_set);
+ 670              		.loc 1 204 14 is_stmt 0 view .LVU153
+ 671 01c0 4F4E     		ldr	r6, .L33+52
+ 672 01c2 504A     		ldr	r2, .L33+56
+ 673 01c4 3146     		mov	r1, r6
+ 674 01c6 2846     		mov	r0, r5
+ 675 01c8 FFF7FEFF 		bl	fdb_kv_set
+ 676              	.LVL66:
+ 677 01cc 0346     		mov	r3, r0
+ 678              	.LVL67:
+ 205:Core/Src/main.c **** HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 679              		.loc 1 205 1 is_stmt 1 view .LVU154
+ 680 01ce 4E4A     		ldr	r2, .L33+60
+ 681 01d0 8021     		movs	r1, #128
+ 682 01d2 2046     		mov	r0, r4
+ 683 01d4 FFF7FEFF 		bl	snprintf
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 26
 
 
- 214:Core/Src/main.c ****     /* USER CODE END 2 */
- 705              		.loc 1 214 1 is_stmt 1 view .LVU164
- 214:Core/Src/main.c ****     /* USER CODE END 2 */
- 706              		.loc 1 214 44 is_stmt 0 view .LVU165
- 707 0204 0CAC     		add	r4, sp, #48
- 708 0206 2046     		mov	r0, r4
- 709 0208 FFF7FEFF 		bl	strlen
- 710              	.LVL74:
- 214:Core/Src/main.c ****     /* USER CODE END 2 */
- 711              		.loc 1 214 1 discriminator 1 view .LVU166
- 712 020c 4FF0FF33 		mov	r3, #-1
- 713 0210 82B2     		uxth	r2, r0
- 714 0212 2146     		mov	r1, r4
- 715 0214 1A48     		ldr	r0, .L31+4
- 716 0216 FFF7FEFF 		bl	HAL_UART_Transmit
- 717              	.LVL75:
- 218:Core/Src/main.c ****   MX_FREERTOS_Init();
- 718              		.loc 1 218 3 is_stmt 1 view .LVU167
- 719 021a FFF7FEFF 		bl	osKernelInitialize
- 720              	.LVL76:
- 219:Core/Src/main.c **** 
- 721              		.loc 1 219 3 view .LVU168
- 722 021e FFF7FEFF 		bl	MX_FREERTOS_Init
- 723              	.LVL77:
- 222:Core/Src/main.c **** 
- 724              		.loc 1 222 3 view .LVU169
- 725 0222 FFF7FEFF 		bl	osKernelStart
- 726              	.LVL78:
- 144:Core/Src/main.c **** char msg[128] = {0};
- 727              		.loc 1 144 9 is_stmt 0 view .LVU170
- 728 0226 0124     		movs	r4, #1
- 729              	.LVL79:
- 730              	.L28:
- 228:Core/Src/main.c ****   {
- 731              		.loc 1 228 3 is_stmt 1 view .LVU171
- 230:Core/Src/main.c ****   cc++;
- 732              		.loc 1 230 3 view .LVU172
- 733 0228 4FF6FF73 		movw	r3, #65535
- 734 022c 0093     		str	r3, [sp]
- 735 022e 0023     		movs	r3, #0
- 736 0230 2246     		mov	r2, r4
- 737 0232 5021     		movs	r1, #80
- 738 0234 1846     		mov	r0, r3
- 739 0236 FFF7FEFF 		bl	LCD_ShowUInt
- 740              	.LVL80:
- 231:Core/Src/main.c ****   HAL_Delay(500);
- 741              		.loc 1 231 3 view .LVU173
- 231:Core/Src/main.c ****   HAL_Delay(500);
- 742              		.loc 1 231 5 is_stmt 0 view .LVU174
- 743 023a 0134     		adds	r4, r4, #1
- 744              	.LVL81:
- 231:Core/Src/main.c ****   HAL_Delay(500);
- 745              		.loc 1 231 5 view .LVU175
- 746 023c E4B2     		uxtb	r4, r4
- 747              	.LVL82:
- 232:Core/Src/main.c ****     /* USER CODE END WHILE */
- 748              		.loc 1 232 3 is_stmt 1 discriminator 1 view .LVU176
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 27
-
-
- 749 023e 4FF4FA70 		mov	r0, #500
- 750 0242 FFF7FEFF 		bl	HAL_Delay
- 751              	.LVL83:
- 228:Core/Src/main.c ****   {
- 752              		.loc 1 228 9 view .LVU177
- 753 0246 EFE7     		b	.L28
- 754              	.LVL84:
- 755              	.L30:
- 171:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 756              		.loc 1 171 5 view .LVU178
- 757 0248 0CAE     		add	r6, sp, #48
- 758 024a 3446     		mov	r4, r6
- 759 024c 1C4D     		ldr	r5, .L31+68
- 760 024e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
- 761              	.LVL85:
- 171:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
- 762              		.loc 1 171 5 is_stmt 0 view .LVU179
- 763 0250 0FC4     		stmia	r4!, {r0, r1, r2, r3}
- 764 0252 95E80300 		ldm	r5, {r0, r1}
- 765 0256 84E80300 		stm	r4, {r0, r1}
- 172:Core/Src/main.c **** }
- 766              		.loc 1 172 5 is_stmt 1 view .LVU180
- 172:Core/Src/main.c **** }
- 767              		.loc 1 172 48 is_stmt 0 view .LVU181
- 768 025a 3046     		mov	r0, r6
- 769 025c FFF7FEFF 		bl	strlen
- 770              	.LVL86:
- 172:Core/Src/main.c **** }
- 771              		.loc 1 172 5 discriminator 1 view .LVU182
- 772 0260 4FF0FF33 		mov	r3, #-1
- 773 0264 82B2     		uxth	r2, r0
- 774 0266 3146     		mov	r1, r6
- 775 0268 3846     		mov	r0, r7
- 776 026a FFF7FEFF 		bl	HAL_UART_Transmit
- 777              	.LVL87:
- 778 026e 8CE7     		b	.L25
- 779              	.LVL88:
- 780              	.L26:
+ 684              	.LVL68:
+ 206:Core/Src/main.c **** 
+ 685              		.loc 1 206 1 view .LVU155
+ 206:Core/Src/main.c **** 
+ 686              		.loc 1 206 44 is_stmt 0 view .LVU156
+ 687 01d8 2046     		mov	r0, r4
+ 688 01da FFF7FEFF 		bl	strlen
+ 689              	.LVL69:
+ 206:Core/Src/main.c **** 
+ 690              		.loc 1 206 1 discriminator 1 view .LVU157
+ 691 01de 4FF0FF33 		mov	r3, #-1
+ 692 01e2 82B2     		uxth	r2, r0
+ 693 01e4 2146     		mov	r1, r4
+ 694 01e6 3846     		mov	r0, r7
+ 695 01e8 FFF7FEFF 		bl	HAL_UART_Transmit
+ 696              	.LVL70:
+ 209:Core/Src/main.c **** if (value != NULL)
+ 697              		.loc 1 209 1 is_stmt 1 view .LVU158
+ 209:Core/Src/main.c **** if (value != NULL)
+ 698              		.loc 1 209 9 is_stmt 0 view .LVU159
+ 699 01ec 3146     		mov	r1, r6
+ 700 01ee 2846     		mov	r0, r5
+ 701 01f0 FFF7FEFF 		bl	fdb_kv_get
+ 702              	.LVL71:
+ 210:Core/Src/main.c **** {
+ 703              		.loc 1 210 1 is_stmt 1 view .LVU160
+ 210:Core/Src/main.c **** {
+ 704              		.loc 1 210 4 is_stmt 0 view .LVU161
+ 705 01f4 0346     		mov	r3, r0
+ 706 01f6 0028     		cmp	r0, #0
+ 707 01f8 58D0     		beq	.L26
  212:Core/Src/main.c **** }
- 781              		.loc 1 212 5 is_stmt 1 view .LVU183
- 782 0270 144B     		ldr	r3, .L31+72
- 783 0272 0CAC     		add	r4, sp, #48
- 784 0274 0FCB     		ldm	r3, {r0, r1, r2, r3}
- 785              	.LVL89:
+ 708              		.loc 1 212 5 is_stmt 1 view .LVU162
+ 709 01fa 444A     		ldr	r2, .L33+64
+ 710 01fc 8021     		movs	r1, #128
+ 711 01fe 2046     		mov	r0, r4
+ 712              	.LVL72:
  212:Core/Src/main.c **** }
- 786              		.loc 1 212 5 is_stmt 0 view .LVU184
- 787 0276 07C4     		stmia	r4!, {r0, r1, r2}
- 788 0278 2380     		strh	r3, [r4]	@ movhi
- 789 027a C3E7     		b	.L27
- 790              	.L32:
- 791              		.align	2
- 792              	.L31:
- 793 027c 00000000 		.word	.LC0
- 794 0280 00000000 		.word	huart1
- 795 0284 18000000 		.word	.LC1
- 796 0288 00000000 		.word	.LANCHOR0
- 797 028c 28000000 		.word	.LC3
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 28
+ 713              		.loc 1 212 5 is_stmt 0 view .LVU163
+ 714 0200 FFF7FEFF 		bl	snprintf
+ 715              	.LVL73:
+ 716              	.L27:
+ 218:Core/Src/main.c **** 
+ 717              		.loc 1 218 1 is_stmt 1 view .LVU164
+ 218:Core/Src/main.c **** 
+ 718              		.loc 1 218 44 is_stmt 0 view .LVU165
+ 719 0204 0CAC     		add	r4, sp, #48
+ 720 0206 2046     		mov	r0, r4
+ 721 0208 FFF7FEFF 		bl	strlen
+ 722              	.LVL74:
+ 218:Core/Src/main.c **** 
+ 723              		.loc 1 218 1 discriminator 1 view .LVU166
+ 724 020c 4FF0FF33 		mov	r3, #-1
+ 725 0210 82B2     		uxth	r2, r0
+ 726 0212 2146     		mov	r1, r4
+ 727 0214 2E48     		ldr	r0, .L33+4
+ 728 0216 FFF7FEFF 		bl	HAL_UART_Transmit
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 27
 
 
- 798 0290 48000000 		.word	.LC5
- 799 0294 60000000 		.word	.LC6
- 800 0298 74000000 		.word	.LC7
- 801 029c 88000000 		.word	.LC8
- 802 02a0 00000000 		.word	kvdb
- 803 02a4 00000000 		.word	default_kv_table
- 804 02a8 A4000000 		.word	.LC9
- 805 02ac AC000000 		.word	.LC10
- 806 02b0 D0000000 		.word	.LC12
- 807 02b4 C4000000 		.word	.LC11
- 808 02b8 D8000000 		.word	.LC13
- 809 02bc EC000000 		.word	.LC14
- 810 02c0 30000000 		.word	.LC4
- 811 02c4 F8000000 		.word	.LC15
- 812              		.cfi_endproc
- 813              	.LFE237:
- 815              		.section	.data.default_kv_table,"aw"
- 816              		.align	2
- 819              	default_kv_table:
- 820 0000 00000000 		.word	default_kv_nodes
- 821 0004 02000000 		.word	2
- 822              		.section	.rodata.str1.4,"aMS",%progbits,1
- 823              		.align	2
- 824              	.LC16:
- 825 0000 736F6C61 		.ascii	"solar\000"
- 825      7200
- 826 0006 0000     		.align	2
- 827              	.LC17:
- 828 0008 6D6F6465 		.ascii	"mode\000"
- 828      00
- 829 000d 000000   		.align	2
- 830              	.LC18:
- 831 0010 3100     		.ascii	"1\000"
- 832              		.section	.data.default_kv_nodes,"aw"
- 833              		.align	2
- 836              	default_kv_nodes:
- 837 0000 D0000000 		.word	.LC12
- 838 0004 00000000 		.word	.LC16
- 839 0008 00000000 		.space	4
- 840 000c 08000000 		.word	.LC17
- 841 0010 10000000 		.word	.LC18
- 842 0014 00000000 		.space	4
- 843              		.section	.bss.kvdb,"aw",%nobits
- 844              		.align	2
- 847              	kvdb:
- 848 0000 00000000 		.space	876
- 848      00000000 
- 848      00000000 
- 848      00000000 
- 848      00000000 
- 849              		.section	.rodata
- 850              		.align	2
- 851              		.set	.LANCHOR0,. + 0
- 852              	.LC2:
- 853 0000 68656C6C 		.ascii	"hello_flashdb\000"
- 853      6F5F666C 
- 853      61736864 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 29
+ 729              	.LVL75:
+ 220:Core/Src/main.c ****     //har *value = NULL;
+ 730              		.loc 1 220 5 is_stmt 1 view .LVU167
+ 222:Core/Src/main.c ****     c12 = fdb_kv_get(&kvdb, "status");
+ 731              		.loc 1 222 5 view .LVU168
+ 732 021a 3D4D     		ldr	r5, .L33+68
+ 733 021c 344C     		ldr	r4, .L33+36
+ 734 021e 3D4A     		ldr	r2, .L33+72
+ 735 0220 2946     		mov	r1, r5
+ 736 0222 2046     		mov	r0, r4
+ 737 0224 FFF7FEFF 		bl	fdb_kv_set
+ 738              	.LVL76:
+ 223:Core/Src/main.c ****     if (c12 != NULL)
+ 739              		.loc 1 223 5 view .LVU169
+ 223:Core/Src/main.c ****     if (c12 != NULL)
+ 740              		.loc 1 223 11 is_stmt 0 view .LVU170
+ 741 0228 2946     		mov	r1, r5
+ 742 022a 2046     		mov	r0, r4
+ 743 022c FFF7FEFF 		bl	fdb_kv_get
+ 744              	.LVL77:
+ 224:Core/Src/main.c ****     {
+ 745              		.loc 1 224 5 is_stmt 1 view .LVU171
+ 224:Core/Src/main.c ****     {
+ 746              		.loc 1 224 8 is_stmt 0 view .LVU172
+ 747 0230 0346     		mov	r3, r0
+ 748 0232 0028     		cmp	r0, #0
+ 749 0234 40D0     		beq	.L28
+ 227:Core/Src/main.c ****     }
+ 750              		.loc 1 227 7 is_stmt 1 view .LVU173
+ 751 0236 384A     		ldr	r2, .L33+76
+ 752 0238 8021     		movs	r1, #128
+ 753 023a 0CA8     		add	r0, sp, #48
+ 754              	.LVL78:
+ 227:Core/Src/main.c ****     }
+ 755              		.loc 1 227 7 is_stmt 0 view .LVU174
+ 756 023c FFF7FEFF 		bl	snprintf
+ 757              	.LVL79:
+ 758              	.L29:
+ 233:Core/Src/main.c ****     
+ 759              		.loc 1 233 5 is_stmt 1 view .LVU175
+ 233:Core/Src/main.c ****     
+ 760              		.loc 1 233 48 is_stmt 0 view .LVU176
+ 761 0240 0CAC     		add	r4, sp, #48
+ 762 0242 2046     		mov	r0, r4
+ 763 0244 FFF7FEFF 		bl	strlen
+ 764              	.LVL80:
+ 233:Core/Src/main.c ****     
+ 765              		.loc 1 233 5 discriminator 1 view .LVU177
+ 766 0248 4FF0FF33 		mov	r3, #-1
+ 767 024c 82B2     		uxth	r2, r0
+ 768 024e 2146     		mov	r1, r4
+ 769 0250 1F48     		ldr	r0, .L33+4
+ 770 0252 FFF7FEFF 		bl	HAL_UART_Transmit
+ 771              	.LVL81:
+ 239:Core/Src/main.c ****   MX_FREERTOS_Init();
+ 772              		.loc 1 239 3 is_stmt 1 view .LVU178
+ 773 0256 FFF7FEFF 		bl	osKernelInitialize
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 28
 
 
- 853      6200
- 854 000e 0000     		.space	2
- 855              		.text
- 856              	.Letext0:
- 857              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
- 858              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
- 859              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
- 860              		.file 6 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
- 861              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
- 862              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h"
- 863              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
- 864              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
- 865              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
- 866              		.file 12 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 867              		.file 13 "BSP/inc/fal_def.h"
- 868              		.file 14 "BSP/inc/fdb_def.h"
- 869              		.file 15 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
- 870              		.file 16 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 871              		.file 17 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h"
- 872              		.file 18 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h"
- 873              		.file 19 "BSP/inc/flashdb.h"
- 874              		.file 20 "BSP/inc/fal.h"
- 875              		.file 21 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
- 876              		.file 22 "Core/Inc/lcd_text.h"
- 877              		.file 23 "Core/Inc/w25q64.h"
- 878              		.file 24 "Core/Inc/st7735.h"
- 879              		.file 25 "Core/Inc/rtc.h"
- 880              		.file 26 "Core/Inc/spi.h"
- 881              		.file 27 "Core/Inc/usart.h"
- 882              		.file 28 "Core/Inc/i2c.h"
- 883              		.file 29 "Core/Inc/gpio.h"
- 884              		.file 30 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
- 885              		.file 31 "<built-in>"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 30
+ 774              	.LVL82:
+ 240:Core/Src/main.c **** 
+ 775              		.loc 1 240 3 view .LVU179
+ 776 025a FFF7FEFF 		bl	MX_FREERTOS_Init
+ 777              	.LVL83:
+ 243:Core/Src/main.c **** 
+ 778              		.loc 1 243 3 view .LVU180
+ 779 025e FFF7FEFF 		bl	osKernelStart
+ 780              	.LVL84:
+ 148:Core/Src/main.c **** char msg[128] = {0};
+ 781              		.loc 1 148 9 is_stmt 0 view .LVU181
+ 782 0262 0124     		movs	r4, #1
+ 783              	.LVL85:
+ 784              	.L30:
+ 249:Core/Src/main.c ****   {
+ 785              		.loc 1 249 3 is_stmt 1 view .LVU182
+ 251:Core/Src/main.c ****   cc++;
+ 786              		.loc 1 251 3 view .LVU183
+ 787 0264 4FF6FF73 		movw	r3, #65535
+ 788 0268 0093     		str	r3, [sp]
+ 789 026a 0023     		movs	r3, #0
+ 790 026c 2246     		mov	r2, r4
+ 791 026e 5021     		movs	r1, #80
+ 792 0270 1846     		mov	r0, r3
+ 793 0272 FFF7FEFF 		bl	LCD_ShowUInt
+ 794              	.LVL86:
+ 252:Core/Src/main.c ****   HAL_Delay(500);
+ 795              		.loc 1 252 3 view .LVU184
+ 252:Core/Src/main.c ****   HAL_Delay(500);
+ 796              		.loc 1 252 5 is_stmt 0 view .LVU185
+ 797 0276 0134     		adds	r4, r4, #1
+ 798              	.LVL87:
+ 252:Core/Src/main.c ****   HAL_Delay(500);
+ 799              		.loc 1 252 5 view .LVU186
+ 800 0278 E4B2     		uxtb	r4, r4
+ 801              	.LVL88:
+ 253:Core/Src/main.c ****     /* USER CODE END WHILE */
+ 802              		.loc 1 253 3 is_stmt 1 discriminator 1 view .LVU187
+ 803 027a 4FF4FA70 		mov	r0, #500
+ 804 027e FFF7FEFF 		bl	HAL_Delay
+ 805              	.LVL89:
+ 249:Core/Src/main.c ****   {
+ 806              		.loc 1 249 9 view .LVU188
+ 807 0282 EFE7     		b	.L30
+ 808              	.LVL90:
+ 809              	.L32:
+ 175:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 810              		.loc 1 175 5 view .LVU189
+ 811 0284 0CAE     		add	r6, sp, #48
+ 812 0286 3446     		mov	r4, r6
+ 813 0288 244D     		ldr	r5, .L33+80
+ 814 028a 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 815              	.LVL91:
+ 175:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 816              		.loc 1 175 5 is_stmt 0 view .LVU190
+ 817 028c 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 818 028e 95E80300 		ldm	r5, {r0, r1}
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 29
+
+
+ 819 0292 84E80300 		stm	r4, {r0, r1}
+ 176:Core/Src/main.c **** }
+ 820              		.loc 1 176 5 is_stmt 1 view .LVU191
+ 176:Core/Src/main.c **** }
+ 821              		.loc 1 176 48 is_stmt 0 view .LVU192
+ 822 0296 3046     		mov	r0, r6
+ 823 0298 FFF7FEFF 		bl	strlen
+ 824              	.LVL92:
+ 176:Core/Src/main.c **** }
+ 825              		.loc 1 176 5 discriminator 1 view .LVU193
+ 826 029c 4FF0FF33 		mov	r3, #-1
+ 827 02a0 82B2     		uxth	r2, r0
+ 828 02a2 3146     		mov	r1, r6
+ 829 02a4 3846     		mov	r0, r7
+ 830 02a6 FFF7FEFF 		bl	HAL_UART_Transmit
+ 831              	.LVL93:
+ 832 02aa 6EE7     		b	.L25
+ 833              	.LVL94:
+ 834              	.L26:
+ 216:Core/Src/main.c **** }
+ 835              		.loc 1 216 5 is_stmt 1 view .LVU194
+ 836 02ac 1C4B     		ldr	r3, .L33+84
+ 837 02ae 0CAC     		add	r4, sp, #48
+ 838 02b0 0FCB     		ldm	r3, {r0, r1, r2, r3}
+ 839              	.LVL95:
+ 216:Core/Src/main.c **** }
+ 840              		.loc 1 216 5 is_stmt 0 view .LVU195
+ 841 02b2 07C4     		stmia	r4!, {r0, r1, r2}
+ 842 02b4 2380     		strh	r3, [r4]	@ movhi
+ 843 02b6 A5E7     		b	.L27
+ 844              	.LVL96:
+ 845              	.L28:
+ 231:Core/Src/main.c ****     }
+ 846              		.loc 1 231 7 is_stmt 1 view .LVU196
+ 847 02b8 0CAC     		add	r4, sp, #48
+ 848 02ba 1A4D     		ldr	r5, .L33+88
+ 849 02bc 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 850              	.LVL97:
+ 231:Core/Src/main.c ****     }
+ 851              		.loc 1 231 7 is_stmt 0 view .LVU197
+ 852 02be 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 853 02c0 95E80300 		ldm	r5, {r0, r1}
+ 854 02c4 44F8040B 		str	r0, [r4], #4
+ 855 02c8 2170     		strb	r1, [r4]
+ 856 02ca B9E7     		b	.L29
+ 857              	.L34:
+ 858              		.align	2
+ 859              	.L33:
+ 860 02cc 00000000 		.word	.LC0
+ 861 02d0 00000000 		.word	huart1
+ 862 02d4 18000000 		.word	.LC1
+ 863 02d8 00000000 		.word	.LANCHOR0
+ 864 02dc 28000000 		.word	.LC3
+ 865 02e0 48000000 		.word	.LC5
+ 866 02e4 60000000 		.word	.LC6
+ 867 02e8 74000000 		.word	.LC7
+ 868 02ec 88000000 		.word	.LC8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 30
+
+
+ 869 02f0 00000000 		.word	kvdb
+ 870 02f4 00000000 		.word	default_kv_table
+ 871 02f8 A4000000 		.word	.LC9
+ 872 02fc AC000000 		.word	.LC10
+ 873 0300 D0000000 		.word	.LC12
+ 874 0304 C4000000 		.word	.LC11
+ 875 0308 D8000000 		.word	.LC13
+ 876 030c EC000000 		.word	.LC14
+ 877 0310 10010000 		.word	.LC17
+ 878 0314 08010000 		.word	.LC16
+ 879 0318 18010000 		.word	.LC18
+ 880 031c 30000000 		.word	.LC4
+ 881 0320 F8000000 		.word	.LC15
+ 882 0324 28010000 		.word	.LC19
+ 883              		.cfi_endproc
+ 884              	.LFE237:
+ 886              		.section	.data.default_kv_table,"aw"
+ 887              		.align	2
+ 890              	default_kv_table:
+ 891 0000 00000000 		.word	default_kv_nodes
+ 892 0004 02000000 		.word	2
+ 893              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 894              		.align	2
+ 895              	.LC20:
+ 896 0000 736F6C61 		.ascii	"solar\000"
+ 896      7200
+ 897 0006 0000     		.align	2
+ 898              	.LC21:
+ 899 0008 6D6F6465 		.ascii	"mode\000"
+ 899      00
+ 900 000d 000000   		.align	2
+ 901              	.LC22:
+ 902 0010 3100     		.ascii	"1\000"
+ 903              		.section	.data.default_kv_nodes,"aw"
+ 904              		.align	2
+ 907              	default_kv_nodes:
+ 908 0000 D0000000 		.word	.LC12
+ 909 0004 00000000 		.word	.LC20
+ 910 0008 00000000 		.space	4
+ 911 000c 08000000 		.word	.LC21
+ 912 0010 10000000 		.word	.LC22
+ 913 0014 00000000 		.space	4
+ 914              		.section	.bss.kvdb,"aw",%nobits
+ 915              		.align	2
+ 918              	kvdb:
+ 919 0000 00000000 		.space	876
+ 919      00000000 
+ 919      00000000 
+ 919      00000000 
+ 919      00000000 
+ 920              		.section	.rodata
+ 921              		.align	2
+ 922              		.set	.LANCHOR0,. + 0
+ 923              	.LC2:
+ 924 0000 68656C6C 		.ascii	"hello_flashdb\000"
+ 924      6F5F666C 
+ 924      61736864 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 31
+
+
+ 924      6200
+ 925 000e 0000     		.space	2
+ 926              		.text
+ 927              	.Letext0:
+ 928              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 929              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 930              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ 931              		.file 6 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
+ 932              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 933              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h"
+ 934              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 935              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
+ 936              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
+ 937              		.file 12 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 938              		.file 13 "BSP/inc/fal_def.h"
+ 939              		.file 14 "BSP/inc/fdb_def.h"
+ 940              		.file 15 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ 941              		.file 16 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 942              		.file 17 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h"
+ 943              		.file 18 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h"
+ 944              		.file 19 "BSP/inc/flashdb.h"
+ 945              		.file 20 "BSP/inc/fal.h"
+ 946              		.file 21 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
+ 947              		.file 22 "Core/Inc/lcd_text.h"
+ 948              		.file 23 "Core/Inc/w25q64.h"
+ 949              		.file 24 "Core/Inc/st7735.h"
+ 950              		.file 25 "Core/Inc/rtc.h"
+ 951              		.file 26 "Core/Inc/spi.h"
+ 952              		.file 27 "Core/Inc/usart.h"
+ 953              		.file 28 "Core/Inc/i2c.h"
+ 954              		.file 29 "Core/Inc/gpio.h"
+ 955              		.file 30 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
+ 956              		.file 31 "<built-in>"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 32
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:21     .text.UART1_SendString:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:27     .text.UART1_SendString:00000000 UART1_SendString
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:59     .text.UART1_SendString:00000018 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:64     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:70     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:104    .text.HAL_TIM_PeriodElapsedCallback:00000014 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:109    .text.Error_Handler:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:115    .text.Error_Handler:00000000 Error_Handler
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:147    .text.SystemClock_Config:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:153    .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:294    .text.SystemClock_Config:00000094 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:299    .rodata.main.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:345    .text.main:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:351    .text.main:00000000 main
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:793    .text.main:0000027c $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:847    .bss.kvdb:00000000 kvdb
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:819    .data.default_kv_table:00000000 default_kv_table
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:816    .data.default_kv_table:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:836    .data.default_kv_nodes:00000000 default_kv_nodes
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:823    .rodata.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:833    .data.default_kv_nodes:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:844    .bss.kvdb:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s:850    .rodata:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:21     .text.UART1_SendString:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:27     .text.UART1_SendString:00000000 UART1_SendString
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:59     .text.UART1_SendString:00000018 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:64     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:70     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:104    .text.HAL_TIM_PeriodElapsedCallback:00000014 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:109    .text.Error_Handler:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:115    .text.Error_Handler:00000000 Error_Handler
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:147    .text.SystemClock_Config:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:153    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:294    .text.SystemClock_Config:00000094 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:299    .rodata.main.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:357    .text.main:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:363    .text.main:00000000 main
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:860    .text.main:000002cc $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:918    .bss.kvdb:00000000 kvdb
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:890    .data.default_kv_table:00000000 default_kv_table
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:887    .data.default_kv_table:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:907    .data.default_kv_nodes:00000000 default_kv_nodes
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:894    .rodata.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:904    .data.default_kv_nodes:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:915    .bss.kvdb:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s:921    .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 strlen
@@ -1774,7 +1894,7 @@ fal_partition_read
 fdb_kvdb_init
 fdb_kv_set
 fdb_kv_get
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccR1jVFR.s 			page 31
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccnwTPhf.s 			page 33
 
 
 osKernelInitialize

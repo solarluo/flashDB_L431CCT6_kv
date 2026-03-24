@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
   27:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   *
   28:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   ******************************************************************************
   29:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   @verbatim
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 2
 
 
   30:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****  ===============================================================================
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
   84:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****             HAL_RTC_SetAlarm_IT() function.
   85:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     (+) To read the RTC Alarm, use the HAL_RTC_GetAlarm() function.
   86:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 3
 
 
   87:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                   ##### RTC and low power modes #####
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  141:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     (+) AlarmBEventCallback          : RTC Alarm B Event callback.
  142:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     (+) TimeStampEventCallback       : RTC TimeStamp Event callback.
  143:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     (+) WakeUpTimerEventCallback     : RTC WakeUpTimer Event callback.
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 4
 
 
  144:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #if defined (STM32L4P5xx) || defined (STM32L4Q5xx)
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  198:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /* Private macro -------------------------------------------------------------*/
  199:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /* Private variables ---------------------------------------------------------*/
  200:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /* Private function prototypes -----------------------------------------------*/
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 5
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 5
 
 
  201:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /* Exported functions --------------------------------------------------------*/
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  255:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     assert_param(IS_RTC_HOUR_FORMAT(hrtc->Init.HourFormat));
  256:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     assert_param(IS_RTC_ASYNCH_PREDIV(hrtc->Init.AsynchPrediv));
  257:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     assert_param(IS_RTC_SYNCH_PREDIV(hrtc->Init.SynchPrediv));
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 6
 
 
  258:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     assert_param(IS_RTC_OUTPUT(hrtc->Init.OutPut));
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  312:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     }
  313:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif /* #if (USE_HAL_RTC_REGISTER_CALLBACKS == 1) */
  314:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 7
 
 
  315:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #if defined(STM32L412xx) || defined(STM32L422xx) || defined (STM32L4P5xx) || defined (STM32L4Q5xx)
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  369:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif
  370:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       }
  371:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 8
 
 
  372:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       /* Enable the write protection for RTC registers */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  426:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->SHIFTR = 0x00000000U;
  427:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->CALR = 0x00000000U;
  428:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->ALRMASSR = 0x00000000U;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 9
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 9
 
 
  429:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->ALRMBSSR = 0x00000000U;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  483:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   *          @arg @ref HAL_RTC_ALARM_A_EVENT_CB_ID          Alarm A Event Callback ID
  484:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   *          @arg @ref HAL_RTC_ALARM_B_EVENT_CB_ID          Alarm B Event Callback ID
  485:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   *          @arg @ref HAL_RTC_TIMESTAMP_EVENT_CB_ID        TimeStamp Event Callback ID
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 10
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 10
 
 
  486:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   *          @arg @ref HAL_RTC_WAKEUPTIMER_EVENT_CB_ID      WakeUp Timer Event Callback ID
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  540:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif /* RTC_TAMPER1_SUPPORT */
  541:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  542:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       case HAL_RTC_TAMPER2_EVENT_CB_ID :
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 11
 
 
  543:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         hrtc->Tamper2EventCallback = pCallback;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  597:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @brief  Unregister an RTC Callback
  598:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   *         RTC callback is redirected to the weak predefined callback
  599:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @param  hrtc RTC handle
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 12
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 12
 
 
  600:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @param  CallbackID ID of the callback to be unregistered
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  654:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  655:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       case HAL_RTC_TAMPER2_EVENT_CB_ID :
  656:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         hrtc->Tamper2EventCallback = HAL_RTCEx_Tamper2EventCallback;         /* Legacy weak Tamper2
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 13
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 13
 
 
  657:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         break;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  711:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @brief  Initialize the RTC MSP.
  712:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @param  hrtc RTC handle
  713:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @retval None
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 14
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 14
 
 
  714:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
   62              		.section	.text.HAL_RTC_DeactivateAlarm,"ax",%progbits
   63              		.align	1
   64              		.global	HAL_RTC_DeactivateAlarm
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 15
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 15
 
 
   65              		.syntax unified
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  787:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  788:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   /* Process Locked */
  789:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   __HAL_LOCK(hrtc);
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 16
 
 
  790:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  844:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       /* Set the RTC_TR register */
  845:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       WRITE_REG(RTC->TR, (tmpreg & RTC_TR_RESERVED_MASK));
  846:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 17
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 17
 
 
  847:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       /* This interface is deprecated. To manage Daylight Saving Time, please use HAL_RTC_DST_xxx f
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  901:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  902:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   UNUSED(hrtc);
  903:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   /* Get subseconds structure field from the corresponding register*/
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 18
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 18
 
 
  904:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   sTime->SubSeconds = READ_REG(RTC->SSR);
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  958:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  959:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   if ((Format == RTC_FORMAT_BIN) && ((sDate->Month & 0x10U) == 0x10U))
  960:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 19
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 19
 
 
  961:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     sDate->Month = (uint8_t)((sDate->Month & (uint8_t)~(0x10U)) + (uint8_t)0x0AU);
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1015:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** }
 1016:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 1017:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /**
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 20
 
 
 1018:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @brief  Get RTC current date.
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1072:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** @endverbatim
 1073:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @{
 1074:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 21
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 21
 
 
 1075:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /**
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1129:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     if (Format == RTC_FORMAT_BIN)
 1130:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
 1131:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       if (READ_BIT(RTC->CR, RTC_CR_FMT) != 0U)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 22
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 22
 
 
 1132:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       {
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1186:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif /* USE_FULL_ASSERT */
 1187:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       tmpreg = (((uint32_t)(sAlarm->AlarmTime.Hours) << RTC_ALRMAR_HU_Pos) | \
 1188:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                 ((uint32_t)(sAlarm->AlarmTime.Minutes) << RTC_ALRMAR_MNU_Pos) | \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 23
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 23
 
 
 1189:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                 ((uint32_t)(sAlarm->AlarmTime.Seconds) << RTC_ALRMAR_SU_Pos) | \
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1243:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 1244:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     WRITE_REG(RTC->ALRBBINR, sAlarm->AlarmTime.SubSeconds);
 1245:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 24
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 24
 
 
 1246:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the Alarm state: Enable Alarm */
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1300:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   }
 1301:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   else /* RTC_BINARY_MIX */
 1302:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 25
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 25
 
 
 1303:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     assert_param(IS_RTC_FORMAT(Format));
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1357:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         sAlarm->AlarmTime.TimeFormat = 0x00U;
 1358:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         assert_param(IS_RTC_HOUR24(RTC_Bcd2ToByte(sAlarm->AlarmTime.Hours)));
 1359:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 26
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 26
 
 
 1360:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1414:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Disable the Alarm B interrupt */
 1415:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     CLEAR_BIT(RTC->CR, RTC_CR_ALRBE | RTC_CR_ALRBIE);
 1416:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Clear flag alarm B */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 27
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 27
 
 
 1417:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     WRITE_REG(RTC->SCR, RTC_SCR_CALRBF);
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1471:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 1472:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   /* Process Locked */
 1473:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   __HAL_LOCK(hrtc);
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 28
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 28
 
 
 1474:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1528:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     hrtc->Instance->CR &= ((uint32_t)~RTC_CR_BKP);
 1529:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 1530:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the RTC_CR register */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 29
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 29
 
 
 1531:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     hrtc->Instance->CR |= (uint32_t)(sTime->DayLightSaving | sTime->StoreOperation);
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1585:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   /* Get the TR register */
 1586:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   tmpreg = (uint32_t)(hrtc->Instance->TR & RTC_TR_RESERVED_MASK);
 1587:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 30
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 30
 
 
 1588:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   /* Fill the structure fields with the read parameters */
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1642:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     datetmpreg = (((uint32_t)RTC_ByteToBcd2(sDate->Year) << RTC_DR_YU_Pos) | \
 1643:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                   ((uint32_t)RTC_ByteToBcd2(sDate->Month) << RTC_DR_MU_Pos) | \
 1644:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                   ((uint32_t)RTC_ByteToBcd2(sDate->Date) << RTC_DR_DU_Pos) | \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 31
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 31
 
 
 1645:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                   ((uint32_t)sDate->WeekDay << RTC_DR_WDU_Pos));
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1699:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   */
 1700:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** HAL_StatusTypeDef HAL_RTC_GetDate(RTC_HandleTypeDef *hrtc, RTC_DateTypeDef *sDate, uint32_t Format)
 1701:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 32
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 32
 
 
 1702:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   uint32_t datetmpreg;
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1756:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   uint32_t tmpreg, subsecondtmpreg;
 1757:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 1758:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   /* Check the parameters */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 33
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 33
 
 
 1759:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   assert_param(IS_RTC_FORMAT(Format));
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1813:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     }
 1814:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 1815:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     assert_param(IS_RTC_MINUTES(RTC_Bcd2ToByte(sAlarm->AlarmTime.Minutes)));
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 34
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 34
 
 
 1816:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     assert_param(IS_RTC_SECONDS(RTC_Bcd2ToByte(sAlarm->AlarmTime.Seconds)));
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1870:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       }
 1871:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     }
 1872:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 35
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 35
 
 
 1873:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1927:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 1928:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /**
 1929:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @brief  Set the specified RTC Alarm with Interrupt.
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 36
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 36
 
 
 1930:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @note   The Alarm register can only be written when the corresponding Alarm
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1984:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)RTC_ByteToBcd2(sAlarm->AlarmTime.Seconds) << RTC_ALRMAR_SU_Pos) | \
 1985:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)(sAlarm->AlarmTime.TimeFormat) << RTC_ALRMAR_PM_Pos) | \
 1986:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)RTC_ByteToBcd2(sAlarm->AlarmDateWeekDay) << RTC_ALRMAR_DU_Pos) | \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 37
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 37
 
 
 1987:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)sAlarm->AlarmDateWeekDaySel) | \
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2041:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     uint32_t tickstart = HAL_GetTick();
 2042:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Wait till RTC ALRAWF flag is set and if Time out is reached exit */
 2043:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     while (__HAL_RTC_ALARM_GET_FLAG(hrtc, RTC_FLAG_ALRAWF) == 0U)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 38
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 38
 
 
 2044:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2098:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     hrtc->Instance->ALRMBSSR = subsecondtmpreg;
 2099:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the Alarm state: Enable Alarm */
 2100:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     __HAL_RTC_ALARMB_ENABLE(hrtc);
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 39
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 39
 
 
 2101:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the Alarm interrupt */
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
   89 0008 5DD0     		beq	.L11
   90 000a 0446     		mov	r4, r0
   91              		.loc 1 2137 3 discriminator 2 view .LVU11
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 40
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 40
 
 
   92 000c 0123     		movs	r3, #1
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2170:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 2171:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         return HAL_TIMEOUT;
 2172:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 41
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 41
 
 
 2173:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     }
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  147 0054 B3F57A7F 		cmp	r3, #1000
  148 0058 F4D9     		bls	.L9
 2194:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 42
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 42
 
 
 2195:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         /* Enable the write protection for RTC registers */
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2159:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
  189              		.loc 1 2159 5 is_stmt 1 view .LVU50
  190              	.L6:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 43
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 43
 
 
 2159:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  227              		.loc 1 2171 16 view .LVU68
  228              	.LBE3:
 2204:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 44
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 44
 
 
 2205:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     }
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2219:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /**
 2220:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @brief  Get the RTC Alarm value and masks.
 2221:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @param  hrtc RTC handle
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 45
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 45
 
 
 2222:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @param  sAlarm Pointer to Date structure
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2276:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 2277:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   if (Format == RTC_FORMAT_BIN)
 2278:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 46
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 46
 
 
 2279:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     sAlarm->AlarmTime.Hours = RTC_Bcd2ToByte(sAlarm->AlarmTime.Hours);
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  302              		.global	HAL_RTC_DST_Sub1Hour
  303              		.syntax unified
  304              		.thumb
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 47
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 47
 
 
  305              		.thumb_func
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  349              	.LVL16:
  350              	.LFB242:
 2314:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 48
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 48
 
 
 2315:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** /**
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2330:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @param  hrtc RTC handle
 2331:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @retval None
 2332:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 49
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 49
 
 
 2333:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** void HAL_RTC_DST_ClearStoreOperation(RTC_HandleTypeDef *hrtc)
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  434              		.cfi_startproc
  435              		@ args = 0, pretend = 0, frame = 0
  436              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 50
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 50
 
 
  437              		@ link register save eliminated.
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2381:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
 2382:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #if (USE_HAL_RTC_REGISTER_CALLBACKS == 1)
 2383:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Call Compare Match registered Callback */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 51
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 51
 
 
 2384:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     hrtc->AlarmBEventCallback(hrtc);
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  459              		.loc 1 2437 1 is_stmt 1 view -0
  460              		.cfi_startproc
  461              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 52
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 52
 
 
  462              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  503              		.loc 1 2396 9 is_stmt 0 view .LVU135
  504 0016 DA68     		ldr	r2, [r3, #12]
 2396:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 53
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 53
 
 
  505              		.loc 1 2396 8 view .LVU136
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  546 004c 62F42072 		orn	r2, r2, #640
  547 0050 DA60     		str	r2, [r3, #12]
 2421:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 54
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 54
 
 
  548              		.loc 1 2421 7 view .LVU150
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  591              		.loc 1 2457 3 is_stmt 1 view .LVU156
  592              	.L30:
  593              		.loc 1 2457 57 view .LVU157
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 55
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 55
 
 
  594              		.loc 1 2457 10 is_stmt 0 view .LVU158
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  632 003c 0123     		movs	r3, #1
  633 003e 84F82130 		strb	r3, [r4, #33]
 2474:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 56
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 56
 
 
 2475:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   return HAL_OK;
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2511:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** HAL_StatusTypeDef HAL_RTC_WaitForSynchro(RTC_HandleTypeDef *hrtc)
 2512:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** {
  654              		.loc 1 2512 1 is_stmt 1 view -0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 57
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 57
 
 
  655              		.cfi_startproc
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  689 0014 13F0200F 		tst	r3, #32
  690 0018 07D1     		bne	.L42
 2533:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 58
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 58
 
 
 2534:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   {
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2553:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                      ##### Peripheral State functions #####
 2554:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****  ===============================================================================
 2555:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     [..]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 59
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 59
 
 
 2556:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     This subsection provides functions allowing to
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2588:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @param  hrtc RTC handle
 2589:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   * @retval HAL status
 2590:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 60
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 60
 
 
 2591:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** HAL_StatusTypeDef RTC_EnterInitMode(RTC_HandleTypeDef *hrtc)
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2617:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Set the Initialization mode */
 2618:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     hrtc->Instance->ISR = (uint32_t)RTC_INIT_MASK;
 2619:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 61
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 61
 
 
 2620:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     tickstart = HAL_GetTick();
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  808 0026 13F0400F 		tst	r3, #64
  809 002a F0D1     		bne	.L47
 2622:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 62
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 62
 
 
  810              		.loc 1 2622 65 discriminator 1 view .LVU226
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  851              		.cfi_offset 14, -4
  852 0002 0446     		mov	r4, r0
 2643:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   HAL_StatusTypeDef status = HAL_OK;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 63
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 63
 
 
  853              		.loc 1 2643 3 is_stmt 1 view .LVU236
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  885 0028 23F02003 		bic	r3, r3, #32
  886 002c 9360     		str	r3, [r2, #8]
 2666:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     if (HAL_RTC_WaitForSynchro(hrtc) != HAL_OK)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 64
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 64
 
 
  887              		.loc 1 2666 5 view .LVU249
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  932              		@ frame_needed = 0, uses_anonymous_args = 0
  248:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  933              		.loc 1 248 3 view .LVU260
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 65
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 65
 
 
  251:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   {
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  327:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
  970              		.loc 1 327 8 view .LVU279
  971 0018 12F0100F 		tst	r2, #16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 66
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 66
 
 
  972 001c 09D0     		beq	.L74
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  336:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       {
  1011              		.loc 1 336 7 is_stmt 1 view .LVU295
  336:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 67
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 67
 
 
  1012              		.loc 1 336 10 is_stmt 0 view .LVU296
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  350:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  1049              		.loc 1 350 9 is_stmt 1 view .LVU314
  350:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 68
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 68
 
 
  1050              		.loc 1 350 13 is_stmt 0 view .LVU315
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1087 0092 1343     		orrs	r3, r3, r2
  1088 0094 CB64     		str	r3, [r1, #76]
  1089              	.L66:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 69
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 69
 
 
  373:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     }
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1136              		.cfi_offset 4, -16
  1137              		.cfi_offset 5, -12
  1138              		.cfi_offset 6, -8
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 70
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 70
 
 
  1139              		.cfi_offset 14, -4
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1176 0028 1360     		str	r3, [r2]
  419:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->CR = 0x00000000U;
  1177              		.loc 1 419 7 is_stmt 1 view .LVU360
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 71
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 71
 
 
  419:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->CR = 0x00000000U;
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  426:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->CALR = 0x00000000U;
  1213              		.loc 1 426 30 view .LVU380
  1214 004e D362     		str	r3, [r2, #44]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 72
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 72
 
 
  427:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****       hrtc->Instance->ALRMASSR = 0x00000000U;
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  446:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** #endif
  1250              		.loc 1 446 28 view .LVU400
  1251 006e DE64     		str	r6, [r3, #76]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 73
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 73
 
 
  450:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1293              		.global	RTC_ByteToBcd2
  1294              		.syntax unified
  1295              		.thumb
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 74
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 74
 
 
  1296              		.thumb_func
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2696:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   return ((uint8_t)(bcdhigh << 4U) | temp);
  1330              		.loc 1 2696 3 view .LVU427
  1331              		.loc 1 2696 11 is_stmt 0 view .LVU428
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 75
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 75
 
 
  1332 000e 1B01     		lsls	r3, r3, #4
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1378 000e 1646     		mov	r6, r2
 1473:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  1379              		.loc 1 1473 3 is_stmt 1 discriminator 2 view .LVU441
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 76
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 76
 
 
  1380 0010 0123     		movs	r3, #1
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1416              		.loc 1 1486 10 view .LVU459
  1417 0038 13F0400F 		tst	r3, #64
  1418 003c 01D1     		bne	.L88
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 77
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 77
 
 
 1493:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****         assert_param(IS_RTC_HOUR24(sTime->Hours));
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1456              		.loc 1 1525 9 is_stmt 0 view .LVU476
  1457 0064 2268     		ldr	r2, [r4]
 1525:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 78
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 78
 
 
  1458              		.loc 1 1525 26 view .LVU477
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1495 008e 2368     		ldr	r3, [r4]
  1496 0090 FF22     		movs	r2, #255
  1497 0092 5A62     		str	r2, [r3, #36]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 79
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 79
 
 
 1538:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1518:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                 ((uint32_t)(sTime->Minutes) << RTC_TR_MNU_Pos) | \
  1533              		.loc 1 1518 7 view .LVU514
 1518:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                 ((uint32_t)(sTime->Minutes) << RTC_TR_MNU_Pos) | \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 80
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 80
 
 
  1534              		.loc 1 1518 34 is_stmt 0 view .LVU515
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1580              		@ frame_needed = 0, uses_anonymous_args = 0
 1618:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   HAL_StatusTypeDef status;
  1581              		.loc 1 1618 3 view .LVU526
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 81
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 81
 
 
 1619:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1654:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                   (((uint32_t)sDate->Date) << RTC_DR_DU_Pos) | \
  1618              		.loc 1 1654 36 view .LVU545
  1619 001e 4D78     		ldrb	r5, [r1, #1]	@ zero_extendqisi2
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 82
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 82
 
 
 1654:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                   (((uint32_t)sDate->Date) << RTC_DR_DU_Pos) | \
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1658 0048 5A62     		str	r2, [r3, #36]
 1674:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  1659              		.loc 1 1674 3 view .LVU562
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 83
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 83
 
 
 1676:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   {
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1640:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  1695              		.loc 1 1640 5 view .LVU582
 1642:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****                   ((uint32_t)RTC_ByteToBcd2(sDate->Month) << RTC_DR_MU_Pos) | \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 84
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 84
 
 
  1696              		.loc 1 1642 5 view .LVU583
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1670:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   }
  1735              		.loc 1 1670 14 is_stmt 0 view .LVU599
  1736 0098 2046     		mov	r0, r4
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 85
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 85
 
 
  1737              	.LVL108:
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1761:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   assert_param(IS_RTC_ALARM_DATE_WEEKDAY_SEL(sAlarm->AlarmDateWeekDaySel));
  1785              		.loc 1 1761 3 view .LVU608
 1762:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   assert_param(IS_RTC_ALARM_SUB_SECOND_VALUE(sAlarm->AlarmTime.SubSeconds));
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 86
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 86
 
 
  1786              		.loc 1 1762 3 view .LVU609
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1822              		.loc 1 1783 5 view .LVU627
 1784:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  1823              		.loc 1 1784 5 view .LVU628
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 87
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 87
 
 
 1786:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1861 005c 1D43     		orrs	r5, r5, r3
 1800:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   }
  1862              		.loc 1 1800 32 view .LVU646
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 88
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 88
 
 
  1863 005e 7369     		ldr	r3, [r6, #20]
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1903 0090 D360     		str	r3, [r2, #12]
 1887:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  1904              		.loc 1 1887 5 view .LVU661
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 89
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 89
 
 
  1905 0092 2268     		ldr	r2, [r4]
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1943              		.loc 1 1902 9 is_stmt 1 view .LVU677
 1902:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  1944              		.loc 1 1902 9 view .LVU678
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 90
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 90
 
 
  1945 00c4 0023     		movs	r3, #0
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  1980              		.loc 1 1831 44 view .LVU697
  1981 00e4 B378     		ldrb	r3, [r6, #2]	@ zero_extendqisi2
 1830:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)(sAlarm->AlarmTime.Seconds) << RTC_ALRMAR_SU_Pos) | \
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 91
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 91
 
 
  1982              		.loc 1 1830 77 view .LVU698
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2023              	.LVL125:
  2024 0124 0646     		mov	r6, r0
  2025              	.LVL126:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 92
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 92
 
 
 1857:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2062              	.L126:
 1874:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the Alarm A Sub Second register */
  2063              		.loc 1 1874 5 is_stmt 1 view .LVU730
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 93
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 93
 
 
 1874:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the Alarm A Sub Second register */
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2103              		.loc 1 1917 3 view .LVU745
 1920:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  2104              		.loc 1 1920 3 view .LVU746
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 94
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 94
 
 
 1920:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2151              		.cfi_offset 14, -4
 1943:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  2152              		.loc 1 1943 3 is_stmt 1 view .LVU757
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 95
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 95
 
 
 1946:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   assert_param(IS_RTC_ALARM(sAlarm->Alarm));
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2187              		.loc 1 1967 36 is_stmt 0 view .LVU777
  2188 002a 0023     		movs	r3, #0
  2189 002c CB70     		strb	r3, [r1, #3]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 96
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 96
 
 
  2190              	.L130:
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2226              		.loc 1 1985 79 view .LVU795
  2227 0056 45EA0065 		orr	r5, r5, r0, lsl #24
 1987:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)sAlarm->AlarmMask));
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 97
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 97
 
 
  2228              		.loc 1 1987 32 view .LVU796
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2267 0084 9360     		str	r3, [r2, #8]
 2074:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  2268              		.loc 1 2074 5 view .LVU812
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 98
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 98
 
 
  2269 0086 2268     		ldr	r2, [r4]
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2089:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
  2308              		.loc 1 2089 9 is_stmt 1 view .LVU828
 2089:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 99
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 99
 
 
  2309              		.loc 1 2089 9 view .LVU829
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2019:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)(sAlarm->AlarmTime.TimeFormat) << RTC_ALRMAR_PM_Pos) | \
  2345              		.loc 1 2019 44 view .LVU848
  2346 00da B378     		ldrb	r3, [r6, #2]	@ zero_extendqisi2
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 100
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 100
 
 
 2018:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****               ((uint32_t)(sAlarm->AlarmTime.Seconds) << RTC_ALRMAR_SU_Pos) | \
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2387              	.L134:
 2043:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
  2388              		.loc 1 2043 60 view .LVU863
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 101
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 101
 
 
 2043:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     {
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2425 013c DD61     		str	r5, [r3, #28]
 2062:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the Alarm state: Enable Alarm */
  2426              		.loc 1 2062 5 is_stmt 1 view .LVU882
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 102
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 102
 
 
 2062:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     /* Configure the Alarm state: Enable Alarm */
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2468              		.loc 1 2106 3 is_stmt 1 view .LVU895
  2469 0172 0A4B     		ldr	r3, .L144
  2470 0174 1A68     		ldr	r2, [r3]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 103
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 103
 
 
  2471 0176 42F48022 		orr	r2, r2, #262144
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2513              		.global	RTC_Bcd2ToByte
  2514              		.syntax unified
  2515              		.thumb
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 104
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 104
 
 
  2516              		.thumb_func
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2559              		.loc 1 1573 1 is_stmt 0 view .LVU919
  2560 0000 70B5     		push	{r4, r5, r6, lr}
  2561              	.LCFI15:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 105
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 105
 
 
  2562              		.cfi_def_cfa_offset 16
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 1590:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   sTime->Seconds = (uint8_t)((tmpreg & (RTC_TR_ST | RTC_TR_SU)) >> RTC_TR_SU_Pos);
  2598              		.loc 1 1590 20 is_stmt 0 view .LVU938
  2599 001c C3F30626 		ubfx	r6, r3, #8, #7
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 106
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 106
 
 
 1590:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   sTime->Seconds = (uint8_t)((tmpreg & (RTC_TR_ST | RTC_TR_SU)) >> RTC_TR_SU_Pos);
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2636 0046 A070     		strb	r0, [r4, #2]
  2637              	.LVL164:
  2638              	.L148:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 107
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 107
 
 
 1603:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c **** }
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2682              		.loc 1 1712 3 is_stmt 1 view .LVU969
 1712:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****   sDate->Date = (uint8_t)((datetmpreg & (RTC_DR_DT | RTC_DR_DU)) >> RTC_DR_DU_Pos);
  2683              		.loc 1 1712 18 is_stmt 0 view .LVU970
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 108
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 108
 
 
  2684 000c C3F30426 		ubfx	r6, r3, #8, #5
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2720              		.loc 1 1722 17 discriminator 1 view .LVU988
  2721 0036 A070     		strb	r0, [r4, #2]
  2722              	.LVL172:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 109
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 109
 
 
  2723              	.L151:
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2263:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     subsecondtmpreg = (uint32_t)((hrtc->Instance->ALRMBSSR) & RTC_ALRMBSSR_SS);
  2766              		.loc 1 2263 29 is_stmt 0 view .LVU1002
  2767 0010 0168     		ldr	r1, [r0]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 110
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 110
 
 
  2768              	.LVL175:
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
 2272:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     sAlarm->AlarmDateWeekDaySel = (uint32_t)(tmpreg & RTC_ALRMBR_WDSEL);
  2803              		.loc 1 2272 32 is_stmt 0 view .LVU1022
  2804 0034 C2F30561 		ubfx	r1, r2, #24, #6
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 111
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 111
 
 
  2805              	.LVL179:
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2842              	.LVL184:
 2281:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     sAlarm->AlarmDateWeekDay = RTC_Bcd2ToByte(sAlarm->AlarmDateWeekDay);
  2843              		.loc 1 2281 31 discriminator 1 view .LVU1040
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 112
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 112
 
 
  2844 0060 A070     		strb	r0, [r4, #2]
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2881              		.loc 1 2251 5 is_stmt 1 view .LVU1057
 2251:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.c ****     sAlarm->AlarmTime.Seconds = (uint8_t)((tmpreg & (RTC_ALRMAR_ST | RTC_ALRMAR_SU)) >> RTC_ALRMAR_
  2882              		.loc 1 2251 33 is_stmt 0 view .LVU1058
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 113
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 113
 
 
  2883 0084 C2F30620 		ubfx	r0, r2, #8, #7
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2920              		.text
  2921              	.Letext0:
  2922              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 114
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 114
 
 
  2923              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
@@ -6788,71 +6788,71 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 1
  2927              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
  2928              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc_ex.h"
  2929              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 115
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 115
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32l4xx_hal_rtc.c
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:21     .text.HAL_RTC_MspInit:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:27     .text.HAL_RTC_MspInit:00000000 HAL_RTC_MspInit
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:42     .text.HAL_RTC_MspDeInit:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:48     .text.HAL_RTC_MspDeInit:00000000 HAL_RTC_MspDeInit
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:63     .text.HAL_RTC_DeactivateAlarm:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:69     .text.HAL_RTC_DeactivateAlarm:00000000 HAL_RTC_DeactivateAlarm
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:260    .text.HAL_RTC_DST_Add1Hour:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:266    .text.HAL_RTC_DST_Add1Hour:00000000 HAL_RTC_DST_Add1Hour
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:301    .text.HAL_RTC_DST_Sub1Hour:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:307    .text.HAL_RTC_DST_Sub1Hour:00000000 HAL_RTC_DST_Sub1Hour
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:342    .text.HAL_RTC_DST_SetStoreOperation:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:348    .text.HAL_RTC_DST_SetStoreOperation:00000000 HAL_RTC_DST_SetStoreOperation
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:383    .text.HAL_RTC_DST_ClearStoreOperation:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:389    .text.HAL_RTC_DST_ClearStoreOperation:00000000 HAL_RTC_DST_ClearStoreOperation
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:424    .text.HAL_RTC_DST_ReadStoreOperation:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:430    .text.HAL_RTC_DST_ReadStoreOperation:00000000 HAL_RTC_DST_ReadStoreOperation
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:450    .text.HAL_RTC_AlarmAEventCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:456    .text.HAL_RTC_AlarmAEventCallback:00000000 HAL_RTC_AlarmAEventCallback
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:471    .text.HAL_RTC_AlarmIRQHandler:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:477    .text.HAL_RTC_AlarmIRQHandler:00000000 HAL_RTC_AlarmIRQHandler
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:556    .text.HAL_RTC_AlarmIRQHandler:0000005c $d
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:561    .text.HAL_RTC_PollForAlarmAEvent:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:567    .text.HAL_RTC_PollForAlarmAEvent:00000000 HAL_RTC_PollForAlarmAEvent
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:645    .text.HAL_RTC_WaitForSynchro:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:651    .text.HAL_RTC_WaitForSynchro:00000000 HAL_RTC_WaitForSynchro
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:714    .text.HAL_RTC_WaitForSynchro:00000030 $d
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:719    .text.HAL_RTC_GetState:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:725    .text.HAL_RTC_GetState:00000000 HAL_RTC_GetState
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:743    .text.RTC_EnterInitMode:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:749    .text.RTC_EnterInitMode:00000000 RTC_EnterInitMode
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:833    .text.RTC_ExitInitMode:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:839    .text.RTC_ExitInitMode:00000000 RTC_ExitInitMode
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:915    .text.RTC_ExitInitMode:00000048 $d
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:920    .text.HAL_RTC_Init:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:926    .text.HAL_RTC_Init:00000000 HAL_RTC_Init
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1119   .text.HAL_RTC_DeInit:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1125   .text.HAL_RTC_DeInit:00000000 HAL_RTC_DeInit
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1287   .text.HAL_RTC_DeInit:0000008c $d
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1292   .text.RTC_ByteToBcd2:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1298   .text.RTC_ByteToBcd2:00000000 RTC_ByteToBcd2
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1345   .text.HAL_RTC_SetTime:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1351   .text.HAL_RTC_SetTime:00000000 HAL_RTC_SetTime
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1568   .text.HAL_RTC_SetDate:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1574   .text.HAL_RTC_SetDate:00000000 HAL_RTC_SetDate
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1759   .text.HAL_RTC_SetAlarm:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:1765   .text.HAL_RTC_SetAlarm:00000000 HAL_RTC_SetAlarm
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2129   .text.HAL_RTC_SetAlarm_IT:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2135   .text.HAL_RTC_SetAlarm_IT:00000000 HAL_RTC_SetAlarm_IT
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2507   .text.HAL_RTC_SetAlarm_IT:0000019c $d
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2512   .text.RTC_Bcd2ToByte:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2518   .text.RTC_Bcd2ToByte:00000000 RTC_Bcd2ToByte
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2546   .text.HAL_RTC_GetTime:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2552   .text.HAL_RTC_GetTime:00000000 HAL_RTC_GetTime
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2647   .text.HAL_RTC_GetDate:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2653   .text.HAL_RTC_GetDate:00000000 HAL_RTC_GetDate
-ARM GAS  C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s 			page 116
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:21     .text.HAL_RTC_MspInit:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:27     .text.HAL_RTC_MspInit:00000000 HAL_RTC_MspInit
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:42     .text.HAL_RTC_MspDeInit:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:48     .text.HAL_RTC_MspDeInit:00000000 HAL_RTC_MspDeInit
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:63     .text.HAL_RTC_DeactivateAlarm:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:69     .text.HAL_RTC_DeactivateAlarm:00000000 HAL_RTC_DeactivateAlarm
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:260    .text.HAL_RTC_DST_Add1Hour:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:266    .text.HAL_RTC_DST_Add1Hour:00000000 HAL_RTC_DST_Add1Hour
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:301    .text.HAL_RTC_DST_Sub1Hour:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:307    .text.HAL_RTC_DST_Sub1Hour:00000000 HAL_RTC_DST_Sub1Hour
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:342    .text.HAL_RTC_DST_SetStoreOperation:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:348    .text.HAL_RTC_DST_SetStoreOperation:00000000 HAL_RTC_DST_SetStoreOperation
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:383    .text.HAL_RTC_DST_ClearStoreOperation:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:389    .text.HAL_RTC_DST_ClearStoreOperation:00000000 HAL_RTC_DST_ClearStoreOperation
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:424    .text.HAL_RTC_DST_ReadStoreOperation:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:430    .text.HAL_RTC_DST_ReadStoreOperation:00000000 HAL_RTC_DST_ReadStoreOperation
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:450    .text.HAL_RTC_AlarmAEventCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:456    .text.HAL_RTC_AlarmAEventCallback:00000000 HAL_RTC_AlarmAEventCallback
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:471    .text.HAL_RTC_AlarmIRQHandler:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:477    .text.HAL_RTC_AlarmIRQHandler:00000000 HAL_RTC_AlarmIRQHandler
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:556    .text.HAL_RTC_AlarmIRQHandler:0000005c $d
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:561    .text.HAL_RTC_PollForAlarmAEvent:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:567    .text.HAL_RTC_PollForAlarmAEvent:00000000 HAL_RTC_PollForAlarmAEvent
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:645    .text.HAL_RTC_WaitForSynchro:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:651    .text.HAL_RTC_WaitForSynchro:00000000 HAL_RTC_WaitForSynchro
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:714    .text.HAL_RTC_WaitForSynchro:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:719    .text.HAL_RTC_GetState:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:725    .text.HAL_RTC_GetState:00000000 HAL_RTC_GetState
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:743    .text.RTC_EnterInitMode:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:749    .text.RTC_EnterInitMode:00000000 RTC_EnterInitMode
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:833    .text.RTC_ExitInitMode:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:839    .text.RTC_ExitInitMode:00000000 RTC_ExitInitMode
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:915    .text.RTC_ExitInitMode:00000048 $d
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:920    .text.HAL_RTC_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:926    .text.HAL_RTC_Init:00000000 HAL_RTC_Init
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1119   .text.HAL_RTC_DeInit:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1125   .text.HAL_RTC_DeInit:00000000 HAL_RTC_DeInit
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1287   .text.HAL_RTC_DeInit:0000008c $d
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1292   .text.RTC_ByteToBcd2:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1298   .text.RTC_ByteToBcd2:00000000 RTC_ByteToBcd2
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1345   .text.HAL_RTC_SetTime:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1351   .text.HAL_RTC_SetTime:00000000 HAL_RTC_SetTime
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1568   .text.HAL_RTC_SetDate:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1574   .text.HAL_RTC_SetDate:00000000 HAL_RTC_SetDate
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1759   .text.HAL_RTC_SetAlarm:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:1765   .text.HAL_RTC_SetAlarm:00000000 HAL_RTC_SetAlarm
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2129   .text.HAL_RTC_SetAlarm_IT:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2135   .text.HAL_RTC_SetAlarm_IT:00000000 HAL_RTC_SetAlarm_IT
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2507   .text.HAL_RTC_SetAlarm_IT:0000019c $d
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2512   .text.RTC_Bcd2ToByte:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2518   .text.RTC_Bcd2ToByte:00000000 RTC_Bcd2ToByte
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2546   .text.HAL_RTC_GetTime:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2552   .text.HAL_RTC_GetTime:00000000 HAL_RTC_GetTime
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2647   .text.HAL_RTC_GetDate:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2653   .text.HAL_RTC_GetDate:00000000 HAL_RTC_GetDate
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccoZwvur.s 			page 116
 
 
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2732   .text.HAL_RTC_GetAlarm:00000000 $t
-C:\Users\solar\AppData\Local\Temp\cctSYQ5p.s:2738   .text.HAL_RTC_GetAlarm:00000000 HAL_RTC_GetAlarm
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2732   .text.HAL_RTC_GetAlarm:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccoZwvur.s:2738   .text.HAL_RTC_GetAlarm:00000000 HAL_RTC_GetAlarm
 
 UNDEFINED SYMBOLS
 HAL_GetTick

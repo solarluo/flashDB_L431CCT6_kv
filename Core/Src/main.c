@@ -43,6 +43,8 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
+
 static struct fdb_kvdb kvdb;
 
 static struct fdb_default_kv_node default_kv_nodes[] = {
@@ -54,6 +56,8 @@ static struct fdb_default_kv default_kv_table = {
     .kvs = default_kv_nodes,
     .num = sizeof(default_kv_nodes) / sizeof(default_kv_nodes[0]),
 };
+
+
 
 static fdb_err_t MX_FlashDB_Init(void)
 {
@@ -212,6 +216,23 @@ else
     snprintf(msg, sizeof(msg), "read failed\r\n");
 }
 HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+
+    char *c12 = NULL;
+    //har *value = NULL;
+    fdb_kv_set(&kvdb, "status", "running");
+    c12 = fdb_kv_get(&kvdb, "status");
+    if (c12 != NULL)
+    {
+      /* code */
+      snprintf(msg, sizeof(msg), "status = %s\r\n", c12);
+    }
+    else
+    {
+      snprintf(msg, sizeof(msg), "read status failed\r\n");
+    }
+    HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);       
+    
+    
     /* USER CODE END 2 */
 
   /* Init scheduler */

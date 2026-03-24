@@ -42,6 +42,7 @@ BSP/src/fal_flash.c \
 BSP/src/fal_partition.c \
 BSP/src/fdb.c \
 BSP/src/fdb_kvdb.c \
+BSP/src/fdb_tsdb.c \
 BSP/src/fdb_utils.c \
 BSP/src/fal_flash_w25q64.c \
 Core/Src/st7735.c \

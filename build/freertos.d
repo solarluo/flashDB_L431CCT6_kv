@@ -44,7 +44,9 @@ build/freertos.o: Core/Src/freertos.c \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  Core/Inc/st7735.h Core/Inc/main.h Core/Inc/lcd_text.h Core/Inc/st7735.h \
- Core/Inc/aht30.h Core/Inc/rtc.h
+ Core/Inc/aht30.h Core/Inc/rtc.h BSP/inc/flashdb.h BSP/inc/fdb_cfg.h \
+ BSP/inc/fal.h BSP/inc/fal_cfg.h BSP/inc/fal_def.h BSP/inc/fdb_def.h \
+ Core/Inc/usart.h
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -98,3 +100,10 @@ Core/Inc/lcd_text.h:
 Core/Inc/st7735.h:
 Core/Inc/aht30.h:
 Core/Inc/rtc.h:
+BSP/inc/flashdb.h:
+BSP/inc/fdb_cfg.h:
+BSP/inc/fal.h:
+BSP/inc/fal_cfg.h:
+BSP/inc/fal_def.h:
+BSP/inc/fdb_def.h:
+Core/Inc/usart.h:

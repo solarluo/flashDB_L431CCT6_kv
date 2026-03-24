@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
   28:Core/Src/lcd_text.c ****     {0x00,0x36,0x36,0x7F,0x36,0x36,0x36,0x7F,0x36,0x36,0x00,0x00,0x00,0x00,0x00,0x00},
   29:Core/Src/lcd_text.c **** 
   30:Core/Src/lcd_text.c ****     /* $ */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 2
 
 
   31:Core/Src/lcd_text.c ****     {0x00,0x18,0x3E,0x58,0x58,0x3C,0x1A,0x1A,0x7C,0x18,0x00,0x00,0x00,0x00,0x00,0x00},
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
   85:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC0,0xC0,0xFC,0xC6,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
   86:Core/Src/lcd_text.c **** 
   87:Core/Src/lcd_text.c ****     /* 7 */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 3
 
 
   88:Core/Src/lcd_text.c ****     {0x00,0xFF,0xC3,0x06,0x06,0x0C,0x0C,0x18,0x18,0x18,0x18,0x00,0x00,0x00,0x00,0x00},
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  142:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
  143:Core/Src/lcd_text.c **** 
  144:Core/Src/lcd_text.c ****     /* P */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 4
 
 
  145:Core/Src/lcd_text.c ****     {0x00,0xFC,0x66,0x63,0x63,0x66,0x7C,0x60,0x60,0x60,0x60,0x00,0x00,0x00,0x00,0x00},
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
   45              		.loc 1 182 12 view .LVU6
   46 000c C0B2     		uxtb	r0, r0
   47              	.LVL2:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 5
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 5
 
 
  183:Core/Src/lcd_text.c ****     }
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
   98 0044 43       		.byte	(.L6-.L7)/2
   99 0045 43       		.byte	(.L6-.L7)/2
  100 0046 43       		.byte	(.L6-.L7)/2
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 6
 
 
  101 0047 43       		.byte	(.L6-.L7)/2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  187:Core/Src/lcd_text.c ****     if (ch == '"') return 2;
  134              		.loc 1 187 20 is_stmt 1 discriminator 1 view .LVU15
  187:Core/Src/lcd_text.c ****     if (ch == '"') return 2;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 7
 
 
  135              		.loc 1 187 27 is_stmt 0 discriminator 1 view .LVU16
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  192:Core/Src/lcd_text.c ****     if (ch == '(') return 8;
  175              		.loc 1 192 28 is_stmt 0 discriminator 1 view .LVU31
  176 0074 0720     		movs	r0, #7
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 8
 
 
  177              	.LVL17:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  216 0088 0C20     		movs	r0, #12
  217              	.LVL27:
  197:Core/Src/lcd_text.c ****     if (ch == '-') return 13;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 9
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 9
 
 
  218              		.loc 1 197 27 view .LVU47
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  260              	.LVL38:
  261              	.L6:
  204:Core/Src/lcd_text.c ****     if (ch >= 'A' && ch <= 'Z') return 27 + (ch - 'A');
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 10
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 10
 
 
  262              		.loc 1 204 33 is_stmt 1 discriminator 1 view .LVU63
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  303              	.LVL43:
  304              		.loc 1 218 40 discriminator 1 view .LVU71
  305 0012 7047     		bx	lr
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 11
 
 
  306              	.LVL44:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  349              	.LVL50:
  350              	.L30:
  219:Core/Src/lcd_text.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 12
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 12
 
 
  351              		.loc 1 219 40 discriminator 1 view .LVU84
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  398 000c BDF81020 		ldrh	r2, [sp, #16]
  399              	.LVL55:
  400              		.loc 1 227 5 is_stmt 0 view .LVU94
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 13
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 13
 
 
  401 0010 0092     		str	r2, [sp]
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  450 0012 0020     		movs	r0, #0
  451              	.LVL59:
  452              		.loc 1 233 5 view .LVU103
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 14
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 14
 
 
  453 0014 FFF7FEFF 		bl	ST7735_FillRect
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  504 0018 9F29     		cmp	r1, #159
  505 001a 2DD8     		bhi	.L52
  239:Core/Src/lcd_text.c ****         return;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 15
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 15
 
 
  240:Core/Src/lcd_text.c **** 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  545 0040 0FD8     		bhi	.L61
  249:Core/Src/lcd_text.c ****             {
  546              		.loc 1 249 13 view .LVU122
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 16
 
 
  249:Core/Src/lcd_text.c ****             {
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  247:Core/Src/lcd_text.c ****         {
  588              		.loc 1 247 9 is_stmt 1 view .LVU134
  589              	.LBB5:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 17
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 17
 
 
  247:Core/Src/lcd_text.c ****         {
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  634              		.cfi_offset 4, -8
  635              		.cfi_offset 14, -4
  636 0002 82B0     		sub	sp, sp, #8
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 18
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 18
 
 
  637              	.LCFI10:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  271:Core/Src/lcd_text.c ****     if (str == NULL) return;
  688              		.loc 1 271 5 is_stmt 1 view .LVU148
  689              		.loc 1 271 8 is_stmt 0 view .LVU149
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 19
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 19
 
 
  690 000e BAB3     		cbz	r2, .L67
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  722 0030 5A46     		mov	r2, fp
  723 0032 2946     		mov	r1, r5
  724 0034 2046     		mov	r0, r4
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 20
 
 
  725 0036 FFF7FEFF 		bl	LCD_ShowCharEx
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  756 005c CDF804A0 		str	r10, [sp, #4]
  757 0060 CDF80090 		str	r9, [sp]
  758 0064 3B46     		mov	r3, r7
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 21
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 21
 
 
  759 0066 2022     		movs	r2, #32
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  802              		.global	LCD_ShowString
  803              		.syntax unified
  804              		.thumb
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 22
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 22
 
 
  805              		.thumb_func
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  850              		.loc 1 322 1 is_stmt 1 view -0
  851              		.cfi_startproc
  852              		@ args = 16, pretend = 0, frame = 16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 23
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 23
 
 
  853              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  331:Core/Src/lcd_text.c ****     uint16_t cur_x = x;
  332:Core/Src/lcd_text.c ****     uint16_t cur_y = y;
  333:Core/Src/lcd_text.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 24
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 24
 
 
  334:Core/Src/lcd_text.c ****     while (*str)
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  351:Core/Src/lcd_text.c ****         {
  352:Core/Src/lcd_text.c ****             return;
  353:Core/Src/lcd_text.c ****         }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 25
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 25
 
 
  354:Core/Src/lcd_text.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  968              		.loc 1 344 12 view .LVU222
  969 0076 9342     		cmp	r3, r2
  970 0078 02DB     		blt	.L85
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 26
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 26
 
 
  346:Core/Src/lcd_text.c ****             cur_y += LCD_FONT_HEIGHT;
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1012              	.LVL116:
  1013              	.L80:
  366:Core/Src/lcd_text.c ****     }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 27
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 27
 
 
  367:Core/Src/lcd_text.c **** }
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1064              	.LVL119:
  1065              		.loc 1 372 5 view .LVU243
  1066 0010 1021     		movs	r1, #16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 28
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 28
 
 
  1067              	.LVL120:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1118              	.LCFI24:
  1119              		.cfi_def_cfa_offset 20
  1120              		.cfi_offset 4, -20
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 29
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 29
 
 
  1121              		.cfi_offset 5, -16
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1172              		.section	.text.LCD_GetStringWidth,"ax",%progbits
  1173              		.align	1
  1174              		.global	LCD_GetStringWidth
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 30
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 30
 
 
  1175              		.syntax unified
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  401:Core/Src/lcd_text.c ****         }
  402:Core/Src/lcd_text.c ****         str++;
  1209              		.loc 1 402 9 is_stmt 1 view .LVU270
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 31
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 31
 
 
  1210              		.loc 1 402 12 is_stmt 0 view .LVU271
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1251              	.L107:
  388:Core/Src/lcd_text.c **** 
  1252              		.loc 1 388 29 discriminator 1 view .LVU285
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 32
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 32
 
 
  1253 002e 0020     		movs	r0, #0
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  416:Core/Src/lcd_text.c ****     if (w < ST7735_WIDTH)
  1299              		.loc 1 416 5 view .LVU293
  1300              		.loc 1 416 8 is_stmt 0 view .LVU294
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 33
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 33
 
 
  1301 0012 4F28     		cmp	r0, #79
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1346      18181818 
  1346      18001818 
  1346      00
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 34
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 34
 
 
  1347 001d 000000   		.ascii	"\000\000\000"
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1365 00de 0000     		.ascii	"\000\000"
  1366 00e0 00000000 		.ascii	"\000\000\000\000\000\000\000\030\030\000\000\000\000"
  1366      00000018 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 35
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 35
 
 
  1366      18000000 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1384      00000000 
  1384      00
  1385 01ad 000000   		.ascii	"\000\000\000"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 36
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 36
 
 
  1386 01b0 00183C66 		.ascii	"\000\030<f\303\303\377\303\303\303\303\000\000\000\000"
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1403      DBDBC3C3 
  1403      C3C3C300 
  1403      00
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 37
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 37
 
 
  1404 027d 000000   		.ascii	"\000\000\000"
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1422 0340 00FF0306 		.ascii	"\000\377\003\006\014\0300`\300\300\377\000\000\000\000"
  1422      0C183060 
  1422      C0C0FF00 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 38
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 38
 
 
  1422      000000
@@ -2230,46 +2230,46 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
  1428              		.file 4 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
  1429              		.file 5 "Core/Inc/st7735.h"
  1430              		.file 6 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 39
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZBYsze.s 			page 39
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 lcd_text.c
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:21     .text.font_index:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:26     .text.font_index:00000000 font_index
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:56     .text.font_index:0000001a $d
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:114    .text.font_index:00000054 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:279    .text.lcd_char_supported:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:284    .text.lcd_char_supported:00000000 lcd_char_supported
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:367    .text.LCD_ClearArea:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:373    .text.LCD_ClearArea:00000000 LCD_ClearArea
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:416    .text.LCD_ClearLine:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:422    .text.LCD_ClearLine:00000000 LCD_ClearLine
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:465    .text.LCD_ShowCharEx:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:471    .text.LCD_ShowCharEx:00000000 LCD_ShowCharEx
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:612    .text.LCD_ShowCharEx:00000080 $d
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1343   .rodata.font8x16:00000000 font8x16
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:617    .text.LCD_ShowChar:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:623    .text.LCD_ShowChar:00000000 LCD_ShowChar
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:657    .text.LCD_ShowStringEx:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:663    .text.LCD_ShowStringEx:00000000 LCD_ShowStringEx
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:801    .text.LCD_ShowString:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:807    .text.LCD_ShowString:00000000 LCD_ShowString
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:841    .text.LCD_ShowStringInArea:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:847    .text.LCD_ShowStringInArea:00000000 LCD_ShowStringInArea
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1025   .rodata.LCD_ShowInt.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1029   .text.LCD_ShowInt:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1035   .text.LCD_ShowInt:00000000 LCD_ShowInt
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1094   .text.LCD_ShowInt:00000030 $d
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1099   .rodata.LCD_ShowUInt.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1103   .text.LCD_ShowUInt:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1109   .text.LCD_ShowUInt:00000000 LCD_ShowUInt
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1168   .text.LCD_ShowUInt:00000030 $d
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1173   .text.LCD_GetStringWidth:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1179   .text.LCD_GetStringWidth:00000000 LCD_GetStringWidth
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1262   .text.LCD_ShowCenteredString:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1268   .text.LCD_ShowCenteredString:00000000 LCD_ShowCenteredString
-C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1340   .rodata.font8x16:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:21     .text.font_index:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:26     .text.font_index:00000000 font_index
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:56     .text.font_index:0000001a $d
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:114    .text.font_index:00000054 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:279    .text.lcd_char_supported:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:284    .text.lcd_char_supported:00000000 lcd_char_supported
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:367    .text.LCD_ClearArea:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:373    .text.LCD_ClearArea:00000000 LCD_ClearArea
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:416    .text.LCD_ClearLine:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:422    .text.LCD_ClearLine:00000000 LCD_ClearLine
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:465    .text.LCD_ShowCharEx:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:471    .text.LCD_ShowCharEx:00000000 LCD_ShowCharEx
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:612    .text.LCD_ShowCharEx:00000080 $d
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1343   .rodata.font8x16:00000000 font8x16
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:617    .text.LCD_ShowChar:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:623    .text.LCD_ShowChar:00000000 LCD_ShowChar
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:657    .text.LCD_ShowStringEx:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:663    .text.LCD_ShowStringEx:00000000 LCD_ShowStringEx
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:801    .text.LCD_ShowString:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:807    .text.LCD_ShowString:00000000 LCD_ShowString
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:841    .text.LCD_ShowStringInArea:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:847    .text.LCD_ShowStringInArea:00000000 LCD_ShowStringInArea
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1025   .rodata.LCD_ShowInt.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1029   .text.LCD_ShowInt:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1035   .text.LCD_ShowInt:00000000 LCD_ShowInt
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1094   .text.LCD_ShowInt:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1099   .rodata.LCD_ShowUInt.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1103   .text.LCD_ShowUInt:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1109   .text.LCD_ShowUInt:00000000 LCD_ShowUInt
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1168   .text.LCD_ShowUInt:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1173   .text.LCD_GetStringWidth:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1179   .text.LCD_GetStringWidth:00000000 LCD_GetStringWidth
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1262   .text.LCD_ShowCenteredString:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1268   .text.LCD_ShowCenteredString:00000000 LCD_ShowCenteredString
+C:\Users\solar\AppData\Local\Temp\ccZBYsze.s:1340   .rodata.font8x16:00000000 $d
 
 UNDEFINED SYMBOLS
 ST7735_FillRect

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
   28:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     (#) Declare a UART_HandleTypeDef handle structure.
   29:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
   30:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     (#) For the UART RS485 Driver Enable mode, initialize the UART registers
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 2
 
 
   31:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****         by calling the HAL_RS485Ex_Init() API.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
   85:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   */
   86:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
   87:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** /* Exported functions --------------------------------------------------------*/
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 3
 
 
   88:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  142:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     |---------|---------|-----------|---------------------------------------|
  143:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     |    1    |    0    |    0      |    | SB |    7 bit data   | STB |     |
  144:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     |---------|---------|-----------|---------------------------------------|
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 4
 
 
  145:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     |    1    |    0    |    1      |    | SB | 6 bit data | PB | STB |     |
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  199:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  200:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     if (huart->MspInitCallback == NULL)
  201:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 5
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 5
 
 
  202:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****       huart->MspInitCallback = HAL_UART_MspInit;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  256:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** @verbatim
  257:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****  ===============================================================================
  258:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****                       ##### IO operation functions #####
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 6
 
 
  259:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****  ===============================================================================
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  313:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****             the HAL_UARTEx_TxFifoEmptyCallback can be implemented in the user file.
  314:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****    */
  315:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 7
 
 
  316:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** #endif /* USART_CR1_FIFOEN */
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  370:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****         (++) HAL_UARTEx_ReceiveToIdle()
  371:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  372:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     (#) Non-Blocking mode API with Interrupt:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 8
 
 
  373:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****         (++) HAL_UARTEx_ReceiveToIdle_IT()
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  427:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @brief By default in multiprocessor mode, when the wake up method is set
  428:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   *        to address mark, the UART handles only 4-bit long addresses detection;
  429:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   *        this API allows to enable longer addresses detection (6-, 7- or 8-bit
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 9
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 9
 
 
  430:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   *        long).
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  484:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   /* check the wake-up selection parameter */
  485:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   assert_param(IS_UART_WAKEUP_SELECTION(WakeUpSelection.WakeUpEvent));
  486:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 10
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 10
 
 
  487:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   /* Process Locked */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  541:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   __HAL_UNLOCK(huart);
  542:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  543:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   return HAL_OK;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 11
 
 
  544:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** }
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  598:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  599:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   huart->gState = HAL_UART_STATE_READY;
  600:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 12
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 12
 
 
  601:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   /* Process Unlocked */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  655:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   *            @arg @ref UART_TXFIFO_THRESHOLD_8_8
  656:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @retval HAL status
  657:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 13
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 13
 
 
  658:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** HAL_StatusTypeDef HAL_UARTEx_SetTxFifoThreshold(UART_HandleTypeDef *huart, uint32_t Threshold)
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  712:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   assert_param(IS_UART_FIFO_INSTANCE(huart->Instance));
  713:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   assert_param(IS_UART_RXFIFO_THRESHOLD(Threshold));
  714:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 14
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 14
 
 
  715:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   /* Process Locked */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  769:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   uint16_t *pdata16bits;
  770:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   uint16_t uhMask;
  771:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   uint32_t tickstart;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 15
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 15
 
 
  772:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  826:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  827:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****           return HAL_OK;
  828:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****         }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 16
 
 
  829:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****       }
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  883:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @param huart UART handle.
  884:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @param pData Pointer to data buffer (uint8_t or uint16_t data elements).
  885:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @param Size  Amount of data elements (uint8_t or uint16_t) to be received.
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 17
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 17
 
 
  886:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @retval HAL status
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  940:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @param huart UART handle.
  941:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @param pData Pointer to data buffer (uint8_t or uint16_t data elements).
  942:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @param Size  Amount of data elements (uint8_t or uint16_t) to be received.
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 18
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 18
 
 
  943:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @retval HAL status
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  997:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   *        in order to provide the accurate value.
  998:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   * @note  In Interrupt Mode:
  999:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   *        - HAL_UART_RXEVENT_TC : when Reception has been completed (expected nb of data has been 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 19
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 19
 
 
 1000:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   *        - HAL_UART_RXEVENT_IDLE : when Idle event occurred prior reception has been completed.
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
   42 0008 0268     		ldr	r2, [r0]
   43 000a 5368     		ldr	r3, [r2, #4]
   44 000c 23F01003 		bic	r3, r3, #16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 20
 
 
   45 0010 BDF80410 		ldrh	r1, [sp, #4]
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
   92              		.cfi_offset 14, -4
   93 0006 0F46     		mov	r7, r1
   94 0008 1646     		mov	r6, r2
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 21
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 21
 
 
   95 000a 1D46     		mov	r5, r3
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  132              		.loc 1 232 3 is_stmt 1 view .LVU27
  133 002e 2268     		ldr	r2, [r4]
  134 0030 9368     		ldr	r3, [r2, #8]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 22
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 22
 
 
  135 0032 43F48043 		orr	r3, r3, #16384
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  176              		.loc 1 195 17 is_stmt 0 view .LVU40
  177 0068 80F87830 		strb	r3, [r0, #120]
  209:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** #endif /* (USE_HAL_UART_REGISTER_CALLBACKS) */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 23
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 23
 
 
  178              		.loc 1 209 5 is_stmt 1 view .LVU41
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  228              		.section	.text.HAL_UARTEx_EnableClockStopMode,"ax",%progbits
  229              		.align	1
  230              		.global	HAL_UARTEx_EnableClockStopMode
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 24
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 24
 
 
  231              		.syntax unified
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
   15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
   17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 25
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 25
 
 
   18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
   72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 26
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 26
 
 
   75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  129:Drivers/CMSIS/Include/cmsis_gcc.h ****   
  130:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  131:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE __NO_RETURN void __cmsis_start(void)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 27
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 27
 
 
  132:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  186:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
  187:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
  188:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 28
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 28
 
 
  189:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  243:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  244:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Control Register
  245:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Writes the given value to the Control Register.
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 29
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 29
 
 
  246:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    control  Control Register value to set
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  300:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_xPSR(void)
  301:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  302:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 30
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 30
 
 
  303:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  357:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  358:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psp_ns, %0" : : "r" (topOfProcStack) : );
  359:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 31
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 31
 
 
  360:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  414:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  415:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  416:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 32
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 32
 
 
  417:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  471:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  472:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  473:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 33
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 33
 
 
  474:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  528:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_BASEPRI(void)
  529:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  530:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 34
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 34
 
 
  531:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  585:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR basepri_max, %0" : : "r" (basePri) : "memory");
  586:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  587:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 35
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 35
 
 
  588:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  642:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif /* ((defined (__ARM_ARCH_7M__      ) && (__ARM_ARCH_7M__      == 1)) || \
  643:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
  644:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    ) */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 36
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 36
 
 
  645:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  699:Drivers/CMSIS/Include/cmsis_gcc.h ****   mode.
  700:Drivers/CMSIS/Include/cmsis_gcc.h ****   
  701:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Process Stack Pointer Limit (PSPLIM).
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 37
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 37
 
 
  702:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ProcStackPtrLimit  Process Stack Pointer Limit value to set
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  756:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  757:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  758:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 38
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 38
 
 
  759:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  813:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __TZ_set_MSPLIM_NS(uint32_t MainStackPtrLimit)
  814:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  815:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)))
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 39
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 39
 
 
  816:Drivers/CMSIS/Include/cmsis_gcc.h ****   // without main extensions, the non-secure MSPLIM is RAZ/WI
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  870:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  871:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  872:Drivers/CMSIS/Include/cmsis_gcc.h ****   (void)fpscr;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 40
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 40
 
 
  873:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  927:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  928:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Instruction Synchronization Barrier
  929:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Instruction Synchronization Barrier flushes the pipeline in the processor,
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 41
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 41
 
 
  930:Drivers/CMSIS/Include/cmsis_gcc.h ****            so that all instructions following the ISB are fetched from cache or memory,
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  984:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
  985:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  986:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __REV16(uint32_t value)
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 42
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 42
 
 
  987:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
 1041:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1042:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
 1043:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse bit order of value
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 43
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 43
 
 
 1044:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Reverses the bit order of the given value.
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
 1098:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
 1099:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)) || \
 1100:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    )
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 44
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 44
 
 
 1101:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
 1153:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
  265              		.loc 2 1153 5 view .LVU59
 1154:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 45
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 45
 
 
 1155:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrex %0, %1" : "=r" (result) : "Q" (*addr) );
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
 1186:Drivers/CMSIS/Include/cmsis_gcc.h **** {
 1187:Drivers/CMSIS/Include/cmsis_gcc.h ****    uint32_t result;
 1188:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 46
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 46
 
 
 1189:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("strexh %0, %2, %1" : "=&r" (result), "=Q" (*addr) : "r" ((uint32_t)value) );
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  316              		.loc 1 401 3 is_stmt 1 view .LVU77
  403:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** }
  317              		.loc 1 403 3 view .LVU78
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 47
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 47
 
 
  403:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** }
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  417:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  362              		.loc 1 417 3 discriminator 1 view .LVU91
  363 000e 0268     		ldr	r2, [r0]
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 48
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 48
 
 
  364              	.LVL28:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  406              		.syntax unified
  407              	.LBE41:
  408              	.LBE40:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 49
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 49
 
 
  417:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  442:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   {
  452              		.loc 1 442 6 is_stmt 0 view .LVU119
  453 0000 B8B1     		cbz	r0, .L25
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 50
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 50
 
 
  440:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   /* Check the UART handle allocation */
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  496              		.cfi_def_cfa_offset 0
  497              		.cfi_restore 3
  498              		.cfi_restore 14
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 51
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 51
 
 
  444:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   }
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  544 0014 0123     		movs	r3, #1
  545 0016 80F87830 		strb	r3, [r0, #120]
  488:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 52
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 52
 
 
  546              		.loc 1 488 3 view .LVU143
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  588 0056 FFF7FEFF 		bl	UART_WaitOnFlagUntilTimeout
  589              	.LVL50:
  510:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 53
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 53
 
 
  590              		.loc 1 510 6 discriminator 1 view .LVU156
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  633              	.LVL57:
  488:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  634              		.loc 1 488 3 discriminator 1 view .LVU168
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 54
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 54
 
 
  635 007c F3E7     		b	.L31
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  679 0010 52E8003F 		ldrex r3, [r2]
  680              	@ 0 "" 2
  681              	.LVL60:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 55
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 55
 
 
 1156:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  543:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** }
  722              		.loc 1 543 10 is_stmt 0 view .LVU197
  723 0026 1846     		mov	r0, r3
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 56
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 56
 
 
  724              	.LVL64:
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  768              	.LVL68:
  769              	.LBB48:
  770              	.LBI48:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 57
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 57
 
 
 1151:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  812              		.loc 1 560 3 view .LVU224
  560:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  813              		.loc 1 560 3 view .LVU225
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 58
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 58
 
 
  814 0020 0023     		movs	r3, #0
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  861 0004 1D46     		mov	r5, r3
  862 0006 089E     		ldr	r6, [sp, #32]
  768:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   uint16_t *pdata16bits;
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 59
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 59
 
 
  863              		.loc 1 768 3 is_stmt 1 view .LVU235
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  900              		.loc 1 783 5 is_stmt 1 view .LVU252
  783:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     huart->RxEventType = HAL_UART_RXEVENT_TC;
  901              		.loc 1 783 26 is_stmt 0 view .LVU253
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 60
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 60
 
 
  902 0030 0122     		movs	r2, #1
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  940 0062 A4F85C20 		strh	r2, [r4, #92]	@ movhi
  941 0066 0DE0     		b	.L50
  942              	.L49:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 61
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 61
 
 
  793:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     uhMask = huart->Mask;
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  982              		.loc 1 793 5 is_stmt 1 discriminator 9 view .LVU284
  983 0098 2269     		ldr	r2, [r4, #16]
  984 009a 1AB9     		cbnz	r2, .L54
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 62
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 62
 
 
  793:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     uhMask = huart->Mask;
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  1025              	.L77:
  836:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****           pdata16bits++;
  1026              		.loc 1 836 11 is_stmt 1 view .LVU299
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 63
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 63
 
 
  836:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****           pdata16bits++;
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  815:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****       {
  1065              		.loc 1 815 10 view .LVU316
  1066 00fa 12F0100F 		tst	r2, #16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 64
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 64
 
 
  1067 00fe 04D0     		beq	.L57
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  1104              		.loc 1 852 15 is_stmt 0 view .LVU333
  1105 0126 FFF7FEFF 		bl	HAL_GetTick
  1106              	.LVL92:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 65
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 65
 
 
  852:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****         {
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  870:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   }
  1145              		.loc 1 870 12 view .LVU350
  1146 0158 0220     		movs	r0, #2
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 66
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 66
 
 
  1147              	.LVL94:
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  895:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     {
  1192              		.loc 1 895 25 discriminator 1 view .LVU362
  1193 000e 0AB9     		cbnz	r2, .L90
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 67
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 67
 
 
  897:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     }
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  909:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     }
  1233              		.loc 1 909 7 discriminator 1 view .LVU378
  1234              	.LBB52:
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 68
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 68
 
 
  909:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     }
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  1276              	.LBE56:
  1277              	.LBE55:
  909:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 69
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 69
 
 
  1278              		.loc 1 909 7 discriminator 1 view .LVU394
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  947:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c **** 
  1327              		.loc 1 947 3 view .LVU402
  950:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****   {
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 70
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 70
 
 
  1328              		.loc 1 950 3 view .LVU403
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  964:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     {
  1367              		.loc 1 964 8 is_stmt 0 view .LVU419
  1368 0020 0028     		cmp	r0, #0
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 71
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 71
 
 
  1369 0022 F6D1     		bne	.L93
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
 1156:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  1408              		.loc 2 1156 4 is_stmt 0 view .LVU435
  1409              		.thumb
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 72
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 72
 
 
  1410              		.syntax unified
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  1455              		.cfi_offset 4, -8
  1456              		.cfi_offset 14, -4
  954:Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c ****     }
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 73
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 73
 
 
  1457              		.loc 1 954 14 view .LVU447
@@ -4367,37 +4367,37 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 1
  1498              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h"
  1499              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
  1500              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccgia1hu.s 			page 74
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s 			page 74
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32l4xx_hal_uart_ex.c
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:21     .text.UARTEx_Wakeup_AddressConfig:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:26     .text.UARTEx_Wakeup_AddressConfig:00000000 UARTEx_Wakeup_AddressConfig
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:65     .text.HAL_RS485Ex_Init:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:71     .text.HAL_RS485Ex_Init:00000000 HAL_RS485Ex_Init
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:208    .text.HAL_UARTEx_WakeupCallback:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:214    .text.HAL_UARTEx_WakeupCallback:00000000 HAL_UARTEx_WakeupCallback
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:229    .text.HAL_UARTEx_EnableClockStopMode:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:235    .text.HAL_UARTEx_EnableClockStopMode:00000000 HAL_UARTEx_EnableClockStopMode
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:334    .text.HAL_UARTEx_DisableClockStopMode:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:340    .text.HAL_UARTEx_DisableClockStopMode:00000000 HAL_UARTEx_DisableClockStopMode
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:438    .text.HAL_MultiProcessorEx_AddressLength_Set:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:444    .text.HAL_MultiProcessorEx_AddressLength_Set:00000000 HAL_MultiProcessorEx_AddressLength_Set
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:508    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:514    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:00000000 HAL_UARTEx_StopModeWakeUpSourceConfig
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:640    .text.HAL_UARTEx_EnableStopMode:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:646    .text.HAL_UARTEx_EnableStopMode:00000000 HAL_UARTEx_EnableStopMode
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:738    .text.HAL_UARTEx_DisableStopMode:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:744    .text.HAL_UARTEx_DisableStopMode:00000000 HAL_UARTEx_DisableStopMode
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:836    .text.HAL_UARTEx_ReceiveToIdle:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:842    .text.HAL_UARTEx_ReceiveToIdle:00000000 HAL_UARTEx_ReceiveToIdle
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:1162   .text.HAL_UARTEx_ReceiveToIdle_IT:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:1168   .text.HAL_UARTEx_ReceiveToIdle_IT:00000000 HAL_UARTEx_ReceiveToIdle_IT
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:1314   .text.HAL_UARTEx_ReceiveToIdle_DMA:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:1320   .text.HAL_UARTEx_ReceiveToIdle_DMA:00000000 HAL_UARTEx_ReceiveToIdle_DMA
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:1466   .text.HAL_UARTEx_GetRxEventType:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccgia1hu.s:1472   .text.HAL_UARTEx_GetRxEventType:00000000 HAL_UARTEx_GetRxEventType
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:21     .text.UARTEx_Wakeup_AddressConfig:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:26     .text.UARTEx_Wakeup_AddressConfig:00000000 UARTEx_Wakeup_AddressConfig
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:65     .text.HAL_RS485Ex_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:71     .text.HAL_RS485Ex_Init:00000000 HAL_RS485Ex_Init
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:208    .text.HAL_UARTEx_WakeupCallback:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:214    .text.HAL_UARTEx_WakeupCallback:00000000 HAL_UARTEx_WakeupCallback
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:229    .text.HAL_UARTEx_EnableClockStopMode:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:235    .text.HAL_UARTEx_EnableClockStopMode:00000000 HAL_UARTEx_EnableClockStopMode
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:334    .text.HAL_UARTEx_DisableClockStopMode:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:340    .text.HAL_UARTEx_DisableClockStopMode:00000000 HAL_UARTEx_DisableClockStopMode
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:438    .text.HAL_MultiProcessorEx_AddressLength_Set:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:444    .text.HAL_MultiProcessorEx_AddressLength_Set:00000000 HAL_MultiProcessorEx_AddressLength_Set
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:508    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:514    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:00000000 HAL_UARTEx_StopModeWakeUpSourceConfig
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:640    .text.HAL_UARTEx_EnableStopMode:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:646    .text.HAL_UARTEx_EnableStopMode:00000000 HAL_UARTEx_EnableStopMode
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:738    .text.HAL_UARTEx_DisableStopMode:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:744    .text.HAL_UARTEx_DisableStopMode:00000000 HAL_UARTEx_DisableStopMode
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:836    .text.HAL_UARTEx_ReceiveToIdle:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:842    .text.HAL_UARTEx_ReceiveToIdle:00000000 HAL_UARTEx_ReceiveToIdle
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:1162   .text.HAL_UARTEx_ReceiveToIdle_IT:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:1168   .text.HAL_UARTEx_ReceiveToIdle_IT:00000000 HAL_UARTEx_ReceiveToIdle_IT
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:1314   .text.HAL_UARTEx_ReceiveToIdle_DMA:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:1320   .text.HAL_UARTEx_ReceiveToIdle_DMA:00000000 HAL_UARTEx_ReceiveToIdle_DMA
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:1466   .text.HAL_UARTEx_GetRxEventType:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc1wNI1w.s:1472   .text.HAL_UARTEx_GetRxEventType:00000000 HAL_UARTEx_GetRxEventType
 
 UNDEFINED SYMBOLS
 UART_SetConfig

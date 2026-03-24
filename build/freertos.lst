@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -20,23 +20,13 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 1
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
   19              		.file 1 "Core/Src/freertos.c"
-  20              		.section	.rodata.StartDefaultTask.str1.4,"aMS",%progbits,1
-  21              		.align	2
-  22              	.LC0:
-  23 0000 32302530 		.ascii	"20%02d-%02d-%02d %02d:%02d:%02d\015\012\000"
-  23      32642D25 
-  23      3032642D 
-  23      25303264 
-  23      20253032 
-  24              		.section	.text.StartDefaultTask,"ax",%progbits
-  25              		.align	1
-  26              		.global	StartDefaultTask
-  27              		.syntax unified
-  28              		.thumb
-  29              		.thumb_func
-  31              	StartDefaultTask:
-  32              	.LVL0:
-  33              	.LFB236:
+  20              		.section	.text.tsdb_get_time,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	tsdb_get_time:
+  27              	.LFB235:
    1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
    2:Core/Src/freertos.c **** /**
    3:Core/Src/freertos.c ****   ******************************************************************************
@@ -58,9 +48,6 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 1
   19:Core/Src/freertos.c **** 
   20:Core/Src/freertos.c **** /* Includes ------------------------------------------------------------------*/
   21:Core/Src/freertos.c **** #include "FreeRTOS.h"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 2
-
-
   22:Core/Src/freertos.c **** #include "task.h"
   23:Core/Src/freertos.c **** #include "main.h"
   24:Core/Src/freertos.c **** #include "cmsis_os.h"
@@ -71,474 +58,1165 @@ ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 1
   29:Core/Src/freertos.c **** #include "lcd_text.h"
   30:Core/Src/freertos.c **** #include "aht30.h"
   31:Core/Src/freertos.c **** #include "rtc.h"
-  32:Core/Src/freertos.c **** #include <stdio.h>
-  33:Core/Src/freertos.c **** #include <string.h>
-  34:Core/Src/freertos.c **** /* USER CODE END Includes */
-  35:Core/Src/freertos.c **** 
-  36:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
-  37:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 2
+
+
+  32:Core/Src/freertos.c **** #include "flashdb.h"
+  33:Core/Src/freertos.c **** #include "usart.h"
+  34:Core/Src/freertos.c **** #include "fal.h"
+  35:Core/Src/freertos.c **** #include <stdio.h>
+  36:Core/Src/freertos.c **** #include <string.h>
+  37:Core/Src/freertos.c **** /* USER CODE END Includes */
   38:Core/Src/freertos.c **** 
-  39:Core/Src/freertos.c **** /* USER CODE END PTD */
-  40:Core/Src/freertos.c **** 
-  41:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
-  42:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  39:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
+  40:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+  41:Core/Src/freertos.c **** 
+  42:Core/Src/freertos.c **** /* USER CODE END PTD */
   43:Core/Src/freertos.c **** 
-  44:Core/Src/freertos.c **** /* USER CODE END PD */
-  45:Core/Src/freertos.c **** 
-  46:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
-  47:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  44:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
+  45:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  46:Core/Src/freertos.c **** 
+  47:Core/Src/freertos.c **** /* USER CODE END PD */
   48:Core/Src/freertos.c **** 
-  49:Core/Src/freertos.c **** /* USER CODE END PM */
-  50:Core/Src/freertos.c **** 
-  51:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
-  52:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  49:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
+  50:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  51:Core/Src/freertos.c **** 
+  52:Core/Src/freertos.c **** /* USER CODE END PM */
   53:Core/Src/freertos.c **** 
-  54:Core/Src/freertos.c **** /* USER CODE END Variables */
-  55:Core/Src/freertos.c **** /* Definitions for defaultTask */
-  56:Core/Src/freertos.c **** osThreadId_t defaultTaskHandle;
-  57:Core/Src/freertos.c **** const osThreadAttr_t defaultTask_attributes = {
-  58:Core/Src/freertos.c ****   .name = "defaultTask",
-  59:Core/Src/freertos.c ****   .stack_size = 128 * 4,
-  60:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
-  61:Core/Src/freertos.c **** };
-  62:Core/Src/freertos.c **** /* Definitions for myTask02 */
-  63:Core/Src/freertos.c **** osThreadId_t myTask02Handle;
-  64:Core/Src/freertos.c **** const osThreadAttr_t myTask02_attributes = {
-  65:Core/Src/freertos.c ****   .name = "myTask02",
-  66:Core/Src/freertos.c ****   .stack_size = 128 * 4,
-  67:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityLow,
-  68:Core/Src/freertos.c **** };
-  69:Core/Src/freertos.c **** 
-  70:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
-  71:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
-  72:Core/Src/freertos.c **** 
-  73:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
-  74:Core/Src/freertos.c **** 
-  75:Core/Src/freertos.c **** void StartDefaultTask(void *argument);
-  76:Core/Src/freertos.c **** void StartTask02(void *argument);
-  77:Core/Src/freertos.c **** 
-  78:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 3
+  54:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
+  55:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  56:Core/Src/freertos.c **** static struct fdb_tsdb tsdb;
+  57:Core/Src/freertos.c **** static uint8_t tsdb_inited = 0;
+  58:Core/Src/freertos.c **** 
+  59:Core/Src/freertos.c **** typedef struct
+  60:Core/Src/freertos.c **** {
+  61:Core/Src/freertos.c ****     int temp;
+  62:Core/Src/freertos.c ****     int humi;
+  63:Core/Src/freertos.c **** } sensor_log_t;
+  64:Core/Src/freertos.c **** 
+  65:Core/Src/freertos.c **** /* RTC -> 时间戳（简化版，保证单调递增即可） */
+  66:Core/Src/freertos.c **** static fdb_time_t tsdb_get_time(void)
+  67:Core/Src/freertos.c **** {
+  28              		.loc 1 67 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 24
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 30B5     		push	{r4, r5, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  38 0002 87B0     		sub	sp, sp, #28
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 40
+  68:Core/Src/freertos.c ****     RTC_TimeTypeDef sTime = {0};
+  41              		.loc 1 68 5 view .LVU1
+  42              		.loc 1 68 21 is_stmt 0 view .LVU2
+  43 0004 01A9     		add	r1, sp, #4
+  44 0006 0024     		movs	r4, #0
+  45 0008 0194     		str	r4, [sp, #4]
+  46 000a 4C60     		str	r4, [r1, #4]
+  47 000c 8C60     		str	r4, [r1, #8]
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 3
 
 
-  79:Core/Src/freertos.c **** 
-  80:Core/Src/freertos.c **** /**
-  81:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
-  82:Core/Src/freertos.c ****   * @param  None
-  83:Core/Src/freertos.c ****   * @retval None
-  84:Core/Src/freertos.c ****   */
-  85:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
-  86:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
-  87:Core/Src/freertos.c **** 
-  88:Core/Src/freertos.c ****   /* USER CODE END Init */
-  89:Core/Src/freertos.c **** 
-  90:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
-  91:Core/Src/freertos.c ****   /* add mutexes, ... */
-  92:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
-  93:Core/Src/freertos.c **** 
-  94:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
-  95:Core/Src/freertos.c ****   /* add semaphores, ... */
-  96:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
-  97:Core/Src/freertos.c **** 
-  98:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
-  99:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
- 100:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
- 101:Core/Src/freertos.c **** 
- 102:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
- 103:Core/Src/freertos.c ****   /* add queues, ... */
- 104:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
- 105:Core/Src/freertos.c **** 
- 106:Core/Src/freertos.c ****   /* Create the thread(s) */
- 107:Core/Src/freertos.c ****   /* creation of defaultTask */
- 108:Core/Src/freertos.c ****   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
- 109:Core/Src/freertos.c **** 
- 110:Core/Src/freertos.c ****   /* creation of myTask02 */
- 111:Core/Src/freertos.c ****   myTask02Handle = osThreadNew(StartTask02, NULL, &myTask02_attributes);
- 112:Core/Src/freertos.c **** 
- 113:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
- 114:Core/Src/freertos.c ****   /* add threads, ... */
- 115:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
- 116:Core/Src/freertos.c **** 
- 117:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
- 118:Core/Src/freertos.c ****   /* add events, ... */
- 119:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
- 120:Core/Src/freertos.c **** 
- 121:Core/Src/freertos.c **** }
- 122:Core/Src/freertos.c **** 
- 123:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartDefaultTask */
- 124:Core/Src/freertos.c **** /**
- 125:Core/Src/freertos.c ****   * @brief  Function implementing the defaultTask thread.
- 126:Core/Src/freertos.c ****   * @param  argument: Not used
- 127:Core/Src/freertos.c ****   * @retval None
- 128:Core/Src/freertos.c ****   */
- 129:Core/Src/freertos.c **** /* USER CODE END Header_StartDefaultTask */
- 130:Core/Src/freertos.c **** void StartDefaultTask(void *argument)
- 131:Core/Src/freertos.c **** {
-  34              		.loc 1 131 1 view -0
-  35              		.cfi_startproc
-  36              		@ Volatile: function does not return.
-  37              		@ args = 0, pretend = 0, frame = 56
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 4
-
-
-  38              		@ frame_needed = 0, uses_anonymous_args = 0
-  39              		.loc 1 131 1 is_stmt 0 view .LVU1
-  40 0000 00B5     		push	{lr}
-  41              	.LCFI0:
-  42              		.cfi_def_cfa_offset 4
-  43              		.cfi_offset 14, -4
-  44 0002 95B0     		sub	sp, sp, #84
-  45              	.LCFI1:
-  46              		.cfi_def_cfa_offset 88
- 132:Core/Src/freertos.c ****   /* USER CODE BEGIN StartDefaultTask */
- 133:Core/Src/freertos.c ****   char buf[32];
-  47              		.loc 1 133 3 is_stmt 1 view .LVU2
- 134:Core/Src/freertos.c ****     RTC_TimeTypeDef sTime = {0};
-  48              		.loc 1 134 5 view .LVU3
-  49              		.loc 1 134 21 is_stmt 0 view .LVU4
-  50 0004 07A9     		add	r1, sp, #28
-  51 0006 0024     		movs	r4, #0
-  52 0008 0794     		str	r4, [sp, #28]
-  53 000a 4C60     		str	r4, [r1, #4]
-  54 000c 8C60     		str	r4, [r1, #8]
-  55 000e CC60     		str	r4, [r1, #12]
-  56 0010 0C61     		str	r4, [r1, #16]
- 135:Core/Src/freertos.c ****     RTC_DateTypeDef sDate = {0};
-  57              		.loc 1 135 5 is_stmt 1 view .LVU5
-  58              		.loc 1 135 21 is_stmt 0 view .LVU6
-  59 0012 0694     		str	r4, [sp, #24]
- 136:Core/Src/freertos.c ****     HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-  60              		.loc 1 136 5 is_stmt 1 view .LVU7
-  61 0014 1F4D     		ldr	r5, .L4
-  62 0016 2246     		mov	r2, r4
-  63 0018 2846     		mov	r0, r5
+  48 000e CC60     		str	r4, [r1, #12]
+  49 0010 0C61     		str	r4, [r1, #16]
+  69:Core/Src/freertos.c ****     RTC_DateTypeDef sDate = {0};
+  50              		.loc 1 69 5 is_stmt 1 view .LVU3
+  51              		.loc 1 69 21 is_stmt 0 view .LVU4
+  52 0012 0094     		str	r4, [sp]
+  70:Core/Src/freertos.c **** 
+  71:Core/Src/freertos.c ****     HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+  53              		.loc 1 71 5 is_stmt 1 view .LVU5
+  54 0014 0C4D     		ldr	r5, .L3
+  55 0016 2246     		mov	r2, r4
+  56 0018 2846     		mov	r0, r5
+  57 001a FFF7FEFF 		bl	HAL_RTC_GetTime
+  58              	.LVL0:
+  72:Core/Src/freertos.c ****     HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+  59              		.loc 1 72 5 view .LVU6
+  60 001e 2246     		mov	r2, r4
+  61 0020 6946     		mov	r1, sp
+  62 0022 2846     		mov	r0, r5
+  63 0024 FFF7FEFF 		bl	HAL_RTC_GetDate
   64              	.LVL1:
-  65              		.loc 1 136 5 is_stmt 0 view .LVU8
-  66 001a FFF7FEFF 		bl	HAL_RTC_SetTime
-  67              	.LVL2:
- 137:Core/Src/freertos.c ****     HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-  68              		.loc 1 137 5 is_stmt 1 view .LVU9
-  69 001e 2246     		mov	r2, r4
-  70 0020 06A9     		add	r1, sp, #24
-  71 0022 2846     		mov	r0, r5
-  72 0024 FFF7FEFF 		bl	HAL_RTC_SetDate
-  73              	.LVL3:
- 138:Core/Src/freertos.c ****     LCD_ClearArea(0, 0, 80, 80, ST7735_BLACK);
-  74              		.loc 1 138 5 view .LVU10
-  75 0028 0094     		str	r4, [sp]
-  76 002a 5023     		movs	r3, #80
-  77 002c 1A46     		mov	r2, r3
-  78 002e 2146     		mov	r1, r4
-  79 0030 2046     		mov	r0, r4
-  80 0032 FFF7FEFF 		bl	LCD_ClearArea
-  81              	.LVL4:
-  82              	.L2:
- 139:Core/Src/freertos.c ****     
- 140:Core/Src/freertos.c ****   /* Infinite loop */
- 141:Core/Src/freertos.c ****   for(;;)
-  83              		.loc 1 141 3 view .LVU11
- 142:Core/Src/freertos.c ****   { 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 5
+  73:Core/Src/freertos.c **** 
+  74:Core/Src/freertos.c ****     return (fdb_time_t)(sTime.Hours * 3600 + sTime.Minutes * 60 + sTime.Seconds);
+  65              		.loc 1 74 5 view .LVU7
+  66              		.loc 1 74 30 is_stmt 0 view .LVU8
+  67 0028 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+  68              		.loc 1 74 51 view .LVU9
+  69 002c 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+  70              		.loc 1 74 60 view .LVU10
+  71 0030 C3EB0313 		rsb	r3, r3, r3, lsl #4
+  72 0034 9800     		lsls	r0, r3, #2
+  73              		.loc 1 74 44 view .LVU11
+  74 0036 4FF46163 		mov	r3, #3600
+  75 003a 03FB0200 		mla	r0, r3, r2, r0
+  76              		.loc 1 74 72 view .LVU12
+  77 003e 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+  75:Core/Src/freertos.c **** }
+  78              		.loc 1 75 1 view .LVU13
+  79 0042 1844     		add	r0, r0, r3
+  80 0044 07B0     		add	sp, sp, #28
+  81              	.LCFI2:
+  82              		.cfi_def_cfa_offset 12
+  83              		@ sp needed
+  84 0046 30BD     		pop	{r4, r5, pc}
+  85              	.L4:
+  86              		.align	2
+  87              	.L3:
+  88 0048 00000000 		.word	hrtc
+  89              		.cfi_endproc
+  90              	.LFE235:
+  92              		.section	.rodata.MX_TSDB_Init.str1.4,"aMS",%progbits,1
+  93              		.align	2
+  94              	.LC0:
+  95 0000 6664625F 		.ascii	"fdb_ts\000"
+  95      747300
+  96 0007 00       		.align	2
+  97              	.LC1:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 4
 
 
- 143:Core/Src/freertos.c **** 
- 144:Core/Src/freertos.c **** HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-  84              		.loc 1 144 1 view .LVU12
-  85 0036 174C     		ldr	r4, .L4
-  86 0038 0022     		movs	r2, #0
-  87 003a 07A9     		add	r1, sp, #28
-  88 003c 2046     		mov	r0, r4
-  89 003e FFF7FEFF 		bl	HAL_RTC_GetTime
-  90              	.LVL5:
- 145:Core/Src/freertos.c **** HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-  91              		.loc 1 145 1 view .LVU13
-  92 0042 0022     		movs	r2, #0
-  93 0044 06A9     		add	r1, sp, #24
-  94 0046 2046     		mov	r0, r4
-  95 0048 FFF7FEFF 		bl	HAL_RTC_GetDate
-  96              	.LVL6:
- 146:Core/Src/freertos.c **** 
- 147:Core/Src/freertos.c **** snprintf(buf, sizeof(buf),
-  97              		.loc 1 147 1 view .LVU14
- 148:Core/Src/freertos.c ****          "20%02d-%02d-%02d %02d:%02d:%02d\r\n",
- 149:Core/Src/freertos.c ****          sDate.Year, sDate.Month, sDate.Date,
-  98              		.loc 1 149 27 is_stmt 0 view .LVU15
-  99 004c 9DF81930 		ldrb	r3, [sp, #25]	@ zero_extendqisi2
- 100              		.loc 1 149 40 view .LVU16
- 101 0050 9DF81A20 		ldrb	r2, [sp, #26]	@ zero_extendqisi2
- 150:Core/Src/freertos.c ****          sTime.Hours, sTime.Minutes, sTime.Seconds);
- 102              		.loc 1 150 15 view .LVU17
- 103 0054 9DF81C10 		ldrb	r1, [sp, #28]	@ zero_extendqisi2
- 104              		.loc 1 150 28 view .LVU18
- 105 0058 9DF81D00 		ldrb	r0, [sp, #29]	@ zero_extendqisi2
- 106              		.loc 1 150 43 view .LVU19
- 107 005c 9DF81E50 		ldrb	r5, [sp, #30]	@ zero_extendqisi2
- 147:Core/Src/freertos.c ****          "20%02d-%02d-%02d %02d:%02d:%02d\r\n",
- 108              		.loc 1 147 1 view .LVU20
- 109 0060 0CAC     		add	r4, sp, #48
- 110 0062 0495     		str	r5, [sp, #16]
- 111 0064 0390     		str	r0, [sp, #12]
- 112 0066 0291     		str	r1, [sp, #8]
- 113 0068 0192     		str	r2, [sp, #4]
- 114 006a 0093     		str	r3, [sp]
- 115 006c 9DF81B30 		ldrb	r3, [sp, #27]	@ zero_extendqisi2
- 116 0070 094A     		ldr	r2, .L4+4
- 117 0072 2021     		movs	r1, #32
- 118 0074 2046     		mov	r0, r4
- 119 0076 FFF7FEFF 		bl	snprintf
- 120              	.LVL7:
- 151:Core/Src/freertos.c ****     osDelay(1000);
- 121              		.loc 1 151 5 is_stmt 1 view .LVU21
- 122 007a 4FF47A70 		mov	r0, #1000
- 123 007e FFF7FEFF 		bl	osDelay
- 124              	.LVL8:
- 152:Core/Src/freertos.c ****     LCD_ShowString(0, 0, buf, ST7735_YELLOW, ST7735_BLACK); 
- 125              		.loc 1 152 5 discriminator 1 view .LVU22
- 126 0082 0020     		movs	r0, #0
- 127 0084 0090     		str	r0, [sp]
- 128 0086 4FF6E073 		movw	r3, #65504
- 129 008a 2246     		mov	r2, r4
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 6
+  98 0008 74736462 		.ascii	"tsdb1\000"
+  98      3100
+  99              		.section	.text.MX_TSDB_Init,"ax",%progbits
+ 100              		.align	1
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 105              	MX_TSDB_Init:
+ 106              	.LFB236:
+  76:Core/Src/freertos.c **** 
+  77:Core/Src/freertos.c **** static fdb_err_t MX_TSDB_Init(void)
+  78:Core/Src/freertos.c **** {
+ 107              		.loc 1 78 1 is_stmt 1 view -0
+ 108              		.cfi_startproc
+ 109              		@ args = 0, pretend = 0, frame = 0
+ 110              		@ frame_needed = 0, uses_anonymous_args = 0
+ 111 0000 00B5     		push	{lr}
+ 112              	.LCFI3:
+ 113              		.cfi_def_cfa_offset 4
+ 114              		.cfi_offset 14, -4
+ 115 0002 83B0     		sub	sp, sp, #12
+ 116              	.LCFI4:
+ 117              		.cfi_def_cfa_offset 16
+  79:Core/Src/freertos.c ****     return fdb_tsdb_init(&tsdb, "tsdb1", "fdb_ts", tsdb_get_time, sizeof(sensor_log_t), NULL);
+ 118              		.loc 1 79 5 view .LVU15
+ 119              		.loc 1 79 12 is_stmt 0 view .LVU16
+ 120 0004 0023     		movs	r3, #0
+ 121 0006 0193     		str	r3, [sp, #4]
+ 122 0008 0823     		movs	r3, #8
+ 123 000a 0093     		str	r3, [sp]
+ 124 000c 044B     		ldr	r3, .L7
+ 125 000e 054A     		ldr	r2, .L7+4
+ 126 0010 0549     		ldr	r1, .L7+8
+ 127 0012 0648     		ldr	r0, .L7+12
+ 128 0014 FFF7FEFF 		bl	fdb_tsdb_init
+ 129              	.LVL2:
+  80:Core/Src/freertos.c **** }
+ 130              		.loc 1 80 1 view .LVU17
+ 131 0018 03B0     		add	sp, sp, #12
+ 132              	.LCFI5:
+ 133              		.cfi_def_cfa_offset 4
+ 134              		@ sp needed
+ 135 001a 5DF804FB 		ldr	pc, [sp], #4
+ 136              	.L8:
+ 137 001e 00BF     		.align	2
+ 138              	.L7:
+ 139 0020 00000000 		.word	tsdb_get_time
+ 140 0024 00000000 		.word	.LC0
+ 141 0028 08000000 		.word	.LC1
+ 142 002c 00000000 		.word	tsdb
+ 143              		.cfi_endproc
+ 144              	.LFE236:
+ 146              		.section	.text.TSDB_Read_All,"ax",%progbits
+ 147              		.align	1
+ 148              		.syntax unified
+ 149              		.thumb
+ 150              		.thumb_func
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 5
 
 
- 130 008c 0146     		mov	r1, r0
- 131 008e FFF7FEFF 		bl	LCD_ShowString
- 132              	.LVL9:
- 141:Core/Src/freertos.c ****   { 
- 133              		.loc 1 141 3 view .LVU23
- 134 0092 D0E7     		b	.L2
- 135              	.L5:
- 136              		.align	2
- 137              	.L4:
- 138 0094 00000000 		.word	hrtc
- 139 0098 00000000 		.word	.LC0
- 140              		.cfi_endproc
- 141              	.LFE236:
- 143              		.section	.text.StartTask02,"ax",%progbits
- 144              		.align	1
- 145              		.global	StartTask02
- 146              		.syntax unified
- 147              		.thumb
- 148              		.thumb_func
- 150              	StartTask02:
- 151              	.LFB237:
- 153:Core/Src/freertos.c ****   }
- 154:Core/Src/freertos.c ****   /* USER CODE END StartDefaultTask */
- 155:Core/Src/freertos.c **** }
- 156:Core/Src/freertos.c **** 
- 157:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartTask02 */
- 158:Core/Src/freertos.c **** /**
- 159:Core/Src/freertos.c **** * @brief Function implementing the myTask02 thread.
- 160:Core/Src/freertos.c **** * @param argument: Not used
- 161:Core/Src/freertos.c **** * @retval None
- 162:Core/Src/freertos.c **** */
- 163:Core/Src/freertos.c **** /* USER CODE END Header_StartTask02 */
- 164:Core/Src/freertos.c **** void StartTask02(void *argument)
- 165:Core/Src/freertos.c **** {
- 152              		.loc 1 165 1 view -0
- 153              		.cfi_startproc
- 154              		@ args = 0, pretend = 0, frame = 0
- 155              		@ frame_needed = 0, uses_anonymous_args = 0
- 156              	.LVL10:
- 157              		.loc 1 165 1 is_stmt 0 view .LVU25
+ 152              	TSDB_Read_All:
+ 153              	.LFB239:
+  81:Core/Src/freertos.c **** 
+  82:Core/Src/freertos.c **** static void TSDB_Append_One(int temp, int humi)
+  83:Core/Src/freertos.c **** {
+  84:Core/Src/freertos.c ****     sensor_log_t log_data;
+  85:Core/Src/freertos.c ****     struct fdb_blob blob;
+  86:Core/Src/freertos.c **** 
+  87:Core/Src/freertos.c ****     log_data.temp = temp;
+  88:Core/Src/freertos.c ****     log_data.humi = humi;
+  89:Core/Src/freertos.c **** 
+  90:Core/Src/freertos.c ****     fdb_tsl_append(&tsdb, fdb_blob_make(&blob, &log_data, sizeof(log_data)));
+  91:Core/Src/freertos.c **** }
+  92:Core/Src/freertos.c **** 
+  93:Core/Src/freertos.c **** static bool tsdb_query_cb(fdb_tsl_t tsl, void *arg)
+  94:Core/Src/freertos.c **** {
+  95:Core/Src/freertos.c ****     sensor_log_t log_data;
+  96:Core/Src/freertos.c ****     struct fdb_blob blob;
+  97:Core/Src/freertos.c ****     char msg[128];
+  98:Core/Src/freertos.c **** 
+  99:Core/Src/freertos.c ****     fdb_blob_read((fdb_db_t)&tsdb,
+ 100:Core/Src/freertos.c ****                   fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &log_data, sizeof(log_data))));
+ 101:Core/Src/freertos.c **** 
+ 102:Core/Src/freertos.c ****     snprintf(msg, sizeof(msg),
+ 103:Core/Src/freertos.c ****              "TSDB: ts=%ld temp=%d humi=%d\r\n",
+ 104:Core/Src/freertos.c ****              (long)tsl->time,
+ 105:Core/Src/freertos.c ****              log_data.temp,
+ 106:Core/Src/freertos.c ****              log_data.humi);
+ 107:Core/Src/freertos.c **** 
+ 108:Core/Src/freertos.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 109:Core/Src/freertos.c **** 
+ 110:Core/Src/freertos.c ****     return false;
+ 111:Core/Src/freertos.c **** }
+ 112:Core/Src/freertos.c **** 
+ 113:Core/Src/freertos.c **** static void TSDB_Read_All(void)
+ 114:Core/Src/freertos.c **** {
+ 154              		.loc 1 114 1 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
  158 0000 08B5     		push	{r3, lr}
- 159              	.LCFI2:
+ 159              	.LCFI6:
  160              		.cfi_def_cfa_offset 8
  161              		.cfi_offset 3, -8
  162              		.cfi_offset 14, -4
- 163              	.LVL11:
- 164              	.L7:
- 166:Core/Src/freertos.c ****   /* USER CODE BEGIN StartTask02 */
- 167:Core/Src/freertos.c ****   uint8_t cc = 1; 
- 168:Core/Src/freertos.c ****   /* Infinite loop */
- 169:Core/Src/freertos.c ****   for(;;)
- 165              		.loc 1 169 3 is_stmt 1 view .LVU26
- 170:Core/Src/freertos.c ****   {
- 171:Core/Src/freertos.c ****     //LCD_ShowUInt(0, 80, cc, ST7735_GREEN, ST7735_WHITE);
- 172:Core/Src/freertos.c ****     osDelay(100);
- 166              		.loc 1 172 5 view .LVU27
- 167 0002 6420     		movs	r0, #100
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 7
+ 115:Core/Src/freertos.c ****     fdb_tsl_iter(&tsdb, tsdb_query_cb, NULL);
+ 163              		.loc 1 115 5 view .LVU19
+ 164 0002 0022     		movs	r2, #0
+ 165 0004 0249     		ldr	r1, .L11
+ 166 0006 0348     		ldr	r0, .L11+4
+ 167 0008 FFF7FEFF 		bl	fdb_tsl_iter
+ 168              	.LVL3:
+ 116:Core/Src/freertos.c **** }
+ 169              		.loc 1 116 1 is_stmt 0 view .LVU20
+ 170 000c 08BD     		pop	{r3, pc}
+ 171              	.L12:
+ 172 000e 00BF     		.align	2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 6
 
 
- 168 0004 FFF7FEFF 		bl	osDelay
- 169              	.LVL12:
- 173:Core/Src/freertos.c ****     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_9);
- 170              		.loc 1 173 5 view .LVU28
- 171 0008 4FF40071 		mov	r1, #512
- 172 000c 0148     		ldr	r0, .L9
- 173 000e FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 174              	.LVL13:
- 174:Core/Src/freertos.c ****     cc++;
- 175              		.loc 1 174 5 discriminator 1 view .LVU29
- 169:Core/Src/freertos.c ****   {
- 176              		.loc 1 169 3 view .LVU30
- 177 0012 F6E7     		b	.L7
- 178              	.L10:
- 179              		.align	2
- 180              	.L9:
- 181 0014 00040048 		.word	1207960576
- 182              		.cfi_endproc
- 183              	.LFE237:
- 185              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
- 186              		.align	1
- 187              		.global	MX_FREERTOS_Init
- 188              		.syntax unified
- 189              		.thumb
- 190              		.thumb_func
- 192              	MX_FREERTOS_Init:
- 193              	.LFB235:
-  85:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
- 194              		.loc 1 85 29 view -0
- 195              		.cfi_startproc
- 196              		@ args = 0, pretend = 0, frame = 0
- 197              		@ frame_needed = 0, uses_anonymous_args = 0
- 198 0000 08B5     		push	{r3, lr}
- 199              	.LCFI3:
- 200              		.cfi_def_cfa_offset 8
- 201              		.cfi_offset 3, -8
- 202              		.cfi_offset 14, -4
+ 173              	.L11:
+ 174 0010 00000000 		.word	tsdb_query_cb
+ 175 0014 00000000 		.word	tsdb
+ 176              		.cfi_endproc
+ 177              	.LFE239:
+ 179              		.section	.rodata.StartDefaultTask.str1.4,"aMS",%progbits,1
+ 180              		.align	2
+ 181              	.LC2:
+ 182 0000 6664625F 		.ascii	"fdb_tsdb_init = %d\015\012\000"
+ 182      74736462 
+ 182      5F696E69 
+ 182      74203D20 
+ 182      25640D0A 
+ 183 0015 000000   		.align	2
+ 184              	.LC3:
+ 185 0018 32302530 		.ascii	"20%02d-%02d-%02d %02d:%02d:%02d\015\012\000"
+ 185      32642D25 
+ 185      3032642D 
+ 185      25303264 
+ 185      20253032 
+ 186 003a 0000     		.align	2
+ 187              	.LC4:
+ 188 003c 61707065 		.ascii	"append ret=%d temp=%d humi=%d sec=%d\015\012\000"
+ 188      6E642072 
+ 188      65743D25 
+ 188      64207465 
+ 188      6D703D25 
+ 189 0063 00       		.align	2
+ 190              	.LC5:
+ 191 0064 72656164 		.ascii	"read all tsdb\015\012\000"
+ 191      20616C6C 
+ 191      20747364 
+ 191      620D0A00 
+ 192              		.section	.text.StartDefaultTask,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	StartDefaultTask
+ 195              		.syntax unified
+ 196              		.thumb
+ 197              		.thumb_func
+ 199              	StartDefaultTask:
+ 200              	.LVL4:
+ 201              	.LFB241:
+ 117:Core/Src/freertos.c **** /* USER CODE END Variables */
+ 118:Core/Src/freertos.c **** /* Definitions for defaultTask */
+ 119:Core/Src/freertos.c **** osThreadId_t defaultTaskHandle;
+ 120:Core/Src/freertos.c **** const osThreadAttr_t defaultTask_attributes = {
+ 121:Core/Src/freertos.c ****   .name = "defaultTask",
+ 122:Core/Src/freertos.c ****   .stack_size = 512 * 4,
+ 123:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+ 124:Core/Src/freertos.c **** };
+ 125:Core/Src/freertos.c **** /* Definitions for myTask02 */
+ 126:Core/Src/freertos.c **** osThreadId_t myTask02Handle;
+ 127:Core/Src/freertos.c **** const osThreadAttr_t myTask02_attributes = {
+ 128:Core/Src/freertos.c ****   .name = "myTask02",
+ 129:Core/Src/freertos.c ****   .stack_size = 256 * 4,
+ 130:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityLow,
+ 131:Core/Src/freertos.c **** };
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 7
+
+
+ 132:Core/Src/freertos.c **** 
+ 133:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+ 134:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+ 135:Core/Src/freertos.c **** 
+ 136:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+ 137:Core/Src/freertos.c **** 
+ 138:Core/Src/freertos.c **** void StartDefaultTask(void *argument);
+ 139:Core/Src/freertos.c **** void StartTask02(void *argument);
+ 140:Core/Src/freertos.c **** 
+ 141:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+ 142:Core/Src/freertos.c **** 
+ 143:Core/Src/freertos.c **** /**
+ 144:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
+ 145:Core/Src/freertos.c ****   * @param  None
+ 146:Core/Src/freertos.c ****   * @retval None
+ 147:Core/Src/freertos.c ****   */
+ 148:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
+ 149:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 150:Core/Src/freertos.c **** 
+ 151:Core/Src/freertos.c ****   /* USER CODE END Init */
+ 152:Core/Src/freertos.c **** 
+ 153:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+ 154:Core/Src/freertos.c ****   /* add mutexes, ... */
+ 155:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+ 156:Core/Src/freertos.c **** 
+ 157:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ 158:Core/Src/freertos.c ****   /* add semaphores, ... */
+ 159:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+ 160:Core/Src/freertos.c **** 
+ 161:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+ 162:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+ 163:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+ 164:Core/Src/freertos.c **** 
+ 165:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 166:Core/Src/freertos.c ****   /* add queues, ... */
+ 167:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 168:Core/Src/freertos.c **** 
+ 169:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 170:Core/Src/freertos.c ****   /* creation of defaultTask */
+ 171:Core/Src/freertos.c ****   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+ 172:Core/Src/freertos.c **** 
+ 173:Core/Src/freertos.c ****   /* creation of myTask02 */
+ 174:Core/Src/freertos.c ****   myTask02Handle = osThreadNew(StartTask02, NULL, &myTask02_attributes);
+ 175:Core/Src/freertos.c **** 
+ 176:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 177:Core/Src/freertos.c ****   /* add threads, ... */
+ 178:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 179:Core/Src/freertos.c **** 
+ 180:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 181:Core/Src/freertos.c ****   /* add events, ... */
+ 182:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 183:Core/Src/freertos.c **** 
+ 184:Core/Src/freertos.c **** }
+ 185:Core/Src/freertos.c **** 
+ 186:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartDefaultTask */
+ 187:Core/Src/freertos.c **** void StartDefaultTask(void *argument)
+ 188:Core/Src/freertos.c **** {
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 8
+
+
+ 202              		.loc 1 188 1 is_stmt 1 view -0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 216
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206              		.loc 1 188 1 is_stmt 0 view .LVU22
+ 207 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 208              	.LCFI7:
+ 209              		.cfi_def_cfa_offset 20
+ 210              		.cfi_offset 4, -20
+ 211              		.cfi_offset 5, -16
+ 212              		.cfi_offset 6, -12
+ 213              		.cfi_offset 7, -8
+ 214              		.cfi_offset 14, -4
+ 215 0002 BDB0     		sub	sp, sp, #244
+ 216              	.LCFI8:
+ 217              		.cfi_def_cfa_offset 264
+ 189:Core/Src/freertos.c ****   char buf[32];
+ 218              		.loc 1 189 3 is_stmt 1 view .LVU23
+ 190:Core/Src/freertos.c ****   char msg[128];
+ 219              		.loc 1 190 3 view .LVU24
+ 191:Core/Src/freertos.c ****   RTC_TimeTypeDef sTime = {0};
+ 220              		.loc 1 191 3 view .LVU25
+ 221              		.loc 1 191 19 is_stmt 0 view .LVU26
+ 222 0004 0020     		movs	r0, #0
+ 223              	.LVL5:
+ 224              		.loc 1 191 19 view .LVU27
+ 225 0006 0F90     		str	r0, [sp, #60]
+ 226 0008 1090     		str	r0, [sp, #64]
+ 227 000a 1190     		str	r0, [sp, #68]
+ 228 000c 1290     		str	r0, [sp, #72]
+ 229 000e 1390     		str	r0, [sp, #76]
+ 192:Core/Src/freertos.c ****   RTC_DateTypeDef sDate = {0};
+ 230              		.loc 1 192 3 is_stmt 1 view .LVU28
+ 231              		.loc 1 192 19 is_stmt 0 view .LVU29
+ 232 0010 0E90     		str	r0, [sp, #56]
+ 193:Core/Src/freertos.c ****   uint32_t sample_cnt = 0;
+ 233              		.loc 1 193 3 is_stmt 1 view .LVU30
+ 234              	.LVL6:
+ 194:Core/Src/freertos.c ****   uint8_t last_log_sec = 255;
+ 235              		.loc 1 194 3 view .LVU31
+ 195:Core/Src/freertos.c ****   fdb_err_t ts_ret;
+ 236              		.loc 1 195 3 view .LVU32
+ 196:Core/Src/freertos.c **** 
+ 197:Core/Src/freertos.c ****   LCD_ClearArea(0, 0, 80, 80, ST7735_BLACK);
+ 237              		.loc 1 197 3 view .LVU33
+ 238 0012 0090     		str	r0, [sp]
+ 239 0014 5023     		movs	r3, #80
+ 240 0016 1A46     		mov	r2, r3
+ 241 0018 0146     		mov	r1, r0
+ 242 001a FFF7FEFF 		bl	LCD_ClearArea
+ 243              	.LVL7:
+ 198:Core/Src/freertos.c **** 
+ 199:Core/Src/freertos.c ****   ts_ret = MX_TSDB_Init();
+ 244              		.loc 1 199 3 view .LVU34
+ 245              		.loc 1 199 12 is_stmt 0 view .LVU35
+ 246 001e FFF7FEFF 		bl	MX_TSDB_Init
+ 247              	.LVL8:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 9
+
+
+ 248 0022 0446     		mov	r4, r0
+ 249              	.LVL9:
+ 200:Core/Src/freertos.c ****   snprintf(msg, sizeof(msg), "fdb_tsdb_init = %d\r\n", ts_ret);
+ 250              		.loc 1 200 3 is_stmt 1 view .LVU36
+ 251 0024 14AD     		add	r5, sp, #80
+ 252 0026 0346     		mov	r3, r0
+ 253 0028 4C4A     		ldr	r2, .L21
+ 254 002a 8021     		movs	r1, #128
+ 255 002c 2846     		mov	r0, r5
+ 256              	.LVL10:
+ 257              		.loc 1 200 3 is_stmt 0 view .LVU37
+ 258 002e FFF7FEFF 		bl	snprintf
+ 259              	.LVL11:
+ 201:Core/Src/freertos.c ****   HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 260              		.loc 1 201 3 is_stmt 1 view .LVU38
+ 261              		.loc 1 201 46 is_stmt 0 view .LVU39
+ 262 0032 2846     		mov	r0, r5
+ 263 0034 FFF7FEFF 		bl	strlen
+ 264              	.LVL12:
+ 265              		.loc 1 201 3 discriminator 1 view .LVU40
+ 266 0038 4FF0FF33 		mov	r3, #-1
+ 267 003c 82B2     		uxth	r2, r0
+ 268 003e 2946     		mov	r1, r5
+ 269 0040 4748     		ldr	r0, .L21+4
+ 270 0042 FFF7FEFF 		bl	HAL_UART_Transmit
+ 271              	.LVL13:
+ 202:Core/Src/freertos.c **** 
+ 203:Core/Src/freertos.c ****   if (ts_ret == FDB_NO_ERR)
+ 272              		.loc 1 203 3 is_stmt 1 view .LVU41
+ 273              		.loc 1 203 6 is_stmt 0 view .LVU42
+ 274 0046 14B9     		cbnz	r4, .L14
+ 204:Core/Src/freertos.c ****   {
+ 205:Core/Src/freertos.c ****       tsdb_inited = 1;
+ 275              		.loc 1 205 7 is_stmt 1 view .LVU43
+ 276              		.loc 1 205 19 is_stmt 0 view .LVU44
+ 277 0048 464B     		ldr	r3, .L21+8
+ 278 004a 0122     		movs	r2, #1
+ 279 004c 1A70     		strb	r2, [r3]
+ 280              	.L14:
+ 188:Core/Src/freertos.c ****   char buf[32];
+ 281              		.loc 1 188 1 view .LVU45
+ 282 004e FF24     		movs	r4, #255
+ 283 0050 0025     		movs	r5, #0
+ 284 0052 11E0     		b	.L18
+ 285              	.LVL14:
+ 286              	.L15:
+ 206:Core/Src/freertos.c ****   }
+ 207:Core/Src/freertos.c **** 
+ 208:Core/Src/freertos.c ****   for(;;)
+ 209:Core/Src/freertos.c ****   {
+ 210:Core/Src/freertos.c ****     HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+ 211:Core/Src/freertos.c ****     HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+ 212:Core/Src/freertos.c **** 
+ 213:Core/Src/freertos.c ****     snprintf(buf, sizeof(buf),
+ 214:Core/Src/freertos.c ****              "20%02d-%02d-%02d %02d:%02d:%02d\r\n",
+ 215:Core/Src/freertos.c ****              sDate.Year, sDate.Month, sDate.Date,
+ 216:Core/Src/freertos.c ****              sTime.Hours, sTime.Minutes, sTime.Seconds);
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 10
+
+
+ 217:Core/Src/freertos.c **** 
+ 218:Core/Src/freertos.c ****     LCD_ShowString(0, 0, buf, ST7735_YELLOW, ST7735_BLACK);
+ 219:Core/Src/freertos.c **** 
+ 220:Core/Src/freertos.c ****     if (tsdb_inited && (sTime.Seconds % 5 == 0) && (sTime.Seconds != last_log_sec))
+ 221:Core/Src/freertos.c ****     {
+ 222:Core/Src/freertos.c ****         int temp_demo = 250 + sample_cnt;
+ 223:Core/Src/freertos.c ****         int humi_demo = 600 + sample_cnt;
+ 224:Core/Src/freertos.c ****         fdb_err_t append_ret;
+ 225:Core/Src/freertos.c ****         sensor_log_t log_data;
+ 226:Core/Src/freertos.c ****         struct fdb_blob blob;
+ 227:Core/Src/freertos.c **** 
+ 228:Core/Src/freertos.c ****         log_data.temp = temp_demo;
+ 229:Core/Src/freertos.c ****         log_data.humi = humi_demo;
+ 230:Core/Src/freertos.c **** 
+ 231:Core/Src/freertos.c ****         append_ret = fdb_tsl_append(&tsdb, fdb_blob_make(&blob, &log_data, sizeof(log_data)));
+ 232:Core/Src/freertos.c **** 
+ 233:Core/Src/freertos.c ****         snprintf(msg, sizeof(msg),
+ 234:Core/Src/freertos.c ****                  "append ret=%d temp=%d humi=%d sec=%d\r\n",
+ 235:Core/Src/freertos.c ****                  append_ret, temp_demo, humi_demo, sTime.Seconds);
+ 236:Core/Src/freertos.c ****         HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 237:Core/Src/freertos.c **** 
+ 238:Core/Src/freertos.c ****         sample_cnt++;
+ 239:Core/Src/freertos.c ****         last_log_sec = sTime.Seconds;
+ 240:Core/Src/freertos.c **** 
+ 241:Core/Src/freertos.c ****         if (sample_cnt == 3)
+ 242:Core/Src/freertos.c ****         {
+ 243:Core/Src/freertos.c ****             HAL_UART_Transmit(&huart1, (uint8_t *)"read all tsdb\r\n",
+ 244:Core/Src/freertos.c ****                               strlen("read all tsdb\r\n"), HAL_MAX_DELAY);
+ 245:Core/Src/freertos.c ****             TSDB_Read_All();
+ 246:Core/Src/freertos.c ****         }
+ 247:Core/Src/freertos.c ****     }
+ 248:Core/Src/freertos.c **** 
+ 249:Core/Src/freertos.c ****     if (sTime.Seconds % 5 != 0)
+ 287              		.loc 1 249 5 is_stmt 1 view .LVU46
+ 288              		.loc 1 249 14 is_stmt 0 view .LVU47
+ 289 0054 9DF83E30 		ldrb	r3, [sp, #62]	@ zero_extendqisi2
+ 290              		.loc 1 249 27 view .LVU48
+ 291 0058 434A     		ldr	r2, .L21+12
+ 292 005a A2FB0312 		umull	r1, r2, r2, r3
+ 293 005e 02F0FC01 		and	r1, r2, #252
+ 294 0062 01EB9202 		add	r2, r1, r2, lsr #2
+ 295 0066 9B1A     		subs	r3, r3, r2
+ 296              		.loc 1 249 8 view .LVU49
+ 297 0068 13F0FF0F 		tst	r3, #255
+ 298 006c 00D0     		beq	.L17
+ 250:Core/Src/freertos.c ****     {
+ 251:Core/Src/freertos.c ****         last_log_sec = 255;
+ 299              		.loc 1 251 22 view .LVU50
+ 300 006e FF24     		movs	r4, #255
+ 301              	.LVL15:
+ 302              	.L17:
+ 252:Core/Src/freertos.c ****     }
+ 253:Core/Src/freertos.c **** 
+ 254:Core/Src/freertos.c ****     osDelay(1000);
+ 303              		.loc 1 254 5 is_stmt 1 view .LVU51
+ 304 0070 4FF47A70 		mov	r0, #1000
+ 305 0074 FFF7FEFF 		bl	osDelay
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 11
+
+
+ 306              	.LVL16:
+ 208:Core/Src/freertos.c ****   {
+ 307              		.loc 1 208 3 view .LVU52
+ 308              	.L18:
+ 208:Core/Src/freertos.c ****   {
+ 309              		.loc 1 208 3 view .LVU53
+ 210:Core/Src/freertos.c ****     HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+ 310              		.loc 1 210 5 view .LVU54
+ 311 0078 3C4E     		ldr	r6, .L21+16
+ 312 007a 0022     		movs	r2, #0
+ 313 007c 0FA9     		add	r1, sp, #60
+ 314 007e 3046     		mov	r0, r6
+ 315 0080 FFF7FEFF 		bl	HAL_RTC_GetTime
+ 316              	.LVL17:
+ 211:Core/Src/freertos.c **** 
+ 317              		.loc 1 211 5 view .LVU55
+ 318 0084 0022     		movs	r2, #0
+ 319 0086 0EA9     		add	r1, sp, #56
+ 320 0088 3046     		mov	r0, r6
+ 321 008a FFF7FEFF 		bl	HAL_RTC_GetDate
+ 322              	.LVL18:
+ 213:Core/Src/freertos.c ****              "20%02d-%02d-%02d %02d:%02d:%02d\r\n",
+ 323              		.loc 1 213 5 view .LVU56
+ 215:Core/Src/freertos.c ****              sTime.Hours, sTime.Minutes, sTime.Seconds);
+ 324              		.loc 1 215 31 is_stmt 0 view .LVU57
+ 325 008e 9DF83930 		ldrb	r3, [sp, #57]	@ zero_extendqisi2
+ 215:Core/Src/freertos.c ****              sTime.Hours, sTime.Minutes, sTime.Seconds);
+ 326              		.loc 1 215 44 view .LVU58
+ 327 0092 9DF83A20 		ldrb	r2, [sp, #58]	@ zero_extendqisi2
+ 216:Core/Src/freertos.c **** 
+ 328              		.loc 1 216 19 view .LVU59
+ 329 0096 9DF83C10 		ldrb	r1, [sp, #60]	@ zero_extendqisi2
+ 216:Core/Src/freertos.c **** 
+ 330              		.loc 1 216 32 view .LVU60
+ 331 009a 9DF83D00 		ldrb	r0, [sp, #61]	@ zero_extendqisi2
+ 216:Core/Src/freertos.c **** 
+ 332              		.loc 1 216 47 view .LVU61
+ 333 009e 9DF83E70 		ldrb	r7, [sp, #62]	@ zero_extendqisi2
+ 213:Core/Src/freertos.c ****              "20%02d-%02d-%02d %02d:%02d:%02d\r\n",
+ 334              		.loc 1 213 5 view .LVU62
+ 335 00a2 34AE     		add	r6, sp, #208
+ 336 00a4 0497     		str	r7, [sp, #16]
+ 337 00a6 0390     		str	r0, [sp, #12]
+ 338 00a8 0291     		str	r1, [sp, #8]
+ 339 00aa 0192     		str	r2, [sp, #4]
+ 340 00ac 0093     		str	r3, [sp]
+ 341 00ae 9DF83B30 		ldrb	r3, [sp, #59]	@ zero_extendqisi2
+ 342 00b2 2F4A     		ldr	r2, .L21+20
+ 343 00b4 2021     		movs	r1, #32
+ 344 00b6 3046     		mov	r0, r6
+ 345 00b8 FFF7FEFF 		bl	snprintf
+ 346              	.LVL19:
+ 218:Core/Src/freertos.c **** 
+ 347              		.loc 1 218 5 is_stmt 1 view .LVU63
+ 348 00bc 0020     		movs	r0, #0
+ 349 00be 0090     		str	r0, [sp]
+ 350 00c0 4FF6E073 		movw	r3, #65504
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 12
+
+
+ 351 00c4 3246     		mov	r2, r6
+ 352 00c6 0146     		mov	r1, r0
+ 353 00c8 FFF7FEFF 		bl	LCD_ShowString
+ 354              	.LVL20:
+ 220:Core/Src/freertos.c ****     {
+ 355              		.loc 1 220 5 view .LVU64
+ 220:Core/Src/freertos.c ****     {
+ 356              		.loc 1 220 9 is_stmt 0 view .LVU65
+ 357 00cc 254B     		ldr	r3, .L21+8
+ 358 00ce 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 220:Core/Src/freertos.c ****     {
+ 359              		.loc 1 220 8 view .LVU66
+ 360 00d0 002B     		cmp	r3, #0
+ 361 00d2 BFD0     		beq	.L15
+ 220:Core/Src/freertos.c ****     {
+ 362              		.loc 1 220 30 discriminator 1 view .LVU67
+ 363 00d4 9DF83E10 		ldrb	r1, [sp, #62]	@ zero_extendqisi2
+ 220:Core/Src/freertos.c ****     {
+ 364              		.loc 1 220 43 discriminator 1 view .LVU68
+ 365 00d8 234A     		ldr	r2, .L21+12
+ 366 00da A2FB0132 		umull	r3, r2, r2, r1
+ 367 00de 02F0FC03 		and	r3, r2, #252
+ 368 00e2 03EB9203 		add	r3, r3, r2, lsr #2
+ 369 00e6 CB1A     		subs	r3, r1, r3
+ 220:Core/Src/freertos.c ****     {
+ 370              		.loc 1 220 21 discriminator 1 view .LVU69
+ 371 00e8 13F0FF0F 		tst	r3, #255
+ 372 00ec B2D1     		bne	.L15
+ 220:Core/Src/freertos.c ****     {
+ 373              		.loc 1 220 49 discriminator 2 view .LVU70
+ 374 00ee A142     		cmp	r1, r4
+ 375 00f0 B0D0     		beq	.L15
+ 376              	.LBB2:
+ 222:Core/Src/freertos.c ****         int humi_demo = 600 + sample_cnt;
+ 377              		.loc 1 222 9 is_stmt 1 view .LVU71
+ 222:Core/Src/freertos.c ****         int humi_demo = 600 + sample_cnt;
+ 378              		.loc 1 222 29 is_stmt 0 view .LVU72
+ 379 00f2 05F1FA06 		add	r6, r5, #250
+ 380              	.LVL21:
+ 223:Core/Src/freertos.c ****         fdb_err_t append_ret;
+ 381              		.loc 1 223 9 is_stmt 1 view .LVU73
+ 223:Core/Src/freertos.c ****         fdb_err_t append_ret;
+ 382              		.loc 1 223 29 is_stmt 0 view .LVU74
+ 383 00f6 05F51677 		add	r7, r5, #600
+ 384              	.LVL22:
+ 224:Core/Src/freertos.c ****         sensor_log_t log_data;
+ 385              		.loc 1 224 9 is_stmt 1 view .LVU75
+ 225:Core/Src/freertos.c ****         struct fdb_blob blob;
+ 386              		.loc 1 225 9 view .LVU76
+ 226:Core/Src/freertos.c **** 
+ 387              		.loc 1 226 9 view .LVU77
+ 228:Core/Src/freertos.c ****         log_data.humi = humi_demo;
+ 388              		.loc 1 228 9 view .LVU78
+ 228:Core/Src/freertos.c ****         log_data.humi = humi_demo;
+ 389              		.loc 1 228 23 is_stmt 0 view .LVU79
+ 390 00fa 0796     		str	r6, [sp, #28]
+ 229:Core/Src/freertos.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 13
+
+
+ 391              		.loc 1 229 9 is_stmt 1 view .LVU80
+ 229:Core/Src/freertos.c **** 
+ 392              		.loc 1 229 23 is_stmt 0 view .LVU81
+ 393 00fc 0897     		str	r7, [sp, #32]
+ 231:Core/Src/freertos.c **** 
+ 394              		.loc 1 231 9 is_stmt 1 view .LVU82
+ 231:Core/Src/freertos.c **** 
+ 395              		.loc 1 231 22 is_stmt 0 view .LVU83
+ 396 00fe 0822     		movs	r2, #8
+ 397 0100 07A9     		add	r1, sp, #28
+ 398 0102 09A8     		add	r0, sp, #36
+ 399 0104 FFF7FEFF 		bl	fdb_blob_make
+ 400              	.LVL23:
+ 401 0108 0146     		mov	r1, r0
+ 231:Core/Src/freertos.c **** 
+ 402              		.loc 1 231 22 discriminator 1 view .LVU84
+ 403 010a 1A48     		ldr	r0, .L21+24
+ 404 010c FFF7FEFF 		bl	fdb_tsl_append
+ 405              	.LVL24:
+ 406 0110 0346     		mov	r3, r0
+ 407              	.LVL25:
+ 233:Core/Src/freertos.c ****                  "append ret=%d temp=%d humi=%d sec=%d\r\n",
+ 408              		.loc 1 233 9 is_stmt 1 view .LVU85
+ 235:Core/Src/freertos.c ****         HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+ 409              		.loc 1 235 57 is_stmt 0 view .LVU86
+ 410 0112 9DF83E20 		ldrb	r2, [sp, #62]	@ zero_extendqisi2
+ 233:Core/Src/freertos.c ****                  "append ret=%d temp=%d humi=%d sec=%d\r\n",
+ 411              		.loc 1 233 9 view .LVU87
+ 412 0116 14AC     		add	r4, sp, #80
+ 413              	.LVL26:
+ 233:Core/Src/freertos.c ****                  "append ret=%d temp=%d humi=%d sec=%d\r\n",
+ 414              		.loc 1 233 9 view .LVU88
+ 415 0118 0292     		str	r2, [sp, #8]
+ 416 011a 0197     		str	r7, [sp, #4]
+ 417 011c 0096     		str	r6, [sp]
+ 418 011e 164A     		ldr	r2, .L21+28
+ 419 0120 8021     		movs	r1, #128
+ 420 0122 2046     		mov	r0, r4
+ 421 0124 FFF7FEFF 		bl	snprintf
+ 422              	.LVL27:
+ 236:Core/Src/freertos.c **** 
+ 423              		.loc 1 236 9 is_stmt 1 view .LVU89
+ 236:Core/Src/freertos.c **** 
+ 424              		.loc 1 236 52 is_stmt 0 view .LVU90
+ 425 0128 2046     		mov	r0, r4
+ 426 012a FFF7FEFF 		bl	strlen
+ 427              	.LVL28:
+ 236:Core/Src/freertos.c **** 
+ 428              		.loc 1 236 9 discriminator 1 view .LVU91
+ 429 012e 4FF0FF33 		mov	r3, #-1
+ 430 0132 82B2     		uxth	r2, r0
+ 431 0134 2146     		mov	r1, r4
+ 432 0136 0A48     		ldr	r0, .L21+4
+ 433 0138 FFF7FEFF 		bl	HAL_UART_Transmit
+ 434              	.LVL29:
+ 238:Core/Src/freertos.c ****         last_log_sec = sTime.Seconds;
+ 435              		.loc 1 238 9 is_stmt 1 view .LVU92
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 14
+
+
+ 238:Core/Src/freertos.c ****         last_log_sec = sTime.Seconds;
+ 436              		.loc 1 238 19 is_stmt 0 view .LVU93
+ 437 013c 0135     		adds	r5, r5, #1
+ 438              	.LVL30:
+ 239:Core/Src/freertos.c **** 
+ 439              		.loc 1 239 9 is_stmt 1 view .LVU94
+ 239:Core/Src/freertos.c **** 
+ 440              		.loc 1 239 22 is_stmt 0 view .LVU95
+ 441 013e 9DF83E40 		ldrb	r4, [sp, #62]	@ zero_extendqisi2
+ 442              	.LVL31:
+ 241:Core/Src/freertos.c ****         {
+ 443              		.loc 1 241 9 is_stmt 1 view .LVU96
+ 241:Core/Src/freertos.c ****         {
+ 444              		.loc 1 241 12 is_stmt 0 view .LVU97
+ 445 0142 032D     		cmp	r5, #3
+ 446 0144 86D1     		bne	.L15
+ 243:Core/Src/freertos.c ****                               strlen("read all tsdb\r\n"), HAL_MAX_DELAY);
+ 447              		.loc 1 243 13 is_stmt 1 view .LVU98
+ 448 0146 4FF0FF33 		mov	r3, #-1
+ 449 014a 0F22     		movs	r2, #15
+ 450 014c 0B49     		ldr	r1, .L21+32
+ 451 014e 0448     		ldr	r0, .L21+4
+ 452 0150 FFF7FEFF 		bl	HAL_UART_Transmit
+ 453              	.LVL32:
+ 245:Core/Src/freertos.c ****         }
+ 454              		.loc 1 245 13 view .LVU99
+ 455 0154 FFF7FEFF 		bl	TSDB_Read_All
+ 456              	.LVL33:
+ 457 0158 7CE7     		b	.L15
+ 458              	.L22:
+ 459 015a 00BF     		.align	2
+ 460              	.L21:
+ 461 015c 00000000 		.word	.LC2
+ 462 0160 00000000 		.word	huart1
+ 463 0164 00000000 		.word	tsdb_inited
+ 464 0168 CDCCCCCC 		.word	-858993459
+ 465 016c 00000000 		.word	hrtc
+ 466 0170 18000000 		.word	.LC3
+ 467 0174 00000000 		.word	tsdb
+ 468 0178 3C000000 		.word	.LC4
+ 469 017c 64000000 		.word	.LC5
+ 470              	.LBE2:
+ 471              		.cfi_endproc
+ 472              	.LFE241:
+ 474              		.section	.rodata.tsdb_query_cb.str1.4,"aMS",%progbits,1
+ 475              		.align	2
+ 476              	.LC6:
+ 477 0000 54534442 		.ascii	"TSDB: ts=%ld temp=%d humi=%d\015\012\000"
+ 477      3A207473 
+ 477      3D256C64 
+ 477      2074656D 
+ 477      703D2564 
+ 478              		.section	.text.tsdb_query_cb,"ax",%progbits
+ 479              		.align	1
+ 480              		.syntax unified
+ 481              		.thumb
+ 482              		.thumb_func
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 15
+
+
+ 484              	tsdb_query_cb:
+ 485              	.LVL34:
+ 486              	.LFB238:
+  94:Core/Src/freertos.c ****     sensor_log_t log_data;
+ 487              		.loc 1 94 1 view -0
+ 488              		.cfi_startproc
+ 489              		@ args = 0, pretend = 0, frame = 160
+ 490              		@ frame_needed = 0, uses_anonymous_args = 0
+  94:Core/Src/freertos.c ****     sensor_log_t log_data;
+ 491              		.loc 1 94 1 is_stmt 0 view .LVU101
+ 492 0000 30B5     		push	{r4, r5, lr}
+ 493              	.LCFI9:
+ 494              		.cfi_def_cfa_offset 12
+ 495              		.cfi_offset 4, -12
+ 496              		.cfi_offset 5, -8
+ 497              		.cfi_offset 14, -4
+ 498 0002 ABB0     		sub	sp, sp, #172
+ 499              	.LCFI10:
+ 500              		.cfi_def_cfa_offset 184
+ 501 0004 0446     		mov	r4, r0
+  95:Core/Src/freertos.c ****     struct fdb_blob blob;
+ 502              		.loc 1 95 5 is_stmt 1 view .LVU102
+  96:Core/Src/freertos.c ****     char msg[128];
+ 503              		.loc 1 96 5 view .LVU103
+  97:Core/Src/freertos.c **** 
+ 504              		.loc 1 97 5 view .LVU104
+  99:Core/Src/freertos.c ****                   fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &log_data, sizeof(log_data))));
+ 505              		.loc 1 99 5 view .LVU105
+ 506 0006 0822     		movs	r2, #8
+ 507 0008 28A9     		add	r1, sp, #160
+ 508              	.LVL35:
+  99:Core/Src/freertos.c ****                   fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &log_data, sizeof(log_data))));
+ 509              		.loc 1 99 5 is_stmt 0 view .LVU106
+ 510 000a 23A8     		add	r0, sp, #140
+ 511              	.LVL36:
+  99:Core/Src/freertos.c ****                   fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &log_data, sizeof(log_data))));
+ 512              		.loc 1 99 5 view .LVU107
+ 513 000c FFF7FEFF 		bl	fdb_blob_make
+ 514              	.LVL37:
+ 515 0010 0146     		mov	r1, r0
+  99:Core/Src/freertos.c ****                   fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &log_data, sizeof(log_data))));
+ 516              		.loc 1 99 5 discriminator 1 view .LVU108
+ 517 0012 2046     		mov	r0, r4
+ 518 0014 FFF7FEFF 		bl	fdb_tsl_to_blob
+ 519              	.LVL38:
+ 520 0018 0146     		mov	r1, r0
+  99:Core/Src/freertos.c ****                   fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &log_data, sizeof(log_data))));
+ 521              		.loc 1 99 5 discriminator 2 view .LVU109
+ 522 001a 0D48     		ldr	r0, .L25
+ 523 001c FFF7FEFF 		bl	fdb_blob_read
+ 524              	.LVL39:
+ 102:Core/Src/freertos.c ****              "TSDB: ts=%ld temp=%d humi=%d\r\n",
+ 525              		.loc 1 102 5 is_stmt 1 view .LVU110
+ 526 0020 03AD     		add	r5, sp, #12
+ 527 0022 299B     		ldr	r3, [sp, #164]
+ 528 0024 0193     		str	r3, [sp, #4]
+ 529 0026 289B     		ldr	r3, [sp, #160]
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 16
+
+
+ 530 0028 0093     		str	r3, [sp]
+ 531 002a 6368     		ldr	r3, [r4, #4]
+ 532 002c 094A     		ldr	r2, .L25+4
+ 533 002e 8021     		movs	r1, #128
+ 534 0030 2846     		mov	r0, r5
+ 535 0032 FFF7FEFF 		bl	snprintf
+ 536              	.LVL40:
  108:Core/Src/freertos.c **** 
- 203              		.loc 1 108 3 view .LVU32
+ 537              		.loc 1 108 5 view .LVU111
  108:Core/Src/freertos.c **** 
- 204              		.loc 1 108 23 is_stmt 0 view .LVU33
- 205 0002 074A     		ldr	r2, .L13
- 206 0004 0021     		movs	r1, #0
- 207 0006 0748     		ldr	r0, .L13+4
- 208 0008 FFF7FEFF 		bl	osThreadNew
- 209              	.LVL14:
+ 538              		.loc 1 108 48 is_stmt 0 view .LVU112
+ 539 0036 2846     		mov	r0, r5
+ 540 0038 FFF7FEFF 		bl	strlen
+ 541              	.LVL41:
  108:Core/Src/freertos.c **** 
- 210              		.loc 1 108 21 discriminator 1 view .LVU34
- 211 000c 064B     		ldr	r3, .L13+8
- 212 000e 1860     		str	r0, [r3]
+ 542              		.loc 1 108 5 discriminator 1 view .LVU113
+ 543 003c 4FF0FF33 		mov	r3, #-1
+ 544 0040 82B2     		uxth	r2, r0
+ 545 0042 2946     		mov	r1, r5
+ 546 0044 0448     		ldr	r0, .L25+8
+ 547 0046 FFF7FEFF 		bl	HAL_UART_Transmit
+ 548              	.LVL42:
+ 110:Core/Src/freertos.c **** }
+ 549              		.loc 1 110 5 is_stmt 1 view .LVU114
  111:Core/Src/freertos.c **** 
- 213              		.loc 1 111 3 is_stmt 1 view .LVU35
+ 550              		.loc 1 111 1 is_stmt 0 view .LVU115
+ 551 004a 0020     		movs	r0, #0
+ 552 004c 2BB0     		add	sp, sp, #172
+ 553              	.LCFI11:
+ 554              		.cfi_def_cfa_offset 12
+ 555              		@ sp needed
+ 556 004e 30BD     		pop	{r4, r5, pc}
+ 557              	.LVL43:
+ 558              	.L26:
  111:Core/Src/freertos.c **** 
- 214              		.loc 1 111 20 is_stmt 0 view .LVU36
- 215 0010 064A     		ldr	r2, .L13+12
- 216 0012 0021     		movs	r1, #0
- 217 0014 0648     		ldr	r0, .L13+16
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 8
+ 559              		.loc 1 111 1 view .LVU116
+ 560              		.align	2
+ 561              	.L25:
+ 562 0050 00000000 		.word	tsdb
+ 563 0054 00000000 		.word	.LC6
+ 564 0058 00000000 		.word	huart1
+ 565              		.cfi_endproc
+ 566              	.LFE238:
+ 568              		.section	.text.StartTask02,"ax",%progbits
+ 569              		.align	1
+ 570              		.global	StartTask02
+ 571              		.syntax unified
+ 572              		.thumb
+ 573              		.thumb_func
+ 575              	StartTask02:
+ 576              	.LFB242:
+ 255:Core/Src/freertos.c ****   }
+ 256:Core/Src/freertos.c **** }
+ 257:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartTask02 */
+ 258:Core/Src/freertos.c **** /**
+ 259:Core/Src/freertos.c **** * @brief Function implementing the myTask02 thread.
+ 260:Core/Src/freertos.c **** * @param argument: Not used
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 17
 
 
- 218 0016 FFF7FEFF 		bl	osThreadNew
- 219              	.LVL15:
- 111:Core/Src/freertos.c **** 
- 220              		.loc 1 111 18 discriminator 1 view .LVU37
- 221 001a 064B     		ldr	r3, .L13+20
- 222 001c 1860     		str	r0, [r3]
- 121:Core/Src/freertos.c **** 
- 223              		.loc 1 121 1 view .LVU38
- 224 001e 08BD     		pop	{r3, pc}
- 225              	.L14:
- 226              		.align	2
- 227              	.L13:
- 228 0020 00000000 		.word	defaultTask_attributes
- 229 0024 00000000 		.word	StartDefaultTask
- 230 0028 00000000 		.word	defaultTaskHandle
- 231 002c 00000000 		.word	myTask02_attributes
- 232 0030 00000000 		.word	StartTask02
- 233 0034 00000000 		.word	myTask02Handle
- 234              		.cfi_endproc
- 235              	.LFE235:
- 237              		.global	myTask02_attributes
- 238              		.section	.rodata.str1.4,"aMS",%progbits,1
- 239              		.align	2
- 240              	.LC1:
- 241 0000 6D795461 		.ascii	"myTask02\000"
- 241      736B3032 
- 241      00
- 242              		.section	.rodata.myTask02_attributes,"a"
- 243              		.align	2
- 246              	myTask02_attributes:
- 247 0000 00000000 		.word	.LC1
- 248 0004 00000000 		.space	16
- 248      00000000 
- 248      00000000 
- 248      00000000 
- 249 0014 00020000 		.word	512
- 250 0018 08000000 		.word	8
- 251 001c 00000000 		.space	8
- 251      00000000 
- 252              		.global	myTask02Handle
- 253              		.section	.bss.myTask02Handle,"aw",%nobits
- 254              		.align	2
- 257              	myTask02Handle:
- 258 0000 00000000 		.space	4
- 259              		.global	defaultTask_attributes
- 260              		.section	.rodata.str1.4
- 261 0009 000000   		.align	2
- 262              	.LC2:
- 263 000c 64656661 		.ascii	"defaultTask\000"
- 263      756C7454 
- 263      61736B00 
- 264              		.section	.rodata.defaultTask_attributes,"a"
- 265              		.align	2
- 268              	defaultTask_attributes:
- 269 0000 0C000000 		.word	.LC2
- 270 0004 00000000 		.space	16
- 270      00000000 
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 9
+ 261:Core/Src/freertos.c **** * @retval None
+ 262:Core/Src/freertos.c **** */
+ 263:Core/Src/freertos.c **** /* USER CODE END Header_StartTask02 */
+ 264:Core/Src/freertos.c **** void StartTask02(void *argument)
+ 265:Core/Src/freertos.c **** {
+ 577              		.loc 1 265 1 is_stmt 1 view -0
+ 578              		.cfi_startproc
+ 579              		@ args = 0, pretend = 0, frame = 0
+ 580              		@ frame_needed = 0, uses_anonymous_args = 0
+ 581              	.LVL44:
+ 582              		.loc 1 265 1 is_stmt 0 view .LVU118
+ 583 0000 08B5     		push	{r3, lr}
+ 584              	.LCFI12:
+ 585              		.cfi_def_cfa_offset 8
+ 586              		.cfi_offset 3, -8
+ 587              		.cfi_offset 14, -4
+ 588              	.LVL45:
+ 589              	.L28:
+ 266:Core/Src/freertos.c ****   /* USER CODE BEGIN StartTask02 */
+ 267:Core/Src/freertos.c ****   uint8_t cc = 1; 
+ 268:Core/Src/freertos.c ****   /* Infinite loop */
+ 269:Core/Src/freertos.c ****   for(;;)
+ 590              		.loc 1 269 3 is_stmt 1 view .LVU119
+ 270:Core/Src/freertos.c ****   {
+ 271:Core/Src/freertos.c ****     //LCD_ShowUInt(0, 80, cc, ST7735_GREEN, ST7735_WHITE);
+ 272:Core/Src/freertos.c ****     osDelay(100);
+ 591              		.loc 1 272 5 view .LVU120
+ 592 0002 6420     		movs	r0, #100
+ 593 0004 FFF7FEFF 		bl	osDelay
+ 594              	.LVL46:
+ 273:Core/Src/freertos.c ****     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_9);
+ 595              		.loc 1 273 5 view .LVU121
+ 596 0008 4FF40071 		mov	r1, #512
+ 597 000c 0148     		ldr	r0, .L30
+ 598 000e FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 599              	.LVL47:
+ 274:Core/Src/freertos.c ****     cc++;
+ 600              		.loc 1 274 5 discriminator 1 view .LVU122
+ 269:Core/Src/freertos.c ****   {
+ 601              		.loc 1 269 3 view .LVU123
+ 602 0012 F6E7     		b	.L28
+ 603              	.L31:
+ 604              		.align	2
+ 605              	.L30:
+ 606 0014 00040048 		.word	1207960576
+ 607              		.cfi_endproc
+ 608              	.LFE242:
+ 610              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 611              		.align	1
+ 612              		.global	MX_FREERTOS_Init
+ 613              		.syntax unified
+ 614              		.thumb
+ 615              		.thumb_func
+ 617              	MX_FREERTOS_Init:
+ 618              	.LFB240:
+ 148:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 619              		.loc 1 148 29 view -0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 18
 
 
- 270      00000000 
- 270      00000000 
- 271 0014 00020000 		.word	512
- 272 0018 18000000 		.word	24
- 273 001c 00000000 		.space	8
- 273      00000000 
- 274              		.global	defaultTaskHandle
- 275              		.section	.bss.defaultTaskHandle,"aw",%nobits
- 276              		.align	2
- 279              	defaultTaskHandle:
- 280 0000 00000000 		.space	4
- 281              		.text
- 282              	.Letext0:
- 283              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
- 284              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
- 285              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
- 286              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
- 287              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc.h"
- 288              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 289              		.file 8 "Core/Inc/rtc.h"
- 290              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
- 291              		.file 10 "Core/Inc/lcd_text.h"
- 292              		.file 11 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
- 293              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
-ARM GAS  C:\Users\solar\AppData\Local\Temp\ccStoctK.s 			page 10
+ 620              		.cfi_startproc
+ 621              		@ args = 0, pretend = 0, frame = 0
+ 622              		@ frame_needed = 0, uses_anonymous_args = 0
+ 623 0000 08B5     		push	{r3, lr}
+ 624              	.LCFI13:
+ 625              		.cfi_def_cfa_offset 8
+ 626              		.cfi_offset 3, -8
+ 627              		.cfi_offset 14, -4
+ 171:Core/Src/freertos.c **** 
+ 628              		.loc 1 171 3 view .LVU125
+ 171:Core/Src/freertos.c **** 
+ 629              		.loc 1 171 23 is_stmt 0 view .LVU126
+ 630 0002 074A     		ldr	r2, .L34
+ 631 0004 0021     		movs	r1, #0
+ 632 0006 0748     		ldr	r0, .L34+4
+ 633 0008 FFF7FEFF 		bl	osThreadNew
+ 634              	.LVL48:
+ 171:Core/Src/freertos.c **** 
+ 635              		.loc 1 171 21 discriminator 1 view .LVU127
+ 636 000c 064B     		ldr	r3, .L34+8
+ 637 000e 1860     		str	r0, [r3]
+ 174:Core/Src/freertos.c **** 
+ 638              		.loc 1 174 3 is_stmt 1 view .LVU128
+ 174:Core/Src/freertos.c **** 
+ 639              		.loc 1 174 20 is_stmt 0 view .LVU129
+ 640 0010 064A     		ldr	r2, .L34+12
+ 641 0012 0021     		movs	r1, #0
+ 642 0014 0648     		ldr	r0, .L34+16
+ 643 0016 FFF7FEFF 		bl	osThreadNew
+ 644              	.LVL49:
+ 174:Core/Src/freertos.c **** 
+ 645              		.loc 1 174 18 discriminator 1 view .LVU130
+ 646 001a 064B     		ldr	r3, .L34+20
+ 647 001c 1860     		str	r0, [r3]
+ 184:Core/Src/freertos.c **** 
+ 648              		.loc 1 184 1 view .LVU131
+ 649 001e 08BD     		pop	{r3, pc}
+ 650              	.L35:
+ 651              		.align	2
+ 652              	.L34:
+ 653 0020 00000000 		.word	defaultTask_attributes
+ 654 0024 00000000 		.word	StartDefaultTask
+ 655 0028 00000000 		.word	defaultTaskHandle
+ 656 002c 00000000 		.word	myTask02_attributes
+ 657 0030 00000000 		.word	StartTask02
+ 658 0034 00000000 		.word	myTask02Handle
+ 659              		.cfi_endproc
+ 660              	.LFE240:
+ 662              		.global	myTask02_attributes
+ 663              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 664              		.align	2
+ 665              	.LC7:
+ 666 0000 6D795461 		.ascii	"myTask02\000"
+ 666      736B3032 
+ 666      00
+ 667              		.section	.rodata.myTask02_attributes,"a"
+ 668              		.align	2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 19
+
+
+ 671              	myTask02_attributes:
+ 672 0000 00000000 		.word	.LC7
+ 673 0004 00000000 		.space	16
+ 673      00000000 
+ 673      00000000 
+ 673      00000000 
+ 674 0014 00040000 		.word	1024
+ 675 0018 08000000 		.word	8
+ 676 001c 00000000 		.space	8
+ 676      00000000 
+ 677              		.global	myTask02Handle
+ 678              		.section	.bss.myTask02Handle,"aw",%nobits
+ 679              		.align	2
+ 682              	myTask02Handle:
+ 683 0000 00000000 		.space	4
+ 684              		.global	defaultTask_attributes
+ 685              		.section	.rodata.str1.4
+ 686 0009 000000   		.align	2
+ 687              	.LC8:
+ 688 000c 64656661 		.ascii	"defaultTask\000"
+ 688      756C7454 
+ 688      61736B00 
+ 689              		.section	.rodata.defaultTask_attributes,"a"
+ 690              		.align	2
+ 693              	defaultTask_attributes:
+ 694 0000 0C000000 		.word	.LC8
+ 695 0004 00000000 		.space	16
+ 695      00000000 
+ 695      00000000 
+ 695      00000000 
+ 696 0014 00080000 		.word	2048
+ 697 0018 18000000 		.word	24
+ 698 001c 00000000 		.space	8
+ 698      00000000 
+ 699              		.global	defaultTaskHandle
+ 700              		.section	.bss.defaultTaskHandle,"aw",%nobits
+ 701              		.align	2
+ 704              	defaultTaskHandle:
+ 705 0000 00000000 		.space	4
+ 706              		.section	.bss.tsdb_inited,"aw",%nobits
+ 709              	tsdb_inited:
+ 710 0000 00       		.space	1
+ 711              		.section	.bss.tsdb,"aw",%nobits
+ 712              		.align	2
+ 715              	tsdb:
+ 716 0000 00000000 		.space	100
+ 716      00000000 
+ 716      00000000 
+ 716      00000000 
+ 716      00000000 
+ 717              		.text
+ 718              	.Letext0:
+ 719              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
+ 720              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 721              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 722              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ 723              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 20
+
+
+ 724              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 725              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc.h"
+ 726              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
+ 727              		.file 10 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 728              		.file 11 "BSP/inc/fal_def.h"
+ 729              		.file 12 "BSP/inc/fdb_def.h"
+ 730              		.file 13 "Core/Inc/rtc.h"
+ 731              		.file 14 "Core/Inc/usart.h"
+ 732              		.file 15 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ 733              		.file 16 "BSP/inc/flashdb.h"
+ 734              		.file 17 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 735              		.file 18 "Core/Inc/lcd_text.h"
+ 736              		.file 19 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
+ 737              		.file 20 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:21     .rodata.StartDefaultTask.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:25     .text.StartDefaultTask:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:31     .text.StartDefaultTask:00000000 StartDefaultTask
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:138    .text.StartDefaultTask:00000094 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:144    .text.StartTask02:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:150    .text.StartTask02:00000000 StartTask02
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:181    .text.StartTask02:00000014 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:186    .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:192    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:228    .text.MX_FREERTOS_Init:00000020 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:268    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:279    .bss.defaultTaskHandle:00000000 defaultTaskHandle
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:246    .rodata.myTask02_attributes:00000000 myTask02_attributes
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:257    .bss.myTask02Handle:00000000 myTask02Handle
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:239    .rodata.str1.4:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:243    .rodata.myTask02_attributes:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:254    .bss.myTask02Handle:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:265    .rodata.defaultTask_attributes:00000000 $d
-C:\Users\solar\AppData\Local\Temp\ccStoctK.s:276    .bss.defaultTaskHandle:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:21     .text.tsdb_get_time:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:26     .text.tsdb_get_time:00000000 tsdb_get_time
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:88     .text.tsdb_get_time:00000048 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:93     .rodata.MX_TSDB_Init.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:100    .text.MX_TSDB_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:105    .text.MX_TSDB_Init:00000000 MX_TSDB_Init
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:139    .text.MX_TSDB_Init:00000020 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:715    .bss.tsdb:00000000 tsdb
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:147    .text.TSDB_Read_All:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:152    .text.TSDB_Read_All:00000000 TSDB_Read_All
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:174    .text.TSDB_Read_All:00000010 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:484    .text.tsdb_query_cb:00000000 tsdb_query_cb
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:180    .rodata.StartDefaultTask.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:193    .text.StartDefaultTask:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:199    .text.StartDefaultTask:00000000 StartDefaultTask
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:461    .text.StartDefaultTask:0000015c $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:709    .bss.tsdb_inited:00000000 tsdb_inited
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:475    .rodata.tsdb_query_cb.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:479    .text.tsdb_query_cb:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:562    .text.tsdb_query_cb:00000050 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:569    .text.StartTask02:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:575    .text.StartTask02:00000000 StartTask02
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:606    .text.StartTask02:00000014 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:611    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:617    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:653    .text.MX_FREERTOS_Init:00000020 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:693    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:704    .bss.defaultTaskHandle:00000000 defaultTaskHandle
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:671    .rodata.myTask02_attributes:00000000 myTask02_attributes
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:682    .bss.myTask02Handle:00000000 myTask02Handle
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:664    .rodata.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:668    .rodata.myTask02_attributes:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:679    .bss.myTask02Handle:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:690    .rodata.defaultTask_attributes:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:701    .bss.defaultTaskHandle:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:710    .bss.tsdb_inited:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccK5QRog.s:712    .bss.tsdb:00000000 $d
 
 UNDEFINED SYMBOLS
-HAL_RTC_SetTime
-HAL_RTC_SetDate
-LCD_ClearArea
 HAL_RTC_GetTime
 HAL_RTC_GetDate
+hrtc
+fdb_tsdb_init
+fdb_tsl_iter
+LCD_ClearArea
 snprintf
+strlen
+HAL_UART_Transmit
 osDelay
 LCD_ShowString
-hrtc
+fdb_blob_make
+fdb_tsl_append
+huart1
+fdb_tsl_to_blob
+fdb_blob_read
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccK5QRog.s 			page 22
+
+
 HAL_GPIO_TogglePin
 osThreadNew
