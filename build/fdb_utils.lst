@@ -1,0 +1,1814 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fdb_utils.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "BSP/src/fdb_utils.c"
+  20              		.section	.text.fdb_calc_crc32,"ax",%progbits
+  21              		.align	1
+  22              		.global	fdb_calc_crc32
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	fdb_calc_crc32:
+  28              	.LVL0:
+  29              	.LFB3:
+   1:BSP/src/fdb_utils.c **** /*
+   2:BSP/src/fdb_utils.c ****  * Copyright (c) 2020, Armink, <armink.ztl@gmail.com>
+   3:BSP/src/fdb_utils.c ****  *
+   4:BSP/src/fdb_utils.c ****  * SPDX-License-Identifier: Apache-2.0
+   5:BSP/src/fdb_utils.c ****  */
+   6:BSP/src/fdb_utils.c **** 
+   7:BSP/src/fdb_utils.c **** /**
+   8:BSP/src/fdb_utils.c ****  * @file
+   9:BSP/src/fdb_utils.c ****  * @brief utils
+  10:BSP/src/fdb_utils.c ****  *
+  11:BSP/src/fdb_utils.c ****  * Some utils for this library.
+  12:BSP/src/fdb_utils.c ****  */
+  13:BSP/src/fdb_utils.c **** 
+  14:BSP/src/fdb_utils.c **** #include <stdio.h>
+  15:BSP/src/fdb_utils.c **** #include <string.h>
+  16:BSP/src/fdb_utils.c **** #include <flashdb.h>
+  17:BSP/src/fdb_utils.c **** #include <fdb_low_lvl.h>
+  18:BSP/src/fdb_utils.c **** 
+  19:BSP/src/fdb_utils.c **** #define FDB_LOG_TAG "[utils]"
+  20:BSP/src/fdb_utils.c **** 
+  21:BSP/src/fdb_utils.c **** static const uint32_t crc32_table[] =
+  22:BSP/src/fdb_utils.c **** {
+  23:BSP/src/fdb_utils.c ****     0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419, 0x706af48f,
+  24:BSP/src/fdb_utils.c ****     0xe963a535, 0x9e6495a3, 0x0edb8832, 0x79dcb8a4, 0xe0d5e91e, 0x97d2d988,
+  25:BSP/src/fdb_utils.c ****     0x09b64c2b, 0x7eb17cbd, 0xe7b82d07, 0x90bf1d91, 0x1db71064, 0x6ab020f2,
+  26:BSP/src/fdb_utils.c ****     0xf3b97148, 0x84be41de, 0x1adad47d, 0x6ddde4eb, 0xf4d4b551, 0x83d385c7,
+  27:BSP/src/fdb_utils.c ****     0x136c9856, 0x646ba8c0, 0xfd62f97a, 0x8a65c9ec, 0x14015c4f, 0x63066cd9,
+  28:BSP/src/fdb_utils.c ****     0xfa0f3d63, 0x8d080df5, 0x3b6e20c8, 0x4c69105e, 0xd56041e4, 0xa2677172,
+  29:BSP/src/fdb_utils.c ****     0x3c03e4d1, 0x4b04d447, 0xd20d85fd, 0xa50ab56b, 0x35b5a8fa, 0x42b2986c,
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 2
+
+
+  30:BSP/src/fdb_utils.c ****     0xdbbbc9d6, 0xacbcf940, 0x32d86ce3, 0x45df5c75, 0xdcd60dcf, 0xabd13d59,
+  31:BSP/src/fdb_utils.c ****     0x26d930ac, 0x51de003a, 0xc8d75180, 0xbfd06116, 0x21b4f4b5, 0x56b3c423,
+  32:BSP/src/fdb_utils.c ****     0xcfba9599, 0xb8bda50f, 0x2802b89e, 0x5f058808, 0xc60cd9b2, 0xb10be924,
+  33:BSP/src/fdb_utils.c ****     0x2f6f7c87, 0x58684c11, 0xc1611dab, 0xb6662d3d, 0x76dc4190, 0x01db7106,
+  34:BSP/src/fdb_utils.c ****     0x98d220bc, 0xefd5102a, 0x71b18589, 0x06b6b51f, 0x9fbfe4a5, 0xe8b8d433,
+  35:BSP/src/fdb_utils.c ****     0x7807c9a2, 0x0f00f934, 0x9609a88e, 0xe10e9818, 0x7f6a0dbb, 0x086d3d2d,
+  36:BSP/src/fdb_utils.c ****     0x91646c97, 0xe6635c01, 0x6b6b51f4, 0x1c6c6162, 0x856530d8, 0xf262004e,
+  37:BSP/src/fdb_utils.c ****     0x6c0695ed, 0x1b01a57b, 0x8208f4c1, 0xf50fc457, 0x65b0d9c6, 0x12b7e950,
+  38:BSP/src/fdb_utils.c ****     0x8bbeb8ea, 0xfcb9887c, 0x62dd1ddf, 0x15da2d49, 0x8cd37cf3, 0xfbd44c65,
+  39:BSP/src/fdb_utils.c ****     0x4db26158, 0x3ab551ce, 0xa3bc0074, 0xd4bb30e2, 0x4adfa541, 0x3dd895d7,
+  40:BSP/src/fdb_utils.c ****     0xa4d1c46d, 0xd3d6f4fb, 0x4369e96a, 0x346ed9fc, 0xad678846, 0xda60b8d0,
+  41:BSP/src/fdb_utils.c ****     0x44042d73, 0x33031de5, 0xaa0a4c5f, 0xdd0d7cc9, 0x5005713c, 0x270241aa,
+  42:BSP/src/fdb_utils.c ****     0xbe0b1010, 0xc90c2086, 0x5768b525, 0x206f85b3, 0xb966d409, 0xce61e49f,
+  43:BSP/src/fdb_utils.c ****     0x5edef90e, 0x29d9c998, 0xb0d09822, 0xc7d7a8b4, 0x59b33d17, 0x2eb40d81,
+  44:BSP/src/fdb_utils.c ****     0xb7bd5c3b, 0xc0ba6cad, 0xedb88320, 0x9abfb3b6, 0x03b6e20c, 0x74b1d29a,
+  45:BSP/src/fdb_utils.c ****     0xead54739, 0x9dd277af, 0x04db2615, 0x73dc1683, 0xe3630b12, 0x94643b84,
+  46:BSP/src/fdb_utils.c ****     0x0d6d6a3e, 0x7a6a5aa8, 0xe40ecf0b, 0x9309ff9d, 0x0a00ae27, 0x7d079eb1,
+  47:BSP/src/fdb_utils.c ****     0xf00f9344, 0x8708a3d2, 0x1e01f268, 0x6906c2fe, 0xf762575d, 0x806567cb,
+  48:BSP/src/fdb_utils.c ****     0x196c3671, 0x6e6b06e7, 0xfed41b76, 0x89d32be0, 0x10da7a5a, 0x67dd4acc,
+  49:BSP/src/fdb_utils.c ****     0xf9b9df6f, 0x8ebeeff9, 0x17b7be43, 0x60b08ed5, 0xd6d6a3e8, 0xa1d1937e,
+  50:BSP/src/fdb_utils.c ****     0x38d8c2c4, 0x4fdff252, 0xd1bb67f1, 0xa6bc5767, 0x3fb506dd, 0x48b2364b,
+  51:BSP/src/fdb_utils.c ****     0xd80d2bda, 0xaf0a1b4c, 0x36034af6, 0x41047a60, 0xdf60efc3, 0xa867df55,
+  52:BSP/src/fdb_utils.c ****     0x316e8eef, 0x4669be79, 0xcb61b38c, 0xbc66831a, 0x256fd2a0, 0x5268e236,
+  53:BSP/src/fdb_utils.c ****     0xcc0c7795, 0xbb0b4703, 0x220216b9, 0x5505262f, 0xc5ba3bbe, 0xb2bd0b28,
+  54:BSP/src/fdb_utils.c ****     0x2bb45a92, 0x5cb36a04, 0xc2d7ffa7, 0xb5d0cf31, 0x2cd99e8b, 0x5bdeae1d,
+  55:BSP/src/fdb_utils.c ****     0x9b64c2b0, 0xec63f226, 0x756aa39c, 0x026d930a, 0x9c0906a9, 0xeb0e363f,
+  56:BSP/src/fdb_utils.c ****     0x72076785, 0x05005713, 0x95bf4a82, 0xe2b87a14, 0x7bb12bae, 0x0cb61b38,
+  57:BSP/src/fdb_utils.c ****     0x92d28e9b, 0xe5d5be0d, 0x7cdcefb7, 0x0bdbdf21, 0x86d3d2d4, 0xf1d4e242,
+  58:BSP/src/fdb_utils.c ****     0x68ddb3f8, 0x1fda836e, 0x81be16cd, 0xf6b9265b, 0x6fb077e1, 0x18b74777,
+  59:BSP/src/fdb_utils.c ****     0x88085ae6, 0xff0f6a70, 0x66063bca, 0x11010b5c, 0x8f659eff, 0xf862ae69,
+  60:BSP/src/fdb_utils.c ****     0x616bffd3, 0x166ccf45, 0xa00ae278, 0xd70dd2ee, 0x4e048354, 0x3903b3c2,
+  61:BSP/src/fdb_utils.c ****     0xa7672661, 0xd06016f7, 0x4969474d, 0x3e6e77db, 0xaed16a4a, 0xd9d65adc,
+  62:BSP/src/fdb_utils.c ****     0x40df0b66, 0x37d83bf0, 0xa9bcae53, 0xdebb9ec5, 0x47b2cf7f, 0x30b5ffe9,
+  63:BSP/src/fdb_utils.c ****     0xbdbdf21c, 0xcabac28a, 0x53b39330, 0x24b4a3a6, 0xbad03605, 0xcdd70693,
+  64:BSP/src/fdb_utils.c ****     0x54de5729, 0x23d967bf, 0xb3667a2e, 0xc4614ab8, 0x5d681b02, 0x2a6f2b94,
+  65:BSP/src/fdb_utils.c ****     0xb40bbe37, 0xc30c8ea1, 0x5a05df1b, 0x2d02ef8d
+  66:BSP/src/fdb_utils.c **** };
+  67:BSP/src/fdb_utils.c **** 
+  68:BSP/src/fdb_utils.c **** /**
+  69:BSP/src/fdb_utils.c ****  * Calculate the CRC32 value of a memory buffer.
+  70:BSP/src/fdb_utils.c ****  *
+  71:BSP/src/fdb_utils.c ****  * @param crc accumulated CRC32 value, must be 0 on first call
+  72:BSP/src/fdb_utils.c ****  * @param buf buffer to calculate CRC32 value for
+  73:BSP/src/fdb_utils.c ****  * @param size bytes in buffer
+  74:BSP/src/fdb_utils.c ****  *
+  75:BSP/src/fdb_utils.c ****  * @return calculated CRC32 value
+  76:BSP/src/fdb_utils.c ****  */
+  77:BSP/src/fdb_utils.c **** uint32_t fdb_calc_crc32(uint32_t crc, const void *buf, size_t size)
+  78:BSP/src/fdb_utils.c **** {
+  30              		.loc 1 78 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  79:BSP/src/fdb_utils.c ****     const uint8_t *p;
+  35              		.loc 1 79 5 view .LVU1
+  80:BSP/src/fdb_utils.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 3
+
+
+  81:BSP/src/fdb_utils.c ****     p = (const uint8_t *)buf;
+  36              		.loc 1 81 5 view .LVU2
+  82:BSP/src/fdb_utils.c ****     crc = crc ^ ~0U;
+  37              		.loc 1 82 5 view .LVU3
+  38              		.loc 1 82 9 is_stmt 0 view .LVU4
+  39 0000 C043     		mvns	r0, r0
+  40              	.LVL1:
+  83:BSP/src/fdb_utils.c **** 
+  84:BSP/src/fdb_utils.c ****     while (size--) {
+  41              		.loc 1 84 5 is_stmt 1 view .LVU5
+  42              		.loc 1 84 11 is_stmt 0 view .LVU6
+  43 0002 09E0     		b	.L2
+  44              	.LVL2:
+  45              	.L3:
+  85:BSP/src/fdb_utils.c ****         crc = crc32_table[(crc ^ *p++) & 0xFF] ^ (crc >> 8);
+  46              		.loc 1 85 9 is_stmt 1 view .LVU7
+  47              		.loc 1 85 34 is_stmt 0 view .LVU8
+  48 0004 11F8013B 		ldrb	r3, [r1], #1	@ zero_extendqisi2
+  49              	.LVL3:
+  50              		.loc 1 85 32 view .LVU9
+  51 0008 4340     		eors	r3, r3, r0
+  52              		.loc 1 85 40 view .LVU10
+  53 000a DBB2     		uxtb	r3, r3
+  54              		.loc 1 85 26 view .LVU11
+  55 000c 054A     		ldr	r2, .L4
+  56 000e 52F82330 		ldr	r3, [r2, r3, lsl #2]
+  57              		.loc 1 85 13 view .LVU12
+  58 0012 83EA1020 		eor	r0, r3, r0, lsr #8
+  59              	.LVL4:
+  84:BSP/src/fdb_utils.c ****         crc = crc32_table[(crc ^ *p++) & 0xFF] ^ (crc >> 8);
+  60              		.loc 1 84 16 view .LVU13
+  61 0016 6246     		mov	r2, ip
+  62              	.LVL5:
+  63              	.L2:
+  84:BSP/src/fdb_utils.c ****         crc = crc32_table[(crc ^ *p++) & 0xFF] ^ (crc >> 8);
+  64              		.loc 1 84 12 is_stmt 1 view .LVU14
+  84:BSP/src/fdb_utils.c ****         crc = crc32_table[(crc ^ *p++) & 0xFF] ^ (crc >> 8);
+  65              		.loc 1 84 16 is_stmt 0 view .LVU15
+  66 0018 02F1FF3C 		add	ip, r2, #-1
+  67              	.LVL6:
+  84:BSP/src/fdb_utils.c ****         crc = crc32_table[(crc ^ *p++) & 0xFF] ^ (crc >> 8);
+  68              		.loc 1 84 12 view .LVU16
+  69 001c 002A     		cmp	r2, #0
+  70 001e F1D1     		bne	.L3
+  86:BSP/src/fdb_utils.c ****     }
+  87:BSP/src/fdb_utils.c **** 
+  88:BSP/src/fdb_utils.c ****     return crc ^ ~0U;
+  71              		.loc 1 88 5 is_stmt 1 view .LVU17
+  89:BSP/src/fdb_utils.c **** }
+  72              		.loc 1 89 1 is_stmt 0 view .LVU18
+  73 0020 C043     		mvns	r0, r0
+  74              	.LVL7:
+  75              		.loc 1 89 1 view .LVU19
+  76 0022 7047     		bx	lr
+  77              	.L5:
+  78              		.align	2
+  79              	.L4:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 4
+
+
+  80 0024 00000000 		.word	crc32_table
+  81              		.cfi_endproc
+  82              	.LFE3:
+  84              		.section	.text._fdb_set_status,"ax",%progbits
+  85              		.align	1
+  86              		.global	_fdb_set_status
+  87              		.syntax unified
+  88              		.thumb
+  89              		.thumb_func
+  91              	_fdb_set_status:
+  92              	.LVL8:
+  93              	.LFB4:
+  90:BSP/src/fdb_utils.c **** 
+  91:BSP/src/fdb_utils.c **** size_t _fdb_set_status(uint8_t status_table[], size_t status_num, size_t status_index)
+  92:BSP/src/fdb_utils.c **** {
+  94              		.loc 1 92 1 is_stmt 1 view -0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98              		.loc 1 92 1 is_stmt 0 view .LVU21
+  99 0000 38B5     		push	{r3, r4, r5, lr}
+ 100              	.LCFI0:
+ 101              		.cfi_def_cfa_offset 16
+ 102              		.cfi_offset 3, -16
+ 103              		.cfi_offset 4, -12
+ 104              		.cfi_offset 5, -8
+ 105              		.cfi_offset 14, -4
+ 106 0002 0546     		mov	r5, r0
+ 107 0004 1446     		mov	r4, r2
+  93:BSP/src/fdb_utils.c ****     size_t byte_index = SIZE_MAX;
+ 108              		.loc 1 93 5 is_stmt 1 view .LVU22
+ 109              	.LVL9:
+  94:BSP/src/fdb_utils.c ****     /*
+  95:BSP/src/fdb_utils.c ****      * | write garn |       status0       |       status1       |      status2         |       stat
+  96:BSP/src/fdb_utils.c ****      * --------------------------------------------------------------------------------------------
+  97:BSP/src/fdb_utils.c ****      * |    1bit    | 0xFF                | 0x7F                |  0x3F                |  0x1F
+  98:BSP/src/fdb_utils.c ****      * --------------------------------------------------------------------------------------------
+  99:BSP/src/fdb_utils.c ****      * |    8bit    | 0xFF FF FF          | 0x00 FF FF          |  0x00 00 FF          |  0x00 00 0
+ 100:BSP/src/fdb_utils.c ****      * --------------------------------------------------------------------------------------------
+ 101:BSP/src/fdb_utils.c ****      * |   32bit    | 0xFFFFFFFF FFFFFFFF | 0x00FFFFFF FFFFFFFF |  0x00FFFFFF 00FFFFFF |  0x00FFFFF
+ 102:BSP/src/fdb_utils.c ****      * |            | 0xFFFFFFFF          | 0xFFFFFFFF          |  0xFFFFFFFF          |  0x00FFFFF
+ 103:BSP/src/fdb_utils.c ****      * --------------------------------------------------------------------------------------------
+ 104:BSP/src/fdb_utils.c ****      * |            | 0xFFFFFFFF FFFFFFFF | 0x00FFFFFF FFFFFFFF |  0x00FFFFFF FFFFFFFF |  0x00FFFFF
+ 105:BSP/src/fdb_utils.c ****      * |   64bit    | 0xFFFFFFFF FFFFFFFF | 0xFFFFFFFF FFFFFFFF |  0x00FFFFFF FFFFFFFF |  0x00FFFFF
+ 106:BSP/src/fdb_utils.c ****      * |            | 0xFFFFFFFF FFFFFFFF | 0xFFFFFFFF FFFFFFFF |  0xFFFFFFFF FFFFFFFF |  0x00FFFFF
+ 107:BSP/src/fdb_utils.c ****      */
+ 108:BSP/src/fdb_utils.c ****     memset(status_table, FDB_BYTE_ERASED, FDB_STATUS_TABLE_SIZE(status_num));
+ 110              		.loc 1 108 5 view .LVU23
+ 111              		.loc 1 108 43 is_stmt 0 view .LVU24
+ 112 0006 CA1D     		adds	r2, r1, #7
+ 113              	.LVL10:
+ 114              		.loc 1 108 5 view .LVU25
+ 115 0008 D208     		lsrs	r2, r2, #3
+ 116 000a FF21     		movs	r1, #255
+ 117              	.LVL11:
+ 118              		.loc 1 108 5 view .LVU26
+ 119 000c FFF7FEFF 		bl	memset
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 5
+
+
+ 120              	.LVL12:
+ 109:BSP/src/fdb_utils.c ****     if (status_index > 0) {
+ 121              		.loc 1 109 5 is_stmt 1 view .LVU27
+ 122              		.loc 1 109 8 is_stmt 0 view .LVU28
+ 123 0010 4CB1     		cbz	r4, .L8
+ 110:BSP/src/fdb_utils.c **** #if (FDB_WRITE_GRAN == 1)
+ 111:BSP/src/fdb_utils.c ****         byte_index = (status_index - 1) / 8;
+ 124              		.loc 1 111 9 is_stmt 1 view .LVU29
+ 125              		.loc 1 111 36 is_stmt 0 view .LVU30
+ 126 0012 631E     		subs	r3, r4, #1
+ 127              		.loc 1 111 20 view .LVU31
+ 128 0014 D808     		lsrs	r0, r3, #3
+ 129              	.LVL13:
+ 112:BSP/src/fdb_utils.c **** #if (FDB_BYTE_ERASED == 0xFF)
+ 113:BSP/src/fdb_utils.c ****         status_table[byte_index] &= (0x00ff >> (status_index % 8));
+ 130              		.loc 1 113 9 is_stmt 1 view .LVU32
+ 131              		.loc 1 113 21 is_stmt 0 view .LVU33
+ 132 0016 2B5C     		ldrb	r3, [r5, r0]	@ zero_extendqisi2
+ 133              		.loc 1 113 62 view .LVU34
+ 134 0018 04F00704 		and	r4, r4, #7
+ 135              	.LVL14:
+ 136              		.loc 1 113 45 view .LVU35
+ 137 001c FF22     		movs	r2, #255
+ 138 001e 2241     		asrs	r2, r2, r4
+ 139              		.loc 1 113 34 view .LVU36
+ 140 0020 1340     		ands	r3, r3, r2
+ 141 0022 2B54     		strb	r3, [r5, r0]
+ 142              	.LVL15:
+ 143              	.L6:
+ 114:BSP/src/fdb_utils.c **** #else
+ 115:BSP/src/fdb_utils.c ****         status_table[byte_index] |= (0x00ff >> (status_index % 8));
+ 116:BSP/src/fdb_utils.c **** #endif
+ 117:BSP/src/fdb_utils.c **** #else
+ 118:BSP/src/fdb_utils.c ****         byte_index = (status_index - 1) * (FDB_WRITE_GRAN / 8);
+ 119:BSP/src/fdb_utils.c ****         status_table[byte_index] = FDB_BYTE_WRITTEN;
+ 120:BSP/src/fdb_utils.c **** #endif /* FDB_WRITE_GRAN == 1 */
+ 121:BSP/src/fdb_utils.c ****     }
+ 122:BSP/src/fdb_utils.c **** 
+ 123:BSP/src/fdb_utils.c ****     return byte_index;
+ 124:BSP/src/fdb_utils.c **** }
+ 144              		.loc 1 124 1 view .LVU37
+ 145 0024 38BD     		pop	{r3, r4, r5, pc}
+ 146              	.LVL16:
+ 147              	.L8:
+  93:BSP/src/fdb_utils.c ****     /*
+ 148              		.loc 1 93 12 view .LVU38
+ 149 0026 4FF0FF30 		mov	r0, #-1
+ 123:BSP/src/fdb_utils.c **** }
+ 150              		.loc 1 123 5 is_stmt 1 view .LVU39
+ 123:BSP/src/fdb_utils.c **** }
+ 151              		.loc 1 123 12 is_stmt 0 view .LVU40
+ 152 002a FBE7     		b	.L6
+ 153              		.cfi_endproc
+ 154              	.LFE4:
+ 156              		.section	.text._fdb_get_status,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	_fdb_get_status
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 6
+
+
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 163              	_fdb_get_status:
+ 164              	.LVL17:
+ 165              	.LFB5:
+ 125:BSP/src/fdb_utils.c **** 
+ 126:BSP/src/fdb_utils.c **** size_t _fdb_get_status(uint8_t status_table[], size_t status_num)
+ 127:BSP/src/fdb_utils.c **** {
+ 166              		.loc 1 127 1 is_stmt 1 view -0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170              		.loc 1 127 1 is_stmt 0 view .LVU42
+ 171 0000 10B5     		push	{r4, lr}
+ 172              	.LCFI1:
+ 173              		.cfi_def_cfa_offset 8
+ 174              		.cfi_offset 4, -8
+ 175              		.cfi_offset 14, -4
+ 128:BSP/src/fdb_utils.c ****     size_t i = 0, status_num_bak = --status_num;
+ 176              		.loc 1 128 5 is_stmt 1 view .LVU43
+ 177              	.LVL18:
+ 178              		.loc 1 128 19 is_stmt 0 view .LVU44
+ 179 0002 4C1E     		subs	r4, r1, #1
+ 180              	.LVL19:
+ 129:BSP/src/fdb_utils.c **** 
+ 130:BSP/src/fdb_utils.c ****     while (status_num --) {
+ 181              		.loc 1 130 5 is_stmt 1 view .LVU45
+ 128:BSP/src/fdb_utils.c ****     size_t i = 0, status_num_bak = --status_num;
+ 182              		.loc 1 128 19 is_stmt 0 view .LVU46
+ 183 0004 2246     		mov	r2, r4
+ 128:BSP/src/fdb_utils.c ****     size_t i = 0, status_num_bak = --status_num;
+ 184              		.loc 1 128 12 view .LVU47
+ 185 0006 4FF0000C 		mov	ip, #0
+ 186              		.loc 1 130 11 view .LVU48
+ 187 000a 02E0     		b	.L11
+ 188              	.LVL20:
+ 189              	.L15:
+ 131:BSP/src/fdb_utils.c ****         /* get the first 0 position from end address to start address */
+ 132:BSP/src/fdb_utils.c **** #if (FDB_WRITE_GRAN == 1)
+ 133:BSP/src/fdb_utils.c ****         if ((status_table[status_num / 8] & (0x80 >> (status_num % 8))) == 0x00) {
+ 134:BSP/src/fdb_utils.c ****             break;
+ 135:BSP/src/fdb_utils.c ****         }
+ 136:BSP/src/fdb_utils.c **** #else /*  (FDB_WRITE_GRAN == 8) ||  (FDB_WRITE_GRAN == 32) ||  (FDB_WRITE_GRAN == 64) */
+ 137:BSP/src/fdb_utils.c ****         if (status_table[status_num * FDB_WRITE_GRAN / 8] == FDB_BYTE_WRITTEN) {
+ 138:BSP/src/fdb_utils.c ****             break;
+ 139:BSP/src/fdb_utils.c ****         }
+ 140:BSP/src/fdb_utils.c **** #endif /* FDB_WRITE_GRAN == 1 */
+ 141:BSP/src/fdb_utils.c ****         i++;
+ 190              		.loc 1 141 9 is_stmt 1 view .LVU49
+ 191              		.loc 1 141 10 is_stmt 0 view .LVU50
+ 192 000c 0CF1010C 		add	ip, ip, #1
+ 193              	.LVL21:
+ 130:BSP/src/fdb_utils.c ****         /* get the first 0 position from end address to start address */
+ 194              		.loc 1 130 23 view .LVU51
+ 195 0010 1A46     		mov	r2, r3
+ 196              	.LVL22:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 7
+
+
+ 197              	.L11:
+ 130:BSP/src/fdb_utils.c ****         /* get the first 0 position from end address to start address */
+ 198              		.loc 1 130 12 is_stmt 1 view .LVU52
+ 130:BSP/src/fdb_utils.c ****         /* get the first 0 position from end address to start address */
+ 199              		.loc 1 130 23 is_stmt 0 view .LVU53
+ 200 0012 531E     		subs	r3, r2, #1
+ 201              	.LVL23:
+ 130:BSP/src/fdb_utils.c ****         /* get the first 0 position from end address to start address */
+ 202              		.loc 1 130 12 view .LVU54
+ 203 0014 4AB1     		cbz	r2, .L12
+ 133:BSP/src/fdb_utils.c ****             break;
+ 204              		.loc 1 133 9 is_stmt 1 view .LVU55
+ 133:BSP/src/fdb_utils.c ****             break;
+ 205              		.loc 1 133 38 is_stmt 0 view .LVU56
+ 206 0016 DA08     		lsrs	r2, r3, #3
+ 133:BSP/src/fdb_utils.c ****             break;
+ 207              		.loc 1 133 26 view .LVU57
+ 208 0018 10F802E0 		ldrb	lr, [r0, r2]	@ zero_extendqisi2
+ 133:BSP/src/fdb_utils.c ****             break;
+ 209              		.loc 1 133 66 view .LVU58
+ 210 001c 03F00701 		and	r1, r3, #7
+ 133:BSP/src/fdb_utils.c ****             break;
+ 211              		.loc 1 133 51 view .LVU59
+ 212 0020 8022     		movs	r2, #128
+ 213 0022 0A41     		asrs	r2, r2, r1
+ 133:BSP/src/fdb_utils.c ****             break;
+ 214              		.loc 1 133 12 view .LVU60
+ 215 0024 1EEA020F 		tst	lr, r2
+ 216 0028 F0D1     		bne	.L15
+ 217              	.L12:
+ 142:BSP/src/fdb_utils.c ****     }
+ 143:BSP/src/fdb_utils.c **** 
+ 144:BSP/src/fdb_utils.c ****     return status_num_bak - i;
+ 218              		.loc 1 144 5 is_stmt 1 view .LVU61
+ 145:BSP/src/fdb_utils.c **** }
+ 219              		.loc 1 145 1 is_stmt 0 view .LVU62
+ 220 002a A4EB0C00 		sub	r0, r4, ip
+ 221              	.LVL24:
+ 222              		.loc 1 145 1 view .LVU63
+ 223 002e 10BD     		pop	{r4, pc}
+ 224              		.loc 1 145 1 view .LVU64
+ 225              		.cfi_endproc
+ 226              	.LFE5:
+ 228              		.section	.text.fdb_blob_make,"ax",%progbits
+ 229              		.align	1
+ 230              		.global	fdb_blob_make
+ 231              		.syntax unified
+ 232              		.thumb
+ 233              		.thumb_func
+ 235              	fdb_blob_make:
+ 236              	.LVL25:
+ 237              	.LFB9:
+ 146:BSP/src/fdb_utils.c **** 
+ 147:BSP/src/fdb_utils.c **** fdb_err_t _fdb_write_status(fdb_db_t db, uint32_t addr, uint8_t status_table[], size_t status_num, 
+ 148:BSP/src/fdb_utils.c **** {
+ 149:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
+ 150:BSP/src/fdb_utils.c ****     size_t byte_index;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 8
+
+
+ 151:BSP/src/fdb_utils.c **** 
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_index < status_num);
+ 153:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 154:BSP/src/fdb_utils.c **** 
+ 155:BSP/src/fdb_utils.c ****     /* set the status first */
+ 156:BSP/src/fdb_utils.c ****     byte_index = _fdb_set_status(status_table, status_num, status_index);
+ 157:BSP/src/fdb_utils.c **** 
+ 158:BSP/src/fdb_utils.c ****     /* the first status table value is all 1, so no need to write flash */
+ 159:BSP/src/fdb_utils.c ****     if (byte_index == SIZE_MAX) {
+ 160:BSP/src/fdb_utils.c ****         return FDB_NO_ERR;
+ 161:BSP/src/fdb_utils.c ****     }
+ 162:BSP/src/fdb_utils.c **** #if (FDB_WRITE_GRAN == 1)
+ 163:BSP/src/fdb_utils.c ****     result = _fdb_flash_write(db, addr + byte_index, (uint32_t *)&status_table[byte_index], 1, sync
+ 164:BSP/src/fdb_utils.c **** #else /*  (FDB_WRITE_GRAN == 8) ||  (FDB_WRITE_GRAN == 32) ||  (FDB_WRITE_GRAN == 64) */
+ 165:BSP/src/fdb_utils.c ****     /* write the status by write granularity
+ 166:BSP/src/fdb_utils.c ****      * some flash (like stm32 onchip) NOT supported repeated write before erase */
+ 167:BSP/src/fdb_utils.c ****     result = _fdb_flash_write(db, addr + byte_index, (uint32_t *) &status_table[byte_index], FDB_WR
+ 168:BSP/src/fdb_utils.c **** #endif /* FDB_WRITE_GRAN == 1 */
+ 169:BSP/src/fdb_utils.c **** 
+ 170:BSP/src/fdb_utils.c ****     return result;
+ 171:BSP/src/fdb_utils.c **** }
+ 172:BSP/src/fdb_utils.c **** 
+ 173:BSP/src/fdb_utils.c **** size_t _fdb_read_status(fdb_db_t db, uint32_t addr, uint8_t status_table[], size_t total_num)
+ 174:BSP/src/fdb_utils.c **** {
+ 175:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 176:BSP/src/fdb_utils.c **** 
+ 177:BSP/src/fdb_utils.c ****     _fdb_flash_read(db, addr, (uint32_t *) status_table, FDB_STATUS_TABLE_SIZE(total_num));
+ 178:BSP/src/fdb_utils.c **** 
+ 179:BSP/src/fdb_utils.c ****     return _fdb_get_status(status_table, total_num);
+ 180:BSP/src/fdb_utils.c **** }
+ 181:BSP/src/fdb_utils.c **** 
+ 182:BSP/src/fdb_utils.c **** /*
+ 183:BSP/src/fdb_utils.c ****  * find the continue 0xFF flash address to end address
+ 184:BSP/src/fdb_utils.c ****  */
+ 185:BSP/src/fdb_utils.c **** uint32_t _fdb_continue_ff_addr(fdb_db_t db, uint32_t start, uint32_t end)
+ 186:BSP/src/fdb_utils.c **** {
+ 187:BSP/src/fdb_utils.c ****     uint8_t buf[32], last_data = FDB_BYTE_WRITTEN;
+ 188:BSP/src/fdb_utils.c ****     size_t i, addr = start, read_size;
+ 189:BSP/src/fdb_utils.c **** 
+ 190:BSP/src/fdb_utils.c ****     for (; start < end; start += sizeof(buf)) {
+ 191:BSP/src/fdb_utils.c ****         if (start + sizeof(buf) < end) {
+ 192:BSP/src/fdb_utils.c ****             read_size = sizeof(buf);
+ 193:BSP/src/fdb_utils.c ****         } else {
+ 194:BSP/src/fdb_utils.c ****             read_size = end - start;
+ 195:BSP/src/fdb_utils.c ****         }
+ 196:BSP/src/fdb_utils.c ****         _fdb_flash_read(db, start, (uint32_t *) buf, read_size);
+ 197:BSP/src/fdb_utils.c ****         for (i = 0; i < read_size; i++) {
+ 198:BSP/src/fdb_utils.c ****             if (last_data != FDB_BYTE_ERASED && buf[i] == FDB_BYTE_ERASED) {
+ 199:BSP/src/fdb_utils.c ****                 addr = start + i;
+ 200:BSP/src/fdb_utils.c ****             }
+ 201:BSP/src/fdb_utils.c ****             last_data = buf[i];
+ 202:BSP/src/fdb_utils.c ****         }
+ 203:BSP/src/fdb_utils.c ****     }
+ 204:BSP/src/fdb_utils.c **** 
+ 205:BSP/src/fdb_utils.c ****     if (last_data == FDB_BYTE_ERASED) {
+ 206:BSP/src/fdb_utils.c ****         return FDB_WG_ALIGN(addr);
+ 207:BSP/src/fdb_utils.c ****     } else {
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 9
+
+
+ 208:BSP/src/fdb_utils.c ****         return end;
+ 209:BSP/src/fdb_utils.c ****     }
+ 210:BSP/src/fdb_utils.c **** }
+ 211:BSP/src/fdb_utils.c **** 
+ 212:BSP/src/fdb_utils.c **** /**
+ 213:BSP/src/fdb_utils.c ****  * Make a blob object.
+ 214:BSP/src/fdb_utils.c ****  *
+ 215:BSP/src/fdb_utils.c ****  * @param blob blob object
+ 216:BSP/src/fdb_utils.c ****  * @param value_buf value buffer
+ 217:BSP/src/fdb_utils.c ****  * @param buf_len buffer length
+ 218:BSP/src/fdb_utils.c ****  *
+ 219:BSP/src/fdb_utils.c ****  * @return new blob object
+ 220:BSP/src/fdb_utils.c ****  */
+ 221:BSP/src/fdb_utils.c **** fdb_blob_t fdb_blob_make(fdb_blob_t blob, const void *value_buf, size_t buf_len)
+ 222:BSP/src/fdb_utils.c **** {
+ 238              		.loc 1 222 1 is_stmt 1 view -0
+ 239              		.cfi_startproc
+ 240              		@ args = 0, pretend = 0, frame = 0
+ 241              		@ frame_needed = 0, uses_anonymous_args = 0
+ 242              		@ link register save eliminated.
+ 223:BSP/src/fdb_utils.c ****     blob->buf = (void *)value_buf;
+ 243              		.loc 1 223 5 view .LVU66
+ 244              		.loc 1 223 15 is_stmt 0 view .LVU67
+ 245 0000 0160     		str	r1, [r0]
+ 224:BSP/src/fdb_utils.c ****     blob->size = buf_len;
+ 246              		.loc 1 224 5 is_stmt 1 view .LVU68
+ 247              		.loc 1 224 16 is_stmt 0 view .LVU69
+ 248 0002 4260     		str	r2, [r0, #4]
+ 225:BSP/src/fdb_utils.c **** 
+ 226:BSP/src/fdb_utils.c ****     return blob;
+ 249              		.loc 1 226 5 is_stmt 1 view .LVU70
+ 227:BSP/src/fdb_utils.c **** }
+ 250              		.loc 1 227 1 is_stmt 0 view .LVU71
+ 251 0004 7047     		bx	lr
+ 252              		.cfi_endproc
+ 253              	.LFE9:
+ 255              		.section	.text._fdb_flash_read,"ax",%progbits
+ 256              		.align	1
+ 257              		.global	_fdb_flash_read
+ 258              		.syntax unified
+ 259              		.thumb
+ 260              		.thumb_func
+ 262              	_fdb_flash_read:
+ 263              	.LVL26:
+ 264              	.LFB11:
+ 228:BSP/src/fdb_utils.c **** 
+ 229:BSP/src/fdb_utils.c **** /**
+ 230:BSP/src/fdb_utils.c ****  * Read the blob object in database.
+ 231:BSP/src/fdb_utils.c ****  *
+ 232:BSP/src/fdb_utils.c ****  * @param db database object
+ 233:BSP/src/fdb_utils.c ****  * @param blob blob object
+ 234:BSP/src/fdb_utils.c ****  *
+ 235:BSP/src/fdb_utils.c ****  * @return read length
+ 236:BSP/src/fdb_utils.c ****  */
+ 237:BSP/src/fdb_utils.c **** size_t fdb_blob_read(fdb_db_t db, fdb_blob_t blob)
+ 238:BSP/src/fdb_utils.c **** {
+ 239:BSP/src/fdb_utils.c ****     size_t read_len = blob->size;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 10
+
+
+ 240:BSP/src/fdb_utils.c **** 
+ 241:BSP/src/fdb_utils.c ****     if (read_len > blob->saved.len) {
+ 242:BSP/src/fdb_utils.c ****         read_len = blob->saved.len;
+ 243:BSP/src/fdb_utils.c ****     }
+ 244:BSP/src/fdb_utils.c ****     if (_fdb_flash_read(db, blob->saved.addr, blob->buf, read_len) != FDB_NO_ERR) {
+ 245:BSP/src/fdb_utils.c ****         read_len = 0;
+ 246:BSP/src/fdb_utils.c ****     }
+ 247:BSP/src/fdb_utils.c **** 
+ 248:BSP/src/fdb_utils.c ****     return read_len;
+ 249:BSP/src/fdb_utils.c **** }
+ 250:BSP/src/fdb_utils.c **** 
+ 251:BSP/src/fdb_utils.c **** #ifdef FDB_USING_FILE_MODE
+ 252:BSP/src/fdb_utils.c **** extern fdb_err_t _fdb_file_read(fdb_db_t db, uint32_t addr, void *buf, size_t size);
+ 253:BSP/src/fdb_utils.c **** extern fdb_err_t _fdb_file_write(fdb_db_t db, uint32_t addr, const void *buf, size_t size, bool syn
+ 254:BSP/src/fdb_utils.c **** extern fdb_err_t _fdb_file_erase(fdb_db_t db, uint32_t addr, size_t size);
+ 255:BSP/src/fdb_utils.c **** #endif /* FDB_USING_FILE_LIBC */
+ 256:BSP/src/fdb_utils.c **** 
+ 257:BSP/src/fdb_utils.c **** fdb_err_t _fdb_flash_read(fdb_db_t db, uint32_t addr, void *buf, size_t size)
+ 258:BSP/src/fdb_utils.c **** {
+ 265              		.loc 1 258 1 is_stmt 1 view -0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              		.loc 1 258 1 is_stmt 0 view .LVU73
+ 270 0000 10B5     		push	{r4, lr}
+ 271              	.LCFI2:
+ 272              		.cfi_def_cfa_offset 8
+ 273              		.cfi_offset 4, -8
+ 274              		.cfi_offset 14, -4
+ 259:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
+ 275              		.loc 1 259 5 is_stmt 1 view .LVU74
+ 276              	.LVL27:
+ 260:BSP/src/fdb_utils.c **** 
+ 261:BSP/src/fdb_utils.c ****     if (db->file_mode) {
+ 277              		.loc 1 261 5 view .LVU75
+ 278              		.loc 1 261 11 is_stmt 0 view .LVU76
+ 279 0002 447E     		ldrb	r4, [r0, #25]	@ zero_extendqisi2
+ 280              		.loc 1 261 8 view .LVU77
+ 281 0004 34B9     		cbnz	r4, .L19
+ 262:BSP/src/fdb_utils.c **** #ifdef FDB_USING_FILE_MODE
+ 263:BSP/src/fdb_utils.c ****         return _fdb_file_read(db, addr, buf, size);
+ 264:BSP/src/fdb_utils.c **** #else
+ 265:BSP/src/fdb_utils.c ****         return FDB_READ_ERR;
+ 266:BSP/src/fdb_utils.c **** #endif
+ 267:BSP/src/fdb_utils.c ****     } else {
+ 268:BSP/src/fdb_utils.c **** #ifdef FDB_USING_FAL_MODE
+ 269:BSP/src/fdb_utils.c ****         if (fal_partition_read(db->storage.part, addr, (uint8_t *) buf, size) < 0) {
+ 282              		.loc 1 269 9 is_stmt 1 view .LVU78
+ 283              		.loc 1 269 13 is_stmt 0 view .LVU79
+ 284 0006 8068     		ldr	r0, [r0, #8]
+ 285              	.LVL28:
+ 286              		.loc 1 269 13 view .LVU80
+ 287 0008 FFF7FEFF 		bl	fal_partition_read
+ 288              	.LVL29:
+ 289              		.loc 1 269 12 discriminator 1 view .LVU81
+ 290 000c 0028     		cmp	r0, #0
+ 291 000e 03DB     		blt	.L20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 11
+
+
+ 259:BSP/src/fdb_utils.c **** 
+ 292              		.loc 1 259 15 view .LVU82
+ 293 0010 0020     		movs	r0, #0
+ 294              	.L18:
+ 295              	.LVL30:
+ 270:BSP/src/fdb_utils.c ****             result = FDB_READ_ERR;
+ 271:BSP/src/fdb_utils.c ****         }
+ 272:BSP/src/fdb_utils.c **** #endif
+ 273:BSP/src/fdb_utils.c ****     }
+ 274:BSP/src/fdb_utils.c **** 
+ 275:BSP/src/fdb_utils.c ****     return result;
+ 276:BSP/src/fdb_utils.c **** }
+ 296              		.loc 1 276 1 view .LVU83
+ 297 0012 10BD     		pop	{r4, pc}
+ 298              	.LVL31:
+ 299              	.L19:
+ 265:BSP/src/fdb_utils.c **** #endif
+ 300              		.loc 1 265 16 view .LVU84
+ 301 0014 0220     		movs	r0, #2
+ 302              	.LVL32:
+ 265:BSP/src/fdb_utils.c **** #endif
+ 303              		.loc 1 265 16 view .LVU85
+ 304 0016 FCE7     		b	.L18
+ 305              	.LVL33:
+ 306              	.L20:
+ 270:BSP/src/fdb_utils.c ****             result = FDB_READ_ERR;
+ 307              		.loc 1 270 20 view .LVU86
+ 308 0018 0220     		movs	r0, #2
+ 309 001a FAE7     		b	.L18
+ 310              		.cfi_endproc
+ 311              	.LFE11:
+ 313              		.section	.rodata._fdb_read_status.str1.4,"aMS",%progbits,1
+ 314              		.align	2
+ 315              	.LC0:
+ 316 0000 5B466C61 		.ascii	"[FlashDB][utils]\000"
+ 316      73684442 
+ 316      5D5B7574 
+ 316      696C735D 
+ 316      00
+ 317 0011 000000   		.align	2
+ 318              	.LC1:
+ 319 0014 73746174 		.ascii	"status_table\000"
+ 319      75735F74 
+ 319      61626C65 
+ 319      00
+ 320 0021 000000   		.align	2
+ 321              	.LC2:
+ 322 0024 28257329 		.ascii	"(%s) has assert failed at %s.\012\000"
+ 322      20686173 
+ 322      20617373 
+ 322      65727420 
+ 322      6661696C 
+ 323              		.section	.text._fdb_read_status,"ax",%progbits
+ 324              		.align	1
+ 325              		.global	_fdb_read_status
+ 326              		.syntax unified
+ 327              		.thumb
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 12
+
+
+ 328              		.thumb_func
+ 330              	_fdb_read_status:
+ 331              	.LVL34:
+ 332              	.LFB7:
+ 174:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 333              		.loc 1 174 1 is_stmt 1 view -0
+ 334              		.cfi_startproc
+ 335              		@ args = 0, pretend = 0, frame = 0
+ 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 337              		.loc 1 174 1 is_stmt 0 view .LVU88
+ 338 0000 38B5     		push	{r3, r4, r5, lr}
+ 339              	.LCFI3:
+ 340              		.cfi_def_cfa_offset 16
+ 341              		.cfi_offset 3, -16
+ 342              		.cfi_offset 4, -12
+ 343              		.cfi_offset 5, -8
+ 344              		.cfi_offset 14, -4
+ 175:BSP/src/fdb_utils.c **** 
+ 345              		.loc 1 175 5 is_stmt 1 view .LVU89
+ 346 0002 52B1     		cbz	r2, .L26
+ 347 0004 1C46     		mov	r4, r3
+ 348 0006 1546     		mov	r5, r2
+ 175:BSP/src/fdb_utils.c **** 
+ 349              		.loc 1 175 29 view .LVU90
+ 177:BSP/src/fdb_utils.c **** 
+ 350              		.loc 1 177 5 view .LVU91
+ 177:BSP/src/fdb_utils.c **** 
+ 351              		.loc 1 177 58 is_stmt 0 view .LVU92
+ 352 0008 0733     		adds	r3, r3, #7
+ 353              	.LVL35:
+ 177:BSP/src/fdb_utils.c **** 
+ 354              		.loc 1 177 5 view .LVU93
+ 355 000a DB08     		lsrs	r3, r3, #3
+ 356 000c FFF7FEFF 		bl	_fdb_flash_read
+ 357              	.LVL36:
+ 179:BSP/src/fdb_utils.c **** }
+ 358              		.loc 1 179 5 is_stmt 1 view .LVU94
+ 179:BSP/src/fdb_utils.c **** }
+ 359              		.loc 1 179 12 is_stmt 0 view .LVU95
+ 360 0010 2146     		mov	r1, r4
+ 361 0012 2846     		mov	r0, r5
+ 362 0014 FFF7FEFF 		bl	_fdb_get_status
+ 363              	.LVL37:
+ 180:BSP/src/fdb_utils.c **** 
+ 364              		.loc 1 180 1 view .LVU96
+ 365 0018 38BD     		pop	{r3, r4, r5, pc}
+ 366              	.LVL38:
+ 367              	.L26:
+ 175:BSP/src/fdb_utils.c **** 
+ 368              		.loc 1 175 5 is_stmt 1 discriminator 1 view .LVU97
+ 369 001a 0648     		ldr	r0, .L27
+ 370              	.LVL39:
+ 175:BSP/src/fdb_utils.c **** 
+ 371              		.loc 1 175 5 is_stmt 0 discriminator 1 view .LVU98
+ 372 001c FFF7FEFF 		bl	printf
+ 373              	.LVL40:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 13
+
+
+ 175:BSP/src/fdb_utils.c **** 
+ 374              		.loc 1 175 5 is_stmt 1 discriminator 1 view .LVU99
+ 375 0020 2020     		movs	r0, #32
+ 376 0022 FFF7FEFF 		bl	putchar
+ 377              	.LVL41:
+ 175:BSP/src/fdb_utils.c **** 
+ 378              		.loc 1 175 5 discriminator 2 view .LVU100
+ 379 0026 044A     		ldr	r2, .L27+4
+ 380 0028 0449     		ldr	r1, .L27+8
+ 381 002a 0548     		ldr	r0, .L27+12
+ 382 002c FFF7FEFF 		bl	printf
+ 383              	.LVL42:
+ 384              	.L24:
+ 175:BSP/src/fdb_utils.c **** 
+ 385              		.loc 1 175 5 view .LVU101
+ 175:BSP/src/fdb_utils.c **** 
+ 386              		.loc 1 175 5 view .LVU102
+ 387 0030 FEE7     		b	.L24
+ 388              	.L28:
+ 389 0032 00BF     		.align	2
+ 390              	.L27:
+ 391 0034 00000000 		.word	.LC0
+ 392 0038 00000000 		.word	__func__.0
+ 393 003c 14000000 		.word	.LC1
+ 394 0040 24000000 		.word	.LC2
+ 395              		.cfi_endproc
+ 396              	.LFE7:
+ 398              		.section	.text._fdb_continue_ff_addr,"ax",%progbits
+ 399              		.align	1
+ 400              		.global	_fdb_continue_ff_addr
+ 401              		.syntax unified
+ 402              		.thumb
+ 403              		.thumb_func
+ 405              	_fdb_continue_ff_addr:
+ 406              	.LVL43:
+ 407              	.LFB8:
+ 186:BSP/src/fdb_utils.c ****     uint8_t buf[32], last_data = FDB_BYTE_WRITTEN;
+ 408              		.loc 1 186 1 view -0
+ 409              		.cfi_startproc
+ 410              		@ args = 0, pretend = 0, frame = 32
+ 411              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186:BSP/src/fdb_utils.c ****     uint8_t buf[32], last_data = FDB_BYTE_WRITTEN;
+ 412              		.loc 1 186 1 is_stmt 0 view .LVU104
+ 413 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 414              	.LCFI4:
+ 415              		.cfi_def_cfa_offset 32
+ 416              		.cfi_offset 4, -32
+ 417              		.cfi_offset 5, -28
+ 418              		.cfi_offset 6, -24
+ 419              		.cfi_offset 7, -20
+ 420              		.cfi_offset 8, -16
+ 421              		.cfi_offset 9, -12
+ 422              		.cfi_offset 10, -8
+ 423              		.cfi_offset 14, -4
+ 424 0004 88B0     		sub	sp, sp, #32
+ 425              	.LCFI5:
+ 426              		.cfi_def_cfa_offset 64
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 14
+
+
+ 427 0006 8246     		mov	r10, r0
+ 428 0008 0E46     		mov	r6, r1
+ 429 000a 1746     		mov	r7, r2
+ 187:BSP/src/fdb_utils.c ****     size_t i, addr = start, read_size;
+ 430              		.loc 1 187 5 is_stmt 1 view .LVU105
+ 431              	.LVL44:
+ 188:BSP/src/fdb_utils.c **** 
+ 432              		.loc 1 188 5 view .LVU106
+ 190:BSP/src/fdb_utils.c ****         if (start + sizeof(buf) < end) {
+ 433              		.loc 1 190 5 view .LVU107
+ 188:BSP/src/fdb_utils.c **** 
+ 434              		.loc 1 188 15 is_stmt 0 view .LVU108
+ 435 000c 8946     		mov	r9, r1
+ 187:BSP/src/fdb_utils.c ****     size_t i, addr = start, read_size;
+ 436              		.loc 1 187 22 view .LVU109
+ 437 000e 0024     		movs	r4, #0
+ 190:BSP/src/fdb_utils.c ****         if (start + sizeof(buf) < end) {
+ 438              		.loc 1 190 5 view .LVU110
+ 439 0010 16E0     		b	.L30
+ 440              	.LVL45:
+ 441              	.L37:
+ 192:BSP/src/fdb_utils.c ****         } else {
+ 442              		.loc 1 192 23 view .LVU111
+ 443 0012 2025     		movs	r5, #32
+ 444 0014 1BE0     		b	.L31
+ 445              	.LVL46:
+ 446              	.L33:
+ 201:BSP/src/fdb_utils.c ****         }
+ 447              		.loc 1 201 13 is_stmt 1 view .LVU112
+ 201:BSP/src/fdb_utils.c ****         }
+ 448              		.loc 1 201 23 is_stmt 0 view .LVU113
+ 449 0016 03F12002 		add	r2, r3, #32
+ 450 001a 6A44     		add	r2, sp, r2
+ 451 001c 12F8204C 		ldrb	r4, [r2, #-32]	@ zero_extendqisi2
+ 452              	.LVL47:
+ 197:BSP/src/fdb_utils.c ****             if (last_data != FDB_BYTE_ERASED && buf[i] == FDB_BYTE_ERASED) {
+ 453              		.loc 1 197 37 is_stmt 1 discriminator 2 view .LVU114
+ 454 0020 0133     		adds	r3, r3, #1
+ 455              	.LVL48:
+ 456              	.L32:
+ 197:BSP/src/fdb_utils.c ****             if (last_data != FDB_BYTE_ERASED && buf[i] == FDB_BYTE_ERASED) {
+ 457              		.loc 1 197 23 discriminator 1 view .LVU115
+ 458 0022 AB42     		cmp	r3, r5
+ 459 0024 0BD2     		bcs	.L39
+ 198:BSP/src/fdb_utils.c ****                 addr = start + i;
+ 460              		.loc 1 198 13 view .LVU116
+ 198:BSP/src/fdb_utils.c ****                 addr = start + i;
+ 461              		.loc 1 198 16 is_stmt 0 view .LVU117
+ 462 0026 FF2C     		cmp	r4, #255
+ 463 0028 F5D0     		beq	.L33
+ 198:BSP/src/fdb_utils.c ****                 addr = start + i;
+ 464              		.loc 1 198 52 discriminator 1 view .LVU118
+ 465 002a 03F12002 		add	r2, r3, #32
+ 466 002e 6A44     		add	r2, sp, r2
+ 467 0030 12F8202C 		ldrb	r2, [r2, #-32]	@ zero_extendqisi2
+ 198:BSP/src/fdb_utils.c ****                 addr = start + i;
+ 468              		.loc 1 198 46 discriminator 1 view .LVU119
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 15
+
+
+ 469 0034 FF2A     		cmp	r2, #255
+ 470 0036 EED1     		bne	.L33
+ 199:BSP/src/fdb_utils.c ****             }
+ 471              		.loc 1 199 17 is_stmt 1 view .LVU120
+ 199:BSP/src/fdb_utils.c ****             }
+ 472              		.loc 1 199 22 is_stmt 0 view .LVU121
+ 473 0038 06EB0309 		add	r9, r6, r3
+ 474              	.LVL49:
+ 199:BSP/src/fdb_utils.c ****             }
+ 475              		.loc 1 199 22 view .LVU122
+ 476 003c EBE7     		b	.L33
+ 477              	.LVL50:
+ 478              	.L39:
+ 190:BSP/src/fdb_utils.c ****         if (start + sizeof(buf) < end) {
+ 479              		.loc 1 190 31 view .LVU123
+ 480 003e 4646     		mov	r6, r8
+ 481              	.LVL51:
+ 482              	.L30:
+ 190:BSP/src/fdb_utils.c ****         if (start + sizeof(buf) < end) {
+ 483              		.loc 1 190 18 is_stmt 1 discriminator 1 view .LVU124
+ 484 0040 BE42     		cmp	r6, r7
+ 485 0042 0CD2     		bcs	.L40
+ 191:BSP/src/fdb_utils.c ****             read_size = sizeof(buf);
+ 486              		.loc 1 191 9 view .LVU125
+ 191:BSP/src/fdb_utils.c ****             read_size = sizeof(buf);
+ 487              		.loc 1 191 19 is_stmt 0 view .LVU126
+ 488 0044 06F12008 		add	r8, r6, #32
+ 191:BSP/src/fdb_utils.c ****             read_size = sizeof(buf);
+ 489              		.loc 1 191 12 view .LVU127
+ 490 0048 B845     		cmp	r8, r7
+ 491 004a E2D3     		bcc	.L37
+ 194:BSP/src/fdb_utils.c ****         }
+ 492              		.loc 1 194 13 is_stmt 1 view .LVU128
+ 194:BSP/src/fdb_utils.c ****         }
+ 493              		.loc 1 194 23 is_stmt 0 view .LVU129
+ 494 004c BD1B     		subs	r5, r7, r6
+ 495              	.LVL52:
+ 496              	.L31:
+ 196:BSP/src/fdb_utils.c ****         for (i = 0; i < read_size; i++) {
+ 497              		.loc 1 196 9 is_stmt 1 view .LVU130
+ 498 004e 2B46     		mov	r3, r5
+ 499 0050 6A46     		mov	r2, sp
+ 500 0052 3146     		mov	r1, r6
+ 501 0054 5046     		mov	r0, r10
+ 502 0056 FFF7FEFF 		bl	_fdb_flash_read
+ 503              	.LVL53:
+ 197:BSP/src/fdb_utils.c ****             if (last_data != FDB_BYTE_ERASED && buf[i] == FDB_BYTE_ERASED) {
+ 504              		.loc 1 197 9 view .LVU131
+ 197:BSP/src/fdb_utils.c ****             if (last_data != FDB_BYTE_ERASED && buf[i] == FDB_BYTE_ERASED) {
+ 505              		.loc 1 197 16 is_stmt 0 view .LVU132
+ 506 005a 0023     		movs	r3, #0
+ 197:BSP/src/fdb_utils.c ****             if (last_data != FDB_BYTE_ERASED && buf[i] == FDB_BYTE_ERASED) {
+ 507              		.loc 1 197 9 view .LVU133
+ 508 005c E1E7     		b	.L32
+ 509              	.LVL54:
+ 510              	.L40:
+ 205:BSP/src/fdb_utils.c ****         return FDB_WG_ALIGN(addr);
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 16
+
+
+ 511              		.loc 1 205 5 is_stmt 1 view .LVU134
+ 205:BSP/src/fdb_utils.c ****         return FDB_WG_ALIGN(addr);
+ 512              		.loc 1 205 8 is_stmt 0 view .LVU135
+ 513 005e FF2C     		cmp	r4, #255
+ 514 0060 03D0     		beq	.L41
+ 515              	.LVL55:
+ 516              	.L36:
+ 210:BSP/src/fdb_utils.c **** 
+ 517              		.loc 1 210 1 view .LVU136
+ 518 0062 3846     		mov	r0, r7
+ 519 0064 08B0     		add	sp, sp, #32
+ 520              	.LCFI6:
+ 521              		.cfi_remember_state
+ 522              		.cfi_def_cfa_offset 32
+ 523              		@ sp needed
+ 524 0066 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 525              	.LVL56:
+ 526              	.L41:
+ 527              	.LCFI7:
+ 528              		.cfi_restore_state
+ 206:BSP/src/fdb_utils.c ****     } else {
+ 529              		.loc 1 206 16 view .LVU137
+ 530 006a 4F46     		mov	r7, r9
+ 531              	.LVL57:
+ 206:BSP/src/fdb_utils.c ****     } else {
+ 532              		.loc 1 206 16 view .LVU138
+ 533 006c F9E7     		b	.L36
+ 534              		.cfi_endproc
+ 535              	.LFE8:
+ 537              		.section	.text.fdb_blob_read,"ax",%progbits
+ 538              		.align	1
+ 539              		.global	fdb_blob_read
+ 540              		.syntax unified
+ 541              		.thumb
+ 542              		.thumb_func
+ 544              	fdb_blob_read:
+ 545              	.LVL58:
+ 546              	.LFB10:
+ 238:BSP/src/fdb_utils.c ****     size_t read_len = blob->size;
+ 547              		.loc 1 238 1 is_stmt 1 view -0
+ 548              		.cfi_startproc
+ 549              		@ args = 0, pretend = 0, frame = 0
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 238:BSP/src/fdb_utils.c ****     size_t read_len = blob->size;
+ 551              		.loc 1 238 1 is_stmt 0 view .LVU140
+ 552 0000 10B5     		push	{r4, lr}
+ 553              	.LCFI8:
+ 554              		.cfi_def_cfa_offset 8
+ 555              		.cfi_offset 4, -8
+ 556              		.cfi_offset 14, -4
+ 239:BSP/src/fdb_utils.c **** 
+ 557              		.loc 1 239 5 is_stmt 1 view .LVU141
+ 239:BSP/src/fdb_utils.c **** 
+ 558              		.loc 1 239 12 is_stmt 0 view .LVU142
+ 559 0002 4B68     		ldr	r3, [r1, #4]
+ 560              	.LVL59:
+ 241:BSP/src/fdb_utils.c ****         read_len = blob->saved.len;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 17
+
+
+ 561              		.loc 1 241 5 is_stmt 1 view .LVU143
+ 241:BSP/src/fdb_utils.c ****         read_len = blob->saved.len;
+ 562              		.loc 1 241 31 is_stmt 0 view .LVU144
+ 563 0004 0C69     		ldr	r4, [r1, #16]
+ 241:BSP/src/fdb_utils.c ****         read_len = blob->saved.len;
+ 564              		.loc 1 241 8 view .LVU145
+ 565 0006 9C42     		cmp	r4, r3
+ 566 0008 00D3     		bcc	.L43
+ 239:BSP/src/fdb_utils.c **** 
+ 567              		.loc 1 239 12 view .LVU146
+ 568 000a 1C46     		mov	r4, r3
+ 569              	.L43:
+ 570              	.LVL60:
+ 244:BSP/src/fdb_utils.c ****         read_len = 0;
+ 571              		.loc 1 244 5 is_stmt 1 view .LVU147
+ 244:BSP/src/fdb_utils.c ****         read_len = 0;
+ 572              		.loc 1 244 9 is_stmt 0 view .LVU148
+ 573 000c 2346     		mov	r3, r4
+ 574 000e 0A68     		ldr	r2, [r1]
+ 575 0010 C968     		ldr	r1, [r1, #12]
+ 576              	.LVL61:
+ 244:BSP/src/fdb_utils.c ****         read_len = 0;
+ 577              		.loc 1 244 9 view .LVU149
+ 578 0012 FFF7FEFF 		bl	_fdb_flash_read
+ 579              	.LVL62:
+ 244:BSP/src/fdb_utils.c ****         read_len = 0;
+ 580              		.loc 1 244 8 discriminator 1 view .LVU150
+ 581 0016 00B1     		cbz	r0, .L42
+ 245:BSP/src/fdb_utils.c ****     }
+ 582              		.loc 1 245 18 view .LVU151
+ 583 0018 0024     		movs	r4, #0
+ 584              	.LVL63:
+ 248:BSP/src/fdb_utils.c **** }
+ 585              		.loc 1 248 5 is_stmt 1 view .LVU152
+ 586              	.L42:
+ 249:BSP/src/fdb_utils.c **** 
+ 587              		.loc 1 249 1 is_stmt 0 view .LVU153
+ 588 001a 2046     		mov	r0, r4
+ 589 001c 10BD     		pop	{r4, pc}
+ 590              		.cfi_endproc
+ 591              	.LFE10:
+ 593              		.section	.text._fdb_flash_erase,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	_fdb_flash_erase
+ 596              		.syntax unified
+ 597              		.thumb
+ 598              		.thumb_func
+ 600              	_fdb_flash_erase:
+ 601              	.LVL64:
+ 602              	.LFB12:
+ 277:BSP/src/fdb_utils.c **** 
+ 278:BSP/src/fdb_utils.c **** fdb_err_t _fdb_flash_erase(fdb_db_t db, uint32_t addr, size_t size)
+ 279:BSP/src/fdb_utils.c **** {
+ 603              		.loc 1 279 1 is_stmt 1 view -0
+ 604              		.cfi_startproc
+ 605              		@ args = 0, pretend = 0, frame = 0
+ 606              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 18
+
+
+ 607              		.loc 1 279 1 is_stmt 0 view .LVU155
+ 608 0000 08B5     		push	{r3, lr}
+ 609              	.LCFI9:
+ 610              		.cfi_def_cfa_offset 8
+ 611              		.cfi_offset 3, -8
+ 612              		.cfi_offset 14, -4
+ 280:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
+ 613              		.loc 1 280 5 is_stmt 1 view .LVU156
+ 614              	.LVL65:
+ 281:BSP/src/fdb_utils.c **** 
+ 282:BSP/src/fdb_utils.c ****     if (db->file_mode) {
+ 615              		.loc 1 282 5 view .LVU157
+ 616              		.loc 1 282 11 is_stmt 0 view .LVU158
+ 617 0002 437E     		ldrb	r3, [r0, #25]	@ zero_extendqisi2
+ 618              		.loc 1 282 8 view .LVU159
+ 619 0004 0BB1     		cbz	r3, .L52
+ 283:BSP/src/fdb_utils.c **** #ifdef FDB_USING_FILE_MODE
+ 284:BSP/src/fdb_utils.c ****         return _fdb_file_erase(db, addr, size);
+ 285:BSP/src/fdb_utils.c **** #else
+ 286:BSP/src/fdb_utils.c ****         return FDB_ERASE_ERR;
+ 620              		.loc 1 286 16 view .LVU160
+ 621 0006 0120     		movs	r0, #1
+ 622              	.LVL66:
+ 623              	.L48:
+ 287:BSP/src/fdb_utils.c **** #endif /* FDB_USING_FILE_MODE */
+ 288:BSP/src/fdb_utils.c ****     } else {
+ 289:BSP/src/fdb_utils.c **** #ifdef FDB_USING_FAL_MODE
+ 290:BSP/src/fdb_utils.c ****         if (fal_partition_erase(db->storage.part, addr, size) < 0) {
+ 291:BSP/src/fdb_utils.c ****             result = FDB_ERASE_ERR;
+ 292:BSP/src/fdb_utils.c ****         }
+ 293:BSP/src/fdb_utils.c **** #endif
+ 294:BSP/src/fdb_utils.c ****     }
+ 295:BSP/src/fdb_utils.c **** 
+ 296:BSP/src/fdb_utils.c ****     return result;
+ 297:BSP/src/fdb_utils.c **** }
+ 624              		.loc 1 297 1 view .LVU161
+ 625 0008 08BD     		pop	{r3, pc}
+ 626              	.LVL67:
+ 627              	.L52:
+ 290:BSP/src/fdb_utils.c ****             result = FDB_ERASE_ERR;
+ 628              		.loc 1 290 9 is_stmt 1 view .LVU162
+ 290:BSP/src/fdb_utils.c ****             result = FDB_ERASE_ERR;
+ 629              		.loc 1 290 13 is_stmt 0 view .LVU163
+ 630 000a 8068     		ldr	r0, [r0, #8]
+ 631              	.LVL68:
+ 290:BSP/src/fdb_utils.c ****             result = FDB_ERASE_ERR;
+ 632              		.loc 1 290 13 view .LVU164
+ 633 000c FFF7FEFF 		bl	fal_partition_erase
+ 634              	.LVL69:
+ 290:BSP/src/fdb_utils.c ****             result = FDB_ERASE_ERR;
+ 635              		.loc 1 290 12 discriminator 1 view .LVU165
+ 636 0010 0028     		cmp	r0, #0
+ 637 0012 01DB     		blt	.L50
+ 280:BSP/src/fdb_utils.c **** 
+ 638              		.loc 1 280 15 view .LVU166
+ 639 0014 0020     		movs	r0, #0
+ 640 0016 F7E7     		b	.L48
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 19
+
+
+ 641              	.L50:
+ 291:BSP/src/fdb_utils.c ****         }
+ 642              		.loc 1 291 20 view .LVU167
+ 643 0018 0120     		movs	r0, #1
+ 644 001a F5E7     		b	.L48
+ 645              		.cfi_endproc
+ 646              	.LFE12:
+ 648              		.section	.text._fdb_flash_write,"ax",%progbits
+ 649              		.align	1
+ 650              		.global	_fdb_flash_write
+ 651              		.syntax unified
+ 652              		.thumb
+ 653              		.thumb_func
+ 655              	_fdb_flash_write:
+ 656              	.LVL70:
+ 657              	.LFB13:
+ 298:BSP/src/fdb_utils.c **** 
+ 299:BSP/src/fdb_utils.c **** fdb_err_t _fdb_flash_write(fdb_db_t db, uint32_t addr, const void *buf, size_t size, bool sync)
+ 300:BSP/src/fdb_utils.c **** {
+ 658              		.loc 1 300 1 is_stmt 1 view -0
+ 659              		.cfi_startproc
+ 660              		@ args = 4, pretend = 0, frame = 0
+ 661              		@ frame_needed = 0, uses_anonymous_args = 0
+ 662              		.loc 1 300 1 is_stmt 0 view .LVU169
+ 663 0000 10B5     		push	{r4, lr}
+ 664              	.LCFI10:
+ 665              		.cfi_def_cfa_offset 8
+ 666              		.cfi_offset 4, -8
+ 667              		.cfi_offset 14, -4
+ 301:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
+ 668              		.loc 1 301 5 is_stmt 1 view .LVU170
+ 669              	.LVL71:
+ 302:BSP/src/fdb_utils.c **** 
+ 303:BSP/src/fdb_utils.c ****     if (db->file_mode) {
+ 670              		.loc 1 303 5 view .LVU171
+ 671              		.loc 1 303 11 is_stmt 0 view .LVU172
+ 672 0002 447E     		ldrb	r4, [r0, #25]	@ zero_extendqisi2
+ 673              		.loc 1 303 8 view .LVU173
+ 674 0004 34B9     		cbnz	r4, .L55
+ 304:BSP/src/fdb_utils.c **** #ifdef FDB_USING_FILE_MODE
+ 305:BSP/src/fdb_utils.c ****         return _fdb_file_write(db, addr, buf, size, sync);
+ 306:BSP/src/fdb_utils.c **** #else
+ 307:BSP/src/fdb_utils.c ****         return FDB_WRITE_ERR;
+ 308:BSP/src/fdb_utils.c **** #endif /* FDB_USING_FILE_MODE */
+ 309:BSP/src/fdb_utils.c ****     } else {
+ 310:BSP/src/fdb_utils.c **** #ifdef FDB_USING_FAL_MODE
+ 311:BSP/src/fdb_utils.c ****         if (fal_partition_write(db->storage.part, addr, (uint8_t *)buf, size) < 0)
+ 675              		.loc 1 311 9 is_stmt 1 view .LVU174
+ 676              		.loc 1 311 13 is_stmt 0 view .LVU175
+ 677 0006 8068     		ldr	r0, [r0, #8]
+ 678              	.LVL72:
+ 679              		.loc 1 311 13 view .LVU176
+ 680 0008 FFF7FEFF 		bl	fal_partition_write
+ 681              	.LVL73:
+ 682              		.loc 1 311 12 discriminator 1 view .LVU177
+ 683 000c 0028     		cmp	r0, #0
+ 684 000e 03DB     		blt	.L56
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 20
+
+
+ 301:BSP/src/fdb_utils.c **** 
+ 685              		.loc 1 301 15 view .LVU178
+ 686 0010 0020     		movs	r0, #0
+ 687              	.L54:
+ 688              	.LVL74:
+ 312:BSP/src/fdb_utils.c ****         {
+ 313:BSP/src/fdb_utils.c ****             result = FDB_WRITE_ERR;
+ 314:BSP/src/fdb_utils.c ****         }
+ 315:BSP/src/fdb_utils.c **** #endif
+ 316:BSP/src/fdb_utils.c ****     }
+ 317:BSP/src/fdb_utils.c **** 
+ 318:BSP/src/fdb_utils.c ****     return result;
+ 319:BSP/src/fdb_utils.c **** 
+ 320:BSP/src/fdb_utils.c **** }
+ 689              		.loc 1 320 1 view .LVU179
+ 690 0012 10BD     		pop	{r4, pc}
+ 691              	.LVL75:
+ 692              	.L55:
+ 307:BSP/src/fdb_utils.c **** #endif /* FDB_USING_FILE_MODE */
+ 693              		.loc 1 307 16 view .LVU180
+ 694 0014 0320     		movs	r0, #3
+ 695              	.LVL76:
+ 307:BSP/src/fdb_utils.c **** #endif /* FDB_USING_FILE_MODE */
+ 696              		.loc 1 307 16 view .LVU181
+ 697 0016 FCE7     		b	.L54
+ 698              	.LVL77:
+ 699              	.L56:
+ 313:BSP/src/fdb_utils.c ****         }
+ 700              		.loc 1 313 20 view .LVU182
+ 701 0018 0320     		movs	r0, #3
+ 702 001a FAE7     		b	.L54
+ 703              		.cfi_endproc
+ 704              	.LFE13:
+ 706              		.section	.rodata._fdb_write_status.str1.4,"aMS",%progbits,1
+ 707              		.align	2
+ 708              	.LC3:
+ 709 0000 73746174 		.ascii	"status_index < status_num\000"
+ 709      75735F69 
+ 709      6E646578 
+ 709      203C2073 
+ 709      74617475 
+ 710              		.section	.text._fdb_write_status,"ax",%progbits
+ 711              		.align	1
+ 712              		.global	_fdb_write_status
+ 713              		.syntax unified
+ 714              		.thumb
+ 715              		.thumb_func
+ 717              	_fdb_write_status:
+ 718              	.LVL78:
+ 719              	.LFB6:
+ 148:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
+ 720              		.loc 1 148 1 is_stmt 1 view -0
+ 721              		.cfi_startproc
+ 722              		@ args = 8, pretend = 0, frame = 0
+ 723              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
+ 724              		.loc 1 148 1 is_stmt 0 view .LVU184
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 21
+
+
+ 725 0000 70B5     		push	{r4, r5, r6, lr}
+ 726              	.LCFI11:
+ 727              		.cfi_def_cfa_offset 16
+ 728              		.cfi_offset 4, -16
+ 729              		.cfi_offset 5, -12
+ 730              		.cfi_offset 6, -8
+ 731              		.cfi_offset 14, -4
+ 732 0002 82B0     		sub	sp, sp, #8
+ 733              	.LCFI12:
+ 734              		.cfi_def_cfa_offset 24
+ 735 0004 1446     		mov	r4, r2
+ 736 0006 069A     		ldr	r2, [sp, #24]
+ 737              	.LVL79:
+ 149:BSP/src/fdb_utils.c ****     size_t byte_index;
+ 738              		.loc 1 149 5 is_stmt 1 view .LVU185
+ 150:BSP/src/fdb_utils.c **** 
+ 739              		.loc 1 150 5 view .LVU186
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 740              		.loc 1 152 5 view .LVU187
+ 741 0008 9A42     		cmp	r2, r3
+ 742 000a 14D2     		bcs	.L66
+ 743 000c 0546     		mov	r5, r0
+ 744 000e 0E46     		mov	r6, r1
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 745              		.loc 1 152 42 view .LVU188
+ 153:BSP/src/fdb_utils.c **** 
+ 746              		.loc 1 153 5 view .LVU189
+ 747 0010 ECB1     		cbz	r4, .L67
+ 153:BSP/src/fdb_utils.c **** 
+ 748              		.loc 1 153 29 view .LVU190
+ 156:BSP/src/fdb_utils.c **** 
+ 749              		.loc 1 156 5 view .LVU191
+ 156:BSP/src/fdb_utils.c **** 
+ 750              		.loc 1 156 18 is_stmt 0 view .LVU192
+ 751 0012 1946     		mov	r1, r3
+ 752              	.LVL80:
+ 156:BSP/src/fdb_utils.c **** 
+ 753              		.loc 1 156 18 view .LVU193
+ 754 0014 2046     		mov	r0, r4
+ 755              	.LVL81:
+ 156:BSP/src/fdb_utils.c **** 
+ 756              		.loc 1 156 18 view .LVU194
+ 757 0016 FFF7FEFF 		bl	_fdb_set_status
+ 758              	.LVL82:
+ 159:BSP/src/fdb_utils.c ****         return FDB_NO_ERR;
+ 759              		.loc 1 159 5 is_stmt 1 view .LVU195
+ 159:BSP/src/fdb_utils.c ****         return FDB_NO_ERR;
+ 760              		.loc 1 159 8 is_stmt 0 view .LVU196
+ 761 001a B0F1FF3F 		cmp	r0, #-1
+ 762 001e 22D0     		beq	.L64
+ 163:BSP/src/fdb_utils.c **** #else /*  (FDB_WRITE_GRAN == 8) ||  (FDB_WRITE_GRAN == 32) ||  (FDB_WRITE_GRAN == 64) */
+ 763              		.loc 1 163 5 is_stmt 1 view .LVU197
+ 163:BSP/src/fdb_utils.c **** #else /*  (FDB_WRITE_GRAN == 8) ||  (FDB_WRITE_GRAN == 32) ||  (FDB_WRITE_GRAN == 64) */
+ 764              		.loc 1 163 14 is_stmt 0 view .LVU198
+ 765 0020 9DF81C30 		ldrb	r3, [sp, #28]	@ zero_extendqisi2
+ 766 0024 0093     		str	r3, [sp]
+ 767 0026 0123     		movs	r3, #1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 22
+
+
+ 768 0028 2218     		adds	r2, r4, r0
+ 769 002a 8119     		adds	r1, r0, r6
+ 770 002c 2846     		mov	r0, r5
+ 771              	.LVL83:
+ 163:BSP/src/fdb_utils.c **** #else /*  (FDB_WRITE_GRAN == 8) ||  (FDB_WRITE_GRAN == 32) ||  (FDB_WRITE_GRAN == 64) */
+ 772              		.loc 1 163 14 view .LVU199
+ 773 002e FFF7FEFF 		bl	_fdb_flash_write
+ 774              	.LVL84:
+ 170:BSP/src/fdb_utils.c **** }
+ 775              		.loc 1 170 5 is_stmt 1 view .LVU200
+ 776              	.L63:
+ 171:BSP/src/fdb_utils.c **** 
+ 777              		.loc 1 171 1 is_stmt 0 view .LVU201
+ 778 0032 02B0     		add	sp, sp, #8
+ 779              	.LCFI13:
+ 780              		.cfi_remember_state
+ 781              		.cfi_def_cfa_offset 16
+ 782              		@ sp needed
+ 783 0034 70BD     		pop	{r4, r5, r6, pc}
+ 784              	.LVL85:
+ 785              	.L66:
+ 786              	.LCFI14:
+ 787              		.cfi_restore_state
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 788              		.loc 1 152 5 is_stmt 1 discriminator 1 view .LVU202
+ 789 0036 0D48     		ldr	r0, .L68
+ 790              	.LVL86:
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 791              		.loc 1 152 5 is_stmt 0 discriminator 1 view .LVU203
+ 792 0038 FFF7FEFF 		bl	printf
+ 793              	.LVL87:
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 794              		.loc 1 152 5 is_stmt 1 discriminator 1 view .LVU204
+ 795 003c 2020     		movs	r0, #32
+ 796 003e FFF7FEFF 		bl	putchar
+ 797              	.LVL88:
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 798              		.loc 1 152 5 discriminator 2 view .LVU205
+ 799 0042 0B4A     		ldr	r2, .L68+4
+ 800 0044 0B49     		ldr	r1, .L68+8
+ 801 0046 0C48     		ldr	r0, .L68+12
+ 802 0048 FFF7FEFF 		bl	printf
+ 803              	.LVL89:
+ 804              	.L60:
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 805              		.loc 1 152 5 view .LVU206
+ 152:BSP/src/fdb_utils.c ****     FDB_ASSERT(status_table);
+ 806              		.loc 1 152 5 view .LVU207
+ 807 004c FEE7     		b	.L60
+ 808              	.LVL90:
+ 809              	.L67:
+ 153:BSP/src/fdb_utils.c **** 
+ 810              		.loc 1 153 5 discriminator 1 view .LVU208
+ 811 004e 0748     		ldr	r0, .L68
+ 812              	.LVL91:
+ 153:BSP/src/fdb_utils.c **** 
+ 813              		.loc 1 153 5 is_stmt 0 discriminator 1 view .LVU209
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 23
+
+
+ 814 0050 FFF7FEFF 		bl	printf
+ 815              	.LVL92:
+ 153:BSP/src/fdb_utils.c **** 
+ 816              		.loc 1 153 5 is_stmt 1 discriminator 1 view .LVU210
+ 817 0054 2020     		movs	r0, #32
+ 818 0056 FFF7FEFF 		bl	putchar
+ 819              	.LVL93:
+ 153:BSP/src/fdb_utils.c **** 
+ 820              		.loc 1 153 5 discriminator 2 view .LVU211
+ 821 005a 054A     		ldr	r2, .L68+4
+ 822 005c 0749     		ldr	r1, .L68+16
+ 823 005e 0648     		ldr	r0, .L68+12
+ 824 0060 FFF7FEFF 		bl	printf
+ 825              	.LVL94:
+ 826              	.L62:
+ 153:BSP/src/fdb_utils.c **** 
+ 827              		.loc 1 153 5 view .LVU212
+ 153:BSP/src/fdb_utils.c **** 
+ 828              		.loc 1 153 5 view .LVU213
+ 829 0064 FEE7     		b	.L62
+ 830              	.LVL95:
+ 831              	.L64:
+ 160:BSP/src/fdb_utils.c ****     }
+ 832              		.loc 1 160 16 is_stmt 0 view .LVU214
+ 833 0066 0020     		movs	r0, #0
+ 834              	.LVL96:
+ 160:BSP/src/fdb_utils.c ****     }
+ 835              		.loc 1 160 16 view .LVU215
+ 836 0068 E3E7     		b	.L63
+ 837              	.L69:
+ 838 006a 00BF     		.align	2
+ 839              	.L68:
+ 840 006c 00000000 		.word	.LC0
+ 841 0070 00000000 		.word	__func__.1
+ 842 0074 00000000 		.word	.LC3
+ 843 0078 24000000 		.word	.LC2
+ 844 007c 14000000 		.word	.LC1
+ 845              		.cfi_endproc
+ 846              	.LFE6:
+ 848              		.section	.text._fdb_flash_write_align,"ax",%progbits
+ 849              		.align	1
+ 850              		.global	_fdb_flash_write_align
+ 851              		.syntax unified
+ 852              		.thumb
+ 853              		.thumb_func
+ 855              	_fdb_flash_write_align:
+ 856              	.LVL97:
+ 857              	.LFB14:
+ 321:BSP/src/fdb_utils.c **** 
+ 322:BSP/src/fdb_utils.c **** fdb_err_t _fdb_flash_write_align(fdb_db_t db, uint32_t addr, const uint32_t *buf, size_t size)
+ 323:BSP/src/fdb_utils.c **** {
+ 858              		.loc 1 323 1 is_stmt 1 view -0
+ 859              		.cfi_startproc
+ 860              		@ args = 0, pretend = 0, frame = 0
+ 861              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324:BSP/src/fdb_utils.c ****     fdb_err_t result = FDB_NO_ERR;
+ 862              		.loc 1 324 5 view .LVU217
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 24
+
+
+ 325:BSP/src/fdb_utils.c ****     size_t align_remain;
+ 863              		.loc 1 325 5 view .LVU218
+ 326:BSP/src/fdb_utils.c **** 
+ 327:BSP/src/fdb_utils.c **** #if (FDB_WRITE_GRAN / 8 > 0)
+ 328:BSP/src/fdb_utils.c ****     uint8_t align_data[FDB_WRITE_GRAN / 8];
+ 329:BSP/src/fdb_utils.c ****     size_t align_data_size = sizeof(align_data);
+ 330:BSP/src/fdb_utils.c **** #else
+ 331:BSP/src/fdb_utils.c ****     /* For compatibility with C89 */
+ 332:BSP/src/fdb_utils.c ****     uint8_t align_data_u8, *align_data = &align_data_u8;
+ 864              		.loc 1 332 5 view .LVU219
+ 333:BSP/src/fdb_utils.c ****     size_t align_data_size = 1;
+ 865              		.loc 1 333 5 view .LVU220
+ 334:BSP/src/fdb_utils.c **** #endif
+ 335:BSP/src/fdb_utils.c **** 
+ 336:BSP/src/fdb_utils.c ****     memset(align_data, FDB_BYTE_ERASED, align_data_size);
+ 866              		.loc 1 336 5 view .LVU221
+ 337:BSP/src/fdb_utils.c ****     if(FDB_WG_ALIGN_DOWN(size) > 0) {
+ 867              		.loc 1 337 5 view .LVU222
+ 868              		.loc 1 337 7 is_stmt 0 view .LVU223
+ 869 0000 0BB9     		cbnz	r3, .L77
+ 324:BSP/src/fdb_utils.c ****     size_t align_remain;
+ 870              		.loc 1 324 15 view .LVU224
+ 871 0002 0020     		movs	r0, #0
+ 872              	.LVL98:
+ 338:BSP/src/fdb_utils.c ****         result = _fdb_flash_write(db, addr, buf, FDB_WG_ALIGN_DOWN(size), false);
+ 339:BSP/src/fdb_utils.c ****     }
+ 340:BSP/src/fdb_utils.c **** 
+ 341:BSP/src/fdb_utils.c ****     align_remain = size - FDB_WG_ALIGN_DOWN(size);
+ 873              		.loc 1 341 5 is_stmt 1 view .LVU225
+ 342:BSP/src/fdb_utils.c ****     if (result == FDB_NO_ERR && align_remain) {
+ 874              		.loc 1 342 5 view .LVU226
+ 343:BSP/src/fdb_utils.c ****         memcpy(align_data, (uint8_t *) buf + FDB_WG_ALIGN_DOWN(size), align_remain);
+ 344:BSP/src/fdb_utils.c ****         result = _fdb_flash_write(db, addr + FDB_WG_ALIGN_DOWN(size), (uint32_t *) align_data,
+ 345:BSP/src/fdb_utils.c ****                 align_data_size, false);
+ 346:BSP/src/fdb_utils.c ****     }
+ 347:BSP/src/fdb_utils.c **** 
+ 348:BSP/src/fdb_utils.c ****     return result;
+ 875              		.loc 1 348 5 view .LVU227
+ 349:BSP/src/fdb_utils.c **** }...
+ 876              		.loc 1 349 1 is_stmt 0 view .LVU228
+ 877 0004 7047     		bx	lr
+ 878              	.LVL99:
+ 879              	.L77:
+ 323:BSP/src/fdb_utils.c **** {
+ 880              		.loc 1 323 1 view .LVU229
+ 881 0006 00B5     		push	{lr}
+ 882              	.LCFI15:
+ 883              		.cfi_def_cfa_offset 4
+ 884              		.cfi_offset 14, -4
+ 885 0008 83B0     		sub	sp, sp, #12
+ 886              	.LCFI16:
+ 887              		.cfi_def_cfa_offset 16
+ 888 000a 9C46     		mov	ip, r3
+ 338:BSP/src/fdb_utils.c ****         result = _fdb_flash_write(db, addr, buf, FDB_WG_ALIGN_DOWN(size), false);
+ 889              		.loc 1 338 9 is_stmt 1 view .LVU230
+ 338:BSP/src/fdb_utils.c ****         result = _fdb_flash_write(db, addr, buf, FDB_WG_ALIGN_DOWN(size), false);
+ 890              		.loc 1 338 18 is_stmt 0 view .LVU231
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 25
+
+
+ 891 000c 0023     		movs	r3, #0
+ 892              	.LVL100:
+ 338:BSP/src/fdb_utils.c ****         result = _fdb_flash_write(db, addr, buf, FDB_WG_ALIGN_DOWN(size), false);
+ 893              		.loc 1 338 18 view .LVU232
+ 894 000e 0093     		str	r3, [sp]
+ 895 0010 6346     		mov	r3, ip
+ 896 0012 FFF7FEFF 		bl	_fdb_flash_write
+ 897              	.LVL101:
+ 341:BSP/src/fdb_utils.c ****     align_remain = size - FDB_WG_ALIGN_DOWN(size);
+ 898              		.loc 1 341 5 is_stmt 1 view .LVU233
+ 342:BSP/src/fdb_utils.c ****     if (result == FDB_NO_ERR && align_remain) {
+ 899              		.loc 1 342 5 view .LVU234
+ 348:BSP/src/fdb_utils.c ****     return result;
+ 900              		.loc 1 348 5 view .LVU235
+ 901              		.loc 1 349 1 is_stmt 0 view .LVU236
+ 902 0016 03B0     		add	sp, sp, #12
+ 903              	.LCFI17:
+ 904              		.cfi_def_cfa_offset 4
+ 905              		@ sp needed
+ 906 0018 5DF804FB 		ldr	pc, [sp], #4
+ 907              		.cfi_endproc
+ 908              	.LFE14:
+ 910              		.section	.rodata.__func__.0,"a"
+ 911              		.align	2
+ 914              	__func__.0:
+ 915 0000 5F666462 		.ascii	"_fdb_read_status\000"
+ 915      5F726561 
+ 915      645F7374 
+ 915      61747573 
+ 915      00
+ 916              		.section	.rodata.__func__.1,"a"
+ 917              		.align	2
+ 920              	__func__.1:
+ 921 0000 5F666462 		.ascii	"_fdb_write_status\000"
+ 921      5F777269 
+ 921      74655F73 
+ 921      74617475 
+ 921      7300
+ 922              		.section	.rodata.crc32_table,"a"
+ 923              		.align	2
+ 926              	crc32_table:
+ 927 0000 00000000 		.word	0
+ 928 0004 96300777 		.word	1996959894
+ 929 0008 2C610EEE 		.word	-301047508
+ 930 000c BA510999 		.word	-1727442502
+ 931 0010 19C46D07 		.word	124634137
+ 932 0014 8FF46A70 		.word	1886057615
+ 933 0018 35A563E9 		.word	-379345611
+ 934 001c A395649E 		.word	-1637575261
+ 935 0020 3288DB0E 		.word	249268274
+ 936 0024 A4B8DC79 		.word	2044508324
+ 937 0028 1EE9D5E0 		.word	-522852066
+ 938 002c 88D9D297 		.word	-1747789432
+ 939 0030 2B4CB609 		.word	162941995
+ 940 0034 BD7CB17E 		.word	2125561021
+ 941 0038 072DB8E7 		.word	-407360249
+ 942 003c 911DBF90 		.word	-1866523247
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 26
+
+
+ 943 0040 6410B71D 		.word	498536548
+ 944 0044 F220B06A 		.word	1789927666
+ 945 0048 4871B9F3 		.word	-205950648
+ 946 004c DE41BE84 		.word	-2067906082
+ 947 0050 7DD4DA1A 		.word	450548861
+ 948 0054 EBE4DD6D 		.word	1843258603
+ 949 0058 51B5D4F4 		.word	-187386543
+ 950 005c C785D383 		.word	-2083289657
+ 951 0060 56986C13 		.word	325883990
+ 952 0064 C0A86B64 		.word	1684777152
+ 953 0068 7AF962FD 		.word	-43845254
+ 954 006c ECC9658A 		.word	-1973040660
+ 955 0070 4F5C0114 		.word	335633487
+ 956 0074 D96C0663 		.word	1661365465
+ 957 0078 633D0FFA 		.word	-99664541
+ 958 007c F50D088D 		.word	-1928851979
+ 959 0080 C8206E3B 		.word	997073096
+ 960 0084 5E10694C 		.word	1281953886
+ 961 0088 E44160D5 		.word	-715111964
+ 962 008c 727167A2 		.word	-1570279054
+ 963 0090 D1E4033C 		.word	1006888145
+ 964 0094 47D4044B 		.word	1258607687
+ 965 0098 FD850DD2 		.word	-770865667
+ 966 009c 6BB50AA5 		.word	-1526024853
+ 967 00a0 FAA8B535 		.word	901097722
+ 968 00a4 6C98B242 		.word	1119000684
+ 969 00a8 D6C9BBDB 		.word	-608450090
+ 970 00ac 40F9BCAC 		.word	-1396901568
+ 971 00b0 E36CD832 		.word	853044451
+ 972 00b4 755CDF45 		.word	1172266101
+ 973 00b8 CF0DD6DC 		.word	-589951537
+ 974 00bc 593DD1AB 		.word	-1412350631
+ 975 00c0 AC30D926 		.word	651767980
+ 976 00c4 3A00DE51 		.word	1373503546
+ 977 00c8 8051D7C8 		.word	-925412992
+ 978 00cc 1661D0BF 		.word	-1076862698
+ 979 00d0 B5F4B421 		.word	565507253
+ 980 00d4 23C4B356 		.word	1454621731
+ 981 00d8 9995BACF 		.word	-809855591
+ 982 00dc 0FA5BDB8 		.word	-1195530993
+ 983 00e0 9EB80228 		.word	671266974
+ 984 00e4 0888055F 		.word	1594198024
+ 985 00e8 B2D90CC6 		.word	-972236366
+ 986 00ec 24E90BB1 		.word	-1324619484
+ 987 00f0 877C6F2F 		.word	795835527
+ 988 00f4 114C6858 		.word	1483230225
+ 989 00f8 AB1D61C1 		.word	-1050600021
+ 990 00fc 3D2D66B6 		.word	-1234817731
+ 991 0100 9041DC76 		.word	1994146192
+ 992 0104 0671DB01 		.word	31158534
+ 993 0108 BC20D298 		.word	-1731059524
+ 994 010c 2A10D5EF 		.word	-271249366
+ 995 0110 8985B171 		.word	1907459465
+ 996 0114 1FB5B606 		.word	112637215
+ 997 0118 A5E4BF9F 		.word	-1614814043
+ 998 011c 33D4B8E8 		.word	-390540237
+ 999 0120 A2C90778 		.word	2013776290
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 27
+
+
+ 1000 0124 34F9000F 		.word	251722036
+ 1001 0128 8EA80996 		.word	-1777751922
+ 1002 012c 18980EE1 		.word	-519137256
+ 1003 0130 BB0D6A7F 		.word	2137656763
+ 1004 0134 2D3D6D08 		.word	141376813
+ 1005 0138 976C6491 		.word	-1855689577
+ 1006 013c 015C63E6 		.word	-429695999
+ 1007 0140 F4516B6B 		.word	1802195444
+ 1008 0144 62616C1C 		.word	476864866
+ 1009 0148 D8306585 		.word	-2056965928
+ 1010 014c 4E0062F2 		.word	-228458418
+ 1011 0150 ED95066C 		.word	1812370925
+ 1012 0154 7BA5011B 		.word	453092731
+ 1013 0158 C1F40882 		.word	-2113342271
+ 1014 015c 57C40FF5 		.word	-183516073
+ 1015 0160 C6D9B065 		.word	1706088902
+ 1016 0164 50E9B712 		.word	314042704
+ 1017 0168 EAB8BE8B 		.word	-1950435094
+ 1018 016c 7C88B9FC 		.word	-54949764
+ 1019 0170 DF1DDD62 		.word	1658658271
+ 1020 0174 492DDA15 		.word	366619977
+ 1021 0178 F37CD38C 		.word	-1932296973
+ 1022 017c 654CD4FB 		.word	-69972891
+ 1023 0180 5861B24D 		.word	1303535960
+ 1024 0184 CE51B53A 		.word	984961486
+ 1025 0188 7400BCA3 		.word	-1547960204
+ 1026 018c E230BBD4 		.word	-725929758
+ 1027 0190 41A5DF4A 		.word	1256170817
+ 1028 0194 D795D83D 		.word	1037604311
+ 1029 0198 6DC4D1A4 		.word	-1529756563
+ 1030 019c FBF4D6D3 		.word	-740887301
+ 1031 01a0 6AE96943 		.word	1131014506
+ 1032 01a4 FCD96E34 		.word	879679996
+ 1033 01a8 468867AD 		.word	-1385723834
+ 1034 01ac D0B860DA 		.word	-631195440
+ 1035 01b0 732D0444 		.word	1141124467
+ 1036 01b4 E51D0333 		.word	855842277
+ 1037 01b8 5F4C0AAA 		.word	-1442165665
+ 1038 01bc C97C0DDD 		.word	-586318647
+ 1039 01c0 3C710550 		.word	1342533948
+ 1040 01c4 AA410227 		.word	654459306
+ 1041 01c8 10100BBE 		.word	-1106571248
+ 1042 01cc 86200CC9 		.word	-921952122
+ 1043 01d0 25B56857 		.word	1466479909
+ 1044 01d4 B3856F20 		.word	544179635
+ 1045 01d8 09D466B9 		.word	-1184443383
+ 1046 01dc 9FE461CE 		.word	-832445281
+ 1047 01e0 0EF9DE5E 		.word	1591671054
+ 1048 01e4 98C9D929 		.word	702138776
+ 1049 01e8 2298D0B0 		.word	-1328506846
+ 1050 01ec B4A8D7C7 		.word	-942167884
+ 1051 01f0 173DB359 		.word	1504918807
+ 1052 01f4 810DB42E 		.word	783551873
+ 1053 01f8 3B5CBDB7 		.word	-1212326853
+ 1054 01fc AD6CBAC0 		.word	-1061524307
+ 1055 0200 2083B8ED 		.word	-306674912
+ 1056 0204 B6B3BF9A 		.word	-1698712650
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 28
+
+
+ 1057 0208 0CE2B603 		.word	62317068
+ 1058 020c 9AD2B174 		.word	1957810842
+ 1059 0210 3947D5EA 		.word	-355121351
+ 1060 0214 AF77D29D 		.word	-1647151185
+ 1061 0218 1526DB04 		.word	81470997
+ 1062 021c 8316DC73 		.word	1943803523
+ 1063 0220 120B63E3 		.word	-480048366
+ 1064 0224 843B6494 		.word	-1805370492
+ 1065 0228 3E6A6D0D 		.word	225274430
+ 1066 022c A85A6A7A 		.word	2053790376
+ 1067 0230 0BCF0EE4 		.word	-468791541
+ 1068 0234 9DFF0993 		.word	-1828061283
+ 1069 0238 27AE000A 		.word	167816743
+ 1070 023c B19E077D 		.word	2097651377
+ 1071 0240 44930FF0 		.word	-267414716
+ 1072 0244 D2A30887 		.word	-2029476910
+ 1073 0248 68F2011E 		.word	503444072
+ 1074 024c FEC20669 		.word	1762050814
+ 1075 0250 5D5762F7 		.word	-144550051
+ 1076 0254 CB676580 		.word	-2140837941
+ 1077 0258 71366C19 		.word	426522225
+ 1078 025c E7066B6E 		.word	1852507879
+ 1079 0260 761BD4FE 		.word	-19653770
+ 1080 0264 E02BD389 		.word	-1982649376
+ 1081 0268 5A7ADA10 		.word	282753626
+ 1082 026c CC4ADD67 		.word	1742555852
+ 1083 0270 6FDFB9F9 		.word	-105259153
+ 1084 0274 F9EFBE8E 		.word	-1900089351
+ 1085 0278 43BEB717 		.word	397917763
+ 1086 027c D58EB060 		.word	1622183637
+ 1087 0280 E8A3D6D6 		.word	-690576408
+ 1088 0284 7E93D1A1 		.word	-1580100738
+ 1089 0288 C4C2D838 		.word	953729732
+ 1090 028c 52F2DF4F 		.word	1340076626
+ 1091 0290 F167BBD1 		.word	-776247311
+ 1092 0294 6757BCA6 		.word	-1497606297
+ 1093 0298 DD06B53F 		.word	1068828381
+ 1094 029c 4B36B248 		.word	1219638859
+ 1095 02a0 DA2B0DD8 		.word	-670225446
+ 1096 02a4 4C1B0AAF 		.word	-1358292148
+ 1097 02a8 F64A0336 		.word	906185462
+ 1098 02ac 607A0441 		.word	1090812512
+ 1099 02b0 C3EF60DF 		.word	-547295293
+ 1100 02b4 55DF67A8 		.word	-1469587627
+ 1101 02b8 EF8E6E31 		.word	829329135
+ 1102 02bc 79BE6946 		.word	1181335161
+ 1103 02c0 8CB361CB 		.word	-882789492
+ 1104 02c4 1A8366BC 		.word	-1134132454
+ 1105 02c8 A0D26F25 		.word	628085408
+ 1106 02cc 36E26852 		.word	1382605366
+ 1107 02d0 95770CCC 		.word	-871598187
+ 1108 02d4 03470BBB 		.word	-1156888829
+ 1109 02d8 B9160222 		.word	570562233
+ 1110 02dc 2F260555 		.word	1426400815
+ 1111 02e0 BE3BBAC5 		.word	-977650754
+ 1112 02e4 280BBDB2 		.word	-1296233688
+ 1113 02e8 925AB42B 		.word	733239954
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 29
+
+
+ 1114 02ec 046AB35C 		.word	1555261956
+ 1115 02f0 A7FFD7C2 		.word	-1026031705
+ 1116 02f4 31CFD0B5 		.word	-1244606671
+ 1117 02f8 8B9ED92C 		.word	752459403
+ 1118 02fc 1DAEDE5B 		.word	1541320221
+ 1119 0300 B0C2649B 		.word	-1687895376
+ 1120 0304 26F263EC 		.word	-328994266
+ 1121 0308 9CA36A75 		.word	1969922972
+ 1122 030c 0A936D02 		.word	40735498
+ 1123 0310 A906099C 		.word	-1677130071
+ 1124 0314 3F360EEB 		.word	-351390145
+ 1125 0318 85670772 		.word	1913087877
+ 1126 031c 13570005 		.word	83908371
+ 1127 0320 824ABF95 		.word	-1782625662
+ 1128 0324 147AB8E2 		.word	-491226604
+ 1129 0328 AE2BB17B 		.word	2075208622
+ 1130 032c 381BB60C 		.word	213261112
+ 1131 0330 9B8ED292 		.word	-1831694693
+ 1132 0334 0DBED5E5 		.word	-438977011
+ 1133 0338 B7EFDC7C 		.word	2094854071
+ 1134 033c 21DFDB0B 		.word	198958881
+ 1135 0340 D4D2D386 		.word	-2032938284
+ 1136 0344 42E2D4F1 		.word	-237706686
+ 1137 0348 F8B3DD68 		.word	1759359992
+ 1138 034c 6E83DA1F 		.word	534414190
+ 1139 0350 CD16BE81 		.word	-2118248755
+ 1140 0354 5B26B9F6 		.word	-155638181
+ 1141 0358 E177B06F 		.word	1873836001
+ 1142 035c 7747B718 		.word	414664567
+ 1143 0360 E65A0888 		.word	-2012718362
+ 1144 0364 706A0FFF 		.word	-15766928
+ 1145 0368 CA3B0666 		.word	1711684554
+ 1146 036c 5C0B0111 		.word	285281116
+ 1147 0370 FF9E658F 		.word	-1889165569
+ 1148 0374 69AE62F8 		.word	-127750551
+ 1149 0378 D3FF6B61 		.word	1634467795
+ 1150 037c 45CF6C16 		.word	376229701
+ 1151 0380 78E20AA0 		.word	-1609899400
+ 1152 0384 EED20DD7 		.word	-686959890
+ 1153 0388 5483044E 		.word	1308918612
+ 1154 038c C2B30339 		.word	956543938
+ 1155 0390 612667A7 		.word	-1486412191
+ 1156 0394 F71660D0 		.word	-799009033
+ 1157 0398 4D476949 		.word	1231636301
+ 1158 039c DB776E3E 		.word	1047427035
+ 1159 03a0 4A6AD1AE 		.word	-1362007478
+ 1160 03a4 DC5AD6D9 		.word	-640263460
+ 1161 03a8 660BDF40 		.word	1088359270
+ 1162 03ac F03BD837 		.word	936918000
+ 1163 03b0 53AEBCA9 		.word	-1447252397
+ 1164 03b4 C59EBBDE 		.word	-558129467
+ 1165 03b8 7FCFB247 		.word	1202900863
+ 1166 03bc E9FFB530 		.word	817233897
+ 1167 03c0 1CF2BDBD 		.word	-1111625188
+ 1168 03c4 8AC2BACA 		.word	-893730166
+ 1169 03c8 3093B353 		.word	1404277552
+ 1170 03cc A6A3B424 		.word	615818150
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 30
+
+
+ 1171 03d0 0536D0BA 		.word	-1160759803
+ 1172 03d4 9306D7CD 		.word	-841546093
+ 1173 03d8 2957DE54 		.word	1423857449
+ 1174 03dc BF67D923 		.word	601450431
+ 1175 03e0 2E7A66B3 		.word	-1285129682
+ 1176 03e4 B84A61C4 		.word	-1000256840
+ 1177 03e8 021B685D 		.word	1567103746
+ 1178 03ec 942B6F2A 		.word	711928724
+ 1179 03f0 37BE0BB4 		.word	-1274298825
+ 1180 03f4 A18E0CC3 		.word	-1022587231
+ 1181 03f8 1BDF055A 		.word	1510334235
+ 1182 03fc 8DEF022D 		.word	755167117
+ 1183              		.text
+ 1184              	.Letext0:
+ 1185              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 1186              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
+ 1187              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 1188              		.file 5 "BSP/inc/fal_def.h"
+ 1189              		.file 6 "BSP/inc/fdb_def.h"
+ 1190              		.file 7 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ 1191              		.file 8 "BSP/inc/fal.h"
+ 1192              		.file 9 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ 1193              		.file 10 "<built-in>"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc79IikY.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fdb_utils.c
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:21     .text.fdb_calc_crc32:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:27     .text.fdb_calc_crc32:00000000 fdb_calc_crc32
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:80     .text.fdb_calc_crc32:00000024 $d
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:926    .rodata.crc32_table:00000000 crc32_table
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:85     .text._fdb_set_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:91     .text._fdb_set_status:00000000 _fdb_set_status
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:157    .text._fdb_get_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:163    .text._fdb_get_status:00000000 _fdb_get_status
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:229    .text.fdb_blob_make:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:235    .text.fdb_blob_make:00000000 fdb_blob_make
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:256    .text._fdb_flash_read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:262    .text._fdb_flash_read:00000000 _fdb_flash_read
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:314    .rodata._fdb_read_status.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:324    .text._fdb_read_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:330    .text._fdb_read_status:00000000 _fdb_read_status
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:391    .text._fdb_read_status:00000034 $d
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:914    .rodata.__func__.0:00000000 __func__.0
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:399    .text._fdb_continue_ff_addr:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:405    .text._fdb_continue_ff_addr:00000000 _fdb_continue_ff_addr
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:538    .text.fdb_blob_read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:544    .text.fdb_blob_read:00000000 fdb_blob_read
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:594    .text._fdb_flash_erase:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:600    .text._fdb_flash_erase:00000000 _fdb_flash_erase
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:649    .text._fdb_flash_write:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:655    .text._fdb_flash_write:00000000 _fdb_flash_write
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:707    .rodata._fdb_write_status.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:711    .text._fdb_write_status:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:717    .text._fdb_write_status:00000000 _fdb_write_status
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:840    .text._fdb_write_status:0000006c $d
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:920    .rodata.__func__.1:00000000 __func__.1
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:849    .text._fdb_flash_write_align:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:855    .text._fdb_flash_write_align:00000000 _fdb_flash_write_align
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:911    .rodata.__func__.0:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:917    .rodata.__func__.1:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cc79IikY.s:923    .rodata.crc32_table:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+fal_partition_read
+printf
+putchar
+fal_partition_erase
+fal_partition_write

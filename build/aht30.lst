@@ -1,0 +1,574 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"aht30.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/aht30.c"
+  20              		.section	.text.AHT30_CalcCRC8,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	AHT30_CalcCRC8:
+  27              	.LVL0:
+  28              	.LFB228:
+   1:Core/Src/aht30.c **** #include "aht30.h"
+   2:Core/Src/aht30.c **** 
+   3:Core/Src/aht30.c **** static uint8_t AHT30_CalcCRC8(uint8_t *message, uint8_t num)
+   4:Core/Src/aht30.c **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 4 1 is_stmt 0 view .LVU1
+  34 0000 00B5     		push	{lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 14, -4
+  38 0002 8646     		mov	lr, r0
+   5:Core/Src/aht30.c ****     uint8_t i;
+  39              		.loc 1 5 5 is_stmt 1 view .LVU2
+   6:Core/Src/aht30.c ****     uint8_t byte;
+  40              		.loc 1 6 5 view .LVU3
+   7:Core/Src/aht30.c ****     uint8_t crc = 0xFF;
+  41              		.loc 1 7 5 view .LVU4
+  42              	.LVL1:
+   8:Core/Src/aht30.c **** 
+   9:Core/Src/aht30.c ****     for (byte = 0; byte < num; byte++)
+  43              		.loc 1 9 5 view .LVU5
+   7:Core/Src/aht30.c ****     uint8_t crc = 0xFF;
+  44              		.loc 1 7 13 is_stmt 0 view .LVU6
+  45 0004 FF20     		movs	r0, #255
+  46              	.LVL2:
+  47              		.loc 1 9 15 view .LVU7
+  48 0006 4FF0000C 		mov	ip, #0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 2
+
+
+  49              		.loc 1 9 5 view .LVU8
+  50 000a 11E0     		b	.L2
+  51              	.LVL3:
+  52              	.L10:
+  10:Core/Src/aht30.c ****     {
+  11:Core/Src/aht30.c ****         crc ^= message[byte];
+  12:Core/Src/aht30.c ****         for (i = 0; i < 8; i++)
+  13:Core/Src/aht30.c ****         {
+  14:Core/Src/aht30.c ****             if (crc & 0x80)
+  15:Core/Src/aht30.c ****                 crc = (crc << 1) ^ 0x31;
+  53              		.loc 1 15 17 is_stmt 1 view .LVU9
+  54              		.loc 1 15 34 is_stmt 0 view .LVU10
+  55 000c 5200     		lsls	r2, r2, #1
+  56 000e 82F03102 		eor	r2, r2, #49
+  57              		.loc 1 15 21 view .LVU11
+  58 0012 D0B2     		uxtb	r0, r2
+  59              	.LVL4:
+  60              	.L5:
+  12:Core/Src/aht30.c ****         {
+  61              		.loc 1 12 29 is_stmt 1 discriminator 2 view .LVU12
+  62 0014 0133     		adds	r3, r3, #1
+  63              	.LVL5:
+  12:Core/Src/aht30.c ****         {
+  64              		.loc 1 12 29 is_stmt 0 discriminator 2 view .LVU13
+  65 0016 DBB2     		uxtb	r3, r3
+  66              	.LVL6:
+  67              	.L3:
+  12:Core/Src/aht30.c ****         {
+  68              		.loc 1 12 23 is_stmt 1 discriminator 1 view .LVU14
+  69 0018 072B     		cmp	r3, #7
+  70 001a 05D8     		bhi	.L9
+  14:Core/Src/aht30.c ****                 crc = (crc << 1) ^ 0x31;
+  71              		.loc 1 14 13 view .LVU15
+  14:Core/Src/aht30.c ****                 crc = (crc << 1) ^ 0x31;
+  72              		.loc 1 14 17 is_stmt 0 view .LVU16
+  73 001c 42B2     		sxtb	r2, r0
+  14:Core/Src/aht30.c ****                 crc = (crc << 1) ^ 0x31;
+  74              		.loc 1 14 16 view .LVU17
+  75 001e 002A     		cmp	r2, #0
+  76 0020 F4DB     		blt	.L10
+  16:Core/Src/aht30.c ****             else
+  17:Core/Src/aht30.c ****                 crc = (crc << 1);
+  77              		.loc 1 17 17 is_stmt 1 view .LVU18
+  78              		.loc 1 17 21 is_stmt 0 view .LVU19
+  79 0022 4000     		lsls	r0, r0, #1
+  80              	.LVL7:
+  81              		.loc 1 17 21 view .LVU20
+  82 0024 C0B2     		uxtb	r0, r0
+  83 0026 F5E7     		b	.L5
+  84              	.LVL8:
+  85              	.L9:
+   9:Core/Src/aht30.c ****     {
+  86              		.loc 1 9 36 is_stmt 1 discriminator 2 view .LVU21
+  87 0028 0CF1010C 		add	ip, ip, #1
+  88              	.LVL9:
+   9:Core/Src/aht30.c ****     {
+  89              		.loc 1 9 36 is_stmt 0 discriminator 2 view .LVU22
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 3
+
+
+  90 002c 5FFA8CFC 		uxtb	ip, ip
+  91              	.LVL10:
+  92              	.L2:
+   9:Core/Src/aht30.c ****     {
+  93              		.loc 1 9 25 is_stmt 1 discriminator 1 view .LVU23
+  94 0030 8C45     		cmp	ip, r1
+  95 0032 04D2     		bcs	.L11
+  11:Core/Src/aht30.c ****         for (i = 0; i < 8; i++)
+  96              		.loc 1 11 9 view .LVU24
+  11:Core/Src/aht30.c ****         for (i = 0; i < 8; i++)
+  97              		.loc 1 11 23 is_stmt 0 view .LVU25
+  98 0034 1EF80C30 		ldrb	r3, [lr, ip]	@ zero_extendqisi2
+  11:Core/Src/aht30.c ****         for (i = 0; i < 8; i++)
+  99              		.loc 1 11 13 view .LVU26
+ 100 0038 5840     		eors	r0, r0, r3
+ 101              	.LVL11:
+  12:Core/Src/aht30.c ****         {
+ 102              		.loc 1 12 9 is_stmt 1 view .LVU27
+  12:Core/Src/aht30.c ****         {
+ 103              		.loc 1 12 16 is_stmt 0 view .LVU28
+ 104 003a 0023     		movs	r3, #0
+  12:Core/Src/aht30.c ****         {
+ 105              		.loc 1 12 9 view .LVU29
+ 106 003c ECE7     		b	.L3
+ 107              	.LVL12:
+ 108              	.L11:
+  18:Core/Src/aht30.c ****         }
+  19:Core/Src/aht30.c ****     }
+  20:Core/Src/aht30.c ****     return crc;
+ 109              		.loc 1 20 5 is_stmt 1 view .LVU30
+  21:Core/Src/aht30.c **** }
+ 110              		.loc 1 21 1 is_stmt 0 view .LVU31
+ 111 003e 5DF804FB 		ldr	pc, [sp], #4
+ 112              		.cfi_endproc
+ 113              	.LFE228:
+ 115              		.section	.text.AHT30_IsReady,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	AHT30_IsReady
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 122              	AHT30_IsReady:
+ 123              	.LFB229:
+  22:Core/Src/aht30.c **** HAL_StatusTypeDef AHT30_IsReady(void)
+  23:Core/Src/aht30.c **** {
+ 124              		.loc 1 23 1 is_stmt 1 view -0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128 0000 08B5     		push	{r3, lr}
+ 129              	.LCFI1:
+ 130              		.cfi_def_cfa_offset 8
+ 131              		.cfi_offset 3, -8
+ 132              		.cfi_offset 14, -4
+  24:Core/Src/aht30.c ****     if (HAL_I2C_IsDeviceReady(&hi2c2, AHT30_I2C_ADDR, 3, 100) == HAL_OK)
+ 133              		.loc 1 24 5 view .LVU33
+ 134              		.loc 1 24 9 is_stmt 0 view .LVU34
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 4
+
+
+ 135 0002 6423     		movs	r3, #100
+ 136 0004 0322     		movs	r2, #3
+ 137 0006 7021     		movs	r1, #112
+ 138 0008 0248     		ldr	r0, .L16
+ 139 000a FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 140              	.LVL13:
+ 141              		.loc 1 24 8 discriminator 1 view .LVU35
+ 142 000e 00B1     		cbz	r0, .L13
+  25:Core/Src/aht30.c ****         return HAL_OK;
+  26:Core/Src/aht30.c ****     else
+  27:Core/Src/aht30.c ****         return HAL_ERROR;
+ 143              		.loc 1 27 16 view .LVU36
+ 144 0010 0120     		movs	r0, #1
+ 145              	.L13:
+  28:Core/Src/aht30.c **** }
+ 146              		.loc 1 28 1 view .LVU37
+ 147 0012 08BD     		pop	{r3, pc}
+ 148              	.L17:
+ 149              		.align	2
+ 150              	.L16:
+ 151 0014 00000000 		.word	hi2c2
+ 152              		.cfi_endproc
+ 153              	.LFE229:
+ 155              		.section	.text.AHT30_Init,"ax",%progbits
+ 156              		.align	1
+ 157              		.global	AHT30_Init
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 162              	AHT30_Init:
+ 163              	.LFB230:
+  29:Core/Src/aht30.c **** HAL_StatusTypeDef AHT30_Init(void)
+  30:Core/Src/aht30.c **** {
+ 164              		.loc 1 30 1 is_stmt 1 view -0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168 0000 08B5     		push	{r3, lr}
+ 169              	.LCFI2:
+ 170              		.cfi_def_cfa_offset 8
+ 171              		.cfi_offset 3, -8
+ 172              		.cfi_offset 14, -4
+  31:Core/Src/aht30.c ****     HAL_Delay(40);
+ 173              		.loc 1 31 5 view .LVU39
+ 174 0002 2820     		movs	r0, #40
+ 175 0004 FFF7FEFF 		bl	HAL_Delay
+ 176              	.LVL14:
+  32:Core/Src/aht30.c ****     return HAL_OK;
+ 177              		.loc 1 32 5 view .LVU40
+  33:Core/Src/aht30.c **** }
+ 178              		.loc 1 33 1 is_stmt 0 view .LVU41
+ 179 0008 0020     		movs	r0, #0
+ 180 000a 08BD     		pop	{r3, pc}
+ 181              		.cfi_endproc
+ 182              	.LFE230:
+ 184              		.section	.rodata.AHT30_Read.str1.4,"aMS",%progbits,1
+ 185              		.align	2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 5
+
+
+ 186              	.LC0:
+ 187 0000 AC3300   		.ascii	"\2543\000"
+ 188              		.section	.text.AHT30_Read,"ax",%progbits
+ 189              		.align	1
+ 190              		.global	AHT30_Read
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 195              	AHT30_Read:
+ 196              	.LVL15:
+ 197              	.LFB231:
+  34:Core/Src/aht30.c **** 
+  35:Core/Src/aht30.c **** HAL_StatusTypeDef AHT30_Read(float *temperature, float *humidity)
+  36:Core/Src/aht30.c **** {
+ 198              		.loc 1 36 1 is_stmt 1 view -0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 16
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              		.loc 1 36 1 is_stmt 0 view .LVU43
+ 203 0000 70B5     		push	{r4, r5, r6, lr}
+ 204              	.LCFI3:
+ 205              		.cfi_def_cfa_offset 16
+ 206              		.cfi_offset 4, -16
+ 207              		.cfi_offset 5, -12
+ 208              		.cfi_offset 6, -8
+ 209              		.cfi_offset 14, -4
+ 210 0002 86B0     		sub	sp, sp, #24
+ 211              	.LCFI4:
+ 212              		.cfi_def_cfa_offset 40
+  37:Core/Src/aht30.c ****     uint8_t cmd[3] = {0xAC, 0x33, 0x00};
+ 213              		.loc 1 37 5 is_stmt 1 view .LVU44
+ 214              		.loc 1 37 13 is_stmt 0 view .LVU45
+ 215 0004 384B     		ldr	r3, .L30
+ 216 0006 1B68     		ldr	r3, [r3]
+ 217 0008 ADF81430 		strh	r3, [sp, #20]	@ movhi
+ 218 000c 1B0C     		lsrs	r3, r3, #16
+ 219 000e 8DF81630 		strb	r3, [sp, #22]
+  38:Core/Src/aht30.c ****     uint8_t data[7];
+ 220              		.loc 1 38 5 is_stmt 1 view .LVU46
+  39:Core/Src/aht30.c ****     uint32_t raw_humi, raw_temp;
+ 221              		.loc 1 39 5 view .LVU47
+  40:Core/Src/aht30.c **** 
+  41:Core/Src/aht30.c ****     if (temperature == NULL || humidity == NULL)
+ 222              		.loc 1 41 5 view .LVU48
+ 223              		.loc 1 41 8 is_stmt 0 view .LVU49
+ 224 0012 0028     		cmp	r0, #0
+ 225 0014 5ED0     		beq	.L22
+ 226 0016 0D46     		mov	r5, r1
+ 227 0018 0646     		mov	r6, r0
+ 228              		.loc 1 41 29 discriminator 1 view .LVU50
+ 229 001a 0029     		cmp	r1, #0
+ 230 001c 5CD0     		beq	.L23
+  42:Core/Src/aht30.c ****         return HAL_ERROR;
+  43:Core/Src/aht30.c **** 
+  44:Core/Src/aht30.c ****     if (HAL_I2C_Master_Transmit(&hi2c2, AHT30_I2C_ADDR, cmd, 3, 100) != HAL_OK)
+ 231              		.loc 1 44 5 is_stmt 1 view .LVU51
+ 232              		.loc 1 44 9 is_stmt 0 view .LVU52
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 6
+
+
+ 233 001e 6423     		movs	r3, #100
+ 234 0020 0093     		str	r3, [sp]
+ 235 0022 0323     		movs	r3, #3
+ 236 0024 05AA     		add	r2, sp, #20
+ 237 0026 7021     		movs	r1, #112
+ 238              	.LVL16:
+ 239              		.loc 1 44 9 view .LVU53
+ 240 0028 3048     		ldr	r0, .L30+4
+ 241              	.LVL17:
+ 242              		.loc 1 44 9 view .LVU54
+ 243 002a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 244              	.LVL18:
+ 245              		.loc 1 44 8 discriminator 1 view .LVU55
+ 246 002e 18B1     		cbz	r0, .L29
+  45:Core/Src/aht30.c ****         return HAL_ERROR;
+ 247              		.loc 1 45 16 view .LVU56
+ 248 0030 0124     		movs	r4, #1
+ 249              	.LVL19:
+ 250              	.L21:
+  46:Core/Src/aht30.c **** 
+  47:Core/Src/aht30.c ****     HAL_Delay(80);
+  48:Core/Src/aht30.c **** 
+  49:Core/Src/aht30.c ****     if (HAL_I2C_Master_Receive(&hi2c2, AHT30_I2C_ADDR, data, 7, 100) != HAL_OK)
+  50:Core/Src/aht30.c ****         return HAL_ERROR;
+  51:Core/Src/aht30.c **** 
+  52:Core/Src/aht30.c ****     if (data[0] & 0x80)
+  53:Core/Src/aht30.c ****         return HAL_BUSY;
+  54:Core/Src/aht30.c **** 
+  55:Core/Src/aht30.c ****     if (AHT30_CalcCRC8(data, 6) != data[6])
+  56:Core/Src/aht30.c ****         return HAL_ERROR;
+  57:Core/Src/aht30.c **** 
+  58:Core/Src/aht30.c ****     raw_humi = ((uint32_t)data[1] << 12) |
+  59:Core/Src/aht30.c ****                ((uint32_t)data[2] << 4)  |
+  60:Core/Src/aht30.c ****                ((uint32_t)(data[3] >> 4));
+  61:Core/Src/aht30.c **** 
+  62:Core/Src/aht30.c ****     raw_temp = (((uint32_t)data[3] & 0x0F) << 16) |
+  63:Core/Src/aht30.c ****                ((uint32_t)data[4] << 8) |
+  64:Core/Src/aht30.c ****                ((uint32_t)data[5]);
+  65:Core/Src/aht30.c **** 
+  66:Core/Src/aht30.c ****     *humidity    = ((float)raw_humi * 100.0f) / 1048576.0f;
+  67:Core/Src/aht30.c ****     *temperature = ((float)raw_temp * 200.0f) / 1048576.0f - 50.0f;
+  68:Core/Src/aht30.c **** 
+  69:Core/Src/aht30.c ****     return HAL_OK;
+  70:Core/Src/aht30.c **** }...
+ 251              		.loc 1 70 1 view .LVU57
+ 252 0032 2046     		mov	r0, r4
+ 253 0034 06B0     		add	sp, sp, #24
+ 254              	.LCFI5:
+ 255              		.cfi_remember_state
+ 256              		.cfi_def_cfa_offset 16
+ 257              		@ sp needed
+ 258 0036 70BD     		pop	{r4, r5, r6, pc}
+ 259              	.LVL20:
+ 260              	.L29:
+ 261              	.LCFI6:
+ 262              		.cfi_restore_state
+  47:Core/Src/aht30.c ****     HAL_Delay(80);
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 7
+
+
+ 263              		.loc 1 47 5 is_stmt 1 view .LVU58
+ 264 0038 5020     		movs	r0, #80
+ 265 003a FFF7FEFF 		bl	HAL_Delay
+ 266              	.LVL21:
+  49:Core/Src/aht30.c ****     if (HAL_I2C_Master_Receive(&hi2c2, AHT30_I2C_ADDR, data, 7, 100) != HAL_OK)
+ 267              		.loc 1 49 5 view .LVU59
+  49:Core/Src/aht30.c ****     if (HAL_I2C_Master_Receive(&hi2c2, AHT30_I2C_ADDR, data, 7, 100) != HAL_OK)
+ 268              		.loc 1 49 9 is_stmt 0 view .LVU60
+ 269 003e 6423     		movs	r3, #100
+ 270 0040 0093     		str	r3, [sp]
+ 271 0042 0723     		movs	r3, #7
+ 272 0044 03AA     		add	r2, sp, #12
+ 273 0046 7021     		movs	r1, #112
+ 274 0048 2848     		ldr	r0, .L30+4
+ 275 004a FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 276              	.LVL22:
+  49:Core/Src/aht30.c ****     if (HAL_I2C_Master_Receive(&hi2c2, AHT30_I2C_ADDR, data, 7, 100) != HAL_OK)
+ 277              		.loc 1 49 8 discriminator 1 view .LVU61
+ 278 004e 0446     		mov	r4, r0
+ 279 0050 0028     		cmp	r0, #0
+ 280 0052 43D1     		bne	.L25
+  52:Core/Src/aht30.c ****     if (data[0] & 0x80)
+ 281              		.loc 1 52 5 is_stmt 1 view .LVU62
+  52:Core/Src/aht30.c ****     if (data[0] & 0x80)
+ 282              		.loc 1 52 9 is_stmt 0 view .LVU63
+ 283 0054 9DF90C30 		ldrsb	r3, [sp, #12]
+  52:Core/Src/aht30.c ****     if (data[0] & 0x80)
+ 284              		.loc 1 52 8 view .LVU64
+ 285 0058 002B     		cmp	r3, #0
+ 286 005a 41DB     		blt	.L26
+  55:Core/Src/aht30.c ****     if (AHT30_CalcCRC8(data, 6) != data[6])
+ 287              		.loc 1 55 5 is_stmt 1 view .LVU65
+  55:Core/Src/aht30.c ****     if (AHT30_CalcCRC8(data, 6) != data[6])
+ 288              		.loc 1 55 9 is_stmt 0 view .LVU66
+ 289 005c 0621     		movs	r1, #6
+ 290 005e 03A8     		add	r0, sp, #12
+ 291 0060 FFF7FEFF 		bl	AHT30_CalcCRC8
+ 292              	.LVL23:
+  55:Core/Src/aht30.c ****     if (AHT30_CalcCRC8(data, 6) != data[6])
+ 293              		.loc 1 55 40 discriminator 1 view .LVU67
+ 294 0064 9DF81230 		ldrb	r3, [sp, #18]	@ zero_extendqisi2
+  55:Core/Src/aht30.c ****     if (AHT30_CalcCRC8(data, 6) != data[6])
+ 295              		.loc 1 55 8 discriminator 1 view .LVU68
+ 296 0068 9842     		cmp	r0, r3
+ 297 006a 3BD1     		bne	.L27
+  58:Core/Src/aht30.c ****     raw_humi = ((uint32_t)data[1] << 12) |
+ 298              		.loc 1 58 5 is_stmt 1 view .LVU69
+  58:Core/Src/aht30.c ****     raw_humi = ((uint32_t)data[1] << 12) |
+ 299              		.loc 1 58 31 is_stmt 0 view .LVU70
+ 300 006c 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+  59:Core/Src/aht30.c ****                ((uint32_t)data[2] << 4)  |
+ 301              		.loc 1 59 31 view .LVU71
+ 302 0070 9DF80E20 		ldrb	r2, [sp, #14]	@ zero_extendqisi2
+  59:Core/Src/aht30.c ****                ((uint32_t)data[2] << 4)  |
+ 303              		.loc 1 59 35 view .LVU72
+ 304 0074 1201     		lsls	r2, r2, #4
+  58:Core/Src/aht30.c ****     raw_humi = ((uint32_t)data[1] << 12) |
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 8
+
+
+ 305              		.loc 1 58 42 view .LVU73
+ 306 0076 42EA0332 		orr	r2, r2, r3, lsl #12
+  60:Core/Src/aht30.c ****                ((uint32_t)(data[3] >> 4));
+ 307              		.loc 1 60 32 view .LVU74
+ 308 007a 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+  58:Core/Src/aht30.c ****     raw_humi = ((uint32_t)data[1] << 12) |
+ 309              		.loc 1 58 14 view .LVU75
+ 310 007e 42EA1312 		orr	r2, r2, r3, lsr #4
+ 311 0082 07EE102A 		vmov	s14, r2	@ int
+ 312              	.LVL24:
+  62:Core/Src/aht30.c ****     raw_temp = (((uint32_t)data[3] & 0x0F) << 16) |
+ 313              		.loc 1 62 5 is_stmt 1 view .LVU76
+  62:Core/Src/aht30.c ****     raw_temp = (((uint32_t)data[3] & 0x0F) << 16) |
+ 314              		.loc 1 62 44 is_stmt 0 view .LVU77
+ 315 0086 1B04     		lsls	r3, r3, #16
+ 316 0088 03F47023 		and	r3, r3, #983040
+  63:Core/Src/aht30.c ****                ((uint32_t)data[4] << 8) |
+ 317              		.loc 1 63 31 view .LVU78
+ 318 008c 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 319              	.LVL25:
+  62:Core/Src/aht30.c ****     raw_temp = (((uint32_t)data[3] & 0x0F) << 16) |
+ 320              		.loc 1 62 51 view .LVU79
+ 321 0090 43EA0223 		orr	r3, r3, r2, lsl #8
+  64:Core/Src/aht30.c ****                ((uint32_t)data[5]);
+ 322              		.loc 1 64 31 view .LVU80
+ 323 0094 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+  62:Core/Src/aht30.c ****     raw_temp = (((uint32_t)data[3] & 0x0F) << 16) |
+ 324              		.loc 1 62 14 view .LVU81
+ 325 0098 1343     		orrs	r3, r3, r2
+ 326 009a 07EE903A 		vmov	s15, r3	@ int
+ 327              	.LVL26:
+  66:Core/Src/aht30.c ****     *humidity    = ((float)raw_humi * 100.0f) / 1048576.0f;
+ 328              		.loc 1 66 5 is_stmt 1 view .LVU82
+  66:Core/Src/aht30.c ****     *humidity    = ((float)raw_humi * 100.0f) / 1048576.0f;
+ 329              		.loc 1 66 21 is_stmt 0 view .LVU83
+ 330 009e B8EE477A 		vcvt.f32.u32	s14, s14
+ 331              	.LVL27:
+  66:Core/Src/aht30.c ****     *humidity    = ((float)raw_humi * 100.0f) / 1048576.0f;
+ 332              		.loc 1 66 37 view .LVU84
+ 333 00a2 DFED136A 		vldr.32	s13, .L30+8
+ 334 00a6 27EE267A 		vmul.f32	s14, s14, s13
+  66:Core/Src/aht30.c ****     *humidity    = ((float)raw_humi * 100.0f) / 1048576.0f;
+ 335              		.loc 1 66 47 view .LVU85
+ 336 00aa DFED126A 		vldr.32	s13, .L30+12
+ 337 00ae 27EE267A 		vmul.f32	s14, s14, s13
+  66:Core/Src/aht30.c ****     *humidity    = ((float)raw_humi * 100.0f) / 1048576.0f;
+ 338              		.loc 1 66 18 view .LVU86
+ 339 00b2 85ED007A 		vstr.32	s14, [r5]
+ 340              	.LVL28:
+  67:Core/Src/aht30.c ****     *temperature = ((float)raw_temp * 200.0f) / 1048576.0f - 50.0f;
+ 341              		.loc 1 67 5 is_stmt 1 view .LVU87
+  67:Core/Src/aht30.c ****     *temperature = ((float)raw_temp * 200.0f) / 1048576.0f - 50.0f;
+ 342              		.loc 1 67 21 is_stmt 0 view .LVU88
+ 343 00b6 F8EE677A 		vcvt.f32.u32	s15, s15
+  67:Core/Src/aht30.c ****     *temperature = ((float)raw_temp * 200.0f) / 1048576.0f - 50.0f;
+ 344              		.loc 1 67 37 view .LVU89
+ 345 00ba 9FED0F7A 		vldr.32	s14, .L30+16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 9
+
+
+ 346 00be 67EE877A 		vmul.f32	s15, s15, s14
+  67:Core/Src/aht30.c ****     *temperature = ((float)raw_temp * 200.0f) / 1048576.0f - 50.0f;
+ 347              		.loc 1 67 47 view .LVU90
+ 348 00c2 67EEA67A 		vmul.f32	s15, s15, s13
+  67:Core/Src/aht30.c ****     *temperature = ((float)raw_temp * 200.0f) / 1048576.0f - 50.0f;
+ 349              		.loc 1 67 60 view .LVU91
+ 350 00c6 9FED0D7A 		vldr.32	s14, .L30+20
+ 351 00ca 77EEC77A 		vsub.f32	s15, s15, s14
+  67:Core/Src/aht30.c ****     *temperature = ((float)raw_temp * 200.0f) / 1048576.0f - 50.0f;
+ 352              		.loc 1 67 18 view .LVU92
+ 353 00ce C6ED007A 		vstr.32	s15, [r6]
+  69:Core/Src/aht30.c ****     return HAL_OK;
+ 354              		.loc 1 69 5 is_stmt 1 view .LVU93
+  69:Core/Src/aht30.c ****     return HAL_OK;
+ 355              		.loc 1 69 12 is_stmt 0 view .LVU94
+ 356 00d2 AEE7     		b	.L21
+ 357              	.LVL29:
+ 358              	.L22:
+  42:Core/Src/aht30.c ****         return HAL_ERROR;
+ 359              		.loc 1 42 16 view .LVU95
+ 360 00d4 0124     		movs	r4, #1
+ 361 00d6 ACE7     		b	.L21
+ 362              	.L23:
+  42:Core/Src/aht30.c ****         return HAL_ERROR;
+ 363              		.loc 1 42 16 view .LVU96
+ 364 00d8 0124     		movs	r4, #1
+ 365 00da AAE7     		b	.L21
+ 366              	.LVL30:
+ 367              	.L25:
+  50:Core/Src/aht30.c ****         return HAL_ERROR;
+ 368              		.loc 1 50 16 view .LVU97
+ 369 00dc 0124     		movs	r4, #1
+ 370 00de A8E7     		b	.L21
+ 371              	.L26:
+  53:Core/Src/aht30.c ****         return HAL_BUSY;
+ 372              		.loc 1 53 16 view .LVU98
+ 373 00e0 0224     		movs	r4, #2
+ 374 00e2 A6E7     		b	.L21
+ 375              	.L27:
+  56:Core/Src/aht30.c ****         return HAL_ERROR;
+ 376              		.loc 1 56 16 view .LVU99
+ 377 00e4 0124     		movs	r4, #1
+ 378 00e6 A4E7     		b	.L21
+ 379              	.L31:
+ 380              		.align	2
+ 381              	.L30:
+ 382 00e8 00000000 		.word	.LC0
+ 383 00ec 00000000 		.word	hi2c2
+ 384 00f0 0000C842 		.word	1120403456
+ 385 00f4 00008035 		.word	897581056
+ 386 00f8 00004843 		.word	1128792064
+ 387 00fc 00004842 		.word	1112014848
+ 388              		.cfi_endproc
+ 389              	.LFE231:
+ 391              		.text
+ 392              	.Letext0:
+ 393              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 10
+
+
+ 394              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 395              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ 396              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 397              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 398              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h"
+ 399              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ 400              		.file 9 "Core/Inc/aht30.h"
+ 401              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccb8adUz.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 aht30.c
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:21     .text.AHT30_CalcCRC8:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:26     .text.AHT30_CalcCRC8:00000000 AHT30_CalcCRC8
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:116    .text.AHT30_IsReady:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:122    .text.AHT30_IsReady:00000000 AHT30_IsReady
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:151    .text.AHT30_IsReady:00000014 $d
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:156    .text.AHT30_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:162    .text.AHT30_Init:00000000 AHT30_Init
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:185    .rodata.AHT30_Read.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:189    .text.AHT30_Read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:195    .text.AHT30_Read:00000000 AHT30_Read
+C:\Users\solar\AppData\Local\Temp\ccb8adUz.s:382    .text.AHT30_Read:000000e8 $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_IsDeviceReady
+hi2c2
+HAL_Delay
+HAL_I2C_Master_Transmit
+HAL_I2C_Master_Receive

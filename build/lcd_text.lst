@@ -1,0 +1,2277 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"lcd_text.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/lcd_text.c"
+  20              		.section	.text.font_index,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	font_index:
+  27              	.LVL0:
+  28              	.LFB231:
+   1:Core/Src/lcd_text.c **** #include "lcd_text.h"
+   2:Core/Src/lcd_text.c **** #include <stdio.h>
+   3:Core/Src/lcd_text.c **** 
+   4:Core/Src/lcd_text.c **** /*
+   5:Core/Src/lcd_text.c ****  * 8x16 ASCII 字模
+   6:Core/Src/lcd_text.c ****  * 目前仍然保留你已有的这一套：
+   7:Core/Src/lcd_text.c ****  * - 空格
+   8:Core/Src/lcd_text.c ****  * - 常见符号
+   9:Core/Src/lcd_text.c ****  * - 0~9
+  10:Core/Src/lcd_text.c ****  * - A~Z
+  11:Core/Src/lcd_text.c ****  *
+  12:Core/Src/lcd_text.c ****  * 小写字母先自动转大写显示。
+  13:Core/Src/lcd_text.c ****  * 如果你后面要“真正的小写字模”，再补完整字库。
+  14:Core/Src/lcd_text.c ****  */
+  15:Core/Src/lcd_text.c **** 
+  16:Core/Src/lcd_text.c **** static const uint8_t font8x16[][16] =
+  17:Core/Src/lcd_text.c **** {
+  18:Core/Src/lcd_text.c ****     /* ' ' */
+  19:Core/Src/lcd_text.c ****     {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  20:Core/Src/lcd_text.c **** 
+  21:Core/Src/lcd_text.c ****     /* ! */
+  22:Core/Src/lcd_text.c ****     {0x00,0x18,0x18,0x18,0x18,0x18,0x18,0x18,0x18,0x00,0x18,0x18,0x00,0x00,0x00,0x00},
+  23:Core/Src/lcd_text.c **** 
+  24:Core/Src/lcd_text.c ****     /* " */
+  25:Core/Src/lcd_text.c ****     {0x00,0x36,0x36,0x36,0x36,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  26:Core/Src/lcd_text.c **** 
+  27:Core/Src/lcd_text.c ****     /* # */
+  28:Core/Src/lcd_text.c ****     {0x00,0x36,0x36,0x7F,0x36,0x36,0x36,0x7F,0x36,0x36,0x00,0x00,0x00,0x00,0x00,0x00},
+  29:Core/Src/lcd_text.c **** 
+  30:Core/Src/lcd_text.c ****     /* $ */
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 2
+
+
+  31:Core/Src/lcd_text.c ****     {0x00,0x18,0x3E,0x58,0x58,0x3C,0x1A,0x1A,0x7C,0x18,0x00,0x00,0x00,0x00,0x00,0x00},
+  32:Core/Src/lcd_text.c **** 
+  33:Core/Src/lcd_text.c ****     /* % */
+  34:Core/Src/lcd_text.c ****     {0x00,0x62,0x64,0x08,0x10,0x10,0x26,0x46,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  35:Core/Src/lcd_text.c **** 
+  36:Core/Src/lcd_text.c ****     /* & */
+  37:Core/Src/lcd_text.c ****     {0x00,0x1C,0x36,0x36,0x1C,0x3A,0x66,0x66,0x3A,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  38:Core/Src/lcd_text.c **** 
+  39:Core/Src/lcd_text.c ****     /* ' */
+  40:Core/Src/lcd_text.c ****     {0x00,0x18,0x18,0x18,0x10,0x20,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  41:Core/Src/lcd_text.c **** 
+  42:Core/Src/lcd_text.c ****     /* ( */
+  43:Core/Src/lcd_text.c ****     {0x00,0x0C,0x18,0x30,0x30,0x30,0x30,0x30,0x18,0x0C,0x00,0x00,0x00,0x00,0x00,0x00},
+  44:Core/Src/lcd_text.c **** 
+  45:Core/Src/lcd_text.c ****     /* ) */
+  46:Core/Src/lcd_text.c ****     {0x00,0x30,0x18,0x0C,0x0C,0x0C,0x0C,0x0C,0x18,0x30,0x00,0x00,0x00,0x00,0x00,0x00},
+  47:Core/Src/lcd_text.c **** 
+  48:Core/Src/lcd_text.c ****     /* * */
+  49:Core/Src/lcd_text.c ****     {0x00,0x00,0x18,0x7E,0x3C,0x7E,0x18,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  50:Core/Src/lcd_text.c **** 
+  51:Core/Src/lcd_text.c ****     /* + */
+  52:Core/Src/lcd_text.c ****     {0x00,0x00,0x18,0x18,0x18,0x7E,0x18,0x18,0x18,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  53:Core/Src/lcd_text.c **** 
+  54:Core/Src/lcd_text.c ****     /* , */
+  55:Core/Src/lcd_text.c ****     {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x18,0x18,0x10,0x20,0x00,0x00,0x00,0x00,0x00},
+  56:Core/Src/lcd_text.c **** 
+  57:Core/Src/lcd_text.c ****     /* - */
+  58:Core/Src/lcd_text.c ****     {0x00,0x00,0x00,0x00,0x00,0x7E,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  59:Core/Src/lcd_text.c **** 
+  60:Core/Src/lcd_text.c ****     /* . */
+  61:Core/Src/lcd_text.c ****     {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x18,0x18,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  62:Core/Src/lcd_text.c **** 
+  63:Core/Src/lcd_text.c ****     /* / */
+  64:Core/Src/lcd_text.c ****     {0x00,0x02,0x06,0x0C,0x18,0x30,0x60,0x40,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  65:Core/Src/lcd_text.c **** 
+  66:Core/Src/lcd_text.c ****     /* 0 */
+  67:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0xC3,0xDB,0xDB,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+  68:Core/Src/lcd_text.c **** 
+  69:Core/Src/lcd_text.c ****     /* 1 */
+  70:Core/Src/lcd_text.c ****     {0x00,0x18,0x38,0x78,0x18,0x18,0x18,0x18,0x18,0x18,0x7E,0x00,0x00,0x00,0x00,0x00},
+  71:Core/Src/lcd_text.c **** 
+  72:Core/Src/lcd_text.c ****     /* 2 */
+  73:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0x03,0x06,0x0C,0x18,0x30,0x60,0xFF,0x00,0x00,0x00,0x00,0x00},
+  74:Core/Src/lcd_text.c **** 
+  75:Core/Src/lcd_text.c ****     /* 3 */
+  76:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0x03,0x1E,0x03,0x03,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+  77:Core/Src/lcd_text.c **** 
+  78:Core/Src/lcd_text.c ****     /* 4 */
+  79:Core/Src/lcd_text.c ****     {0x00,0x06,0x0E,0x1E,0x36,0x66,0xC6,0xFF,0x06,0x06,0x06,0x00,0x00,0x00,0x00,0x00},
+  80:Core/Src/lcd_text.c **** 
+  81:Core/Src/lcd_text.c ****     /* 5 */
+  82:Core/Src/lcd_text.c ****     {0x00,0xFF,0xC0,0xC0,0xFC,0x06,0x03,0x03,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+  83:Core/Src/lcd_text.c **** 
+  84:Core/Src/lcd_text.c ****     /* 6 */
+  85:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC0,0xC0,0xFC,0xC6,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+  86:Core/Src/lcd_text.c **** 
+  87:Core/Src/lcd_text.c ****     /* 7 */
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 3
+
+
+  88:Core/Src/lcd_text.c ****     {0x00,0xFF,0xC3,0x06,0x06,0x0C,0x0C,0x18,0x18,0x18,0x18,0x00,0x00,0x00,0x00,0x00},
+  89:Core/Src/lcd_text.c **** 
+  90:Core/Src/lcd_text.c ****     /* 8 */
+  91:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0x66,0x3C,0x66,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+  92:Core/Src/lcd_text.c **** 
+  93:Core/Src/lcd_text.c ****     /* 9 */
+  94:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0xC3,0x67,0x3F,0x03,0x03,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+  95:Core/Src/lcd_text.c **** 
+  96:Core/Src/lcd_text.c ****     /* : */
+  97:Core/Src/lcd_text.c ****     {0x00,0x00,0x18,0x18,0x00,0x00,0x18,0x18,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
+  98:Core/Src/lcd_text.c **** 
+  99:Core/Src/lcd_text.c ****     /* A */
+ 100:Core/Src/lcd_text.c ****     {0x00,0x18,0x3C,0x66,0xC3,0xC3,0xFF,0xC3,0xC3,0xC3,0xC3,0x00,0x00,0x00,0x00,0x00},
+ 101:Core/Src/lcd_text.c **** 
+ 102:Core/Src/lcd_text.c ****     /* B */
+ 103:Core/Src/lcd_text.c ****     {0x00,0xFC,0x66,0x63,0x63,0x7E,0x63,0x63,0x63,0x66,0xFC,0x00,0x00,0x00,0x00,0x00},
+ 104:Core/Src/lcd_text.c **** 
+ 105:Core/Src/lcd_text.c ****     /* C */
+ 106:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0xC0,0xC0,0xC0,0xC0,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 107:Core/Src/lcd_text.c **** 
+ 108:Core/Src/lcd_text.c ****     /* D */
+ 109:Core/Src/lcd_text.c ****     {0x00,0xF8,0x6C,0x66,0x63,0x63,0x63,0x63,0x66,0x6C,0xF8,0x00,0x00,0x00,0x00,0x00},
+ 110:Core/Src/lcd_text.c **** 
+ 111:Core/Src/lcd_text.c ****     /* E */
+ 112:Core/Src/lcd_text.c ****     {0x00,0xFF,0x60,0x60,0x60,0x7C,0x60,0x60,0x60,0x60,0xFF,0x00,0x00,0x00,0x00,0x00},
+ 113:Core/Src/lcd_text.c **** 
+ 114:Core/Src/lcd_text.c ****     /* F */
+ 115:Core/Src/lcd_text.c ****     {0x00,0xFF,0x60,0x60,0x60,0x7C,0x60,0x60,0x60,0x60,0x60,0x00,0x00,0x00,0x00,0x00},
+ 116:Core/Src/lcd_text.c **** 
+ 117:Core/Src/lcd_text.c ****     /* G */
+ 118:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0xC0,0xC0,0xCF,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 119:Core/Src/lcd_text.c **** 
+ 120:Core/Src/lcd_text.c ****     /* H */
+ 121:Core/Src/lcd_text.c ****     {0x00,0xC3,0xC3,0xC3,0xC3,0xFF,0xC3,0xC3,0xC3,0xC3,0xC3,0x00,0x00,0x00,0x00,0x00},
+ 122:Core/Src/lcd_text.c **** 
+ 123:Core/Src/lcd_text.c ****     /* I */
+ 124:Core/Src/lcd_text.c ****     {0x00,0x3C,0x18,0x18,0x18,0x18,0x18,0x18,0x18,0x18,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 125:Core/Src/lcd_text.c **** 
+ 126:Core/Src/lcd_text.c ****     /* J */
+ 127:Core/Src/lcd_text.c ****     {0x00,0x1E,0x0C,0x0C,0x0C,0x0C,0x0C,0xCC,0xCC,0x78,0x30,0x00,0x00,0x00,0x00,0x00},
+ 128:Core/Src/lcd_text.c **** 
+ 129:Core/Src/lcd_text.c ****     /* K */
+ 130:Core/Src/lcd_text.c ****     {0x00,0xC3,0xC6,0xCC,0xD8,0xF0,0xF0,0xD8,0xCC,0xC6,0xC3,0x00,0x00,0x00,0x00,0x00},
+ 131:Core/Src/lcd_text.c **** 
+ 132:Core/Src/lcd_text.c ****     /* L */
+ 133:Core/Src/lcd_text.c ****     {0x00,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0x60,0xFF,0x00,0x00,0x00,0x00,0x00},
+ 134:Core/Src/lcd_text.c **** 
+ 135:Core/Src/lcd_text.c ****     /* M */
+ 136:Core/Src/lcd_text.c ****     {0x00,0xC3,0xE7,0xFF,0xDB,0xDB,0xC3,0xC3,0xC3,0xC3,0xC3,0x00,0x00,0x00,0x00,0x00},
+ 137:Core/Src/lcd_text.c **** 
+ 138:Core/Src/lcd_text.c ****     /* N */
+ 139:Core/Src/lcd_text.c ****     {0x00,0xC3,0xE3,0xF3,0xDB,0xCF,0xC7,0xC3,0xC3,0xC3,0xC3,0x00,0x00,0x00,0x00,0x00},
+ 140:Core/Src/lcd_text.c **** 
+ 141:Core/Src/lcd_text.c ****     /* O */
+ 142:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 143:Core/Src/lcd_text.c **** 
+ 144:Core/Src/lcd_text.c ****     /* P */
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 4
+
+
+ 145:Core/Src/lcd_text.c ****     {0x00,0xFC,0x66,0x63,0x63,0x66,0x7C,0x60,0x60,0x60,0x60,0x00,0x00,0x00,0x00,0x00},
+ 146:Core/Src/lcd_text.c **** 
+ 147:Core/Src/lcd_text.c ****     /* Q */
+ 148:Core/Src/lcd_text.c ****     {0x00,0x3C,0x66,0xC3,0xC3,0xC3,0xC3,0xCB,0xCF,0x66,0x3D,0x00,0x00,0x00,0x00,0x00},
+ 149:Core/Src/lcd_text.c **** 
+ 150:Core/Src/lcd_text.c ****     /* R */
+ 151:Core/Src/lcd_text.c ****     {0x00,0xFC,0x66,0x63,0x63,0x66,0x7C,0x6C,0x66,0x63,0x61,0x00,0x00,0x00,0x00,0x00},
+ 152:Core/Src/lcd_text.c **** 
+ 153:Core/Src/lcd_text.c ****     /* S */
+ 154:Core/Src/lcd_text.c ****     {0x00,0x3E,0x63,0x60,0x30,0x1C,0x06,0x03,0x63,0x7E,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 155:Core/Src/lcd_text.c **** 
+ 156:Core/Src/lcd_text.c ****     /* T */
+ 157:Core/Src/lcd_text.c ****     {0x00,0xFF,0x99,0x18,0x18,0x18,0x18,0x18,0x18,0x18,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 158:Core/Src/lcd_text.c **** 
+ 159:Core/Src/lcd_text.c ****     /* U */
+ 160:Core/Src/lcd_text.c ****     {0x00,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0xC3,0x66,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 161:Core/Src/lcd_text.c **** 
+ 162:Core/Src/lcd_text.c ****     /* V */
+ 163:Core/Src/lcd_text.c ****     {0x00,0xC3,0xC3,0xC3,0xC3,0x66,0x66,0x3C,0x3C,0x18,0x18,0x00,0x00,0x00,0x00,0x00},
+ 164:Core/Src/lcd_text.c **** 
+ 165:Core/Src/lcd_text.c ****     /* W */
+ 166:Core/Src/lcd_text.c ****     {0x00,0xC3,0xC3,0xC3,0xC3,0xDB,0xDB,0xDB,0xFF,0x66,0x66,0x00,0x00,0x00,0x00,0x00},
+ 167:Core/Src/lcd_text.c **** 
+ 168:Core/Src/lcd_text.c ****     /* X */
+ 169:Core/Src/lcd_text.c ****     {0x00,0xC3,0x66,0x3C,0x18,0x18,0x18,0x3C,0x66,0xC3,0xC3,0x00,0x00,0x00,0x00,0x00},
+ 170:Core/Src/lcd_text.c **** 
+ 171:Core/Src/lcd_text.c ****     /* Y */
+ 172:Core/Src/lcd_text.c ****     {0x00,0xC3,0x66,0x3C,0x18,0x18,0x18,0x18,0x18,0x18,0x3C,0x00,0x00,0x00,0x00,0x00},
+ 173:Core/Src/lcd_text.c **** 
+ 174:Core/Src/lcd_text.c ****     /* Z */
+ 175:Core/Src/lcd_text.c ****     {0x00,0xFF,0x03,0x06,0x0C,0x18,0x30,0x60,0xC0,0xC0,0xFF,0x00,0x00,0x00,0x00,0x00},
+ 176:Core/Src/lcd_text.c **** };
+ 177:Core/Src/lcd_text.c **** 
+ 178:Core/Src/lcd_text.c **** static int font_index(char ch)
+ 179:Core/Src/lcd_text.c **** {
+  29              		.loc 1 179 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+ 180:Core/Src/lcd_text.c ****     if (ch >= 'a' && ch <= 'z')
+  34              		.loc 1 180 5 view .LVU1
+  35              		.loc 1 180 19 is_stmt 0 view .LVU2
+  36 0000 A0F16103 		sub	r3, r0, #97
+  37 0004 DBB2     		uxtb	r3, r3
+  38              		.loc 1 180 8 view .LVU3
+  39 0006 192B     		cmp	r3, #25
+  40 0008 24D8     		bhi	.L2
+ 181:Core/Src/lcd_text.c ****     {
+ 182:Core/Src/lcd_text.c ****         ch = (char)(ch - 'a' + 'A');   // 小写先转大写显示
+  41              		.loc 1 182 9 is_stmt 1 view .LVU4
+  42              		.loc 1 182 12 is_stmt 0 view .LVU5
+  43 000a 2038     		subs	r0, r0, #32
+  44              	.LVL1:
+  45              		.loc 1 182 12 view .LVU6
+  46 000c C0B2     		uxtb	r0, r0
+  47              	.LVL2:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 5
+
+
+ 183:Core/Src/lcd_text.c ****     }
+ 184:Core/Src/lcd_text.c **** 
+ 185:Core/Src/lcd_text.c ****     if (ch == ' ') return 0;
+  48              		.loc 1 185 5 is_stmt 1 view .LVU7
+  49              	.L3:
+ 186:Core/Src/lcd_text.c ****     if (ch == '!') return 1;
+  50              		.loc 1 186 5 view .LVU8
+  51 000e A0F12103 		sub	r3, r0, #33
+  52 0012 392B     		cmp	r3, #57
+  53 0014 22D8     		bhi	.L5
+  54 0016 DFE803F0 		tbb	[pc, r3]
+  55              	.L7:
+  56 001a 45       		.byte	(.L25-.L7)/2
+  57 001b 23       		.byte	(.L23-.L7)/2
+  58 001c 25       		.byte	(.L22-.L7)/2
+  59 001d 27       		.byte	(.L21-.L7)/2
+  60 001e 29       		.byte	(.L20-.L7)/2
+  61 001f 2B       		.byte	(.L19-.L7)/2
+  62 0020 2D       		.byte	(.L18-.L7)/2
+  63 0021 2F       		.byte	(.L17-.L7)/2
+  64 0022 31       		.byte	(.L16-.L7)/2
+  65 0023 33       		.byte	(.L15-.L7)/2
+  66 0024 35       		.byte	(.L14-.L7)/2
+  67 0025 37       		.byte	(.L13-.L7)/2
+  68 0026 39       		.byte	(.L12-.L7)/2
+  69 0027 3B       		.byte	(.L11-.L7)/2
+  70 0028 3D       		.byte	(.L10-.L7)/2
+  71 0029 3F       		.byte	(.L9-.L7)/2
+  72 002a 3F       		.byte	(.L9-.L7)/2
+  73 002b 3F       		.byte	(.L9-.L7)/2
+  74 002c 3F       		.byte	(.L9-.L7)/2
+  75 002d 3F       		.byte	(.L9-.L7)/2
+  76 002e 3F       		.byte	(.L9-.L7)/2
+  77 002f 3F       		.byte	(.L9-.L7)/2
+  78 0030 3F       		.byte	(.L9-.L7)/2
+  79 0031 3F       		.byte	(.L9-.L7)/2
+  80 0032 3F       		.byte	(.L9-.L7)/2
+  81 0033 41       		.byte	(.L8-.L7)/2
+  82 0034 21       		.byte	(.L5-.L7)/2
+  83 0035 21       		.byte	(.L5-.L7)/2
+  84 0036 21       		.byte	(.L5-.L7)/2
+  85 0037 21       		.byte	(.L5-.L7)/2
+  86 0038 21       		.byte	(.L5-.L7)/2
+  87 0039 21       		.byte	(.L5-.L7)/2
+  88 003a 43       		.byte	(.L6-.L7)/2
+  89 003b 43       		.byte	(.L6-.L7)/2
+  90 003c 43       		.byte	(.L6-.L7)/2
+  91 003d 43       		.byte	(.L6-.L7)/2
+  92 003e 43       		.byte	(.L6-.L7)/2
+  93 003f 43       		.byte	(.L6-.L7)/2
+  94 0040 43       		.byte	(.L6-.L7)/2
+  95 0041 43       		.byte	(.L6-.L7)/2
+  96 0042 43       		.byte	(.L6-.L7)/2
+  97 0043 43       		.byte	(.L6-.L7)/2
+  98 0044 43       		.byte	(.L6-.L7)/2
+  99 0045 43       		.byte	(.L6-.L7)/2
+ 100 0046 43       		.byte	(.L6-.L7)/2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 6
+
+
+ 101 0047 43       		.byte	(.L6-.L7)/2
+ 102 0048 43       		.byte	(.L6-.L7)/2
+ 103 0049 43       		.byte	(.L6-.L7)/2
+ 104 004a 43       		.byte	(.L6-.L7)/2
+ 105 004b 43       		.byte	(.L6-.L7)/2
+ 106 004c 43       		.byte	(.L6-.L7)/2
+ 107 004d 43       		.byte	(.L6-.L7)/2
+ 108 004e 43       		.byte	(.L6-.L7)/2
+ 109 004f 43       		.byte	(.L6-.L7)/2
+ 110 0050 43       		.byte	(.L6-.L7)/2
+ 111 0051 43       		.byte	(.L6-.L7)/2
+ 112 0052 43       		.byte	(.L6-.L7)/2
+ 113 0053 43       		.byte	(.L6-.L7)/2
+ 114              		.p2align 1
+ 115              	.L2:
+ 185:Core/Src/lcd_text.c ****     if (ch == '!') return 1;
+ 116              		.loc 1 185 5 view .LVU9
+ 185:Core/Src/lcd_text.c ****     if (ch == '!') return 1;
+ 117              		.loc 1 185 8 is_stmt 0 view .LVU10
+ 118 0054 2028     		cmp	r0, #32
+ 119 0056 DAD1     		bne	.L3
+ 185:Core/Src/lcd_text.c ****     if (ch == '!') return 1;
+ 120              		.loc 1 185 27 discriminator 1 view .LVU11
+ 121 0058 0020     		movs	r0, #0
+ 122              	.LVL3:
+ 185:Core/Src/lcd_text.c ****     if (ch == '!') return 1;
+ 123              		.loc 1 185 27 discriminator 1 view .LVU12
+ 124 005a 7047     		bx	lr
+ 125              	.LVL4:
+ 126              	.L5:
+ 187:Core/Src/lcd_text.c ****     if (ch == '"') return 2;
+ 188:Core/Src/lcd_text.c ****     if (ch == '#') return 3;
+ 189:Core/Src/lcd_text.c ****     if (ch == '$') return 4;
+ 190:Core/Src/lcd_text.c ****     if (ch == '%') return 5;
+ 191:Core/Src/lcd_text.c ****     if (ch == '&') return 6;
+ 192:Core/Src/lcd_text.c ****     if (ch == '\'') return 7;
+ 193:Core/Src/lcd_text.c ****     if (ch == '(') return 8;
+ 194:Core/Src/lcd_text.c ****     if (ch == ')') return 9;
+ 195:Core/Src/lcd_text.c ****     if (ch == '*') return 10;
+ 196:Core/Src/lcd_text.c ****     if (ch == '+') return 11;
+ 197:Core/Src/lcd_text.c ****     if (ch == ',') return 12;
+ 198:Core/Src/lcd_text.c ****     if (ch == '-') return 13;
+ 199:Core/Src/lcd_text.c ****     if (ch == '.') return 14;
+ 200:Core/Src/lcd_text.c ****     if (ch == '/') return 15;
+ 201:Core/Src/lcd_text.c **** 
+ 202:Core/Src/lcd_text.c ****     if (ch >= '0' && ch <= '9') return 16 + (ch - '0');
+ 203:Core/Src/lcd_text.c ****     if (ch == ':') return 26;
+ 127              		.loc 1 203 27 discriminator 1 view .LVU13
+ 128 005c 0020     		movs	r0, #0
+ 129              	.LVL5:
+ 130              		.loc 1 203 27 discriminator 1 view .LVU14
+ 131 005e 7047     		bx	lr
+ 132              	.LVL6:
+ 133              	.L23:
+ 187:Core/Src/lcd_text.c ****     if (ch == '"') return 2;
+ 134              		.loc 1 187 20 is_stmt 1 discriminator 1 view .LVU15
+ 187:Core/Src/lcd_text.c ****     if (ch == '"') return 2;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 7
+
+
+ 135              		.loc 1 187 27 is_stmt 0 discriminator 1 view .LVU16
+ 136 0060 0220     		movs	r0, #2
+ 137              	.LVL7:
+ 187:Core/Src/lcd_text.c ****     if (ch == '"') return 2;
+ 138              		.loc 1 187 27 view .LVU17
+ 139 0062 7047     		bx	lr
+ 140              	.LVL8:
+ 141              	.L22:
+ 188:Core/Src/lcd_text.c ****     if (ch == '$') return 4;
+ 142              		.loc 1 188 20 is_stmt 1 discriminator 1 view .LVU18
+ 188:Core/Src/lcd_text.c ****     if (ch == '$') return 4;
+ 143              		.loc 1 188 27 is_stmt 0 discriminator 1 view .LVU19
+ 144 0064 0320     		movs	r0, #3
+ 145              	.LVL9:
+ 188:Core/Src/lcd_text.c ****     if (ch == '$') return 4;
+ 146              		.loc 1 188 27 view .LVU20
+ 147 0066 7047     		bx	lr
+ 148              	.LVL10:
+ 149              	.L21:
+ 189:Core/Src/lcd_text.c ****     if (ch == '%') return 5;
+ 150              		.loc 1 189 20 is_stmt 1 discriminator 1 view .LVU21
+ 189:Core/Src/lcd_text.c ****     if (ch == '%') return 5;
+ 151              		.loc 1 189 27 is_stmt 0 discriminator 1 view .LVU22
+ 152 0068 0420     		movs	r0, #4
+ 153              	.LVL11:
+ 189:Core/Src/lcd_text.c ****     if (ch == '%') return 5;
+ 154              		.loc 1 189 27 view .LVU23
+ 155 006a 7047     		bx	lr
+ 156              	.LVL12:
+ 157              	.L20:
+ 190:Core/Src/lcd_text.c ****     if (ch == '&') return 6;
+ 158              		.loc 1 190 20 is_stmt 1 discriminator 1 view .LVU24
+ 190:Core/Src/lcd_text.c ****     if (ch == '&') return 6;
+ 159              		.loc 1 190 27 is_stmt 0 discriminator 1 view .LVU25
+ 160 006c 0520     		movs	r0, #5
+ 161              	.LVL13:
+ 190:Core/Src/lcd_text.c ****     if (ch == '&') return 6;
+ 162              		.loc 1 190 27 view .LVU26
+ 163 006e 7047     		bx	lr
+ 164              	.LVL14:
+ 165              	.L19:
+ 191:Core/Src/lcd_text.c ****     if (ch == '\'') return 7;
+ 166              		.loc 1 191 20 is_stmt 1 discriminator 1 view .LVU27
+ 191:Core/Src/lcd_text.c ****     if (ch == '\'') return 7;
+ 167              		.loc 1 191 27 is_stmt 0 discriminator 1 view .LVU28
+ 168 0070 0620     		movs	r0, #6
+ 169              	.LVL15:
+ 191:Core/Src/lcd_text.c ****     if (ch == '\'') return 7;
+ 170              		.loc 1 191 27 view .LVU29
+ 171 0072 7047     		bx	lr
+ 172              	.LVL16:
+ 173              	.L18:
+ 192:Core/Src/lcd_text.c ****     if (ch == '(') return 8;
+ 174              		.loc 1 192 21 is_stmt 1 discriminator 1 view .LVU30
+ 192:Core/Src/lcd_text.c ****     if (ch == '(') return 8;
+ 175              		.loc 1 192 28 is_stmt 0 discriminator 1 view .LVU31
+ 176 0074 0720     		movs	r0, #7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 8
+
+
+ 177              	.LVL17:
+ 192:Core/Src/lcd_text.c ****     if (ch == '(') return 8;
+ 178              		.loc 1 192 28 view .LVU32
+ 179 0076 7047     		bx	lr
+ 180              	.LVL18:
+ 181              	.L17:
+ 193:Core/Src/lcd_text.c ****     if (ch == ')') return 9;
+ 182              		.loc 1 193 20 is_stmt 1 discriminator 1 view .LVU33
+ 193:Core/Src/lcd_text.c ****     if (ch == ')') return 9;
+ 183              		.loc 1 193 27 is_stmt 0 discriminator 1 view .LVU34
+ 184 0078 0820     		movs	r0, #8
+ 185              	.LVL19:
+ 193:Core/Src/lcd_text.c ****     if (ch == ')') return 9;
+ 186              		.loc 1 193 27 view .LVU35
+ 187 007a 7047     		bx	lr
+ 188              	.LVL20:
+ 189              	.L16:
+ 194:Core/Src/lcd_text.c ****     if (ch == '*') return 10;
+ 190              		.loc 1 194 20 is_stmt 1 discriminator 1 view .LVU36
+ 194:Core/Src/lcd_text.c ****     if (ch == '*') return 10;
+ 191              		.loc 1 194 27 is_stmt 0 discriminator 1 view .LVU37
+ 192 007c 0920     		movs	r0, #9
+ 193              	.LVL21:
+ 194:Core/Src/lcd_text.c ****     if (ch == '*') return 10;
+ 194              		.loc 1 194 27 view .LVU38
+ 195 007e 7047     		bx	lr
+ 196              	.LVL22:
+ 197              	.L15:
+ 195:Core/Src/lcd_text.c ****     if (ch == '+') return 11;
+ 198              		.loc 1 195 20 is_stmt 1 discriminator 1 view .LVU39
+ 195:Core/Src/lcd_text.c ****     if (ch == '+') return 11;
+ 199              		.loc 1 195 27 is_stmt 0 discriminator 1 view .LVU40
+ 200 0080 0A20     		movs	r0, #10
+ 201              	.LVL23:
+ 195:Core/Src/lcd_text.c ****     if (ch == '+') return 11;
+ 202              		.loc 1 195 27 view .LVU41
+ 203 0082 7047     		bx	lr
+ 204              	.LVL24:
+ 205              	.L14:
+ 196:Core/Src/lcd_text.c ****     if (ch == ',') return 12;
+ 206              		.loc 1 196 20 is_stmt 1 discriminator 1 view .LVU42
+ 196:Core/Src/lcd_text.c ****     if (ch == ',') return 12;
+ 207              		.loc 1 196 27 is_stmt 0 discriminator 1 view .LVU43
+ 208 0084 0B20     		movs	r0, #11
+ 209              	.LVL25:
+ 196:Core/Src/lcd_text.c ****     if (ch == ',') return 12;
+ 210              		.loc 1 196 27 view .LVU44
+ 211 0086 7047     		bx	lr
+ 212              	.LVL26:
+ 213              	.L13:
+ 197:Core/Src/lcd_text.c ****     if (ch == '-') return 13;
+ 214              		.loc 1 197 20 is_stmt 1 discriminator 1 view .LVU45
+ 197:Core/Src/lcd_text.c ****     if (ch == '-') return 13;
+ 215              		.loc 1 197 27 is_stmt 0 discriminator 1 view .LVU46
+ 216 0088 0C20     		movs	r0, #12
+ 217              	.LVL27:
+ 197:Core/Src/lcd_text.c ****     if (ch == '-') return 13;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 9
+
+
+ 218              		.loc 1 197 27 view .LVU47
+ 219 008a 7047     		bx	lr
+ 220              	.LVL28:
+ 221              	.L12:
+ 198:Core/Src/lcd_text.c ****     if (ch == '.') return 14;
+ 222              		.loc 1 198 20 is_stmt 1 discriminator 1 view .LVU48
+ 198:Core/Src/lcd_text.c ****     if (ch == '.') return 14;
+ 223              		.loc 1 198 27 is_stmt 0 discriminator 1 view .LVU49
+ 224 008c 0D20     		movs	r0, #13
+ 225              	.LVL29:
+ 198:Core/Src/lcd_text.c ****     if (ch == '.') return 14;
+ 226              		.loc 1 198 27 view .LVU50
+ 227 008e 7047     		bx	lr
+ 228              	.LVL30:
+ 229              	.L11:
+ 199:Core/Src/lcd_text.c ****     if (ch == '/') return 15;
+ 230              		.loc 1 199 20 is_stmt 1 discriminator 1 view .LVU51
+ 199:Core/Src/lcd_text.c ****     if (ch == '/') return 15;
+ 231              		.loc 1 199 27 is_stmt 0 discriminator 1 view .LVU52
+ 232 0090 0E20     		movs	r0, #14
+ 233              	.LVL31:
+ 199:Core/Src/lcd_text.c ****     if (ch == '/') return 15;
+ 234              		.loc 1 199 27 view .LVU53
+ 235 0092 7047     		bx	lr
+ 236              	.LVL32:
+ 237              	.L10:
+ 200:Core/Src/lcd_text.c **** 
+ 238              		.loc 1 200 20 is_stmt 1 discriminator 1 view .LVU54
+ 200:Core/Src/lcd_text.c **** 
+ 239              		.loc 1 200 27 is_stmt 0 discriminator 1 view .LVU55
+ 240 0094 0F20     		movs	r0, #15
+ 241              	.LVL33:
+ 200:Core/Src/lcd_text.c **** 
+ 242              		.loc 1 200 27 view .LVU56
+ 243 0096 7047     		bx	lr
+ 244              	.LVL34:
+ 245              	.L9:
+ 202:Core/Src/lcd_text.c ****     if (ch == ':') return 26;
+ 246              		.loc 1 202 33 is_stmt 1 discriminator 1 view .LVU57
+ 202:Core/Src/lcd_text.c ****     if (ch == ':') return 26;
+ 247              		.loc 1 202 43 is_stmt 0 discriminator 1 view .LVU58
+ 248 0098 2038     		subs	r0, r0, #32
+ 249              	.LVL35:
+ 202:Core/Src/lcd_text.c ****     if (ch == ':') return 26;
+ 250              		.loc 1 202 43 view .LVU59
+ 251 009a 7047     		bx	lr
+ 252              	.LVL36:
+ 253              	.L8:
+ 254              		.loc 1 203 20 is_stmt 1 discriminator 1 view .LVU60
+ 255              		.loc 1 203 27 is_stmt 0 discriminator 1 view .LVU61
+ 256 009c 1A20     		movs	r0, #26
+ 257              	.LVL37:
+ 258              		.loc 1 203 27 view .LVU62
+ 259 009e 7047     		bx	lr
+ 260              	.LVL38:
+ 261              	.L6:
+ 204:Core/Src/lcd_text.c ****     if (ch >= 'A' && ch <= 'Z') return 27 + (ch - 'A');
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 10
+
+
+ 262              		.loc 1 204 33 is_stmt 1 discriminator 1 view .LVU63
+ 263              		.loc 1 204 43 is_stmt 0 discriminator 1 view .LVU64
+ 264 00a0 2638     		subs	r0, r0, #38
+ 265              	.LVL39:
+ 266              		.loc 1 204 43 view .LVU65
+ 267 00a2 7047     		bx	lr
+ 268              	.LVL40:
+ 269              	.L25:
+ 186:Core/Src/lcd_text.c ****     if (ch == '"') return 2;
+ 270              		.loc 1 186 27 discriminator 1 view .LVU66
+ 271 00a4 0120     		movs	r0, #1
+ 272              	.LVL41:
+ 205:Core/Src/lcd_text.c **** 
+ 206:Core/Src/lcd_text.c ****     return 0;
+ 207:Core/Src/lcd_text.c **** }
+ 273              		.loc 1 207 1 view .LVU67
+ 274 00a6 7047     		bx	lr
+ 275              		.cfi_endproc
+ 276              	.LFE231:
+ 278              		.section	.text.lcd_char_supported,"ax",%progbits
+ 279              		.align	1
+ 280              		.syntax unified
+ 281              		.thumb
+ 282              		.thumb_func
+ 284              	lcd_char_supported:
+ 285              	.LVL42:
+ 286              	.LFB232:
+ 208:Core/Src/lcd_text.c **** 
+ 209:Core/Src/lcd_text.c **** static uint8_t lcd_char_supported(char ch)
+ 210:Core/Src/lcd_text.c **** {
+ 287              		.loc 1 210 1 is_stmt 1 view -0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              		@ link register save eliminated.
+ 211:Core/Src/lcd_text.c ****     if (ch >= 'a' && ch <= 'z') return 1;
+ 292              		.loc 1 211 5 view .LVU69
+ 293 0000 5A28     		cmp	r0, #90
+ 294 0002 13D8     		bhi	.L27
+ 295 0004 4128     		cmp	r0, #65
+ 296 0006 19D2     		bcs	.L30
+ 297 0008 3928     		cmp	r0, #57
+ 298 000a 0BD8     		bhi	.L29
+ 299 000c 3028     		cmp	r0, #48
+ 300 000e 01D3     		bcc	.L35
+ 212:Core/Src/lcd_text.c ****     if (ch == ' ' || ch == '!' || ch == '"' || ch == '#' || ch == '$' ||
+ 213:Core/Src/lcd_text.c ****         ch == '%' || ch == '&' || ch == '\'' || ch == '(' || ch == ')' ||
+ 214:Core/Src/lcd_text.c ****         ch == '*' || ch == '+' || ch == ',' || ch == '-' || ch == '.' ||
+ 215:Core/Src/lcd_text.c ****         ch == '/' || ch == ':' )
+ 216:Core/Src/lcd_text.c ****         return 1;
+ 217:Core/Src/lcd_text.c **** 
+ 218:Core/Src/lcd_text.c ****     if (ch >= '0' && ch <= '9') return 1;
+ 301              		.loc 1 218 40 is_stmt 0 discriminator 1 view .LVU70
+ 302 0010 0120     		movs	r0, #1
+ 303              	.LVL43:
+ 304              		.loc 1 218 40 discriminator 1 view .LVU71
+ 305 0012 7047     		bx	lr
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 11
+
+
+ 306              	.LVL44:
+ 307              	.L35:
+ 308              		.loc 1 218 40 discriminator 1 view .LVU72
+ 309 0014 2038     		subs	r0, r0, #32
+ 310              	.LVL45:
+ 311              		.loc 1 218 40 discriminator 1 view .LVU73
+ 312 0016 C0B2     		uxtb	r0, r0
+ 313 0018 0F28     		cmp	r0, #15
+ 314 001a 01D8     		bhi	.L36
+ 216:Core/Src/lcd_text.c **** 
+ 315              		.loc 1 216 16 view .LVU74
+ 316 001c 0120     		movs	r0, #1
+ 317 001e 7047     		bx	lr
+ 318              	.L36:
+ 219:Core/Src/lcd_text.c ****     if (ch >= 'A' && ch <= 'Z') return 1;
+ 319              		.loc 1 219 40 discriminator 1 view .LVU75
+ 320 0020 0020     		movs	r0, #0
+ 321 0022 7047     		bx	lr
+ 322              	.LVL46:
+ 323              	.L29:
+ 324              		.loc 1 219 40 discriminator 1 view .LVU76
+ 325 0024 3A28     		cmp	r0, #58
+ 326 0026 0BD1     		bne	.L33
+ 216:Core/Src/lcd_text.c **** 
+ 327              		.loc 1 216 16 view .LVU77
+ 328 0028 0120     		movs	r0, #1
+ 329              	.LVL47:
+ 216:Core/Src/lcd_text.c **** 
+ 330              		.loc 1 216 16 view .LVU78
+ 331 002a 7047     		bx	lr
+ 332              	.LVL48:
+ 333              	.L27:
+ 216:Core/Src/lcd_text.c **** 
+ 334              		.loc 1 216 16 view .LVU79
+ 335 002c 6138     		subs	r0, r0, #97
+ 336              	.LVL49:
+ 216:Core/Src/lcd_text.c **** 
+ 337              		.loc 1 216 16 view .LVU80
+ 338 002e C0B2     		uxtb	r0, r0
+ 339 0030 1928     		cmp	r0, #25
+ 340 0032 01D8     		bhi	.L37
+ 211:Core/Src/lcd_text.c ****     if (ch == ' ' || ch == '!' || ch == '"' || ch == '#' || ch == '$' ||
+ 341              		.loc 1 211 40 discriminator 1 view .LVU81
+ 342 0034 0120     		movs	r0, #1
+ 220:Core/Src/lcd_text.c **** 
+ 221:Core/Src/lcd_text.c ****     return 0;
+ 222:Core/Src/lcd_text.c **** }
+ 343              		.loc 1 222 1 view .LVU82
+ 344 0036 7047     		bx	lr
+ 345              	.L37:
+ 219:Core/Src/lcd_text.c **** 
+ 346              		.loc 1 219 40 discriminator 1 view .LVU83
+ 347 0038 0020     		movs	r0, #0
+ 348 003a 7047     		bx	lr
+ 349              	.LVL50:
+ 350              	.L30:
+ 219:Core/Src/lcd_text.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 12
+
+
+ 351              		.loc 1 219 40 discriminator 1 view .LVU84
+ 352 003c 0120     		movs	r0, #1
+ 353              	.LVL51:
+ 219:Core/Src/lcd_text.c **** 
+ 354              		.loc 1 219 40 discriminator 1 view .LVU85
+ 355 003e 7047     		bx	lr
+ 356              	.LVL52:
+ 357              	.L33:
+ 219:Core/Src/lcd_text.c **** 
+ 358              		.loc 1 219 40 discriminator 1 view .LVU86
+ 359 0040 0020     		movs	r0, #0
+ 360              	.LVL53:
+ 219:Core/Src/lcd_text.c **** 
+ 361              		.loc 1 219 40 discriminator 1 view .LVU87
+ 362 0042 7047     		bx	lr
+ 363              		.cfi_endproc
+ 364              	.LFE232:
+ 366              		.section	.text.LCD_ClearArea,"ax",%progbits
+ 367              		.align	1
+ 368              		.global	LCD_ClearArea
+ 369              		.syntax unified
+ 370              		.thumb
+ 371              		.thumb_func
+ 373              	LCD_ClearArea:
+ 374              	.LVL54:
+ 375              	.LFB233:
+ 223:Core/Src/lcd_text.c **** 
+ 224:Core/Src/lcd_text.c **** void LCD_ClearArea(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t bgcolor)
+ 225:Core/Src/lcd_text.c **** {
+ 376              		.loc 1 225 1 is_stmt 1 view -0
+ 377              		.cfi_startproc
+ 378              		@ args = 4, pretend = 0, frame = 0
+ 379              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226:Core/Src/lcd_text.c ****     if (w == 0 || h == 0) return;
+ 380              		.loc 1 226 5 view .LVU89
+ 381              		.loc 1 226 8 is_stmt 0 view .LVU90
+ 382 0000 0AB1     		cbz	r2, .L41
+ 383 0002 9446     		mov	ip, r2
+ 384              		.loc 1 226 16 discriminator 2 view .LVU91
+ 385 0004 03B9     		cbnz	r3, .L44
+ 386              	.L41:
+ 387 0006 7047     		bx	lr
+ 388              	.L44:
+ 225:Core/Src/lcd_text.c ****     if (w == 0 || h == 0) return;
+ 389              		.loc 1 225 1 view .LVU92
+ 390 0008 00B5     		push	{lr}
+ 391              	.LCFI0:
+ 392              		.cfi_def_cfa_offset 4
+ 393              		.cfi_offset 14, -4
+ 394 000a 83B0     		sub	sp, sp, #12
+ 395              	.LCFI1:
+ 396              		.cfi_def_cfa_offset 16
+ 227:Core/Src/lcd_text.c ****     ST7735_FillRect(x, y, w, h, bgcolor);
+ 397              		.loc 1 227 5 is_stmt 1 view .LVU93
+ 398 000c BDF81020 		ldrh	r2, [sp, #16]
+ 399              	.LVL55:
+ 400              		.loc 1 227 5 is_stmt 0 view .LVU94
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 13
+
+
+ 401 0010 0092     		str	r2, [sp]
+ 402 0012 6246     		mov	r2, ip
+ 403 0014 FFF7FEFF 		bl	ST7735_FillRect
+ 404              	.LVL56:
+ 228:Core/Src/lcd_text.c **** }
+ 405              		.loc 1 228 1 view .LVU95
+ 406 0018 03B0     		add	sp, sp, #12
+ 407              	.LCFI2:
+ 408              		.cfi_def_cfa_offset 4
+ 409              		@ sp needed
+ 410 001a 5DF804FB 		ldr	pc, [sp], #4
+ 411              		.loc 1 228 1 view .LVU96
+ 412              		.cfi_endproc
+ 413              	.LFE233:
+ 415              		.section	.text.LCD_ClearLine,"ax",%progbits
+ 416              		.align	1
+ 417              		.global	LCD_ClearLine
+ 418              		.syntax unified
+ 419              		.thumb
+ 420              		.thumb_func
+ 422              	LCD_ClearLine:
+ 423              	.LVL57:
+ 424              	.LFB234:
+ 229:Core/Src/lcd_text.c **** 
+ 230:Core/Src/lcd_text.c **** void LCD_ClearLine(uint16_t y, uint16_t bgcolor)
+ 231:Core/Src/lcd_text.c **** {
+ 425              		.loc 1 231 1 is_stmt 1 view -0
+ 426              		.cfi_startproc
+ 427              		@ args = 0, pretend = 0, frame = 0
+ 428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 232:Core/Src/lcd_text.c ****     if (y >= ST7735_HEIGHT) return;
+ 429              		.loc 1 232 5 view .LVU98
+ 430              		.loc 1 232 8 is_stmt 0 view .LVU99
+ 431 0000 9F28     		cmp	r0, #159
+ 432 0002 00D9     		bls	.L51
+ 433 0004 7047     		bx	lr
+ 434              	.L51:
+ 231:Core/Src/lcd_text.c ****     if (y >= ST7735_HEIGHT) return;
+ 435              		.loc 1 231 1 view .LVU100
+ 436 0006 00B5     		push	{lr}
+ 437              	.LCFI3:
+ 438              		.cfi_def_cfa_offset 4
+ 439              		.cfi_offset 14, -4
+ 440 0008 83B0     		sub	sp, sp, #12
+ 441              	.LCFI4:
+ 442              		.cfi_def_cfa_offset 16
+ 233:Core/Src/lcd_text.c ****     ST7735_FillRect(0, y, ST7735_WIDTH, LCD_FONT_HEIGHT, bgcolor);
+ 443              		.loc 1 233 5 is_stmt 1 view .LVU101
+ 444 000a 0091     		str	r1, [sp]
+ 445 000c 1023     		movs	r3, #16
+ 446 000e 5022     		movs	r2, #80
+ 447 0010 0146     		mov	r1, r0
+ 448              	.LVL58:
+ 449              		.loc 1 233 5 is_stmt 0 view .LVU102
+ 450 0012 0020     		movs	r0, #0
+ 451              	.LVL59:
+ 452              		.loc 1 233 5 view .LVU103
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 14
+
+
+ 453 0014 FFF7FEFF 		bl	ST7735_FillRect
+ 454              	.LVL60:
+ 234:Core/Src/lcd_text.c **** }
+ 455              		.loc 1 234 1 view .LVU104
+ 456 0018 03B0     		add	sp, sp, #12
+ 457              	.LCFI5:
+ 458              		.cfi_def_cfa_offset 4
+ 459              		@ sp needed
+ 460 001a 5DF804FB 		ldr	pc, [sp], #4
+ 461              		.cfi_endproc
+ 462              	.LFE234:
+ 464              		.section	.text.LCD_ShowCharEx,"ax",%progbits
+ 465              		.align	1
+ 466              		.global	LCD_ShowCharEx
+ 467              		.syntax unified
+ 468              		.thumb
+ 469              		.thumb_func
+ 471              	LCD_ShowCharEx:
+ 472              	.LVL61:
+ 473              	.LFB235:
+ 235:Core/Src/lcd_text.c **** 
+ 236:Core/Src/lcd_text.c **** void LCD_ShowCharEx(uint16_t x, uint16_t y, char ch, uint16_t color, uint16_t bgcolor, uint8_t tran
+ 237:Core/Src/lcd_text.c **** {
+ 474              		.loc 1 237 1 is_stmt 1 view -0
+ 475              		.cfi_startproc
+ 476              		@ args = 8, pretend = 0, frame = 8
+ 477              		@ frame_needed = 0, uses_anonymous_args = 0
+ 478              		.loc 1 237 1 is_stmt 0 view .LVU106
+ 479 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 480              	.LCFI6:
+ 481              		.cfi_def_cfa_offset 36
+ 482              		.cfi_offset 4, -36
+ 483              		.cfi_offset 5, -32
+ 484              		.cfi_offset 6, -28
+ 485              		.cfi_offset 7, -24
+ 486              		.cfi_offset 8, -20
+ 487              		.cfi_offset 9, -16
+ 488              		.cfi_offset 10, -12
+ 489              		.cfi_offset 11, -8
+ 490              		.cfi_offset 14, -4
+ 491 0004 83B0     		sub	sp, sp, #12
+ 492              	.LCFI7:
+ 493              		.cfi_def_cfa_offset 48
+ 494 0006 BDF830B0 		ldrh	fp, [sp, #48]
+ 495 000a 9DF83470 		ldrb	r7, [sp, #52]	@ zero_extendqisi2
+ 238:Core/Src/lcd_text.c ****     if (x >= ST7735_WIDTH || y >= ST7735_HEIGHT)
+ 496              		.loc 1 238 5 is_stmt 1 view .LVU107
+ 497              		.loc 1 238 8 is_stmt 0 view .LVU108
+ 498 000e 4F28     		cmp	r0, #79
+ 499 0010 32D8     		bhi	.L52
+ 500 0012 8046     		mov	r8, r0
+ 501 0014 8946     		mov	r9, r1
+ 502 0016 9A46     		mov	r10, r3
+ 503              		.loc 1 238 27 discriminator 1 view .LVU109
+ 504 0018 9F29     		cmp	r1, #159
+ 505 001a 2DD8     		bhi	.L52
+ 239:Core/Src/lcd_text.c ****         return;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 15
+
+
+ 240:Core/Src/lcd_text.c **** 
+ 241:Core/Src/lcd_text.c ****     int idx = font_index(ch);
+ 506              		.loc 1 241 5 is_stmt 1 view .LVU110
+ 507              		.loc 1 241 15 is_stmt 0 view .LVU111
+ 508 001c 1046     		mov	r0, r2
+ 509              	.LVL62:
+ 510              		.loc 1 241 15 view .LVU112
+ 511 001e FFF7FEFF 		bl	font_index
+ 512              	.LVL63:
+ 513              		.loc 1 241 15 view .LVU113
+ 514 0022 0190     		str	r0, [sp, #4]
+ 515              	.LVL64:
+ 242:Core/Src/lcd_text.c **** 
+ 243:Core/Src/lcd_text.c ****     for (uint16_t row = 0; row < LCD_FONT_HEIGHT; row++)
+ 516              		.loc 1 243 5 is_stmt 1 view .LVU114
+ 517              	.LBB2:
+ 518              		.loc 1 243 10 view .LVU115
+ 519              		.loc 1 243 19 is_stmt 0 view .LVU116
+ 520 0024 0025     		movs	r5, #0
+ 521              		.loc 1 243 5 view .LVU117
+ 522 0026 1EE0     		b	.L54
+ 523              	.LVL65:
+ 524              	.L62:
+ 525              	.LBB3:
+ 526              	.LBB4:
+ 244:Core/Src/lcd_text.c ****     {
+ 245:Core/Src/lcd_text.c ****         uint8_t line = font8x16[idx][row];
+ 246:Core/Src/lcd_text.c **** 
+ 247:Core/Src/lcd_text.c ****         for (uint16_t col = 0; col < LCD_FONT_WIDTH; col++)
+ 248:Core/Src/lcd_text.c ****         {
+ 249:Core/Src/lcd_text.c ****             if (line & (0x80 >> col))
+ 250:Core/Src/lcd_text.c ****             {
+ 251:Core/Src/lcd_text.c ****                 ST7735_DrawPixel(x + col, y + row, color);
+ 527              		.loc 1 251 17 is_stmt 1 view .LVU118
+ 528 0028 05EB0901 		add	r1, r5, r9
+ 529 002c 04EB0800 		add	r0, r4, r8
+ 530 0030 5246     		mov	r2, r10
+ 531 0032 89B2     		uxth	r1, r1
+ 532 0034 80B2     		uxth	r0, r0
+ 533 0036 FFF7FEFF 		bl	ST7735_DrawPixel
+ 534              	.LVL66:
+ 535              	.L57:
+ 247:Core/Src/lcd_text.c ****         {
+ 536              		.loc 1 247 57 discriminator 2 view .LVU119
+ 537 003a 0134     		adds	r4, r4, #1
+ 538              	.LVL67:
+ 247:Core/Src/lcd_text.c ****         {
+ 539              		.loc 1 247 57 is_stmt 0 discriminator 2 view .LVU120
+ 540 003c A4B2     		uxth	r4, r4
+ 541              	.LVL68:
+ 542              	.L55:
+ 247:Core/Src/lcd_text.c ****         {
+ 543              		.loc 1 247 36 is_stmt 1 discriminator 1 view .LVU121
+ 544 003e 072C     		cmp	r4, #7
+ 545 0040 0FD8     		bhi	.L61
+ 249:Core/Src/lcd_text.c ****             {
+ 546              		.loc 1 249 13 view .LVU122
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 16
+
+
+ 249:Core/Src/lcd_text.c ****             {
+ 547              		.loc 1 249 30 is_stmt 0 view .LVU123
+ 548 0042 8023     		movs	r3, #128
+ 549 0044 2341     		asrs	r3, r3, r4
+ 249:Core/Src/lcd_text.c ****             {
+ 550              		.loc 1 249 16 view .LVU124
+ 551 0046 1E42     		tst	r6, r3
+ 552 0048 EED1     		bne	.L62
+ 252:Core/Src/lcd_text.c ****             }
+ 253:Core/Src/lcd_text.c ****             else
+ 254:Core/Src/lcd_text.c ****             {
+ 255:Core/Src/lcd_text.c ****                 if (transparent == LCD_TEXT_OPAQUE)
+ 553              		.loc 1 255 17 is_stmt 1 view .LVU125
+ 554              		.loc 1 255 20 is_stmt 0 view .LVU126
+ 555 004a 002F     		cmp	r7, #0
+ 556 004c F5D1     		bne	.L57
+ 256:Core/Src/lcd_text.c ****                 {
+ 257:Core/Src/lcd_text.c ****                     ST7735_DrawPixel(x + col, y + row, bgcolor);
+ 557              		.loc 1 257 21 is_stmt 1 view .LVU127
+ 558 004e 05EB0901 		add	r1, r5, r9
+ 559 0052 04EB0800 		add	r0, r4, r8
+ 560 0056 5A46     		mov	r2, fp
+ 561 0058 89B2     		uxth	r1, r1
+ 562 005a 80B2     		uxth	r0, r0
+ 563 005c FFF7FEFF 		bl	ST7735_DrawPixel
+ 564              	.LVL69:
+ 565 0060 EBE7     		b	.L57
+ 566              	.L61:
+ 567              		.loc 1 257 21 is_stmt 0 view .LVU128
+ 568              	.LBE4:
+ 569              	.LBE3:
+ 243:Core/Src/lcd_text.c ****     {
+ 570              		.loc 1 243 54 is_stmt 1 discriminator 2 view .LVU129
+ 571 0062 0135     		adds	r5, r5, #1
+ 572              	.LVL70:
+ 243:Core/Src/lcd_text.c ****     {
+ 573              		.loc 1 243 54 is_stmt 0 discriminator 2 view .LVU130
+ 574 0064 ADB2     		uxth	r5, r5
+ 575              	.LVL71:
+ 576              	.L54:
+ 243:Core/Src/lcd_text.c ****     {
+ 577              		.loc 1 243 32 is_stmt 1 discriminator 1 view .LVU131
+ 578 0066 0F2D     		cmp	r5, #15
+ 579 0068 06D8     		bhi	.L52
+ 580              	.LBB6:
+ 245:Core/Src/lcd_text.c **** 
+ 581              		.loc 1 245 9 view .LVU132
+ 245:Core/Src/lcd_text.c **** 
+ 582              		.loc 1 245 17 is_stmt 0 view .LVU133
+ 583 006a 054B     		ldr	r3, .L63
+ 584 006c 019A     		ldr	r2, [sp, #4]
+ 585 006e 03EB0213 		add	r3, r3, r2, lsl #4
+ 586 0072 5E5D     		ldrb	r6, [r3, r5]	@ zero_extendqisi2
+ 587              	.LVL72:
+ 247:Core/Src/lcd_text.c ****         {
+ 588              		.loc 1 247 9 is_stmt 1 view .LVU134
+ 589              	.LBB5:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 17
+
+
+ 247:Core/Src/lcd_text.c ****         {
+ 590              		.loc 1 247 14 view .LVU135
+ 247:Core/Src/lcd_text.c ****         {
+ 591              		.loc 1 247 23 is_stmt 0 view .LVU136
+ 592 0074 0024     		movs	r4, #0
+ 247:Core/Src/lcd_text.c ****         {
+ 593              		.loc 1 247 9 view .LVU137
+ 594 0076 E2E7     		b	.L55
+ 595              	.LVL73:
+ 596              	.L52:
+ 247:Core/Src/lcd_text.c ****         {
+ 597              		.loc 1 247 9 view .LVU138
+ 598              	.LBE5:
+ 599              	.LBE6:
+ 600              	.LBE2:
+ 258:Core/Src/lcd_text.c ****                 }
+ 259:Core/Src/lcd_text.c ****             }
+ 260:Core/Src/lcd_text.c ****         }
+ 261:Core/Src/lcd_text.c ****     }
+ 262:Core/Src/lcd_text.c **** }
+ 601              		.loc 1 262 1 view .LVU139
+ 602 0078 03B0     		add	sp, sp, #12
+ 603              	.LCFI8:
+ 604              		.cfi_def_cfa_offset 36
+ 605              		@ sp needed
+ 606 007a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 607              	.LVL74:
+ 608              	.L64:
+ 609              		.loc 1 262 1 view .LVU140
+ 610 007e 00BF     		.align	2
+ 611              	.L63:
+ 612 0080 00000000 		.word	font8x16
+ 613              		.cfi_endproc
+ 614              	.LFE235:
+ 616              		.section	.text.LCD_ShowChar,"ax",%progbits
+ 617              		.align	1
+ 618              		.global	LCD_ShowChar
+ 619              		.syntax unified
+ 620              		.thumb
+ 621              		.thumb_func
+ 623              	LCD_ShowChar:
+ 624              	.LVL75:
+ 625              	.LFB236:
+ 263:Core/Src/lcd_text.c **** 
+ 264:Core/Src/lcd_text.c **** void LCD_ShowChar(uint16_t x, uint16_t y, char ch, uint16_t color, uint16_t bgcolor)
+ 265:Core/Src/lcd_text.c **** {
+ 626              		.loc 1 265 1 is_stmt 1 view -0
+ 627              		.cfi_startproc
+ 628              		@ args = 4, pretend = 0, frame = 0
+ 629              		@ frame_needed = 0, uses_anonymous_args = 0
+ 630              		.loc 1 265 1 is_stmt 0 view .LVU142
+ 631 0000 10B5     		push	{r4, lr}
+ 632              	.LCFI9:
+ 633              		.cfi_def_cfa_offset 8
+ 634              		.cfi_offset 4, -8
+ 635              		.cfi_offset 14, -4
+ 636 0002 82B0     		sub	sp, sp, #8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 18
+
+
+ 637              	.LCFI10:
+ 638              		.cfi_def_cfa_offset 16
+ 266:Core/Src/lcd_text.c ****     LCD_ShowCharEx(x, y, ch, color, bgcolor, LCD_TEXT_OPAQUE);
+ 639              		.loc 1 266 5 is_stmt 1 view .LVU143
+ 640 0004 0024     		movs	r4, #0
+ 641 0006 0194     		str	r4, [sp, #4]
+ 642 0008 BDF81040 		ldrh	r4, [sp, #16]
+ 643 000c 0094     		str	r4, [sp]
+ 644 000e FFF7FEFF 		bl	LCD_ShowCharEx
+ 645              	.LVL76:
+ 267:Core/Src/lcd_text.c **** }
+ 646              		.loc 1 267 1 is_stmt 0 view .LVU144
+ 647 0012 02B0     		add	sp, sp, #8
+ 648              	.LCFI11:
+ 649              		.cfi_def_cfa_offset 8
+ 650              		@ sp needed
+ 651 0014 10BD     		pop	{r4, pc}
+ 652              		.loc 1 267 1 view .LVU145
+ 653              		.cfi_endproc
+ 654              	.LFE236:
+ 656              		.section	.text.LCD_ShowStringEx,"ax",%progbits
+ 657              		.align	1
+ 658              		.global	LCD_ShowStringEx
+ 659              		.syntax unified
+ 660              		.thumb
+ 661              		.thumb_func
+ 663              	LCD_ShowStringEx:
+ 664              	.LVL77:
+ 665              	.LFB237:
+ 268:Core/Src/lcd_text.c **** 
+ 269:Core/Src/lcd_text.c **** void LCD_ShowStringEx(uint16_t x, uint16_t y, const char *str, uint16_t color, uint16_t bgcolor, ui
+ 270:Core/Src/lcd_text.c **** {
+ 666              		.loc 1 270 1 is_stmt 1 view -0
+ 667              		.cfi_startproc
+ 668              		@ args = 8, pretend = 0, frame = 0
+ 669              		@ frame_needed = 0, uses_anonymous_args = 0
+ 670              		.loc 1 270 1 is_stmt 0 view .LVU147
+ 671 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 672              	.LCFI12:
+ 673              		.cfi_def_cfa_offset 36
+ 674              		.cfi_offset 4, -36
+ 675              		.cfi_offset 5, -32
+ 676              		.cfi_offset 6, -28
+ 677              		.cfi_offset 7, -24
+ 678              		.cfi_offset 8, -20
+ 679              		.cfi_offset 9, -16
+ 680              		.cfi_offset 10, -12
+ 681              		.cfi_offset 11, -8
+ 682              		.cfi_offset 14, -4
+ 683 0004 83B0     		sub	sp, sp, #12
+ 684              	.LCFI13:
+ 685              		.cfi_def_cfa_offset 48
+ 686 0006 BDF83090 		ldrh	r9, [sp, #48]
+ 687 000a 9DF834A0 		ldrb	r10, [sp, #52]	@ zero_extendqisi2
+ 271:Core/Src/lcd_text.c ****     if (str == NULL) return;
+ 688              		.loc 1 271 5 is_stmt 1 view .LVU148
+ 689              		.loc 1 271 8 is_stmt 0 view .LVU149
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 19
+
+
+ 690 000e BAB3     		cbz	r2, .L67
+ 691 0010 8046     		mov	r8, r0
+ 692 0012 0D46     		mov	r5, r1
+ 693 0014 1F46     		mov	r7, r3
+ 694 0016 1646     		mov	r6, r2
+ 695 0018 0446     		mov	r4, r0
+ 696 001a 12E0     		b	.L69
+ 697              	.LVL78:
+ 698              	.L77:
+ 272:Core/Src/lcd_text.c **** 
+ 273:Core/Src/lcd_text.c ****     uint16_t start_x = x;
+ 274:Core/Src/lcd_text.c **** 
+ 275:Core/Src/lcd_text.c ****     while (*str)
+ 276:Core/Src/lcd_text.c ****     {
+ 277:Core/Src/lcd_text.c ****         if (*str == '\n')
+ 278:Core/Src/lcd_text.c ****         {
+ 279:Core/Src/lcd_text.c ****             x = start_x;
+ 699              		.loc 1 279 13 is_stmt 1 view .LVU150
+ 280:Core/Src/lcd_text.c ****             y += LCD_FONT_HEIGHT;
+ 700              		.loc 1 280 13 view .LVU151
+ 701              		.loc 1 280 15 is_stmt 0 view .LVU152
+ 702 001c 1035     		adds	r5, r5, #16
+ 703              	.LVL79:
+ 704              		.loc 1 280 15 view .LVU153
+ 705 001e ADB2     		uxth	r5, r5
+ 706              	.LVL80:
+ 281:Core/Src/lcd_text.c ****             str++;
+ 707              		.loc 1 281 13 is_stmt 1 view .LVU154
+ 708              		.loc 1 281 16 is_stmt 0 view .LVU155
+ 709 0020 0136     		adds	r6, r6, #1
+ 710              	.LVL81:
+ 282:Core/Src/lcd_text.c ****             continue;
+ 711              		.loc 1 282 13 is_stmt 1 view .LVU156
+ 279:Core/Src/lcd_text.c ****             y += LCD_FONT_HEIGHT;
+ 712              		.loc 1 279 15 is_stmt 0 view .LVU157
+ 713 0022 4446     		mov	r4, r8
+ 714              		.loc 1 282 13 view .LVU158
+ 715 0024 0DE0     		b	.L69
+ 716              	.LVL82:
+ 717              	.L72:
+ 283:Core/Src/lcd_text.c ****         }
+ 284:Core/Src/lcd_text.c **** 
+ 285:Core/Src/lcd_text.c ****         if (!lcd_char_supported(*str))
+ 286:Core/Src/lcd_text.c ****         {
+ 287:Core/Src/lcd_text.c ****             // 不支持的字符先显示为空格
+ 288:Core/Src/lcd_text.c ****             LCD_ShowCharEx(x, y, ' ', color, bgcolor, transparent);
+ 289:Core/Src/lcd_text.c ****         }
+ 290:Core/Src/lcd_text.c ****         else
+ 291:Core/Src/lcd_text.c ****         {
+ 292:Core/Src/lcd_text.c ****             LCD_ShowCharEx(x, y, *str, color, bgcolor, transparent);
+ 718              		.loc 1 292 13 is_stmt 1 view .LVU159
+ 719 0026 CDF804A0 		str	r10, [sp, #4]
+ 720 002a CDF80090 		str	r9, [sp]
+ 721 002e 3B46     		mov	r3, r7
+ 722 0030 5A46     		mov	r2, fp
+ 723 0032 2946     		mov	r1, r5
+ 724 0034 2046     		mov	r0, r4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 20
+
+
+ 725 0036 FFF7FEFF 		bl	LCD_ShowCharEx
+ 726              	.LVL83:
+ 727 003a 19E0     		b	.L73
+ 728              	.LVL84:
+ 729              	.L74:
+ 293:Core/Src/lcd_text.c ****         }
+ 294:Core/Src/lcd_text.c **** 
+ 295:Core/Src/lcd_text.c ****         x += LCD_FONT_WIDTH;
+ 296:Core/Src/lcd_text.c **** 
+ 297:Core/Src/lcd_text.c ****         if ((x + LCD_FONT_WIDTH) > ST7735_WIDTH)
+ 298:Core/Src/lcd_text.c ****         {
+ 299:Core/Src/lcd_text.c ****             x = start_x;
+ 300:Core/Src/lcd_text.c ****             y += LCD_FONT_HEIGHT;
+ 301:Core/Src/lcd_text.c ****         }
+ 302:Core/Src/lcd_text.c **** 
+ 303:Core/Src/lcd_text.c ****         if ((y + LCD_FONT_HEIGHT) > ST7735_HEIGHT)
+ 730              		.loc 1 303 9 view .LVU160
+ 731              		.loc 1 303 12 is_stmt 0 view .LVU161
+ 732 003c 902D     		cmp	r5, #144
+ 733 003e 1FD8     		bhi	.L67
+ 304:Core/Src/lcd_text.c ****         {
+ 305:Core/Src/lcd_text.c ****             return;
+ 306:Core/Src/lcd_text.c ****         }
+ 307:Core/Src/lcd_text.c **** 
+ 308:Core/Src/lcd_text.c ****         str++;
+ 734              		.loc 1 308 9 is_stmt 1 view .LVU162
+ 735              		.loc 1 308 12 is_stmt 0 view .LVU163
+ 736 0040 0136     		adds	r6, r6, #1
+ 737              	.LVL85:
+ 738              	.L69:
+ 275:Core/Src/lcd_text.c ****     {
+ 739              		.loc 1 275 12 is_stmt 1 view .LVU164
+ 740 0042 96F800B0 		ldrb	fp, [r6]	@ zero_extendqisi2
+ 741 0046 BBF1000F 		cmp	fp, #0
+ 742 004a 19D0     		beq	.L67
+ 277:Core/Src/lcd_text.c ****         {
+ 743              		.loc 1 277 9 view .LVU165
+ 277:Core/Src/lcd_text.c ****         {
+ 744              		.loc 1 277 12 is_stmt 0 view .LVU166
+ 745 004c BBF10A0F 		cmp	fp, #10
+ 746 0050 E4D0     		beq	.L77
+ 285:Core/Src/lcd_text.c ****         {
+ 747              		.loc 1 285 9 is_stmt 1 view .LVU167
+ 285:Core/Src/lcd_text.c ****         {
+ 748              		.loc 1 285 14 is_stmt 0 view .LVU168
+ 749 0052 5846     		mov	r0, fp
+ 750 0054 FFF7FEFF 		bl	lcd_char_supported
+ 751              	.LVL86:
+ 285:Core/Src/lcd_text.c ****         {
+ 752              		.loc 1 285 12 discriminator 1 view .LVU169
+ 753 0058 0028     		cmp	r0, #0
+ 754 005a E4D1     		bne	.L72
+ 288:Core/Src/lcd_text.c ****         }
+ 755              		.loc 1 288 13 is_stmt 1 view .LVU170
+ 756 005c CDF804A0 		str	r10, [sp, #4]
+ 757 0060 CDF80090 		str	r9, [sp]
+ 758 0064 3B46     		mov	r3, r7
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 21
+
+
+ 759 0066 2022     		movs	r2, #32
+ 760 0068 2946     		mov	r1, r5
+ 761 006a 2046     		mov	r0, r4
+ 762 006c FFF7FEFF 		bl	LCD_ShowCharEx
+ 763              	.LVL87:
+ 764              	.L73:
+ 295:Core/Src/lcd_text.c **** 
+ 765              		.loc 1 295 9 view .LVU171
+ 295:Core/Src/lcd_text.c **** 
+ 766              		.loc 1 295 11 is_stmt 0 view .LVU172
+ 767 0070 0834     		adds	r4, r4, #8
+ 768              	.LVL88:
+ 295:Core/Src/lcd_text.c **** 
+ 769              		.loc 1 295 11 view .LVU173
+ 770 0072 A4B2     		uxth	r4, r4
+ 771              	.LVL89:
+ 297:Core/Src/lcd_text.c ****         {
+ 772              		.loc 1 297 9 is_stmt 1 view .LVU174
+ 297:Core/Src/lcd_text.c ****         {
+ 773              		.loc 1 297 12 is_stmt 0 view .LVU175
+ 774 0074 482C     		cmp	r4, #72
+ 775 0076 E1D9     		bls	.L74
+ 299:Core/Src/lcd_text.c ****             y += LCD_FONT_HEIGHT;
+ 776              		.loc 1 299 13 is_stmt 1 view .LVU176
+ 777              	.LVL90:
+ 300:Core/Src/lcd_text.c ****         }
+ 778              		.loc 1 300 13 view .LVU177
+ 300:Core/Src/lcd_text.c ****         }
+ 779              		.loc 1 300 15 is_stmt 0 view .LVU178
+ 780 0078 1035     		adds	r5, r5, #16
+ 781              	.LVL91:
+ 300:Core/Src/lcd_text.c ****         }
+ 782              		.loc 1 300 15 view .LVU179
+ 783 007a ADB2     		uxth	r5, r5
+ 784              	.LVL92:
+ 299:Core/Src/lcd_text.c ****             y += LCD_FONT_HEIGHT;
+ 785              		.loc 1 299 15 view .LVU180
+ 786 007c 4446     		mov	r4, r8
+ 787 007e DDE7     		b	.L74
+ 788              	.LVL93:
+ 789              	.L67:
+ 309:Core/Src/lcd_text.c ****     }
+ 310:Core/Src/lcd_text.c **** }
+ 790              		.loc 1 310 1 view .LVU181
+ 791 0080 03B0     		add	sp, sp, #12
+ 792              	.LCFI14:
+ 793              		.cfi_def_cfa_offset 36
+ 794              		@ sp needed
+ 795 0082 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 796              		.loc 1 310 1 view .LVU182
+ 797              		.cfi_endproc
+ 798              	.LFE237:
+ 800              		.section	.text.LCD_ShowString,"ax",%progbits
+ 801              		.align	1
+ 802              		.global	LCD_ShowString
+ 803              		.syntax unified
+ 804              		.thumb
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 22
+
+
+ 805              		.thumb_func
+ 807              	LCD_ShowString:
+ 808              	.LVL94:
+ 809              	.LFB238:
+ 311:Core/Src/lcd_text.c **** 
+ 312:Core/Src/lcd_text.c **** void LCD_ShowString(uint16_t x, uint16_t y, const char *str, uint16_t color, uint16_t bgcolor)
+ 313:Core/Src/lcd_text.c **** {
+ 810              		.loc 1 313 1 is_stmt 1 view -0
+ 811              		.cfi_startproc
+ 812              		@ args = 4, pretend = 0, frame = 0
+ 813              		@ frame_needed = 0, uses_anonymous_args = 0
+ 814              		.loc 1 313 1 is_stmt 0 view .LVU184
+ 815 0000 10B5     		push	{r4, lr}
+ 816              	.LCFI15:
+ 817              		.cfi_def_cfa_offset 8
+ 818              		.cfi_offset 4, -8
+ 819              		.cfi_offset 14, -4
+ 820 0002 82B0     		sub	sp, sp, #8
+ 821              	.LCFI16:
+ 822              		.cfi_def_cfa_offset 16
+ 314:Core/Src/lcd_text.c ****     LCD_ShowStringEx(x, y, str, color, bgcolor, LCD_TEXT_OPAQUE);
+ 823              		.loc 1 314 5 is_stmt 1 view .LVU185
+ 824 0004 0024     		movs	r4, #0
+ 825 0006 0194     		str	r4, [sp, #4]
+ 826 0008 BDF81040 		ldrh	r4, [sp, #16]
+ 827 000c 0094     		str	r4, [sp]
+ 828 000e FFF7FEFF 		bl	LCD_ShowStringEx
+ 829              	.LVL95:
+ 315:Core/Src/lcd_text.c **** }
+ 830              		.loc 1 315 1 is_stmt 0 view .LVU186
+ 831 0012 02B0     		add	sp, sp, #8
+ 832              	.LCFI17:
+ 833              		.cfi_def_cfa_offset 8
+ 834              		@ sp needed
+ 835 0014 10BD     		pop	{r4, pc}
+ 836              		.loc 1 315 1 view .LVU187
+ 837              		.cfi_endproc
+ 838              	.LFE238:
+ 840              		.section	.text.LCD_ShowStringInArea,"ax",%progbits
+ 841              		.align	1
+ 842              		.global	LCD_ShowStringInArea
+ 843              		.syntax unified
+ 844              		.thumb
+ 845              		.thumb_func
+ 847              	LCD_ShowStringInArea:
+ 848              	.LVL96:
+ 849              	.LFB239:
+ 316:Core/Src/lcd_text.c **** 
+ 317:Core/Src/lcd_text.c **** void LCD_ShowStringInArea(uint16_t x, uint16_t y,
+ 318:Core/Src/lcd_text.c ****                           uint16_t area_w, uint16_t area_h,
+ 319:Core/Src/lcd_text.c ****                           const char *str,
+ 320:Core/Src/lcd_text.c ****                           uint16_t color, uint16_t bgcolor,
+ 321:Core/Src/lcd_text.c ****                           uint8_t transparent)
+ 322:Core/Src/lcd_text.c **** {
+ 850              		.loc 1 322 1 is_stmt 1 view -0
+ 851              		.cfi_startproc
+ 852              		@ args = 16, pretend = 0, frame = 16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 23
+
+
+ 853              		@ frame_needed = 0, uses_anonymous_args = 0
+ 854              		.loc 1 322 1 is_stmt 0 view .LVU189
+ 855 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 856              	.LCFI18:
+ 857              		.cfi_def_cfa_offset 36
+ 858              		.cfi_offset 4, -36
+ 859              		.cfi_offset 5, -32
+ 860              		.cfi_offset 6, -28
+ 861              		.cfi_offset 7, -24
+ 862              		.cfi_offset 8, -20
+ 863              		.cfi_offset 9, -16
+ 864              		.cfi_offset 10, -12
+ 865              		.cfi_offset 11, -8
+ 866              		.cfi_offset 14, -4
+ 867 0004 87B0     		sub	sp, sp, #28
+ 868              	.LCFI19:
+ 869              		.cfi_def_cfa_offset 64
+ 870 0006 0391     		str	r1, [sp, #12]
+ 871 0008 9946     		mov	r9, r3
+ 872 000a 109F     		ldr	r7, [sp, #64]
+ 873 000c BDF84430 		ldrh	r3, [sp, #68]
+ 874              	.LVL97:
+ 875              		.loc 1 322 1 view .LVU190
+ 876 0010 0593     		str	r3, [sp, #20]
+ 877 0012 BDF84830 		ldrh	r3, [sp, #72]
+ 878 0016 0493     		str	r3, [sp, #16]
+ 879 0018 9DF84CA0 		ldrb	r10, [sp, #76]	@ zero_extendqisi2
+ 323:Core/Src/lcd_text.c ****     if (str == NULL) return;
+ 880              		.loc 1 323 5 is_stmt 1 view .LVU191
+ 881              		.loc 1 323 8 is_stmt 0 view .LVU192
+ 882 001c 002F     		cmp	r7, #0
+ 883 001e 45D0     		beq	.L80
+ 884 0020 8346     		mov	fp, r0
+ 885 0022 9046     		mov	r8, r2
+ 324:Core/Src/lcd_text.c ****     if (area_w == 0 || area_h == 0) return;
+ 886              		.loc 1 324 5 is_stmt 1 view .LVU193
+ 887              		.loc 1 324 8 is_stmt 0 view .LVU194
+ 888 0024 002A     		cmp	r2, #0
+ 889 0026 41D0     		beq	.L80
+ 890              		.loc 1 324 21 discriminator 2 view .LVU195
+ 891 0028 B9F1000F 		cmp	r9, #0
+ 892 002c 3ED0     		beq	.L80
+ 325:Core/Src/lcd_text.c **** 
+ 326:Core/Src/lcd_text.c ****     if (transparent == LCD_TEXT_OPAQUE)
+ 893              		.loc 1 326 5 is_stmt 1 view .LVU196
+ 894              		.loc 1 326 8 is_stmt 0 view .LVU197
+ 895 002e BAF1000F 		cmp	r10, #0
+ 896 0032 02D0     		beq	.L91
+ 897              	.LVL98:
+ 898              	.L82:
+ 327:Core/Src/lcd_text.c ****     {
+ 328:Core/Src/lcd_text.c ****         LCD_ClearArea(x, y, area_w, area_h, bgcolor);
+ 329:Core/Src/lcd_text.c ****     }
+ 330:Core/Src/lcd_text.c **** 
+ 331:Core/Src/lcd_text.c ****     uint16_t cur_x = x;
+ 332:Core/Src/lcd_text.c ****     uint16_t cur_y = y;
+ 333:Core/Src/lcd_text.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 24
+
+
+ 334:Core/Src/lcd_text.c ****     while (*str)
+ 335:Core/Src/lcd_text.c ****     {
+ 336:Core/Src/lcd_text.c ****         if (*str == '\n')
+ 337:Core/Src/lcd_text.c ****         {
+ 338:Core/Src/lcd_text.c ****             cur_x = x;
+ 899              		.loc 1 338 19 view .LVU198
+ 900 0034 039E     		ldr	r6, [sp, #12]
+ 901 0036 5C46     		mov	r4, fp
+ 902 0038 16E0     		b	.L88
+ 903              	.LVL99:
+ 904              	.L91:
+ 328:Core/Src/lcd_text.c ****     }
+ 905              		.loc 1 328 9 is_stmt 1 view .LVU199
+ 906 003a 0093     		str	r3, [sp]
+ 907 003c 4B46     		mov	r3, r9
+ 908 003e FFF7FEFF 		bl	LCD_ClearArea
+ 909              	.LVL100:
+ 328:Core/Src/lcd_text.c ****     }
+ 910              		.loc 1 328 9 is_stmt 0 view .LVU200
+ 911 0042 F7E7     		b	.L82
+ 912              	.LVL101:
+ 913              	.L92:
+ 914              		.loc 1 338 13 is_stmt 1 view .LVU201
+ 339:Core/Src/lcd_text.c ****             cur_y += LCD_FONT_HEIGHT;
+ 915              		.loc 1 339 13 view .LVU202
+ 916              		.loc 1 339 19 is_stmt 0 view .LVU203
+ 917 0044 1036     		adds	r6, r6, #16
+ 918              	.LVL102:
+ 919              		.loc 1 339 19 view .LVU204
+ 920 0046 B6B2     		uxth	r6, r6
+ 921              	.LVL103:
+ 340:Core/Src/lcd_text.c ****             str++;
+ 922              		.loc 1 340 13 is_stmt 1 view .LVU205
+ 923              		.loc 1 340 16 is_stmt 0 view .LVU206
+ 924 0048 0137     		adds	r7, r7, #1
+ 925              	.LVL104:
+ 341:Core/Src/lcd_text.c ****             continue;
+ 926              		.loc 1 341 13 is_stmt 1 view .LVU207
+ 338:Core/Src/lcd_text.c ****             cur_y += LCD_FONT_HEIGHT;
+ 927              		.loc 1 338 19 is_stmt 0 view .LVU208
+ 928 004a 5C46     		mov	r4, fp
+ 929              		.loc 1 341 13 view .LVU209
+ 930 004c 0CE0     		b	.L88
+ 931              	.LVL105:
+ 932              	.L86:
+ 342:Core/Src/lcd_text.c ****         }
+ 343:Core/Src/lcd_text.c **** 
+ 344:Core/Src/lcd_text.c ****         if ((cur_x + LCD_FONT_WIDTH) > (x + area_w))
+ 345:Core/Src/lcd_text.c ****         {
+ 346:Core/Src/lcd_text.c ****             cur_x = x;
+ 347:Core/Src/lcd_text.c ****             cur_y += LCD_FONT_HEIGHT;
+ 348:Core/Src/lcd_text.c ****         }
+ 349:Core/Src/lcd_text.c **** 
+ 350:Core/Src/lcd_text.c ****         if ((cur_y + LCD_FONT_HEIGHT) > (y + area_h))
+ 351:Core/Src/lcd_text.c ****         {
+ 352:Core/Src/lcd_text.c ****             return;
+ 353:Core/Src/lcd_text.c ****         }
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 25
+
+
+ 354:Core/Src/lcd_text.c **** 
+ 355:Core/Src/lcd_text.c ****         if (!lcd_char_supported(*str))
+ 356:Core/Src/lcd_text.c ****         {
+ 357:Core/Src/lcd_text.c ****             LCD_ShowCharEx(cur_x, cur_y, ' ', color, bgcolor, transparent);
+ 358:Core/Src/lcd_text.c ****         }
+ 359:Core/Src/lcd_text.c ****         else
+ 360:Core/Src/lcd_text.c ****         {
+ 361:Core/Src/lcd_text.c ****             LCD_ShowCharEx(cur_x, cur_y, *str, color, bgcolor, transparent);
+ 933              		.loc 1 361 13 is_stmt 1 view .LVU210
+ 934 004e CDF804A0 		str	r10, [sp, #4]
+ 935 0052 049B     		ldr	r3, [sp, #16]
+ 936 0054 0093     		str	r3, [sp]
+ 937 0056 059B     		ldr	r3, [sp, #20]
+ 938 0058 2A46     		mov	r2, r5
+ 939 005a 3146     		mov	r1, r6
+ 940 005c 2046     		mov	r0, r4
+ 941 005e FFF7FEFF 		bl	LCD_ShowCharEx
+ 942              	.LVL106:
+ 943              	.L87:
+ 362:Core/Src/lcd_text.c ****         }
+ 363:Core/Src/lcd_text.c **** 
+ 364:Core/Src/lcd_text.c ****         cur_x += LCD_FONT_WIDTH;
+ 944              		.loc 1 364 9 view .LVU211
+ 945              		.loc 1 364 15 is_stmt 0 view .LVU212
+ 946 0062 0834     		adds	r4, r4, #8
+ 947              	.LVL107:
+ 948              		.loc 1 364 15 view .LVU213
+ 949 0064 A4B2     		uxth	r4, r4
+ 950              	.LVL108:
+ 365:Core/Src/lcd_text.c ****         str++;
+ 951              		.loc 1 365 9 is_stmt 1 view .LVU214
+ 952              		.loc 1 365 12 is_stmt 0 view .LVU215
+ 953 0066 0137     		adds	r7, r7, #1
+ 954              	.LVL109:
+ 955              	.L88:
+ 334:Core/Src/lcd_text.c ****     {
+ 956              		.loc 1 334 12 is_stmt 1 view .LVU216
+ 957 0068 3D78     		ldrb	r5, [r7]	@ zero_extendqisi2
+ 958 006a FDB1     		cbz	r5, .L80
+ 336:Core/Src/lcd_text.c ****         {
+ 959              		.loc 1 336 9 view .LVU217
+ 336:Core/Src/lcd_text.c ****         {
+ 960              		.loc 1 336 12 is_stmt 0 view .LVU218
+ 961 006c 0A2D     		cmp	r5, #10
+ 962 006e E9D0     		beq	.L92
+ 344:Core/Src/lcd_text.c ****         {
+ 963              		.loc 1 344 9 is_stmt 1 view .LVU219
+ 344:Core/Src/lcd_text.c ****         {
+ 964              		.loc 1 344 38 is_stmt 0 view .LVU220
+ 965 0070 E31D     		adds	r3, r4, #7
+ 344:Core/Src/lcd_text.c ****         {
+ 966              		.loc 1 344 43 view .LVU221
+ 967 0072 0BEB0802 		add	r2, fp, r8
+ 344:Core/Src/lcd_text.c ****         {
+ 968              		.loc 1 344 12 view .LVU222
+ 969 0076 9342     		cmp	r3, r2
+ 970 0078 02DB     		blt	.L85
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 26
+
+
+ 346:Core/Src/lcd_text.c ****             cur_y += LCD_FONT_HEIGHT;
+ 971              		.loc 1 346 13 is_stmt 1 view .LVU223
+ 972              	.LVL110:
+ 347:Core/Src/lcd_text.c ****         }
+ 973              		.loc 1 347 13 view .LVU224
+ 347:Core/Src/lcd_text.c ****         }
+ 974              		.loc 1 347 19 is_stmt 0 view .LVU225
+ 975 007a 1036     		adds	r6, r6, #16
+ 976              	.LVL111:
+ 347:Core/Src/lcd_text.c ****         }
+ 977              		.loc 1 347 19 view .LVU226
+ 978 007c B6B2     		uxth	r6, r6
+ 979              	.LVL112:
+ 346:Core/Src/lcd_text.c ****             cur_y += LCD_FONT_HEIGHT;
+ 980              		.loc 1 346 19 view .LVU227
+ 981 007e 5C46     		mov	r4, fp
+ 982              	.LVL113:
+ 983              	.L85:
+ 350:Core/Src/lcd_text.c ****         {
+ 984              		.loc 1 350 9 is_stmt 1 view .LVU228
+ 350:Core/Src/lcd_text.c ****         {
+ 985              		.loc 1 350 39 is_stmt 0 view .LVU229
+ 986 0080 06F10F03 		add	r3, r6, #15
+ 350:Core/Src/lcd_text.c ****         {
+ 987              		.loc 1 350 44 view .LVU230
+ 988 0084 039A     		ldr	r2, [sp, #12]
+ 989 0086 4A44     		add	r2, r2, r9
+ 350:Core/Src/lcd_text.c ****         {
+ 990              		.loc 1 350 12 view .LVU231
+ 991 0088 9342     		cmp	r3, r2
+ 992 008a 0FDA     		bge	.L80
+ 355:Core/Src/lcd_text.c ****         {
+ 993              		.loc 1 355 9 is_stmt 1 view .LVU232
+ 355:Core/Src/lcd_text.c ****         {
+ 994              		.loc 1 355 14 is_stmt 0 view .LVU233
+ 995 008c 2846     		mov	r0, r5
+ 996 008e FFF7FEFF 		bl	lcd_char_supported
+ 997              	.LVL114:
+ 355:Core/Src/lcd_text.c ****         {
+ 998              		.loc 1 355 12 discriminator 1 view .LVU234
+ 999 0092 0028     		cmp	r0, #0
+ 1000 0094 DBD1     		bne	.L86
+ 357:Core/Src/lcd_text.c ****         }
+ 1001              		.loc 1 357 13 is_stmt 1 view .LVU235
+ 1002 0096 CDF804A0 		str	r10, [sp, #4]
+ 1003 009a 049B     		ldr	r3, [sp, #16]
+ 1004 009c 0093     		str	r3, [sp]
+ 1005 009e 059B     		ldr	r3, [sp, #20]
+ 1006 00a0 2022     		movs	r2, #32
+ 1007 00a2 3146     		mov	r1, r6
+ 1008 00a4 2046     		mov	r0, r4
+ 1009 00a6 FFF7FEFF 		bl	LCD_ShowCharEx
+ 1010              	.LVL115:
+ 1011 00aa DAE7     		b	.L87
+ 1012              	.LVL116:
+ 1013              	.L80:
+ 366:Core/Src/lcd_text.c ****     }
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 27
+
+
+ 367:Core/Src/lcd_text.c **** }
+ 1014              		.loc 1 367 1 is_stmt 0 view .LVU236
+ 1015 00ac 07B0     		add	sp, sp, #28
+ 1016              	.LCFI20:
+ 1017              		.cfi_def_cfa_offset 36
+ 1018              		@ sp needed
+ 1019 00ae BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1020              		.loc 1 367 1 view .LVU237
+ 1021              		.cfi_endproc
+ 1022              	.LFE239:
+ 1024              		.section	.rodata.LCD_ShowInt.str1.4,"aMS",%progbits,1
+ 1025              		.align	2
+ 1026              	.LC0:
+ 1027 0000 256400   		.ascii	"%d\000"
+ 1028              		.section	.text.LCD_ShowInt,"ax",%progbits
+ 1029              		.align	1
+ 1030              		.global	LCD_ShowInt
+ 1031              		.syntax unified
+ 1032              		.thumb
+ 1033              		.thumb_func
+ 1035              	LCD_ShowInt:
+ 1036              	.LVL117:
+ 1037              	.LFB240:
+ 368:Core/Src/lcd_text.c **** 
+ 369:Core/Src/lcd_text.c **** void LCD_ShowInt(uint16_t x, uint16_t y, int value, uint16_t color, uint16_t bgcolor)
+ 370:Core/Src/lcd_text.c **** {
+ 1038              		.loc 1 370 1 is_stmt 1 view -0
+ 1039              		.cfi_startproc
+ 1040              		@ args = 4, pretend = 0, frame = 16
+ 1041              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1042              		.loc 1 370 1 is_stmt 0 view .LVU239
+ 1043 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1044              	.LCFI21:
+ 1045              		.cfi_def_cfa_offset 20
+ 1046              		.cfi_offset 4, -20
+ 1047              		.cfi_offset 5, -16
+ 1048              		.cfi_offset 6, -12
+ 1049              		.cfi_offset 7, -8
+ 1050              		.cfi_offset 14, -4
+ 1051 0002 87B0     		sub	sp, sp, #28
+ 1052              	.LCFI22:
+ 1053              		.cfi_def_cfa_offset 48
+ 1054 0004 0446     		mov	r4, r0
+ 1055 0006 0D46     		mov	r5, r1
+ 1056 0008 1E46     		mov	r6, r3
+ 371:Core/Src/lcd_text.c ****     char buf[16];
+ 1057              		.loc 1 371 5 is_stmt 1 view .LVU240
+ 372:Core/Src/lcd_text.c ****     snprintf(buf, sizeof(buf), "%d", value);
+ 1058              		.loc 1 372 5 view .LVU241
+ 1059 000a 02AF     		add	r7, sp, #8
+ 1060 000c 1346     		mov	r3, r2
+ 1061              	.LVL118:
+ 1062              		.loc 1 372 5 is_stmt 0 view .LVU242
+ 1063 000e 084A     		ldr	r2, .L95
+ 1064              	.LVL119:
+ 1065              		.loc 1 372 5 view .LVU243
+ 1066 0010 1021     		movs	r1, #16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 28
+
+
+ 1067              	.LVL120:
+ 1068              		.loc 1 372 5 view .LVU244
+ 1069 0012 3846     		mov	r0, r7
+ 1070              	.LVL121:
+ 1071              		.loc 1 372 5 view .LVU245
+ 1072 0014 FFF7FEFF 		bl	snprintf
+ 1073              	.LVL122:
+ 373:Core/Src/lcd_text.c ****     LCD_ShowString(x, y, buf, color, bgcolor);
+ 1074              		.loc 1 373 5 is_stmt 1 view .LVU246
+ 1075 0018 BDF83030 		ldrh	r3, [sp, #48]
+ 1076 001c 0093     		str	r3, [sp]
+ 1077 001e 3346     		mov	r3, r6
+ 1078 0020 3A46     		mov	r2, r7
+ 1079 0022 2946     		mov	r1, r5
+ 1080 0024 2046     		mov	r0, r4
+ 1081 0026 FFF7FEFF 		bl	LCD_ShowString
+ 1082              	.LVL123:
+ 374:Core/Src/lcd_text.c **** }
+ 1083              		.loc 1 374 1 is_stmt 0 view .LVU247
+ 1084 002a 07B0     		add	sp, sp, #28
+ 1085              	.LCFI23:
+ 1086              		.cfi_def_cfa_offset 20
+ 1087              		@ sp needed
+ 1088 002c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1089              	.LVL124:
+ 1090              	.L96:
+ 1091              		.loc 1 374 1 view .LVU248
+ 1092 002e 00BF     		.align	2
+ 1093              	.L95:
+ 1094 0030 00000000 		.word	.LC0
+ 1095              		.cfi_endproc
+ 1096              	.LFE240:
+ 1098              		.section	.rodata.LCD_ShowUInt.str1.4,"aMS",%progbits,1
+ 1099              		.align	2
+ 1100              	.LC1:
+ 1101 0000 256C7500 		.ascii	"%lu\000"
+ 1102              		.section	.text.LCD_ShowUInt,"ax",%progbits
+ 1103              		.align	1
+ 1104              		.global	LCD_ShowUInt
+ 1105              		.syntax unified
+ 1106              		.thumb
+ 1107              		.thumb_func
+ 1109              	LCD_ShowUInt:
+ 1110              	.LVL125:
+ 1111              	.LFB241:
+ 375:Core/Src/lcd_text.c **** 
+ 376:Core/Src/lcd_text.c **** void LCD_ShowUInt(uint16_t x, uint16_t y, uint32_t value, uint16_t color, uint16_t bgcolor)
+ 377:Core/Src/lcd_text.c **** {
+ 1112              		.loc 1 377 1 is_stmt 1 view -0
+ 1113              		.cfi_startproc
+ 1114              		@ args = 4, pretend = 0, frame = 16
+ 1115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1116              		.loc 1 377 1 is_stmt 0 view .LVU250
+ 1117 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1118              	.LCFI24:
+ 1119              		.cfi_def_cfa_offset 20
+ 1120              		.cfi_offset 4, -20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 29
+
+
+ 1121              		.cfi_offset 5, -16
+ 1122              		.cfi_offset 6, -12
+ 1123              		.cfi_offset 7, -8
+ 1124              		.cfi_offset 14, -4
+ 1125 0002 87B0     		sub	sp, sp, #28
+ 1126              	.LCFI25:
+ 1127              		.cfi_def_cfa_offset 48
+ 1128 0004 0446     		mov	r4, r0
+ 1129 0006 0D46     		mov	r5, r1
+ 1130 0008 1E46     		mov	r6, r3
+ 378:Core/Src/lcd_text.c ****     char buf[16];
+ 1131              		.loc 1 378 5 is_stmt 1 view .LVU251
+ 379:Core/Src/lcd_text.c ****     snprintf(buf, sizeof(buf), "%lu", (unsigned long)value);
+ 1132              		.loc 1 379 5 view .LVU252
+ 1133 000a 02AF     		add	r7, sp, #8
+ 1134 000c 1346     		mov	r3, r2
+ 1135              	.LVL126:
+ 1136              		.loc 1 379 5 is_stmt 0 view .LVU253
+ 1137 000e 084A     		ldr	r2, .L99
+ 1138              	.LVL127:
+ 1139              		.loc 1 379 5 view .LVU254
+ 1140 0010 1021     		movs	r1, #16
+ 1141              	.LVL128:
+ 1142              		.loc 1 379 5 view .LVU255
+ 1143 0012 3846     		mov	r0, r7
+ 1144              	.LVL129:
+ 1145              		.loc 1 379 5 view .LVU256
+ 1146 0014 FFF7FEFF 		bl	snprintf
+ 1147              	.LVL130:
+ 380:Core/Src/lcd_text.c ****     LCD_ShowString(x, y, buf, color, bgcolor);
+ 1148              		.loc 1 380 5 is_stmt 1 view .LVU257
+ 1149 0018 BDF83030 		ldrh	r3, [sp, #48]
+ 1150 001c 0093     		str	r3, [sp]
+ 1151 001e 3346     		mov	r3, r6
+ 1152 0020 3A46     		mov	r2, r7
+ 1153 0022 2946     		mov	r1, r5
+ 1154 0024 2046     		mov	r0, r4
+ 1155 0026 FFF7FEFF 		bl	LCD_ShowString
+ 1156              	.LVL131:
+ 381:Core/Src/lcd_text.c **** }
+ 1157              		.loc 1 381 1 is_stmt 0 view .LVU258
+ 1158 002a 07B0     		add	sp, sp, #28
+ 1159              	.LCFI26:
+ 1160              		.cfi_def_cfa_offset 20
+ 1161              		@ sp needed
+ 1162 002c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1163              	.LVL132:
+ 1164              	.L100:
+ 1165              		.loc 1 381 1 view .LVU259
+ 1166 002e 00BF     		.align	2
+ 1167              	.L99:
+ 1168 0030 00000000 		.word	.LC1
+ 1169              		.cfi_endproc
+ 1170              	.LFE241:
+ 1172              		.section	.text.LCD_GetStringWidth,"ax",%progbits
+ 1173              		.align	1
+ 1174              		.global	LCD_GetStringWidth
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 30
+
+
+ 1175              		.syntax unified
+ 1176              		.thumb
+ 1177              		.thumb_func
+ 1179              	LCD_GetStringWidth:
+ 1180              	.LVL133:
+ 1181              	.LFB242:
+ 382:Core/Src/lcd_text.c **** 
+ 383:Core/Src/lcd_text.c **** uint16_t LCD_GetStringWidth(const char *str)
+ 384:Core/Src/lcd_text.c **** {
+ 1182              		.loc 1 384 1 is_stmt 1 view -0
+ 1183              		.cfi_startproc
+ 1184              		@ args = 0, pretend = 0, frame = 0
+ 1185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1186              		@ link register save eliminated.
+ 385:Core/Src/lcd_text.c ****     uint16_t width = 0;
+ 1187              		.loc 1 385 5 view .LVU261
+ 386:Core/Src/lcd_text.c ****     uint16_t line_width = 0;
+ 1188              		.loc 1 386 5 view .LVU262
+ 387:Core/Src/lcd_text.c **** 
+ 388:Core/Src/lcd_text.c ****     if (str == NULL) return 0;
+ 1189              		.loc 1 388 5 view .LVU263
+ 1190              		.loc 1 388 8 is_stmt 0 view .LVU264
+ 1191 0000 0346     		mov	r3, r0
+ 1192 0002 A0B1     		cbz	r0, .L107
+ 386:Core/Src/lcd_text.c ****     uint16_t line_width = 0;
+ 1193              		.loc 1 386 14 view .LVU265
+ 1194 0004 0020     		movs	r0, #0
+ 1195              	.LVL134:
+ 385:Core/Src/lcd_text.c ****     uint16_t line_width = 0;
+ 1196              		.loc 1 385 14 view .LVU266
+ 1197 0006 0146     		mov	r1, r0
+ 1198 0008 02E0     		b	.L103
+ 1199              	.LVL135:
+ 1200              	.L104:
+ 389:Core/Src/lcd_text.c **** 
+ 390:Core/Src/lcd_text.c ****     while (*str)
+ 391:Core/Src/lcd_text.c ****     {
+ 392:Core/Src/lcd_text.c ****         if (*str == '\n')
+ 393:Core/Src/lcd_text.c ****         {
+ 394:Core/Src/lcd_text.c ****             if (line_width > width)
+ 395:Core/Src/lcd_text.c ****                 width = line_width;
+ 396:Core/Src/lcd_text.c ****             line_width = 0;
+ 397:Core/Src/lcd_text.c ****         }
+ 398:Core/Src/lcd_text.c ****         else
+ 399:Core/Src/lcd_text.c ****         {
+ 400:Core/Src/lcd_text.c ****             line_width += LCD_FONT_WIDTH;
+ 1201              		.loc 1 400 13 is_stmt 1 view .LVU267
+ 1202              		.loc 1 400 24 is_stmt 0 view .LVU268
+ 1203 000a 0830     		adds	r0, r0, #8
+ 1204              	.LVL136:
+ 1205              		.loc 1 400 24 view .LVU269
+ 1206 000c 80B2     		uxth	r0, r0
+ 1207              	.LVL137:
+ 1208              	.L105:
+ 401:Core/Src/lcd_text.c ****         }
+ 402:Core/Src/lcd_text.c ****         str++;
+ 1209              		.loc 1 402 9 is_stmt 1 view .LVU270
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 31
+
+
+ 1210              		.loc 1 402 12 is_stmt 0 view .LVU271
+ 1211 000e 0133     		adds	r3, r3, #1
+ 1212              	.LVL138:
+ 1213              	.L103:
+ 390:Core/Src/lcd_text.c ****     {
+ 1214              		.loc 1 390 12 is_stmt 1 view .LVU272
+ 1215 0010 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1216 0012 42B1     		cbz	r2, .L109
+ 392:Core/Src/lcd_text.c ****         {
+ 1217              		.loc 1 392 9 view .LVU273
+ 392:Core/Src/lcd_text.c ****         {
+ 1218              		.loc 1 392 12 is_stmt 0 view .LVU274
+ 1219 0014 0A2A     		cmp	r2, #10
+ 1220 0016 F8D1     		bne	.L104
+ 394:Core/Src/lcd_text.c ****                 width = line_width;
+ 1221              		.loc 1 394 13 is_stmt 1 view .LVU275
+ 394:Core/Src/lcd_text.c ****                 width = line_width;
+ 1222              		.loc 1 394 16 is_stmt 0 view .LVU276
+ 1223 0018 8142     		cmp	r1, r0
+ 1224 001a 01D3     		bcc	.L108
+ 396:Core/Src/lcd_text.c ****         }
+ 1225              		.loc 1 396 24 view .LVU277
+ 1226 001c 0020     		movs	r0, #0
+ 1227              	.LVL139:
+ 396:Core/Src/lcd_text.c ****         }
+ 1228              		.loc 1 396 24 view .LVU278
+ 1229 001e F6E7     		b	.L105
+ 1230              	.LVL140:
+ 1231              	.L108:
+ 395:Core/Src/lcd_text.c ****             line_width = 0;
+ 1232              		.loc 1 395 23 view .LVU279
+ 1233 0020 0146     		mov	r1, r0
+ 1234              	.LVL141:
+ 396:Core/Src/lcd_text.c ****         }
+ 1235              		.loc 1 396 24 view .LVU280
+ 1236 0022 0020     		movs	r0, #0
+ 1237              	.LVL142:
+ 396:Core/Src/lcd_text.c ****         }
+ 1238              		.loc 1 396 24 view .LVU281
+ 1239 0024 F3E7     		b	.L105
+ 1240              	.LVL143:
+ 1241              	.L109:
+ 403:Core/Src/lcd_text.c ****     }
+ 404:Core/Src/lcd_text.c **** 
+ 405:Core/Src/lcd_text.c ****     if (line_width > width)
+ 1242              		.loc 1 405 5 is_stmt 1 view .LVU282
+ 1243              		.loc 1 405 8 is_stmt 0 view .LVU283
+ 1244 0026 8142     		cmp	r1, r0
+ 1245 0028 02D3     		bcc	.L102
+ 1246 002a 0846     		mov	r0, r1
+ 1247              	.LVL144:
+ 1248              		.loc 1 405 8 view .LVU284
+ 1249 002c 7047     		bx	lr
+ 1250              	.LVL145:
+ 1251              	.L107:
+ 388:Core/Src/lcd_text.c **** 
+ 1252              		.loc 1 388 29 discriminator 1 view .LVU285
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 32
+
+
+ 1253 002e 0020     		movs	r0, #0
+ 1254              	.LVL146:
+ 1255              	.L102:
+ 406:Core/Src/lcd_text.c ****         width = line_width;
+ 407:Core/Src/lcd_text.c **** 
+ 408:Core/Src/lcd_text.c ****     return width;
+ 409:Core/Src/lcd_text.c **** }
+ 1256              		.loc 1 409 1 view .LVU286
+ 1257 0030 7047     		bx	lr
+ 1258              		.cfi_endproc
+ 1259              	.LFE242:
+ 1261              		.section	.text.LCD_ShowCenteredString,"ax",%progbits
+ 1262              		.align	1
+ 1263              		.global	LCD_ShowCenteredString
+ 1264              		.syntax unified
+ 1265              		.thumb
+ 1266              		.thumb_func
+ 1268              	LCD_ShowCenteredString:
+ 1269              	.LVL147:
+ 1270              	.LFB243:
+ 410:Core/Src/lcd_text.c **** 
+ 411:Core/Src/lcd_text.c **** void LCD_ShowCenteredString(uint16_t y, const char *str, uint16_t color, uint16_t bgcolor)
+ 412:Core/Src/lcd_text.c **** {
+ 1271              		.loc 1 412 1 is_stmt 1 view -0
+ 1272              		.cfi_startproc
+ 1273              		@ args = 0, pretend = 0, frame = 0
+ 1274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1275              		.loc 1 412 1 is_stmt 0 view .LVU288
+ 1276 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1277              	.LCFI27:
+ 1278              		.cfi_def_cfa_offset 20
+ 1279              		.cfi_offset 4, -20
+ 1280              		.cfi_offset 5, -16
+ 1281              		.cfi_offset 6, -12
+ 1282              		.cfi_offset 7, -8
+ 1283              		.cfi_offset 14, -4
+ 1284 0002 83B0     		sub	sp, sp, #12
+ 1285              	.LCFI28:
+ 1286              		.cfi_def_cfa_offset 32
+ 1287 0004 0546     		mov	r5, r0
+ 1288 0006 0C46     		mov	r4, r1
+ 1289 0008 1646     		mov	r6, r2
+ 1290 000a 1F46     		mov	r7, r3
+ 413:Core/Src/lcd_text.c ****     uint16_t w = LCD_GetStringWidth(str);
+ 1291              		.loc 1 413 5 is_stmt 1 view .LVU289
+ 1292              		.loc 1 413 18 is_stmt 0 view .LVU290
+ 1293 000c 0846     		mov	r0, r1
+ 1294              	.LVL148:
+ 1295              		.loc 1 413 18 view .LVU291
+ 1296 000e FFF7FEFF 		bl	LCD_GetStringWidth
+ 1297              	.LVL149:
+ 414:Core/Src/lcd_text.c ****     uint16_t x = 0;
+ 1298              		.loc 1 414 5 is_stmt 1 view .LVU292
+ 415:Core/Src/lcd_text.c **** 
+ 416:Core/Src/lcd_text.c ****     if (w < ST7735_WIDTH)
+ 1299              		.loc 1 416 5 view .LVU293
+ 1300              		.loc 1 416 8 is_stmt 0 view .LVU294
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 33
+
+
+ 1301 0012 4F28     		cmp	r0, #79
+ 1302 0014 0DD8     		bhi	.L112
+ 417:Core/Src/lcd_text.c ****     {
+ 418:Core/Src/lcd_text.c ****         x = (ST7735_WIDTH - w) / 2;
+ 1303              		.loc 1 418 9 is_stmt 1 view .LVU295
+ 1304              		.loc 1 418 27 is_stmt 0 view .LVU296
+ 1305 0016 C0F1500C 		rsb	ip, r0, #80
+ 1306              		.loc 1 418 32 view .LVU297
+ 1307 001a 0CEBDC70 		add	r0, ip, ip, lsr #31
+ 1308              	.LVL150:
+ 1309              		.loc 1 418 11 view .LVU298
+ 1310 001e C0F34F00 		ubfx	r0, r0, #1, #16
+ 1311              	.LVL151:
+ 1312              	.L111:
+ 419:Core/Src/lcd_text.c ****     }
+ 420:Core/Src/lcd_text.c **** 
+ 421:Core/Src/lcd_text.c ****     LCD_ShowString(x, y, str, color, bgcolor);
+ 1313              		.loc 1 421 5 is_stmt 1 view .LVU299
+ 1314 0022 0097     		str	r7, [sp]
+ 1315 0024 3346     		mov	r3, r6
+ 1316 0026 2246     		mov	r2, r4
+ 1317 0028 2946     		mov	r1, r5
+ 1318 002a FFF7FEFF 		bl	LCD_ShowString
+ 1319              	.LVL152:
+ 422:Core/Src/lcd_text.c **** }...
+ 1320              		.loc 1 422 1 is_stmt 0 view .LVU300
+ 1321 002e 03B0     		add	sp, sp, #12
+ 1322              	.LCFI29:
+ 1323              		.cfi_remember_state
+ 1324              		.cfi_def_cfa_offset 20
+ 1325              		@ sp needed
+ 1326 0030 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1327              	.LVL153:
+ 1328              	.L112:
+ 1329              	.LCFI30:
+ 1330              		.cfi_restore_state
+ 414:Core/Src/lcd_text.c ****     uint16_t x = 0;
+ 1331              		.loc 1 414 14 view .LVU301
+ 1332 0032 0020     		movs	r0, #0
+ 1333              	.LVL154:
+ 414:Core/Src/lcd_text.c ****     uint16_t x = 0;
+ 1334              		.loc 1 414 14 view .LVU302
+ 1335 0034 F5E7     		b	.L111
+ 1336              		.cfi_endproc
+ 1337              	.LFE243:
+ 1339              		.section	.rodata.font8x16,"a"
+ 1340              		.align	2
+ 1343              	font8x16:
+ 1344 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 1344      00000000 
+ 1344      00000000 
+ 1344      00
+ 1345 000d 000000   		.ascii	"\000\000\000"
+ 1346 0010 00181818 		.ascii	"\000\030\030\030\030\030\030\030\030\000\030\030\000"
+ 1346      18181818 
+ 1346      18001818 
+ 1346      00
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 34
+
+
+ 1347 001d 000000   		.ascii	"\000\000\000"
+ 1348 0020 00363636 		.ascii	"\0006666\000\000\000\000\000\000\000\000\000\000\000"
+ 1348      36000000 
+ 1348      00000000 
+ 1348      00000000 
+ 1349 0030 0036367F 		.ascii	"\00066\177666\17766\000\000\000\000\000\000"
+ 1349      3636367F 
+ 1349      36360000 
+ 1349      00000000 
+ 1350 0040 00183E58 		.ascii	"\000\030>XX<\032\032|\030\000\000\000\000\000\000"
+ 1350      583C1A1A 
+ 1350      7C180000 
+ 1350      00000000 
+ 1351 0050 00626408 		.ascii	"\000bd\010\020\020&F\000\000\000\000\000\000\000\000"
+ 1351      10102646 
+ 1351      00000000 
+ 1351      00000000 
+ 1352 0060 001C3636 		.ascii	"\000\03466\034:ff:\000\000\000\000\000\000\000"
+ 1352      1C3A6666 
+ 1352      3A000000 
+ 1352      00000000 
+ 1353 0070 00181818 		.ascii	"\000\030\030\030\020 \000\000\000\000\000\000\000\000"
+ 1353      10200000 
+ 1353      00000000 
+ 1353      0000
+ 1354 007e 0000     		.ascii	"\000\000"
+ 1355 0080 000C1830 		.ascii	"\000\014\03000000\030\014\000\000\000\000\000\000"
+ 1355      30303030 
+ 1355      180C0000 
+ 1355      00000000 
+ 1356 0090 0030180C 		.ascii	"\0000\030\014\014\014\014\014\0300\000\000\000\000\000"
+ 1356      0C0C0C0C 
+ 1356      18300000 
+ 1356      000000
+ 1357 009f 00       		.ascii	"\000"
+ 1358 00a0 0000187E 		.ascii	"\000\000\030~<~\030\000\000\000\000\000\000\000\000"
+ 1358      3C7E1800 
+ 1358      00000000 
+ 1358      000000
+ 1359 00af 00       		.ascii	"\000"
+ 1360 00b0 00001818 		.ascii	"\000\000\030\030\030~\030\030\030\000\000\000\000\000"
+ 1360      187E1818 
+ 1360      18000000 
+ 1360      0000
+ 1361 00be 0000     		.ascii	"\000\000"
+ 1362 00c0 00000000 		.ascii	"\000\000\000\000\000\000\000\030\030\020 \000\000\000"
+ 1362      00000018 
+ 1362      18102000 
+ 1362      0000
+ 1363 00ce 0000     		.ascii	"\000\000"
+ 1364 00d0 00000000 		.ascii	"\000\000\000\000\000~\000\000\000\000\000\000\000\000"
+ 1364      007E0000 
+ 1364      00000000 
+ 1364      0000
+ 1365 00de 0000     		.ascii	"\000\000"
+ 1366 00e0 00000000 		.ascii	"\000\000\000\000\000\000\000\030\030\000\000\000\000"
+ 1366      00000018 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 35
+
+
+ 1366      18000000 
+ 1366      00
+ 1367 00ed 000000   		.ascii	"\000\000\000"
+ 1368 00f0 0002060C 		.ascii	"\000\002\006\014\0300`@\000\000\000\000\000\000\000"
+ 1368      18306040 
+ 1368      00000000 
+ 1368      000000
+ 1369 00ff 00       		.ascii	"\000"
+ 1370 0100 003C66C3 		.ascii	"\000<f\303\303\333\333\303\303f<\000\000\000\000\000"
+ 1370      C3DBDBC3 
+ 1370      C3663C00 
+ 1370      00000000 
+ 1371 0110 00183878 		.ascii	"\000\0308x\030\030\030\030\030\030~\000\000\000\000"
+ 1371      18181818 
+ 1371      18187E00 
+ 1371      000000
+ 1372 011f 00       		.ascii	"\000"
+ 1373 0120 003C66C3 		.ascii	"\000<f\303\003\006\014\0300`\377\000\000\000\000\000"
+ 1373      03060C18 
+ 1373      3060FF00 
+ 1373      00000000 
+ 1374 0130 003C66C3 		.ascii	"\000<f\303\003\036\003\003\303f<\000\000\000\000\000"
+ 1374      031E0303 
+ 1374      C3663C00 
+ 1374      00000000 
+ 1375 0140 00060E1E 		.ascii	"\000\006\016\0366f\306\377\006\006\006\000\000\000\000"
+ 1375      3666C6FF 
+ 1375      06060600 
+ 1375      000000
+ 1376 014f 00       		.ascii	"\000"
+ 1377 0150 00FFC0C0 		.ascii	"\000\377\300\300\374\006\003\003\303f<\000\000\000\000"
+ 1377      FC060303 
+ 1377      C3663C00 
+ 1377      000000
+ 1378 015f 00       		.ascii	"\000"
+ 1379 0160 003C66C0 		.ascii	"\000<f\300\300\374\306\303\303f<\000\000\000\000\000"
+ 1379      C0FCC6C3 
+ 1379      C3663C00 
+ 1379      00000000 
+ 1380 0170 00FFC306 		.ascii	"\000\377\303\006\006\014\014\030\030\030\030\000\000"
+ 1380      060C0C18 
+ 1380      18181800 
+ 1380      00
+ 1381 017d 000000   		.ascii	"\000\000\000"
+ 1382 0180 003C66C3 		.ascii	"\000<f\303f<f\303\303f<\000\000\000\000\000"
+ 1382      663C66C3 
+ 1382      C3663C00 
+ 1382      00000000 
+ 1383 0190 003C66C3 		.ascii	"\000<f\303\303g?\003\003f<\000\000\000\000\000"
+ 1383      C3673F03 
+ 1383      03663C00 
+ 1383      00000000 
+ 1384 01a0 00001818 		.ascii	"\000\000\030\030\000\000\030\030\000\000\000\000\000"
+ 1384      00001818 
+ 1384      00000000 
+ 1384      00
+ 1385 01ad 000000   		.ascii	"\000\000\000"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 36
+
+
+ 1386 01b0 00183C66 		.ascii	"\000\030<f\303\303\377\303\303\303\303\000\000\000\000"
+ 1386      C3C3FFC3 
+ 1386      C3C3C300 
+ 1386      000000
+ 1387 01bf 00       		.ascii	"\000"
+ 1388 01c0 00FC6663 		.ascii	"\000\374fcc~cccf\374\000\000\000\000\000"
+ 1388      637E6363 
+ 1388      6366FC00 
+ 1388      00000000 
+ 1389 01d0 003C66C3 		.ascii	"\000<f\303\300\300\300\300\303f<\000\000\000\000\000"
+ 1389      C0C0C0C0 
+ 1389      C3663C00 
+ 1389      00000000 
+ 1390 01e0 00F86C66 		.ascii	"\000\370lfccccfl\370\000\000\000\000\000"
+ 1390      63636363 
+ 1390      666CF800 
+ 1390      00000000 
+ 1391 01f0 00FF6060 		.ascii	"\000\377```|````\377\000\000\000\000\000"
+ 1391      607C6060 
+ 1391      6060FF00 
+ 1391      00000000 
+ 1392 0200 00FF6060 		.ascii	"\000\377```|`````\000\000\000\000\000"
+ 1392      607C6060 
+ 1392      60606000 
+ 1392      00000000 
+ 1393 0210 003C66C3 		.ascii	"\000<f\303\300\300\317\303\303f<\000\000\000\000\000"
+ 1393      C0C0CFC3 
+ 1393      C3663C00 
+ 1393      00000000 
+ 1394 0220 00C3C3C3 		.ascii	"\000\303\303\303\303\377\303\303\303\303\303\000\000"
+ 1394      C3FFC3C3 
+ 1394      C3C3C300 
+ 1394      00
+ 1395 022d 000000   		.ascii	"\000\000\000"
+ 1396 0230 003C1818 		.ascii	"\000<\030\030\030\030\030\030\030\030<\000\000\000\000"
+ 1396      18181818 
+ 1396      18183C00 
+ 1396      000000
+ 1397 023f 00       		.ascii	"\000"
+ 1398 0240 001E0C0C 		.ascii	"\000\036\014\014\014\014\014\314\314x0\000\000\000\000"
+ 1398      0C0C0CCC 
+ 1398      CC783000 
+ 1398      000000
+ 1399 024f 00       		.ascii	"\000"
+ 1400 0250 00C3C6CC 		.ascii	"\000\303\306\314\330\360\360\330\314\306\303\000\000"
+ 1400      D8F0F0D8 
+ 1400      CCC6C300 
+ 1400      00
+ 1401 025d 000000   		.ascii	"\000\000\000"
+ 1402 0260 00606060 		.ascii	"\000`````````\377\000\000\000\000\000"
+ 1402      60606060 
+ 1402      6060FF00 
+ 1402      00000000 
+ 1403 0270 00C3E7FF 		.ascii	"\000\303\347\377\333\333\303\303\303\303\303\000\000"
+ 1403      DBDBC3C3 
+ 1403      C3C3C300 
+ 1403      00
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 37
+
+
+ 1404 027d 000000   		.ascii	"\000\000\000"
+ 1405 0280 00C3E3F3 		.ascii	"\000\303\343\363\333\317\307\303\303\303\303\000\000"
+ 1405      DBCFC7C3 
+ 1405      C3C3C300 
+ 1405      00
+ 1406 028d 000000   		.ascii	"\000\000\000"
+ 1407 0290 003C66C3 		.ascii	"\000<f\303\303\303\303\303\303f<\000\000\000\000\000"
+ 1407      C3C3C3C3 
+ 1407      C3663C00 
+ 1407      00000000 
+ 1408 02a0 00FC6663 		.ascii	"\000\374fccf|````\000\000\000\000\000"
+ 1408      63667C60 
+ 1408      60606000 
+ 1408      00000000 
+ 1409 02b0 003C66C3 		.ascii	"\000<f\303\303\303\303\313\317f=\000\000\000\000\000"
+ 1409      C3C3C3CB 
+ 1409      CF663D00 
+ 1409      00000000 
+ 1410 02c0 00FC6663 		.ascii	"\000\374fccf|lfca\000\000\000\000\000"
+ 1410      63667C6C 
+ 1410      66636100 
+ 1410      00000000 
+ 1411 02d0 003E6360 		.ascii	"\000>c`0\034\006\003c~<\000\000\000\000\000"
+ 1411      301C0603 
+ 1411      637E3C00 
+ 1411      00000000 
+ 1412 02e0 00FF9918 		.ascii	"\000\377\231\030\030\030\030\030\030\030<\000\000\000"
+ 1412      18181818 
+ 1412      18183C00 
+ 1412      0000
+ 1413 02ee 0000     		.ascii	"\000\000"
+ 1414 02f0 00C3C3C3 		.ascii	"\000\303\303\303\303\303\303\303\303f<\000\000\000\000"
+ 1414      C3C3C3C3 
+ 1414      C3663C00 
+ 1414      000000
+ 1415 02ff 00       		.ascii	"\000"
+ 1416 0300 00C3C3C3 		.ascii	"\000\303\303\303\303ff<<\030\030\000\000\000\000\000"
+ 1416      C366663C 
+ 1416      3C181800 
+ 1416      00000000 
+ 1417 0310 00C3C3C3 		.ascii	"\000\303\303\303\303\333\333\333\377ff\000\000\000\000"
+ 1417      C3DBDBDB 
+ 1417      FF666600 
+ 1417      000000
+ 1418 031f 00       		.ascii	"\000"
+ 1419 0320 00C3663C 		.ascii	"\000\303f<\030\030\030<f\303\303\000\000\000\000\000"
+ 1419      1818183C 
+ 1419      66C3C300 
+ 1419      00000000 
+ 1420 0330 00C3663C 		.ascii	"\000\303f<\030\030\030\030\030\030<\000\000\000\000"
+ 1420      18181818 
+ 1420      18183C00 
+ 1420      000000
+ 1421 033f 00       		.ascii	"\000"
+ 1422 0340 00FF0306 		.ascii	"\000\377\003\006\014\0300`\300\300\377\000\000\000\000"
+ 1422      0C183060 
+ 1422      C0C0FF00 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 38
+
+
+ 1422      000000
+ 1423 034f 00       		.ascii	"\000"
+ 1424              		.text
+ 1425              	.Letext0:
+ 1426              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 1427              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 1428              		.file 4 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ 1429              		.file 5 "Core/Inc/st7735.h"
+ 1430              		.file 6 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s 			page 39
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 lcd_text.c
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:21     .text.font_index:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:26     .text.font_index:00000000 font_index
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:56     .text.font_index:0000001a $d
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:114    .text.font_index:00000054 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:279    .text.lcd_char_supported:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:284    .text.lcd_char_supported:00000000 lcd_char_supported
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:367    .text.LCD_ClearArea:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:373    .text.LCD_ClearArea:00000000 LCD_ClearArea
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:416    .text.LCD_ClearLine:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:422    .text.LCD_ClearLine:00000000 LCD_ClearLine
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:465    .text.LCD_ShowCharEx:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:471    .text.LCD_ShowCharEx:00000000 LCD_ShowCharEx
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:612    .text.LCD_ShowCharEx:00000080 $d
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1343   .rodata.font8x16:00000000 font8x16
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:617    .text.LCD_ShowChar:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:623    .text.LCD_ShowChar:00000000 LCD_ShowChar
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:657    .text.LCD_ShowStringEx:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:663    .text.LCD_ShowStringEx:00000000 LCD_ShowStringEx
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:801    .text.LCD_ShowString:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:807    .text.LCD_ShowString:00000000 LCD_ShowString
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:841    .text.LCD_ShowStringInArea:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:847    .text.LCD_ShowStringInArea:00000000 LCD_ShowStringInArea
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1025   .rodata.LCD_ShowInt.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1029   .text.LCD_ShowInt:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1035   .text.LCD_ShowInt:00000000 LCD_ShowInt
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1094   .text.LCD_ShowInt:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1099   .rodata.LCD_ShowUInt.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1103   .text.LCD_ShowUInt:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1109   .text.LCD_ShowUInt:00000000 LCD_ShowUInt
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1168   .text.LCD_ShowUInt:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1173   .text.LCD_GetStringWidth:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1179   .text.LCD_GetStringWidth:00000000 LCD_GetStringWidth
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1262   .text.LCD_ShowCenteredString:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1268   .text.LCD_ShowCenteredString:00000000 LCD_ShowCenteredString
+C:\Users\solar\AppData\Local\Temp\ccJzZNRu.s:1340   .rodata.font8x16:00000000 $d
+
+UNDEFINED SYMBOLS
+ST7735_FillRect
+ST7735_DrawPixel
+snprintf

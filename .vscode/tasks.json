@@ -1,0 +1,65 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-j"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "clean"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Rebuild",
+      "type": "shell",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean",
+        "Build"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Flash (OpenOCD)",
+      "type": "shell",
+      "command": "openocd",
+      "args": [
+        "-f", "interface/stlink.cfg",
+        "-f", "target/stm32l4x.cfg",
+        "-c", "program build/L4.elf verify reset exit"
+      ],
+      "dependsOn": "Build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build & Flash",
+      "type": "shell",
+      "command": "echo",
+      "args": [
+        "Build and Flash done"
+      ],
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Build",
+        "Flash (OpenOCD)"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

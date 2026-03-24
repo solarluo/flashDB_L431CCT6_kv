@@ -1,0 +1,312 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fal.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "BSP/src/fal.c"
+  20              		.section	.rodata.fal_init.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 1B5B3332 		.ascii	"\033[32;22m[I/FAL] \000"
+  23      3B32326D 
+  23      5B492F46 
+  23      414C5D20 
+  23      00
+  24 0011 000000   		.align	2
+  25              	.LC1:
+  26 0014 302E352E 		.ascii	"0.5.99\000"
+  26      393900
+  27 001b 00       		.align	2
+  28              	.LC2:
+  29 001c 466C6173 		.ascii	"Flash Abstraction Layer (V%s) initialize success.\000"
+  29      68204162 
+  29      73747261 
+  29      6374696F 
+  29      6E204C61 
+  30 004e 0000     		.align	2
+  31              	.LC3:
+  32 0050 1B5B306D 		.ascii	"\033[0m\000"
+  32      00
+  33 0055 000000   		.align	2
+  34              	.LC4:
+  35 0058 1B5B3331 		.ascii	"\033[31;22m[E/FAL] (%s:%d) \000"
+  35      3B32326D 
+  35      5B452F46 
+  35      414C5D20 
+  35      2825733A 
+  36 0071 000000   		.align	2
+  37              	.LC5:
+  38 0074 466C6173 		.ascii	"Flash Abstraction Layer (V%s) initialize failed.\000"
+  38      68204162 
+  38      73747261 
+  38      6374696F 
+  38      6E204C61 
+  39              		.section	.text.fal_init,"ax",%progbits
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s 			page 2
+
+
+  40              		.align	1
+  41              		.global	fal_init
+  42              		.syntax unified
+  43              		.thumb
+  44              		.thumb_func
+  46              	fal_init:
+  47              	.LFB3:
+   1:BSP/src/fal.c **** /*
+   2:BSP/src/fal.c ****  * Copyright (c) 2006-2018, RT-Thread Development Team
+   3:BSP/src/fal.c ****  *
+   4:BSP/src/fal.c ****  * SPDX-License-Identifier: Apache-2.0
+   5:BSP/src/fal.c ****  *
+   6:BSP/src/fal.c ****  * Change Logs:
+   7:BSP/src/fal.c ****  * Date           Author       Notes
+   8:BSP/src/fal.c ****  * 2018-05-17     armink       the first version
+   9:BSP/src/fal.c ****  */
+  10:BSP/src/fal.c **** 
+  11:BSP/src/fal.c **** #include <fal.h>
+  12:BSP/src/fal.c **** 
+  13:BSP/src/fal.c **** static uint8_t init_ok = 0;
+  14:BSP/src/fal.c **** 
+  15:BSP/src/fal.c **** /**
+  16:BSP/src/fal.c ****  * FAL (Flash Abstraction Layer) initialization.
+  17:BSP/src/fal.c ****  * It will initialize all flash device and all flash partition.
+  18:BSP/src/fal.c ****  *
+  19:BSP/src/fal.c ****  * @return >= 0: partitions total number
+  20:BSP/src/fal.c ****  */
+  21:BSP/src/fal.c **** int fal_init(void)
+  22:BSP/src/fal.c **** {
+  48              		.loc 1 22 1 view -0
+  49              		.cfi_startproc
+  50              		@ args = 0, pretend = 0, frame = 0
+  51              		@ frame_needed = 0, uses_anonymous_args = 0
+  52 0000 10B5     		push	{r4, lr}
+  53              	.LCFI0:
+  54              		.cfi_def_cfa_offset 8
+  55              		.cfi_offset 4, -8
+  56              		.cfi_offset 14, -4
+  23:BSP/src/fal.c ****     extern int fal_flash_init(void);
+  57              		.loc 1 23 5 view .LVU1
+  24:BSP/src/fal.c ****     extern int fal_partition_init(void);
+  58              		.loc 1 24 5 view .LVU2
+  25:BSP/src/fal.c **** 
+  26:BSP/src/fal.c ****     int result;
+  59              		.loc 1 26 5 view .LVU3
+  27:BSP/src/fal.c **** 
+  28:BSP/src/fal.c ****     /* initialize all flash device on FAL flash table */
+  29:BSP/src/fal.c ****     result = fal_flash_init();
+  60              		.loc 1 29 5 view .LVU4
+  61              		.loc 1 29 14 is_stmt 0 view .LVU5
+  62 0002 FFF7FEFF 		bl	fal_flash_init
+  63              	.LVL0:
+  30:BSP/src/fal.c **** 
+  31:BSP/src/fal.c ****     if (result < 0) {
+  64              		.loc 1 31 5 is_stmt 1 view .LVU6
+  65              		.loc 1 31 8 is_stmt 0 view .LVU7
+  66 0006 041E     		subs	r4, r0, #0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s 			page 3
+
+
+  67 0008 06DB     		blt	.L2
+  32:BSP/src/fal.c ****         goto __exit;
+  33:BSP/src/fal.c ****     }
+  34:BSP/src/fal.c **** 
+  35:BSP/src/fal.c ****     /* initialize all flash partition on FAL partition table */
+  36:BSP/src/fal.c ****     result = fal_partition_init();
+  68              		.loc 1 36 5 is_stmt 1 view .LVU8
+  69              		.loc 1 36 14 is_stmt 0 view .LVU9
+  70 000a FFF7FEFF 		bl	fal_partition_init
+  71              	.LVL1:
+  72              	.LDL1:
+  37:BSP/src/fal.c **** 
+  38:BSP/src/fal.c **** __exit:
+  39:BSP/src/fal.c **** 
+  40:BSP/src/fal.c ****     if ((result > 0) && (!init_ok))
+  73              		.loc 1 40 5 is_stmt 1 view .LVU10
+  74              		.loc 1 40 8 is_stmt 0 view .LVU11
+  75 000e 041E     		subs	r4, r0, #0
+  76 0010 04DD     		ble	.L3
+  77              		.loc 1 40 26 discriminator 1 view .LVU12
+  78 0012 124B     		ldr	r3, .L7
+  79 0014 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  80              		.loc 1 40 22 discriminator 1 view .LVU13
+  81 0016 93B1     		cbz	r3, .L6
+  82              	.L2:
+  83              	.LVL2:
+  41:BSP/src/fal.c ****     {
+  42:BSP/src/fal.c ****         init_ok = 1;
+  43:BSP/src/fal.c ****         log_i("Flash Abstraction Layer (V%s) initialize success.", FAL_SW_VERSION);
+  44:BSP/src/fal.c ****     }
+  45:BSP/src/fal.c ****     else if(result <= 0)
+  84              		.loc 1 45 10 is_stmt 1 view .LVU14
+  85              		.loc 1 45 12 is_stmt 0 view .LVU15
+  86 0018 002C     		cmp	r4, #0
+  87 001a 0EDC     		bgt	.L1
+  88              	.L3:
+  46:BSP/src/fal.c ****     {
+  47:BSP/src/fal.c ****         init_ok = 0;
+  89              		.loc 1 47 9 is_stmt 1 view .LVU16
+  90              		.loc 1 47 17 is_stmt 0 view .LVU17
+  91 001c 0F4B     		ldr	r3, .L7
+  92 001e 0022     		movs	r2, #0
+  93 0020 1A70     		strb	r2, [r3]
+  48:BSP/src/fal.c ****         log_e("Flash Abstraction Layer (V%s) initialize failed.", FAL_SW_VERSION);
+  94              		.loc 1 48 9 is_stmt 1 view .LVU18
+  95 0022 3022     		movs	r2, #48
+  96 0024 0E49     		ldr	r1, .L7+4
+  97 0026 0F48     		ldr	r0, .L7+8
+  98 0028 FFF7FEFF 		bl	printf
+  99              	.LVL3:
+ 100              		.loc 1 48 9 discriminator 1 view .LVU19
+ 101 002c 0E49     		ldr	r1, .L7+12
+ 102 002e 0F48     		ldr	r0, .L7+16
+ 103 0030 FFF7FEFF 		bl	printf
+ 104              	.LVL4:
+ 105              		.loc 1 48 9 discriminator 2 view .LVU20
+ 106 0034 0E48     		ldr	r0, .L7+20
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s 			page 4
+
+
+ 107 0036 FFF7FEFF 		bl	puts
+ 108              	.LVL5:
+  49:BSP/src/fal.c ****     }
+  50:BSP/src/fal.c **** 
+  51:BSP/src/fal.c ****     return result;
+ 109              		.loc 1 51 5 view .LVU21
+ 110              	.L1:
+  52:BSP/src/fal.c **** }
+ 111              		.loc 1 52 1 is_stmt 0 view .LVU22
+ 112 003a 2046     		mov	r0, r4
+ 113 003c 10BD     		pop	{r4, pc}
+ 114              	.LVL6:
+ 115              	.L6:
+  42:BSP/src/fal.c ****         log_i("Flash Abstraction Layer (V%s) initialize success.", FAL_SW_VERSION);
+ 116              		.loc 1 42 9 is_stmt 1 view .LVU23
+  42:BSP/src/fal.c ****         log_i("Flash Abstraction Layer (V%s) initialize success.", FAL_SW_VERSION);
+ 117              		.loc 1 42 17 is_stmt 0 view .LVU24
+ 118 003e 074B     		ldr	r3, .L7
+ 119 0040 0122     		movs	r2, #1
+ 120 0042 1A70     		strb	r2, [r3]
+  43:BSP/src/fal.c ****     }
+ 121              		.loc 1 43 9 is_stmt 1 view .LVU25
+ 122 0044 0B48     		ldr	r0, .L7+24
+ 123              	.LVL7:
+  43:BSP/src/fal.c ****     }
+ 124              		.loc 1 43 9 is_stmt 0 view .LVU26
+ 125 0046 FFF7FEFF 		bl	printf
+ 126              	.LVL8:
+  43:BSP/src/fal.c ****     }
+ 127              		.loc 1 43 9 is_stmt 1 discriminator 1 view .LVU27
+ 128 004a 0749     		ldr	r1, .L7+12
+ 129 004c 0A48     		ldr	r0, .L7+28
+ 130 004e FFF7FEFF 		bl	printf
+ 131              	.LVL9:
+  43:BSP/src/fal.c ****     }
+ 132              		.loc 1 43 9 discriminator 2 view .LVU28
+ 133 0052 0748     		ldr	r0, .L7+20
+ 134 0054 FFF7FEFF 		bl	puts
+ 135              	.LVL10:
+  43:BSP/src/fal.c ****     }
+ 136              		.loc 1 43 9 is_stmt 0 view .LVU29
+ 137 0058 EFE7     		b	.L1
+ 138              	.L8:
+ 139 005a 00BF     		.align	2
+ 140              	.L7:
+ 141 005c 00000000 		.word	init_ok
+ 142 0060 00000000 		.word	__func__.0
+ 143 0064 58000000 		.word	.LC4
+ 144 0068 14000000 		.word	.LC1
+ 145 006c 74000000 		.word	.LC5
+ 146 0070 50000000 		.word	.LC3
+ 147 0074 00000000 		.word	.LC0
+ 148 0078 1C000000 		.word	.LC2
+ 149              		.cfi_endproc
+ 150              	.LFE3:
+ 152              		.section	.text.fal_init_check,"ax",%progbits
+ 153              		.align	1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s 			page 5
+
+
+ 154              		.global	fal_init_check
+ 155              		.syntax unified
+ 156              		.thumb
+ 157              		.thumb_func
+ 159              	fal_init_check:
+ 160              	.LFB4:
+  53:BSP/src/fal.c **** 
+  54:BSP/src/fal.c **** /**
+  55:BSP/src/fal.c ****  * Check if the FAL is initialized successfully
+  56:BSP/src/fal.c ****  * 
+  57:BSP/src/fal.c ****  * @return 0: not init or init failed; 1: init success
+  58:BSP/src/fal.c ****  */
+  59:BSP/src/fal.c **** int fal_init_check(void)
+  60:BSP/src/fal.c **** {
+ 161              		.loc 1 60 1 is_stmt 1 view -0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		@ link register save eliminated.
+  61:BSP/src/fal.c ****     return init_ok;
+ 166              		.loc 1 61 5 view .LVU31
+  62:BSP/src/fal.c **** }
+ 167              		.loc 1 62 1 is_stmt 0 view .LVU32
+ 168 0000 014B     		ldr	r3, .L10
+ 169 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 170 0004 7047     		bx	lr
+ 171              	.L11:
+ 172 0006 00BF     		.align	2
+ 173              	.L10:
+ 174 0008 00000000 		.word	init_ok
+ 175              		.cfi_endproc
+ 176              	.LFE4:
+ 178              		.section	.rodata.__func__.0,"a"
+ 179              		.align	2
+ 182              	__func__.0:
+ 183 0000 66616C5F 		.ascii	"fal_init\000"
+ 183      696E6974 
+ 183      00
+ 184              		.section	.bss.init_ok,"aw",%nobits
+ 187              	init_ok:
+ 188 0000 00       		.space	1
+ 189              		.text
+ 190              	.Letext0:
+ 191              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 192              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 193              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ 194              		.file 5 "<built-in>"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fal.c
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:21     .rodata.fal_init.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:40     .text.fal_init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:46     .text.fal_init:00000000 fal_init
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:141    .text.fal_init:0000005c $d
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:187    .bss.init_ok:00000000 init_ok
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:182    .rodata.__func__.0:00000000 __func__.0
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:153    .text.fal_init_check:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:159    .text.fal_init_check:00000000 fal_init_check
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:174    .text.fal_init_check:00000008 $d
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:179    .rodata.__func__.0:00000000 $d
+C:\Users\solar\AppData\Local\Temp\cclTS6zQ.s:188    .bss.init_ok:00000000 $d
+
+UNDEFINED SYMBOLS
+fal_flash_init
+fal_partition_init
+printf
+puts

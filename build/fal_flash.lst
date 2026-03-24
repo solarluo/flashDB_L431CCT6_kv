@@ -1,0 +1,308 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fal_flash.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "BSP/src/fal_flash.c"
+  20              		.section	.text.fal_flash_init,"ax",%progbits
+  21              		.align	1
+  22              		.global	fal_flash_init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	fal_flash_init:
+  28              	.LFB3:
+   1:BSP/src/fal_flash.c **** /*
+   2:BSP/src/fal_flash.c ****  * Copyright (c) 2006-2018, RT-Thread Development Team
+   3:BSP/src/fal_flash.c ****  *
+   4:BSP/src/fal_flash.c ****  * SPDX-License-Identifier: Apache-2.0
+   5:BSP/src/fal_flash.c ****  *
+   6:BSP/src/fal_flash.c ****  * Change Logs:
+   7:BSP/src/fal_flash.c ****  * Date           Author       Notes
+   8:BSP/src/fal_flash.c ****  * 2018-05-17     armink       the first version
+   9:BSP/src/fal_flash.c ****  */
+  10:BSP/src/fal_flash.c **** 
+  11:BSP/src/fal_flash.c **** #include <fal.h>
+  12:BSP/src/fal_flash.c **** #include <string.h>
+  13:BSP/src/fal_flash.c **** 
+  14:BSP/src/fal_flash.c **** /* flash device table, must defined by user */
+  15:BSP/src/fal_flash.c **** #if !defined(FAL_FLASH_DEV_TABLE)
+  16:BSP/src/fal_flash.c **** #error "You must defined flash device table (FAL_FLASH_DEV_TABLE) on 'fal_cfg.h'"
+  17:BSP/src/fal_flash.c **** #endif
+  18:BSP/src/fal_flash.c **** 
+  19:BSP/src/fal_flash.c **** static const struct fal_flash_dev * const device_table[] = FAL_FLASH_DEV_TABLE;
+  20:BSP/src/fal_flash.c **** static const size_t device_table_len = sizeof(device_table) / sizeof(device_table[0]);
+  21:BSP/src/fal_flash.c **** static uint8_t init_ok = 0;
+  22:BSP/src/fal_flash.c **** 
+  23:BSP/src/fal_flash.c **** /**
+  24:BSP/src/fal_flash.c ****  * Initialize all flash device on FAL flash table
+  25:BSP/src/fal_flash.c ****  *
+  26:BSP/src/fal_flash.c ****  * @return result
+  27:BSP/src/fal_flash.c ****  */
+  28:BSP/src/fal_flash.c **** int fal_flash_init(void)
+  29:BSP/src/fal_flash.c **** {
+  29              		.loc 1 29 1 view -0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s 			page 2
+
+
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  30:BSP/src/fal_flash.c ****     size_t i;
+  33              		.loc 1 30 5 view .LVU1
+  31:BSP/src/fal_flash.c **** 
+  32:BSP/src/fal_flash.c ****     if (init_ok)
+  34              		.loc 1 32 5 view .LVU2
+  35              		.loc 1 32 9 is_stmt 0 view .LVU3
+  36 0000 094B     		ldr	r3, .L10
+  37 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  38              		.loc 1 32 8 view .LVU4
+  39 0004 6BB9     		cbnz	r3, .L7
+  29:BSP/src/fal_flash.c ****     size_t i;
+  40              		.loc 1 29 1 view .LVU5
+  41 0006 10B5     		push	{r4, lr}
+  42              	.LCFI0:
+  43              		.cfi_def_cfa_offset 8
+  44              		.cfi_offset 4, -8
+  45              		.cfi_offset 14, -4
+  33:BSP/src/fal_flash.c ****     {
+  34:BSP/src/fal_flash.c ****         return 0;
+  35:BSP/src/fal_flash.c ****     }
+  36:BSP/src/fal_flash.c **** 
+  37:BSP/src/fal_flash.c ****     for (i = 0; i < device_table_len; i++)
+  46              		.loc 1 37 12 view .LVU6
+  47 0008 0024     		movs	r4, #0
+  48              	.L3:
+  49              	.LVL0:
+  50              		.loc 1 37 19 is_stmt 1 discriminator 1 view .LVU7
+  51 000a 24B1     		cbz	r4, .L5
+  38:BSP/src/fal_flash.c ****     {
+  39:BSP/src/fal_flash.c ****         assert(device_table[i]->ops.read);
+  40:BSP/src/fal_flash.c ****         assert(device_table[i]->ops.write);
+  41:BSP/src/fal_flash.c ****         assert(device_table[i]->ops.erase);
+  42:BSP/src/fal_flash.c ****         /* init flash device on flash table */
+  43:BSP/src/fal_flash.c ****         if (device_table[i]->ops.init)
+  44:BSP/src/fal_flash.c ****         {
+  45:BSP/src/fal_flash.c ****             device_table[i]->ops.init();
+  46:BSP/src/fal_flash.c ****         }
+  47:BSP/src/fal_flash.c ****         log_d("Flash device | %*.*s | addr: 0x%08lx | len: 0x%08x | blk_size: 0x%08x |initialized f
+  48:BSP/src/fal_flash.c ****                 FAL_DEV_NAME_MAX, FAL_DEV_NAME_MAX, device_table[i]->name, device_table[i]->addr, d
+  49:BSP/src/fal_flash.c ****                 device_table[i]->blk_size);
+  50:BSP/src/fal_flash.c ****     }
+  51:BSP/src/fal_flash.c **** 
+  52:BSP/src/fal_flash.c ****     init_ok = 1;
+  52              		.loc 1 52 5 view .LVU8
+  53              		.loc 1 52 13 is_stmt 0 view .LVU9
+  54 000c 064B     		ldr	r3, .L10
+  55 000e 0122     		movs	r2, #1
+  56 0010 1A70     		strb	r2, [r3]
+  53:BSP/src/fal_flash.c ****     return 0;
+  57              		.loc 1 53 5 is_stmt 1 view .LVU10
+  54:BSP/src/fal_flash.c **** }
+  58              		.loc 1 54 1 is_stmt 0 view .LVU11
+  59 0012 0020     		movs	r0, #0
+  60 0014 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s 			page 3
+
+
+  61              	.LVL1:
+  62              	.L5:
+  39:BSP/src/fal_flash.c ****         assert(device_table[i]->ops.write);
+  63              		.loc 1 39 9 is_stmt 1 view .LVU12
+  39:BSP/src/fal_flash.c ****         assert(device_table[i]->ops.write);
+  64              		.loc 1 39 42 view .LVU13
+  40:BSP/src/fal_flash.c ****         assert(device_table[i]->ops.erase);
+  65              		.loc 1 40 9 view .LVU14
+  40:BSP/src/fal_flash.c ****         assert(device_table[i]->ops.erase);
+  66              		.loc 1 40 43 view .LVU15
+  41:BSP/src/fal_flash.c ****         /* init flash device on flash table */
+  67              		.loc 1 41 9 view .LVU16
+  41:BSP/src/fal_flash.c ****         /* init flash device on flash table */
+  68              		.loc 1 41 43 view .LVU17
+  43:BSP/src/fal_flash.c ****         {
+  69              		.loc 1 43 9 view .LVU18
+  43:BSP/src/fal_flash.c ****         {
+  70              		.loc 1 43 33 is_stmt 0 view .LVU19
+  71 0016 054B     		ldr	r3, .L10+4
+  72 0018 5B6A     		ldr	r3, [r3, #36]
+  43:BSP/src/fal_flash.c ****         {
+  73              		.loc 1 43 12 view .LVU20
+  74 001a 03B1     		cbz	r3, .L4
+  45:BSP/src/fal_flash.c ****         }
+  75              		.loc 1 45 13 is_stmt 1 view .LVU21
+  76 001c 9847     		blx	r3
+  77              	.LVL2:
+  78              	.L4:
+  49:BSP/src/fal_flash.c ****     }
+  79              		.loc 1 49 43 view .LVU22
+  37:BSP/src/fal_flash.c ****     {
+  80              		.loc 1 37 40 discriminator 2 view .LVU23
+  81 001e 0134     		adds	r4, r4, #1
+  82              	.LVL3:
+  37:BSP/src/fal_flash.c ****     {
+  83              		.loc 1 37 40 is_stmt 0 discriminator 2 view .LVU24
+  84 0020 F3E7     		b	.L3
+  85              	.LVL4:
+  86              	.L7:
+  87              	.LCFI1:
+  88              		.cfi_def_cfa_offset 0
+  89              		.cfi_restore 4
+  90              		.cfi_restore 14
+  91              		.loc 1 54 1 view .LVU25
+  92 0022 0020     		movs	r0, #0
+  93 0024 7047     		bx	lr
+  94              	.L11:
+  95 0026 00BF     		.align	2
+  96              	.L10:
+  97 0028 00000000 		.word	init_ok
+  98 002c 00000000 		.word	nor_flash0
+  99              		.cfi_endproc
+ 100              	.LFE3:
+ 102              		.section	.text.fal_flash_device_find,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	fal_flash_device_find
+ 105              		.syntax unified
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s 			page 4
+
+
+ 106              		.thumb
+ 107              		.thumb_func
+ 109              	fal_flash_device_find:
+ 110              	.LVL5:
+ 111              	.LFB4:
+  55:BSP/src/fal_flash.c **** 
+  56:BSP/src/fal_flash.c **** /**
+  57:BSP/src/fal_flash.c ****  * find flash device by name
+  58:BSP/src/fal_flash.c ****  *
+  59:BSP/src/fal_flash.c ****  * @param name flash device name
+  60:BSP/src/fal_flash.c ****  *
+  61:BSP/src/fal_flash.c ****  * @return != NULL: flash device
+  62:BSP/src/fal_flash.c ****  *            NULL: not found
+  63:BSP/src/fal_flash.c ****  */
+  64:BSP/src/fal_flash.c **** const struct fal_flash_dev *fal_flash_device_find(const char *name)
+  65:BSP/src/fal_flash.c **** {
+ 112              		.loc 1 65 1 is_stmt 1 view -0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              		.loc 1 65 1 is_stmt 0 view .LVU27
+ 117 0000 38B5     		push	{r3, r4, r5, lr}
+ 118              	.LCFI2:
+ 119              		.cfi_def_cfa_offset 16
+ 120              		.cfi_offset 3, -16
+ 121              		.cfi_offset 4, -12
+ 122              		.cfi_offset 5, -8
+ 123              		.cfi_offset 14, -4
+ 124 0002 0546     		mov	r5, r0
+  66:BSP/src/fal_flash.c ****     assert(init_ok);
+ 125              		.loc 1 66 5 is_stmt 1 view .LVU28
+ 126              		.loc 1 66 20 view .LVU29
+  67:BSP/src/fal_flash.c ****     assert(name);
+ 127              		.loc 1 67 5 view .LVU30
+ 128              		.loc 1 67 17 view .LVU31
+  68:BSP/src/fal_flash.c **** 
+  69:BSP/src/fal_flash.c ****     size_t i;
+ 129              		.loc 1 69 5 view .LVU32
+  70:BSP/src/fal_flash.c **** 
+  71:BSP/src/fal_flash.c ****     for (i = 0; i < device_table_len; i++)
+ 130              		.loc 1 71 5 view .LVU33
+ 131              	.LVL6:
+ 132              		.loc 1 71 12 is_stmt 0 view .LVU34
+ 133 0004 0024     		movs	r4, #0
+ 134              	.LVL7:
+ 135              	.L13:
+ 136              		.loc 1 71 19 is_stmt 1 discriminator 1 view .LVU35
+ 137 0006 0CB1     		cbz	r4, .L15
+  72:BSP/src/fal_flash.c ****     {
+  73:BSP/src/fal_flash.c ****         if (!strncmp(name, device_table[i]->name, FAL_DEV_NAME_MAX)) {
+  74:BSP/src/fal_flash.c ****             return device_table[i];
+  75:BSP/src/fal_flash.c ****         }
+  76:BSP/src/fal_flash.c ****     }
+  77:BSP/src/fal_flash.c **** 
+  78:BSP/src/fal_flash.c ****     return NULL;
+ 138              		.loc 1 78 12 is_stmt 0 view .LVU36
+ 139 0008 0020     		movs	r0, #0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s 			page 5
+
+
+ 140              	.L12:
+  79:BSP/src/fal_flash.c **** }
+ 141              		.loc 1 79 1 view .LVU37
+ 142 000a 38BD     		pop	{r3, r4, r5, pc}
+ 143              	.LVL8:
+ 144              	.L15:
+  73:BSP/src/fal_flash.c ****             return device_table[i];
+ 145              		.loc 1 73 9 is_stmt 1 view .LVU38
+  73:BSP/src/fal_flash.c ****             return device_table[i];
+ 146              		.loc 1 73 14 is_stmt 0 view .LVU39
+ 147 000c 1822     		movs	r2, #24
+ 148 000e 0449     		ldr	r1, .L18
+ 149 0010 2846     		mov	r0, r5
+ 150 0012 FFF7FEFF 		bl	strncmp
+ 151              	.LVL9:
+  73:BSP/src/fal_flash.c ****             return device_table[i];
+ 152              		.loc 1 73 12 discriminator 1 view .LVU40
+ 153 0016 08B1     		cbz	r0, .L16
+  71:BSP/src/fal_flash.c ****     {
+ 154              		.loc 1 71 40 is_stmt 1 discriminator 2 view .LVU41
+ 155 0018 0134     		adds	r4, r4, #1
+ 156              	.LVL10:
+  71:BSP/src/fal_flash.c ****     {
+ 157              		.loc 1 71 40 is_stmt 0 discriminator 2 view .LVU42
+ 158 001a F4E7     		b	.L13
+ 159              	.LVL11:
+ 160              	.L16:
+  74:BSP/src/fal_flash.c ****         }
+ 161              		.loc 1 74 32 view .LVU43
+ 162 001c 0048     		ldr	r0, .L18
+ 163 001e F4E7     		b	.L12
+ 164              	.L19:
+ 165              		.align	2
+ 166              	.L18:
+ 167 0020 00000000 		.word	nor_flash0
+ 168              		.cfi_endproc
+ 169              	.LFE4:
+ 171              		.section	.bss.init_ok,"aw",%nobits
+ 174              	init_ok:
+ 175 0000 00       		.space	1
+ 176              		.text
+ 177              	.Letext0:
+ 178              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 179              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 180              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
+ 181              		.file 5 "BSP/inc/fal_def.h"
+ 182              		.file 6 "BSP/inc/fal_cfg.h"
+ 183              		.file 7 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fal_flash.c
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:21     .text.fal_flash_init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:27     .text.fal_flash_init:00000000 fal_flash_init
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:97     .text.fal_flash_init:00000028 $d
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:174    .bss.init_ok:00000000 init_ok
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:103    .text.fal_flash_device_find:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:109    .text.fal_flash_device_find:00000000 fal_flash_device_find
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:167    .text.fal_flash_device_find:00000020 $d
+C:\Users\solar\AppData\Local\Temp\ccxXxSZT.s:175    .bss.init_ok:00000000 $d
+
+UNDEFINED SYMBOLS
+nor_flash0
+strncmp

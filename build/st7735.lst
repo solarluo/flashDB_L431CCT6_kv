@@ -1,0 +1,1350 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"st7735.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/st7735.c"
+  20              		.section	.text.ST7735_WriteData,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	ST7735_WriteData:
+  27              	.LVL0:
+  28              	.LFB230:
+   1:Core/Src/st7735.c **** #include "st7735.h"
+   2:Core/Src/st7735.c **** 
+   3:Core/Src/st7735.c **** /*-------------------- 引脚定义 --------------------*/
+   4:Core/Src/st7735.c **** /* 按你当前工程的引脚来 */
+   5:Core/Src/st7735.c **** #define LCD_CS_LOW()      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET)
+   6:Core/Src/st7735.c **** #define LCD_CS_HIGH()     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET)
+   7:Core/Src/st7735.c **** 
+   8:Core/Src/st7735.c **** #define LCD_DC_LOW()      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET)
+   9:Core/Src/st7735.c **** #define LCD_DC_HIGH()     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET)
+  10:Core/Src/st7735.c **** 
+  11:Core/Src/st7735.c **** #define LCD_RST_LOW()     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET)
+  12:Core/Src/st7735.c **** #define LCD_RST_HIGH()    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET)
+  13:Core/Src/st7735.c **** 
+  14:Core/Src/st7735.c **** #define LCD_BL_LOW()      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET)
+  15:Core/Src/st7735.c **** #define LCD_BL_HIGH()     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET)
+  16:Core/Src/st7735.c **** 
+  17:Core/Src/st7735.c **** /*-------------------- 这块 0.96 寸屏的重要参数 --------------------*/
+  18:Core/Src/st7735.c **** /* 厂家例程里已经体现：80x160，X 偏移 26，Y 偏移 1 */
+  19:Core/Src/st7735.c **** static const uint16_t st7735_x_offset = 26;
+  20:Core/Src/st7735.c **** static const uint16_t st7735_y_offset = 1;
+  21:Core/Src/st7735.c **** 
+  22:Core/Src/st7735.c **** /*-------------------- 底层函数 --------------------*/
+  23:Core/Src/st7735.c **** static void ST7735_Reset(void)
+  24:Core/Src/st7735.c **** {
+  25:Core/Src/st7735.c ****     LCD_RST_HIGH();
+  26:Core/Src/st7735.c ****     HAL_Delay(5);
+  27:Core/Src/st7735.c **** 
+  28:Core/Src/st7735.c ****     LCD_RST_LOW();
+  29:Core/Src/st7735.c ****     HAL_Delay(20);
+  30:Core/Src/st7735.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 2
+
+
+  31:Core/Src/st7735.c ****     LCD_RST_HIGH();
+  32:Core/Src/st7735.c ****     HAL_Delay(120);
+  33:Core/Src/st7735.c **** }
+  34:Core/Src/st7735.c **** 
+  35:Core/Src/st7735.c **** static void ST7735_WriteCommand(uint8_t cmd)
+  36:Core/Src/st7735.c **** {
+  37:Core/Src/st7735.c ****     LCD_CS_LOW();
+  38:Core/Src/st7735.c ****     LCD_DC_LOW();
+  39:Core/Src/st7735.c ****     HAL_SPI_Transmit(&hspi2, &cmd, 1, HAL_MAX_DELAY);
+  40:Core/Src/st7735.c ****     LCD_CS_HIGH();
+  41:Core/Src/st7735.c **** }
+  42:Core/Src/st7735.c **** 
+  43:Core/Src/st7735.c **** static void ST7735_WriteData(const uint8_t *data, uint16_t size)
+  44:Core/Src/st7735.c **** {
+  29              		.loc 1 44 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 44 1 is_stmt 0 view .LVU1
+  34 0000 38B5     		push	{r3, r4, r5, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 3, -16
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0446     		mov	r4, r0
+  42 0004 0D46     		mov	r5, r1
+  45:Core/Src/st7735.c ****     LCD_CS_LOW();
+  43              		.loc 1 45 5 is_stmt 1 view .LVU2
+  44 0006 0022     		movs	r2, #0
+  45 0008 0821     		movs	r1, #8
+  46              	.LVL1:
+  47              		.loc 1 45 5 is_stmt 0 view .LVU3
+  48 000a 4FF09040 		mov	r0, #1207959552
+  49              	.LVL2:
+  50              		.loc 1 45 5 view .LVU4
+  51 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  52              	.LVL3:
+  46:Core/Src/st7735.c ****     LCD_DC_HIGH();
+  53              		.loc 1 46 5 is_stmt 1 view .LVU5
+  54 0012 0122     		movs	r2, #1
+  55 0014 1146     		mov	r1, r2
+  56 0016 0848     		ldr	r0, .L3
+  57 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  58              	.LVL4:
+  47:Core/Src/st7735.c ****     HAL_SPI_Transmit(&hspi2, (uint8_t *)data, size, HAL_MAX_DELAY);
+  59              		.loc 1 47 5 view .LVU6
+  60 001c 4FF0FF33 		mov	r3, #-1
+  61 0020 2A46     		mov	r2, r5
+  62 0022 2146     		mov	r1, r4
+  63 0024 0548     		ldr	r0, .L3+4
+  64 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
+  65              	.LVL5:
+  48:Core/Src/st7735.c ****     LCD_CS_HIGH();
+  66              		.loc 1 48 5 view .LVU7
+  67 002a 0122     		movs	r2, #1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 3
+
+
+  68 002c 0821     		movs	r1, #8
+  69 002e 4FF09040 		mov	r0, #1207959552
+  70 0032 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  71              	.LVL6:
+  49:Core/Src/st7735.c **** }
+  72              		.loc 1 49 1 is_stmt 0 view .LVU8
+  73 0036 38BD     		pop	{r3, r4, r5, pc}
+  74              	.LVL7:
+  75              	.L4:
+  76              		.loc 1 49 1 view .LVU9
+  77              		.align	2
+  78              	.L3:
+  79 0038 00040048 		.word	1207960576
+  80 003c 00000000 		.word	hspi2
+  81              		.cfi_endproc
+  82              	.LFE230:
+  84              		.section	.text.ST7735_WriteCommand,"ax",%progbits
+  85              		.align	1
+  86              		.syntax unified
+  87              		.thumb
+  88              		.thumb_func
+  90              	ST7735_WriteCommand:
+  91              	.LVL8:
+  92              	.LFB229:
+  36:Core/Src/st7735.c ****     LCD_CS_LOW();
+  93              		.loc 1 36 1 is_stmt 1 view -0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 8
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  36:Core/Src/st7735.c ****     LCD_CS_LOW();
+  97              		.loc 1 36 1 is_stmt 0 view .LVU11
+  98 0000 00B5     		push	{lr}
+  99              	.LCFI1:
+ 100              		.cfi_def_cfa_offset 4
+ 101              		.cfi_offset 14, -4
+ 102 0002 83B0     		sub	sp, sp, #12
+ 103              	.LCFI2:
+ 104              		.cfi_def_cfa_offset 16
+ 105 0004 8DF80700 		strb	r0, [sp, #7]
+  37:Core/Src/st7735.c ****     LCD_DC_LOW();
+ 106              		.loc 1 37 5 is_stmt 1 view .LVU12
+ 107 0008 0022     		movs	r2, #0
+ 108 000a 0821     		movs	r1, #8
+ 109 000c 4FF09040 		mov	r0, #1207959552
+ 110              	.LVL9:
+  37:Core/Src/st7735.c ****     LCD_DC_LOW();
+ 111              		.loc 1 37 5 is_stmt 0 view .LVU13
+ 112 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 113              	.LVL10:
+  38:Core/Src/st7735.c ****     HAL_SPI_Transmit(&hspi2, &cmd, 1, HAL_MAX_DELAY);
+ 114              		.loc 1 38 5 is_stmt 1 view .LVU14
+ 115 0014 0022     		movs	r2, #0
+ 116 0016 0121     		movs	r1, #1
+ 117 0018 0948     		ldr	r0, .L7
+ 118 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 119              	.LVL11:
+  39:Core/Src/st7735.c ****     LCD_CS_HIGH();
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 4
+
+
+ 120              		.loc 1 39 5 view .LVU15
+ 121 001e 4FF0FF33 		mov	r3, #-1
+ 122 0022 0122     		movs	r2, #1
+ 123 0024 0DF10701 		add	r1, sp, #7
+ 124 0028 0648     		ldr	r0, .L7+4
+ 125 002a FFF7FEFF 		bl	HAL_SPI_Transmit
+ 126              	.LVL12:
+  40:Core/Src/st7735.c **** }
+ 127              		.loc 1 40 5 view .LVU16
+ 128 002e 0122     		movs	r2, #1
+ 129 0030 0821     		movs	r1, #8
+ 130 0032 4FF09040 		mov	r0, #1207959552
+ 131 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 132              	.LVL13:
+  41:Core/Src/st7735.c **** 
+ 133              		.loc 1 41 1 is_stmt 0 view .LVU17
+ 134 003a 03B0     		add	sp, sp, #12
+ 135              	.LCFI3:
+ 136              		.cfi_def_cfa_offset 4
+ 137              		@ sp needed
+ 138 003c 5DF804FB 		ldr	pc, [sp], #4
+ 139              	.L8:
+ 140              		.align	2
+ 141              	.L7:
+ 142 0040 00040048 		.word	1207960576
+ 143 0044 00000000 		.word	hspi2
+ 144              		.cfi_endproc
+ 145              	.LFE229:
+ 147              		.section	.text.ST7735_WriteDataByte,"ax",%progbits
+ 148              		.align	1
+ 149              		.syntax unified
+ 150              		.thumb
+ 151              		.thumb_func
+ 153              	ST7735_WriteDataByte:
+ 154              	.LVL14:
+ 155              	.LFB231:
+  50:Core/Src/st7735.c **** 
+  51:Core/Src/st7735.c **** static void ST7735_WriteDataByte(uint8_t data)
+  52:Core/Src/st7735.c **** {
+ 156              		.loc 1 52 1 is_stmt 1 view -0
+ 157              		.cfi_startproc
+ 158              		@ args = 0, pretend = 0, frame = 8
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160              		.loc 1 52 1 is_stmt 0 view .LVU19
+ 161 0000 00B5     		push	{lr}
+ 162              	.LCFI4:
+ 163              		.cfi_def_cfa_offset 4
+ 164              		.cfi_offset 14, -4
+ 165 0002 83B0     		sub	sp, sp, #12
+ 166              	.LCFI5:
+ 167              		.cfi_def_cfa_offset 16
+ 168 0004 8DF80700 		strb	r0, [sp, #7]
+  53:Core/Src/st7735.c ****     LCD_CS_LOW();
+ 169              		.loc 1 53 5 is_stmt 1 view .LVU20
+ 170 0008 0022     		movs	r2, #0
+ 171 000a 0821     		movs	r1, #8
+ 172 000c 4FF09040 		mov	r0, #1207959552
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 5
+
+
+ 173              	.LVL15:
+ 174              		.loc 1 53 5 is_stmt 0 view .LVU21
+ 175 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 176              	.LVL16:
+  54:Core/Src/st7735.c ****     LCD_DC_HIGH();
+ 177              		.loc 1 54 5 is_stmt 1 view .LVU22
+ 178 0014 0122     		movs	r2, #1
+ 179 0016 1146     		mov	r1, r2
+ 180 0018 0948     		ldr	r0, .L11
+ 181 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 182              	.LVL17:
+  55:Core/Src/st7735.c ****     HAL_SPI_Transmit(&hspi2, &data, 1, HAL_MAX_DELAY);
+ 183              		.loc 1 55 5 view .LVU23
+ 184 001e 4FF0FF33 		mov	r3, #-1
+ 185 0022 0122     		movs	r2, #1
+ 186 0024 0DF10701 		add	r1, sp, #7
+ 187 0028 0648     		ldr	r0, .L11+4
+ 188 002a FFF7FEFF 		bl	HAL_SPI_Transmit
+ 189              	.LVL18:
+  56:Core/Src/st7735.c ****     LCD_CS_HIGH();
+ 190              		.loc 1 56 5 view .LVU24
+ 191 002e 0122     		movs	r2, #1
+ 192 0030 0821     		movs	r1, #8
+ 193 0032 4FF09040 		mov	r0, #1207959552
+ 194 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 195              	.LVL19:
+  57:Core/Src/st7735.c **** }
+ 196              		.loc 1 57 1 is_stmt 0 view .LVU25
+ 197 003a 03B0     		add	sp, sp, #12
+ 198              	.LCFI6:
+ 199              		.cfi_def_cfa_offset 4
+ 200              		@ sp needed
+ 201 003c 5DF804FB 		ldr	pc, [sp], #4
+ 202              	.L12:
+ 203              		.align	2
+ 204              	.L11:
+ 205 0040 00040048 		.word	1207960576
+ 206 0044 00000000 		.word	hspi2
+ 207              		.cfi_endproc
+ 208              	.LFE231:
+ 210              		.section	.text.ST7735_Reset,"ax",%progbits
+ 211              		.align	1
+ 212              		.syntax unified
+ 213              		.thumb
+ 214              		.thumb_func
+ 216              	ST7735_Reset:
+ 217              	.LFB228:
+  24:Core/Src/st7735.c ****     LCD_RST_HIGH();
+ 218              		.loc 1 24 1 is_stmt 1 view -0
+ 219              		.cfi_startproc
+ 220              		@ args = 0, pretend = 0, frame = 0
+ 221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 222 0000 10B5     		push	{r4, lr}
+ 223              	.LCFI7:
+ 224              		.cfi_def_cfa_offset 8
+ 225              		.cfi_offset 4, -8
+ 226              		.cfi_offset 14, -4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 6
+
+
+  25:Core/Src/st7735.c ****     HAL_Delay(5);
+ 227              		.loc 1 25 5 view .LVU27
+ 228 0002 0D4C     		ldr	r4, .L15
+ 229 0004 0122     		movs	r2, #1
+ 230 0006 0221     		movs	r1, #2
+ 231 0008 2046     		mov	r0, r4
+ 232 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 233              	.LVL20:
+  26:Core/Src/st7735.c **** 
+ 234              		.loc 1 26 5 view .LVU28
+ 235 000e 0520     		movs	r0, #5
+ 236 0010 FFF7FEFF 		bl	HAL_Delay
+ 237              	.LVL21:
+  28:Core/Src/st7735.c ****     HAL_Delay(20);
+ 238              		.loc 1 28 5 view .LVU29
+ 239 0014 0022     		movs	r2, #0
+ 240 0016 0221     		movs	r1, #2
+ 241 0018 2046     		mov	r0, r4
+ 242 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 243              	.LVL22:
+  29:Core/Src/st7735.c **** 
+ 244              		.loc 1 29 5 view .LVU30
+ 245 001e 1420     		movs	r0, #20
+ 246 0020 FFF7FEFF 		bl	HAL_Delay
+ 247              	.LVL23:
+  31:Core/Src/st7735.c ****     HAL_Delay(120);
+ 248              		.loc 1 31 5 view .LVU31
+ 249 0024 0122     		movs	r2, #1
+ 250 0026 0221     		movs	r1, #2
+ 251 0028 2046     		mov	r0, r4
+ 252 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 253              	.LVL24:
+  32:Core/Src/st7735.c **** }
+ 254              		.loc 1 32 5 view .LVU32
+ 255 002e 7820     		movs	r0, #120
+ 256 0030 FFF7FEFF 		bl	HAL_Delay
+ 257              	.LVL25:
+  33:Core/Src/st7735.c **** 
+ 258              		.loc 1 33 1 is_stmt 0 view .LVU33
+ 259 0034 10BD     		pop	{r4, pc}
+ 260              	.L16:
+ 261 0036 00BF     		.align	2
+ 262              	.L15:
+ 263 0038 00040048 		.word	1207960576
+ 264              		.cfi_endproc
+ 265              	.LFE228:
+ 267              		.section	.text.ST7735_SetAddressWindow,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	ST7735_SetAddressWindow
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 274              	ST7735_SetAddressWindow:
+ 275              	.LVL26:
+ 276              	.LFB232:
+  58:Core/Src/st7735.c **** 
+  59:Core/Src/st7735.c **** /*-------------------- 设置显示窗口 --------------------*/
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 7
+
+
+  60:Core/Src/st7735.c **** void ST7735_SetAddressWindow(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
+  61:Core/Src/st7735.c **** {
+ 277              		.loc 1 61 1 is_stmt 1 view -0
+ 278              		.cfi_startproc
+ 279              		@ args = 0, pretend = 0, frame = 8
+ 280              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281              		.loc 1 61 1 is_stmt 0 view .LVU35
+ 282 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 283              	.LCFI8:
+ 284              		.cfi_def_cfa_offset 20
+ 285              		.cfi_offset 4, -20
+ 286              		.cfi_offset 5, -16
+ 287              		.cfi_offset 6, -12
+ 288              		.cfi_offset 7, -8
+ 289              		.cfi_offset 14, -4
+ 290 0002 83B0     		sub	sp, sp, #12
+ 291              	.LCFI9:
+ 292              		.cfi_def_cfa_offset 32
+  62:Core/Src/st7735.c ****     uint16_t xs = x0 + st7735_x_offset;
+ 293              		.loc 1 62 5 is_stmt 1 view .LVU36
+ 294              		.loc 1 62 14 is_stmt 0 view .LVU37
+ 295 0004 1A30     		adds	r0, r0, #26
+ 296              	.LVL27:
+ 297              		.loc 1 62 14 view .LVU38
+ 298 0006 87B2     		uxth	r7, r0
+ 299              	.LVL28:
+  63:Core/Src/st7735.c ****     uint16_t xe = x1 + st7735_x_offset;
+ 300              		.loc 1 63 5 is_stmt 1 view .LVU39
+ 301              		.loc 1 63 14 is_stmt 0 view .LVU40
+ 302 0008 1A32     		adds	r2, r2, #26
+ 303              	.LVL29:
+ 304              		.loc 1 63 14 view .LVU41
+ 305 000a 96B2     		uxth	r6, r2
+ 306              	.LVL30:
+  64:Core/Src/st7735.c ****     uint16_t ys = y0 + st7735_y_offset;
+ 307              		.loc 1 64 5 is_stmt 1 view .LVU42
+ 308              		.loc 1 64 14 is_stmt 0 view .LVU43
+ 309 000c 0131     		adds	r1, r1, #1
+ 310              	.LVL31:
+ 311              		.loc 1 64 14 view .LVU44
+ 312 000e 8DB2     		uxth	r5, r1
+ 313              	.LVL32:
+  65:Core/Src/st7735.c ****     uint16_t ye = y1 + st7735_y_offset;
+ 314              		.loc 1 65 5 is_stmt 1 view .LVU45
+ 315              		.loc 1 65 14 is_stmt 0 view .LVU46
+ 316 0010 0133     		adds	r3, r3, #1
+ 317              	.LVL33:
+ 318              		.loc 1 65 14 view .LVU47
+ 319 0012 9CB2     		uxth	r4, r3
+ 320              	.LVL34:
+  66:Core/Src/st7735.c **** 
+  67:Core/Src/st7735.c ****     uint8_t data[4];
+ 321              		.loc 1 67 5 is_stmt 1 view .LVU48
+  68:Core/Src/st7735.c **** 
+  69:Core/Src/st7735.c ****     /* Column address set */
+  70:Core/Src/st7735.c ****     ST7735_WriteCommand(0x2A);
+ 322              		.loc 1 70 5 view .LVU49
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 8
+
+
+ 323 0014 2A20     		movs	r0, #42
+ 324              	.LVL35:
+ 325              		.loc 1 70 5 is_stmt 0 view .LVU50
+ 326 0016 FFF7FEFF 		bl	ST7735_WriteCommand
+ 327              	.LVL36:
+  71:Core/Src/st7735.c ****     data[0] = (xs >> 8) & 0xFF;
+ 328              		.loc 1 71 5 is_stmt 1 view .LVU51
+ 329              		.loc 1 71 13 is_stmt 0 view .LVU52
+ 330 001a 3B0A     		lsrs	r3, r7, #8
+ 331 001c 8DF80430 		strb	r3, [sp, #4]
+  72:Core/Src/st7735.c ****     data[1] = xs & 0xFF;
+ 332              		.loc 1 72 5 is_stmt 1 view .LVU53
+ 333              		.loc 1 72 13 is_stmt 0 view .LVU54
+ 334 0020 8DF80570 		strb	r7, [sp, #5]
+  73:Core/Src/st7735.c ****     data[2] = (xe >> 8) & 0xFF;
+ 335              		.loc 1 73 5 is_stmt 1 view .LVU55
+ 336              		.loc 1 73 13 is_stmt 0 view .LVU56
+ 337 0024 330A     		lsrs	r3, r6, #8
+ 338 0026 8DF80630 		strb	r3, [sp, #6]
+  74:Core/Src/st7735.c ****     data[3] = xe & 0xFF;
+ 339              		.loc 1 74 5 is_stmt 1 view .LVU57
+ 340              		.loc 1 74 13 is_stmt 0 view .LVU58
+ 341 002a 8DF80760 		strb	r6, [sp, #7]
+  75:Core/Src/st7735.c ****     ST7735_WriteData(data, 4);
+ 342              		.loc 1 75 5 is_stmt 1 view .LVU59
+ 343 002e 01AE     		add	r6, sp, #4
+ 344              	.LVL37:
+ 345              		.loc 1 75 5 is_stmt 0 view .LVU60
+ 346 0030 0421     		movs	r1, #4
+ 347 0032 3046     		mov	r0, r6
+ 348 0034 FFF7FEFF 		bl	ST7735_WriteData
+ 349              	.LVL38:
+  76:Core/Src/st7735.c **** 
+  77:Core/Src/st7735.c ****     /* Row address set */
+  78:Core/Src/st7735.c ****     ST7735_WriteCommand(0x2B);
+ 350              		.loc 1 78 5 is_stmt 1 view .LVU61
+ 351 0038 2B20     		movs	r0, #43
+ 352 003a FFF7FEFF 		bl	ST7735_WriteCommand
+ 353              	.LVL39:
+  79:Core/Src/st7735.c ****     data[0] = (ys >> 8) & 0xFF;
+ 354              		.loc 1 79 5 view .LVU62
+ 355              		.loc 1 79 13 is_stmt 0 view .LVU63
+ 356 003e 2B0A     		lsrs	r3, r5, #8
+ 357 0040 8DF80430 		strb	r3, [sp, #4]
+  80:Core/Src/st7735.c ****     data[1] = ys & 0xFF;
+ 358              		.loc 1 80 5 is_stmt 1 view .LVU64
+ 359              		.loc 1 80 13 is_stmt 0 view .LVU65
+ 360 0044 8DF80550 		strb	r5, [sp, #5]
+  81:Core/Src/st7735.c ****     data[2] = (ye >> 8) & 0xFF;
+ 361              		.loc 1 81 5 is_stmt 1 view .LVU66
+ 362              		.loc 1 81 13 is_stmt 0 view .LVU67
+ 363 0048 230A     		lsrs	r3, r4, #8
+ 364 004a 8DF80630 		strb	r3, [sp, #6]
+  82:Core/Src/st7735.c ****     data[3] = ye & 0xFF;
+ 365              		.loc 1 82 5 is_stmt 1 view .LVU68
+ 366              		.loc 1 82 13 is_stmt 0 view .LVU69
+ 367 004e 8DF80740 		strb	r4, [sp, #7]
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 9
+
+
+  83:Core/Src/st7735.c ****     ST7735_WriteData(data, 4);
+ 368              		.loc 1 83 5 is_stmt 1 view .LVU70
+ 369 0052 0421     		movs	r1, #4
+ 370 0054 3046     		mov	r0, r6
+ 371 0056 FFF7FEFF 		bl	ST7735_WriteData
+ 372              	.LVL40:
+  84:Core/Src/st7735.c **** 
+  85:Core/Src/st7735.c ****     /* RAM write */
+  86:Core/Src/st7735.c ****     ST7735_WriteCommand(0x2C);
+ 373              		.loc 1 86 5 view .LVU71
+ 374 005a 2C20     		movs	r0, #44
+ 375 005c FFF7FEFF 		bl	ST7735_WriteCommand
+ 376              	.LVL41:
+  87:Core/Src/st7735.c **** }
+ 377              		.loc 1 87 1 is_stmt 0 view .LVU72
+ 378 0060 03B0     		add	sp, sp, #12
+ 379              	.LCFI10:
+ 380              		.cfi_def_cfa_offset 20
+ 381              		@ sp needed
+ 382 0062 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 383              		.loc 1 87 1 view .LVU73
+ 384              		.cfi_endproc
+ 385              	.LFE232:
+ 387              		.section	.text.ST7735_DrawPixel,"ax",%progbits
+ 388              		.align	1
+ 389              		.global	ST7735_DrawPixel
+ 390              		.syntax unified
+ 391              		.thumb
+ 392              		.thumb_func
+ 394              	ST7735_DrawPixel:
+ 395              	.LVL42:
+ 396              	.LFB233:
+  88:Core/Src/st7735.c **** 
+  89:Core/Src/st7735.c **** /*-------------------- 画点 --------------------*/
+  90:Core/Src/st7735.c **** void ST7735_DrawPixel(uint16_t x, uint16_t y, uint16_t color)
+  91:Core/Src/st7735.c **** {
+ 397              		.loc 1 91 1 is_stmt 1 view -0
+ 398              		.cfi_startproc
+ 399              		@ args = 0, pretend = 0, frame = 8
+ 400              		@ frame_needed = 0, uses_anonymous_args = 0
+  92:Core/Src/st7735.c ****     uint8_t data[2];
+ 401              		.loc 1 92 5 view .LVU75
+  93:Core/Src/st7735.c **** 
+  94:Core/Src/st7735.c ****     if (x >= ST7735_WIDTH || y >= ST7735_HEIGHT)
+ 402              		.loc 1 94 5 view .LVU76
+ 403              		.loc 1 94 8 is_stmt 0 view .LVU77
+ 404 0000 4F28     		cmp	r0, #79
+ 405 0002 14D8     		bhi	.L24
+  91:Core/Src/st7735.c ****     uint8_t data[2];
+ 406              		.loc 1 91 1 view .LVU78
+ 407 0004 10B5     		push	{r4, lr}
+ 408              	.LCFI11:
+ 409              		.cfi_def_cfa_offset 8
+ 410              		.cfi_offset 4, -8
+ 411              		.cfi_offset 14, -4
+ 412 0006 82B0     		sub	sp, sp, #8
+ 413              	.LCFI12:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 10
+
+
+ 414              		.cfi_def_cfa_offset 16
+ 415 0008 1446     		mov	r4, r2
+ 416              		.loc 1 94 27 discriminator 1 view .LVU79
+ 417 000a 9F29     		cmp	r1, #159
+ 418 000c 01D9     		bls	.L27
+ 419              	.LVL43:
+ 420              	.L19:
+  95:Core/Src/st7735.c ****         return;
+  96:Core/Src/st7735.c **** 
+  97:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x, y);
+  98:Core/Src/st7735.c **** 
+  99:Core/Src/st7735.c ****     data[0] = (color >> 8) & 0xFF;
+ 100:Core/Src/st7735.c ****     data[1] = color & 0xFF;
+ 101:Core/Src/st7735.c ****     ST7735_WriteData(data, 2);
+ 102:Core/Src/st7735.c **** }
+ 421              		.loc 1 102 1 view .LVU80
+ 422 000e 02B0     		add	sp, sp, #8
+ 423              	.LCFI13:
+ 424              		.cfi_remember_state
+ 425              		.cfi_def_cfa_offset 8
+ 426              		@ sp needed
+ 427 0010 10BD     		pop	{r4, pc}
+ 428              	.LVL44:
+ 429              	.L27:
+ 430              	.LCFI14:
+ 431              		.cfi_restore_state
+  97:Core/Src/st7735.c **** 
+ 432              		.loc 1 97 5 is_stmt 1 view .LVU81
+ 433 0012 0B46     		mov	r3, r1
+ 434 0014 0246     		mov	r2, r0
+ 435              	.LVL45:
+  97:Core/Src/st7735.c **** 
+ 436              		.loc 1 97 5 is_stmt 0 view .LVU82
+ 437 0016 FFF7FEFF 		bl	ST7735_SetAddressWindow
+ 438              	.LVL46:
+  99:Core/Src/st7735.c ****     data[1] = color & 0xFF;
+ 439              		.loc 1 99 5 is_stmt 1 view .LVU83
+  99:Core/Src/st7735.c ****     data[1] = color & 0xFF;
+ 440              		.loc 1 99 13 is_stmt 0 view .LVU84
+ 441 001a 230A     		lsrs	r3, r4, #8
+ 442 001c 8DF80430 		strb	r3, [sp, #4]
+ 100:Core/Src/st7735.c ****     ST7735_WriteData(data, 2);
+ 443              		.loc 1 100 5 is_stmt 1 view .LVU85
+ 100:Core/Src/st7735.c ****     ST7735_WriteData(data, 2);
+ 444              		.loc 1 100 13 is_stmt 0 view .LVU86
+ 445 0020 8DF80540 		strb	r4, [sp, #5]
+ 101:Core/Src/st7735.c **** }
+ 446              		.loc 1 101 5 is_stmt 1 view .LVU87
+ 447 0024 0221     		movs	r1, #2
+ 448 0026 01A8     		add	r0, sp, #4
+ 449 0028 FFF7FEFF 		bl	ST7735_WriteData
+ 450              	.LVL47:
+ 451 002c EFE7     		b	.L19
+ 452              	.LVL48:
+ 453              	.L24:
+ 454              	.LCFI15:
+ 455              		.cfi_def_cfa_offset 0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 11
+
+
+ 456              		.cfi_restore 4
+ 457              		.cfi_restore 14
+ 101:Core/Src/st7735.c **** }
+ 458              		.loc 1 101 5 is_stmt 0 view .LVU88
+ 459 002e 7047     		bx	lr
+ 460              		.cfi_endproc
+ 461              	.LFE233:
+ 463              		.section	.text.ST7735_FillRect,"ax",%progbits
+ 464              		.align	1
+ 465              		.global	ST7735_FillRect
+ 466              		.syntax unified
+ 467              		.thumb
+ 468              		.thumb_func
+ 470              	ST7735_FillRect:
+ 471              	.LVL49:
+ 472              	.LFB234:
+ 103:Core/Src/st7735.c **** 
+ 104:Core/Src/st7735.c **** /*-------------------- 填充矩形 --------------------*/
+ 105:Core/Src/st7735.c **** void ST7735_FillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
+ 106:Core/Src/st7735.c **** {
+ 473              		.loc 1 106 1 is_stmt 1 view -0
+ 474              		.cfi_startproc
+ 475              		@ args = 4, pretend = 0, frame = 8
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477              		.loc 1 106 1 is_stmt 0 view .LVU90
+ 478 0000 70B5     		push	{r4, r5, r6, lr}
+ 479              	.LCFI16:
+ 480              		.cfi_def_cfa_offset 16
+ 481              		.cfi_offset 4, -16
+ 482              		.cfi_offset 5, -12
+ 483              		.cfi_offset 6, -8
+ 484              		.cfi_offset 14, -4
+ 485 0002 82B0     		sub	sp, sp, #8
+ 486              	.LCFI17:
+ 487              		.cfi_def_cfa_offset 24
+ 488 0004 BDF81840 		ldrh	r4, [sp, #24]
+ 107:Core/Src/st7735.c ****     uint8_t data[2];
+ 489              		.loc 1 107 5 is_stmt 1 view .LVU91
+ 108:Core/Src/st7735.c **** 
+ 109:Core/Src/st7735.c ****     if (x >= ST7735_WIDTH || y >= ST7735_HEIGHT)
+ 490              		.loc 1 109 5 view .LVU92
+ 491              		.loc 1 109 8 is_stmt 0 view .LVU93
+ 492 0008 4F28     		cmp	r0, #79
+ 493 000a 3DD8     		bhi	.L28
+ 494 000c 1646     		mov	r6, r2
+ 495 000e 1D46     		mov	r5, r3
+ 496              		.loc 1 109 27 discriminator 1 view .LVU94
+ 497 0010 9F29     		cmp	r1, #159
+ 498 0012 39D8     		bhi	.L28
+ 110:Core/Src/st7735.c ****         return;
+ 111:Core/Src/st7735.c **** 
+ 112:Core/Src/st7735.c ****     if ((x + w) > ST7735_WIDTH)
+ 499              		.loc 1 112 5 is_stmt 1 view .LVU95
+ 500              		.loc 1 112 12 is_stmt 0 view .LVU96
+ 501 0014 8318     		adds	r3, r0, r2
+ 502              	.LVL50:
+ 503              		.loc 1 112 8 view .LVU97
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 12
+
+
+ 504 0016 502B     		cmp	r3, #80
+ 505 0018 02DD     		ble	.L32
+ 113:Core/Src/st7735.c ****         w = ST7735_WIDTH - x;
+ 506              		.loc 1 113 9 is_stmt 1 view .LVU98
+ 507              		.loc 1 113 11 is_stmt 0 view .LVU99
+ 508 001a C0F15006 		rsb	r6, r0, #80
+ 509 001e B6B2     		uxth	r6, r6
+ 510              	.L32:
+ 511              	.LVL51:
+ 114:Core/Src/st7735.c **** 
+ 115:Core/Src/st7735.c ****     if ((y + h) > ST7735_HEIGHT)
+ 512              		.loc 1 115 5 is_stmt 1 view .LVU100
+ 513              		.loc 1 115 12 is_stmt 0 view .LVU101
+ 514 0020 4B19     		adds	r3, r1, r5
+ 515              		.loc 1 115 8 view .LVU102
+ 516 0022 A02B     		cmp	r3, #160
+ 517 0024 02DD     		ble	.L33
+ 116:Core/Src/st7735.c ****         h = ST7735_HEIGHT - y;
+ 518              		.loc 1 116 9 is_stmt 1 view .LVU103
+ 519              		.loc 1 116 11 is_stmt 0 view .LVU104
+ 520 0026 C1F1A005 		rsb	r5, r1, #160
+ 521              	.LVL52:
+ 522              		.loc 1 116 11 view .LVU105
+ 523 002a ADB2     		uxth	r5, r5
+ 524              	.L33:
+ 525              	.LVL53:
+ 117:Core/Src/st7735.c **** 
+ 118:Core/Src/st7735.c ****     ST7735_SetAddressWindow(x, y, x + w - 1, y + h - 1);
+ 526              		.loc 1 118 5 is_stmt 1 view .LVU106
+ 527              		.loc 1 118 37 is_stmt 0 view .LVU107
+ 528 002c 3218     		adds	r2, r6, r0
+ 529 002e 92B2     		uxth	r2, r2
+ 530              		.loc 1 118 48 view .LVU108
+ 531 0030 6B18     		adds	r3, r5, r1
+ 532 0032 9BB2     		uxth	r3, r3
+ 533              		.loc 1 118 5 view .LVU109
+ 534 0034 013B     		subs	r3, r3, #1
+ 535 0036 013A     		subs	r2, r2, #1
+ 536 0038 9BB2     		uxth	r3, r3
+ 537 003a 92B2     		uxth	r2, r2
+ 538 003c FFF7FEFF 		bl	ST7735_SetAddressWindow
+ 539              	.LVL54:
+ 119:Core/Src/st7735.c **** 
+ 120:Core/Src/st7735.c ****     data[0] = (color >> 8) & 0xFF;
+ 540              		.loc 1 120 5 is_stmt 1 view .LVU110
+ 541              		.loc 1 120 13 is_stmt 0 view .LVU111
+ 542 0040 230A     		lsrs	r3, r4, #8
+ 543 0042 8DF80430 		strb	r3, [sp, #4]
+ 121:Core/Src/st7735.c ****     data[1] = color & 0xFF;
+ 544              		.loc 1 121 5 is_stmt 1 view .LVU112
+ 545              		.loc 1 121 13 is_stmt 0 view .LVU113
+ 546 0046 8DF80540 		strb	r4, [sp, #5]
+ 122:Core/Src/st7735.c **** 
+ 123:Core/Src/st7735.c ****     LCD_CS_LOW();
+ 547              		.loc 1 123 5 is_stmt 1 view .LVU114
+ 548 004a 0022     		movs	r2, #0
+ 549 004c 0821     		movs	r1, #8
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 13
+
+
+ 550 004e 4FF09040 		mov	r0, #1207959552
+ 551 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 552              	.LVL55:
+ 124:Core/Src/st7735.c ****     LCD_DC_HIGH();
+ 553              		.loc 1 124 5 view .LVU115
+ 554 0056 0122     		movs	r2, #1
+ 555 0058 1146     		mov	r1, r2
+ 556 005a 0C48     		ldr	r0, .L37
+ 557 005c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 558              	.LVL56:
+ 125:Core/Src/st7735.c **** 
+ 126:Core/Src/st7735.c ****     for (uint32_t i = 0; i < (uint32_t)w * h; i++)
+ 559              		.loc 1 126 5 view .LVU116
+ 560              	.LBB2:
+ 561              		.loc 1 126 10 view .LVU117
+ 562              		.loc 1 126 19 is_stmt 0 view .LVU118
+ 563 0060 0024     		movs	r4, #0
+ 564              		.loc 1 126 5 view .LVU119
+ 565 0062 07E0     		b	.L34
+ 566              	.LVL57:
+ 567              	.L35:
+ 127:Core/Src/st7735.c ****     {
+ 128:Core/Src/st7735.c ****         HAL_SPI_Transmit(&hspi2, data, 2, HAL_MAX_DELAY);
+ 568              		.loc 1 128 9 is_stmt 1 view .LVU120
+ 569 0064 4FF0FF33 		mov	r3, #-1
+ 570 0068 0222     		movs	r2, #2
+ 571 006a 01A9     		add	r1, sp, #4
+ 572 006c 0848     		ldr	r0, .L37+4
+ 573 006e FFF7FEFF 		bl	HAL_SPI_Transmit
+ 574              	.LVL58:
+ 126:Core/Src/st7735.c ****     {
+ 575              		.loc 1 126 48 discriminator 3 view .LVU121
+ 576 0072 0134     		adds	r4, r4, #1
+ 577              	.LVL59:
+ 578              	.L34:
+ 126:Core/Src/st7735.c ****     {
+ 579              		.loc 1 126 28 discriminator 1 view .LVU122
+ 126:Core/Src/st7735.c ****     {
+ 580              		.loc 1 126 42 is_stmt 0 discriminator 1 view .LVU123
+ 581 0074 06FB05F3 		mul	r3, r6, r5
+ 126:Core/Src/st7735.c ****     {
+ 582              		.loc 1 126 28 discriminator 1 view .LVU124
+ 583 0078 A342     		cmp	r3, r4
+ 584 007a F3D8     		bhi	.L35
+ 585              	.LBE2:
+ 129:Core/Src/st7735.c ****     }
+ 130:Core/Src/st7735.c **** 
+ 131:Core/Src/st7735.c ****     LCD_CS_HIGH();
+ 586              		.loc 1 131 5 is_stmt 1 view .LVU125
+ 587 007c 0122     		movs	r2, #1
+ 588 007e 0821     		movs	r1, #8
+ 589 0080 4FF09040 		mov	r0, #1207959552
+ 590 0084 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 591              	.LVL60:
+ 592              	.L28:
+ 132:Core/Src/st7735.c **** }
+ 593              		.loc 1 132 1 is_stmt 0 view .LVU126
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 14
+
+
+ 594 0088 02B0     		add	sp, sp, #8
+ 595              	.LCFI18:
+ 596              		.cfi_def_cfa_offset 16
+ 597              		@ sp needed
+ 598 008a 70BD     		pop	{r4, r5, r6, pc}
+ 599              	.LVL61:
+ 600              	.L38:
+ 601              		.loc 1 132 1 view .LVU127
+ 602              		.align	2
+ 603              	.L37:
+ 604 008c 00040048 		.word	1207960576
+ 605 0090 00000000 		.word	hspi2
+ 606              		.cfi_endproc
+ 607              	.LFE234:
+ 609              		.section	.text.ST7735_FillScreen,"ax",%progbits
+ 610              		.align	1
+ 611              		.global	ST7735_FillScreen
+ 612              		.syntax unified
+ 613              		.thumb
+ 614              		.thumb_func
+ 616              	ST7735_FillScreen:
+ 617              	.LVL62:
+ 618              	.LFB235:
+ 133:Core/Src/st7735.c **** 
+ 134:Core/Src/st7735.c **** /*-------------------- 整屏填充 --------------------*/
+ 135:Core/Src/st7735.c **** void ST7735_FillScreen(uint16_t color)
+ 136:Core/Src/st7735.c **** {
+ 619              		.loc 1 136 1 is_stmt 1 view -0
+ 620              		.cfi_startproc
+ 621              		@ args = 0, pretend = 0, frame = 0
+ 622              		@ frame_needed = 0, uses_anonymous_args = 0
+ 623              		.loc 1 136 1 is_stmt 0 view .LVU129
+ 624 0000 00B5     		push	{lr}
+ 625              	.LCFI19:
+ 626              		.cfi_def_cfa_offset 4
+ 627              		.cfi_offset 14, -4
+ 628 0002 83B0     		sub	sp, sp, #12
+ 629              	.LCFI20:
+ 630              		.cfi_def_cfa_offset 16
+ 137:Core/Src/st7735.c ****     ST7735_FillRect(0, 0, ST7735_WIDTH, ST7735_HEIGHT, color);
+ 631              		.loc 1 137 5 is_stmt 1 view .LVU130
+ 632 0004 0090     		str	r0, [sp]
+ 633 0006 A023     		movs	r3, #160
+ 634 0008 5022     		movs	r2, #80
+ 635 000a 0021     		movs	r1, #0
+ 636 000c 0846     		mov	r0, r1
+ 637              	.LVL63:
+ 638              		.loc 1 137 5 is_stmt 0 view .LVU131
+ 639 000e FFF7FEFF 		bl	ST7735_FillRect
+ 640              	.LVL64:
+ 138:Core/Src/st7735.c **** }
+ 641              		.loc 1 138 1 view .LVU132
+ 642 0012 03B0     		add	sp, sp, #12
+ 643              	.LCFI21:
+ 644              		.cfi_def_cfa_offset 4
+ 645              		@ sp needed
+ 646 0014 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 15
+
+
+ 647              		.cfi_endproc
+ 648              	.LFE235:
+ 650              		.section	.rodata.ST7735_Init.str1.4,"aMS",%progbits,1
+ 651              		.align	2
+ 652              	.LC0:
+ 653 0000 053C3C00 		.ascii	"\005<<\000"
+ 654              		.align	2
+ 655              	.LC1:
+ 656 0004 053C3C05 		.ascii	"\005<<\005<<\000"
+ 656      3C3C00
+ 657 000b 00       		.align	2
+ 658              	.LC2:
+ 659 000c 0E0E0400 		.ascii	"\016\016\004\000"
+ 660              		.section	.text.ST7735_Init,"ax",%progbits
+ 661              		.align	1
+ 662              		.global	ST7735_Init
+ 663              		.syntax unified
+ 664              		.thumb
+ 665              		.thumb_func
+ 667              	ST7735_Init:
+ 668              	.LFB236:
+ 139:Core/Src/st7735.c **** 
+ 140:Core/Src/st7735.c **** /*-------------------- 初始化 --------------------*/
+ 141:Core/Src/st7735.c **** void ST7735_Init(void)
+ 142:Core/Src/st7735.c **** {
+ 669              		.loc 1 142 1 is_stmt 1 view -0
+ 670              		.cfi_startproc
+ 671              		@ args = 0, pretend = 0, frame = 16
+ 672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 673 0000 70B5     		push	{r4, r5, r6, lr}
+ 674              	.LCFI22:
+ 675              		.cfi_def_cfa_offset 16
+ 676              		.cfi_offset 4, -16
+ 677              		.cfi_offset 5, -12
+ 678              		.cfi_offset 6, -8
+ 679              		.cfi_offset 14, -4
+ 680 0002 84B0     		sub	sp, sp, #16
+ 681              	.LCFI23:
+ 682              		.cfi_def_cfa_offset 32
+ 143:Core/Src/st7735.c ****     /* 空闲状态 */
+ 144:Core/Src/st7735.c ****     LCD_CS_HIGH();
+ 683              		.loc 1 144 5 view .LVU134
+ 684 0004 0122     		movs	r2, #1
+ 685 0006 0821     		movs	r1, #8
+ 686 0008 4FF09040 		mov	r0, #1207959552
+ 687 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 688              	.LVL65:
+ 145:Core/Src/st7735.c ****     LCD_DC_HIGH();
+ 689              		.loc 1 145 5 view .LVU135
+ 690 0010 5C4C     		ldr	r4, .L43
+ 691 0012 0122     		movs	r2, #1
+ 692 0014 1146     		mov	r1, r2
+ 693 0016 2046     		mov	r0, r4
+ 694 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 695              	.LVL66:
+ 146:Core/Src/st7735.c ****     LCD_RST_HIGH();
+ 696              		.loc 1 146 5 view .LVU136
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 16
+
+
+ 697 001c 0122     		movs	r2, #1
+ 698 001e 0221     		movs	r1, #2
+ 699 0020 2046     		mov	r0, r4
+ 700 0022 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 701              	.LVL67:
+ 147:Core/Src/st7735.c **** 
+ 148:Core/Src/st7735.c ****     /* 开背光 */
+ 149:Core/Src/st7735.c ****     LCD_BL_HIGH();
+ 702              		.loc 1 149 5 view .LVU137
+ 703 0026 0122     		movs	r2, #1
+ 704 0028 0421     		movs	r1, #4
+ 705 002a 2046     		mov	r0, r4
+ 706 002c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 707              	.LVL68:
+ 150:Core/Src/st7735.c **** 
+ 151:Core/Src/st7735.c ****     /* 硬复位 */
+ 152:Core/Src/st7735.c ****     ST7735_Reset();
+ 708              		.loc 1 152 5 view .LVU138
+ 709 0030 FFF7FEFF 		bl	ST7735_Reset
+ 710              	.LVL69:
+ 153:Core/Src/st7735.c **** 
+ 154:Core/Src/st7735.c ****     /* Sleep Out */
+ 155:Core/Src/st7735.c ****     ST7735_WriteCommand(0x11);
+ 711              		.loc 1 155 5 view .LVU139
+ 712 0034 1120     		movs	r0, #17
+ 713 0036 FFF7FEFF 		bl	ST7735_WriteCommand
+ 714              	.LVL70:
+ 156:Core/Src/st7735.c ****     HAL_Delay(120);
+ 715              		.loc 1 156 5 view .LVU140
+ 716 003a 7820     		movs	r0, #120
+ 717 003c FFF7FEFF 		bl	HAL_Delay
+ 718              	.LVL71:
+ 157:Core/Src/st7735.c **** 
+ 158:Core/Src/st7735.c ****     /* Memory Data Access Control
+ 159:Core/Src/st7735.c ****        厂家例程 USE_HORIZONTAL == 1 时用的是 0x08
+ 160:Core/Src/st7735.c ****        这一版先按厂家给的方向来
+ 161:Core/Src/st7735.c ****     */
+ 162:Core/Src/st7735.c ****     ST7735_WriteCommand(0x36);
+ 719              		.loc 1 162 5 view .LVU141
+ 720 0040 3620     		movs	r0, #54
+ 721 0042 FFF7FEFF 		bl	ST7735_WriteCommand
+ 722              	.LVL72:
+ 163:Core/Src/st7735.c ****     ST7735_WriteDataByte(0x08);
+ 723              		.loc 1 163 5 view .LVU142
+ 724 0046 0820     		movs	r0, #8
+ 725 0048 FFF7FEFF 		bl	ST7735_WriteDataByte
+ 726              	.LVL73:
+ 164:Core/Src/st7735.c **** 
+ 165:Core/Src/st7735.c ****     /* Frame Rate Control */
+ 166:Core/Src/st7735.c ****     ST7735_WriteCommand(0xB1);
+ 727              		.loc 1 166 5 view .LVU143
+ 728 004c B120     		movs	r0, #177
+ 729 004e FFF7FEFF 		bl	ST7735_WriteCommand
+ 730              	.LVL74:
+ 731              	.LBB3:
+ 167:Core/Src/st7735.c ****     {
+ 168:Core/Src/st7735.c ****         uint8_t data[] = {0x05, 0x3C, 0x3C};
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 17
+
+
+ 732              		.loc 1 168 9 view .LVU144
+ 733              		.loc 1 168 17 is_stmt 0 view .LVU145
+ 734 0052 4D4B     		ldr	r3, .L43+4
+ 735 0054 1D68     		ldr	r5, [r3]
+ 736 0056 ADF80050 		strh	r5, [sp]	@ movhi
+ 737 005a 2E0C     		lsrs	r6, r5, #16
+ 738 005c 8DF80260 		strb	r6, [sp, #2]
+ 169:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 739              		.loc 1 169 9 is_stmt 1 view .LVU146
+ 740 0060 0321     		movs	r1, #3
+ 741 0062 6846     		mov	r0, sp
+ 742 0064 FFF7FEFF 		bl	ST7735_WriteData
+ 743              	.LVL75:
+ 744              	.LBE3:
+ 170:Core/Src/st7735.c ****     }
+ 171:Core/Src/st7735.c **** 
+ 172:Core/Src/st7735.c ****     ST7735_WriteCommand(0xB2);
+ 745              		.loc 1 172 5 view .LVU147
+ 746 0068 B220     		movs	r0, #178
+ 747 006a FFF7FEFF 		bl	ST7735_WriteCommand
+ 748              	.LVL76:
+ 749              	.LBB4:
+ 173:Core/Src/st7735.c ****     {
+ 174:Core/Src/st7735.c ****         uint8_t data[] = {0x05, 0x3C, 0x3C};
+ 750              		.loc 1 174 9 view .LVU148
+ 751              		.loc 1 174 17 is_stmt 0 view .LVU149
+ 752 006e ADF80050 		strh	r5, [sp]	@ movhi
+ 753 0072 8DF80260 		strb	r6, [sp, #2]
+ 175:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 754              		.loc 1 175 9 is_stmt 1 view .LVU150
+ 755 0076 0321     		movs	r1, #3
+ 756 0078 6846     		mov	r0, sp
+ 757 007a FFF7FEFF 		bl	ST7735_WriteData
+ 758              	.LVL77:
+ 759              	.LBE4:
+ 176:Core/Src/st7735.c ****     }
+ 177:Core/Src/st7735.c **** 
+ 178:Core/Src/st7735.c ****     ST7735_WriteCommand(0xB3);
+ 760              		.loc 1 178 5 view .LVU151
+ 761 007e B320     		movs	r0, #179
+ 762 0080 FFF7FEFF 		bl	ST7735_WriteCommand
+ 763              	.LVL78:
+ 764              	.LBB5:
+ 179:Core/Src/st7735.c ****     {
+ 180:Core/Src/st7735.c ****         uint8_t data[] = {0x05, 0x3C, 0x3C, 0x05, 0x3C, 0x3C};
+ 765              		.loc 1 180 9 view .LVU152
+ 766              		.loc 1 180 17 is_stmt 0 view .LVU153
+ 767 0084 414B     		ldr	r3, .L43+8
+ 768 0086 93E80300 		ldm	r3, {r0, r1}
+ 769 008a 0090     		str	r0, [sp]
+ 770 008c ADF80410 		strh	r1, [sp, #4]	@ movhi
+ 181:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 771              		.loc 1 181 9 is_stmt 1 view .LVU154
+ 772 0090 0621     		movs	r1, #6
+ 773 0092 6846     		mov	r0, sp
+ 774 0094 FFF7FEFF 		bl	ST7735_WriteData
+ 775              	.LVL79:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 18
+
+
+ 776              	.LBE5:
+ 182:Core/Src/st7735.c ****     }
+ 183:Core/Src/st7735.c **** 
+ 184:Core/Src/st7735.c ****     /* Dot inversion */
+ 185:Core/Src/st7735.c ****     ST7735_WriteCommand(0xB4);
+ 777              		.loc 1 185 5 view .LVU155
+ 778 0098 B420     		movs	r0, #180
+ 779 009a FFF7FEFF 		bl	ST7735_WriteCommand
+ 780              	.LVL80:
+ 186:Core/Src/st7735.c ****     ST7735_WriteDataByte(0x03);
+ 781              		.loc 1 186 5 view .LVU156
+ 782 009e 0320     		movs	r0, #3
+ 783 00a0 FFF7FEFF 		bl	ST7735_WriteDataByte
+ 784              	.LVL81:
+ 187:Core/Src/st7735.c **** 
+ 188:Core/Src/st7735.c ****     /* Power Sequence - 按厂家例程 */
+ 189:Core/Src/st7735.c ****     ST7735_WriteCommand(0xC0);
+ 785              		.loc 1 189 5 view .LVU157
+ 786 00a4 C020     		movs	r0, #192
+ 787 00a6 FFF7FEFF 		bl	ST7735_WriteCommand
+ 788              	.LVL82:
+ 789              	.LBB6:
+ 190:Core/Src/st7735.c ****     {
+ 191:Core/Src/st7735.c ****         uint8_t data[] = {0x0E, 0x0E, 0x04};
+ 790              		.loc 1 191 9 view .LVU158
+ 791              		.loc 1 191 17 is_stmt 0 view .LVU159
+ 792 00aa 394B     		ldr	r3, .L43+12
+ 793 00ac 1B68     		ldr	r3, [r3]
+ 794 00ae ADF80030 		strh	r3, [sp]	@ movhi
+ 795 00b2 1B0C     		lsrs	r3, r3, #16
+ 796 00b4 8DF80230 		strb	r3, [sp, #2]
+ 192:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 797              		.loc 1 192 9 is_stmt 1 view .LVU160
+ 798 00b8 0321     		movs	r1, #3
+ 799 00ba 6846     		mov	r0, sp
+ 800 00bc FFF7FEFF 		bl	ST7735_WriteData
+ 801              	.LVL83:
+ 802              	.LBE6:
+ 193:Core/Src/st7735.c ****     }
+ 194:Core/Src/st7735.c **** 
+ 195:Core/Src/st7735.c ****     ST7735_WriteCommand(0xC1);
+ 803              		.loc 1 195 5 view .LVU161
+ 804 00c0 C120     		movs	r0, #193
+ 805 00c2 FFF7FEFF 		bl	ST7735_WriteCommand
+ 806              	.LVL84:
+ 196:Core/Src/st7735.c ****     ST7735_WriteDataByte(0xC0);
+ 807              		.loc 1 196 5 view .LVU162
+ 808 00c6 C020     		movs	r0, #192
+ 809 00c8 FFF7FEFF 		bl	ST7735_WriteDataByte
+ 810              	.LVL85:
+ 197:Core/Src/st7735.c **** 
+ 198:Core/Src/st7735.c ****     ST7735_WriteCommand(0xC2);
+ 811              		.loc 1 198 5 view .LVU163
+ 812 00cc C220     		movs	r0, #194
+ 813 00ce FFF7FEFF 		bl	ST7735_WriteCommand
+ 814              	.LVL86:
+ 815              	.LBB7:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 19
+
+
+ 199:Core/Src/st7735.c ****     {
+ 200:Core/Src/st7735.c ****         uint8_t data[] = {0x0D, 0x00};
+ 816              		.loc 1 200 9 view .LVU164
+ 817              		.loc 1 200 17 is_stmt 0 view .LVU165
+ 818 00d2 0D23     		movs	r3, #13
+ 819 00d4 ADF80030 		strh	r3, [sp]	@ movhi
+ 201:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 820              		.loc 1 201 9 is_stmt 1 view .LVU166
+ 821 00d8 0221     		movs	r1, #2
+ 822 00da 6846     		mov	r0, sp
+ 823 00dc FFF7FEFF 		bl	ST7735_WriteData
+ 824              	.LVL87:
+ 825              	.LBE7:
+ 202:Core/Src/st7735.c ****     }
+ 203:Core/Src/st7735.c **** 
+ 204:Core/Src/st7735.c ****     ST7735_WriteCommand(0xC3);
+ 826              		.loc 1 204 5 view .LVU167
+ 827 00e0 C320     		movs	r0, #195
+ 828 00e2 FFF7FEFF 		bl	ST7735_WriteCommand
+ 829              	.LVL88:
+ 830              	.LBB8:
+ 205:Core/Src/st7735.c ****     {
+ 206:Core/Src/st7735.c ****         uint8_t data[] = {0x8D, 0x2A};
+ 831              		.loc 1 206 9 view .LVU168
+ 832              		.loc 1 206 17 is_stmt 0 view .LVU169
+ 833 00e6 42F68D23 		movw	r3, #10893
+ 834 00ea ADF80030 		strh	r3, [sp]	@ movhi
+ 207:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 835              		.loc 1 207 9 is_stmt 1 view .LVU170
+ 836 00ee 0221     		movs	r1, #2
+ 837 00f0 6846     		mov	r0, sp
+ 838 00f2 FFF7FEFF 		bl	ST7735_WriteData
+ 839              	.LVL89:
+ 840              	.LBE8:
+ 208:Core/Src/st7735.c ****     }
+ 209:Core/Src/st7735.c **** 
+ 210:Core/Src/st7735.c ****     ST7735_WriteCommand(0xC4);
+ 841              		.loc 1 210 5 view .LVU171
+ 842 00f6 C420     		movs	r0, #196
+ 843 00f8 FFF7FEFF 		bl	ST7735_WriteCommand
+ 844              	.LVL90:
+ 845              	.LBB9:
+ 211:Core/Src/st7735.c ****     {
+ 212:Core/Src/st7735.c ****         uint8_t data[] = {0x8D, 0xEE};
+ 846              		.loc 1 212 9 view .LVU172
+ 847              		.loc 1 212 17 is_stmt 0 view .LVU173
+ 848 00fc 4EF68D63 		movw	r3, #61069
+ 849 0100 ADF80030 		strh	r3, [sp]	@ movhi
+ 213:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 850              		.loc 1 213 9 is_stmt 1 view .LVU174
+ 851 0104 0221     		movs	r1, #2
+ 852 0106 6846     		mov	r0, sp
+ 853 0108 FFF7FEFF 		bl	ST7735_WriteData
+ 854              	.LVL91:
+ 855              	.LBE9:
+ 214:Core/Src/st7735.c ****     }
+ 215:Core/Src/st7735.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 20
+
+
+ 216:Core/Src/st7735.c ****     /* VCOM */
+ 217:Core/Src/st7735.c ****     ST7735_WriteCommand(0xC5);
+ 856              		.loc 1 217 5 view .LVU175
+ 857 010c C520     		movs	r0, #197
+ 858 010e FFF7FEFF 		bl	ST7735_WriteCommand
+ 859              	.LVL92:
+ 218:Core/Src/st7735.c ****     ST7735_WriteDataByte(0x04);
+ 860              		.loc 1 218 5 view .LVU176
+ 861 0112 0420     		movs	r0, #4
+ 862 0114 FFF7FEFF 		bl	ST7735_WriteDataByte
+ 863              	.LVL93:
+ 219:Core/Src/st7735.c **** 
+ 220:Core/Src/st7735.c ****     /* 16-bit color */
+ 221:Core/Src/st7735.c ****     ST7735_WriteCommand(0x3A);
+ 864              		.loc 1 221 5 view .LVU177
+ 865 0118 3A20     		movs	r0, #58
+ 866 011a FFF7FEFF 		bl	ST7735_WriteCommand
+ 867              	.LVL94:
+ 222:Core/Src/st7735.c ****     ST7735_WriteDataByte(0x05);
+ 868              		.loc 1 222 5 view .LVU178
+ 869 011e 0520     		movs	r0, #5
+ 870 0120 FFF7FEFF 		bl	ST7735_WriteDataByte
+ 871              	.LVL95:
+ 223:Core/Src/st7735.c **** 
+ 224:Core/Src/st7735.c ****     /* Gamma - 按厂家例程 */
+ 225:Core/Src/st7735.c ****     ST7735_WriteCommand(0xE0);
+ 872              		.loc 1 225 5 view .LVU179
+ 873 0124 E020     		movs	r0, #224
+ 874 0126 FFF7FEFF 		bl	ST7735_WriteCommand
+ 875              	.LVL96:
+ 876              	.LBB10:
+ 226:Core/Src/st7735.c ****     {
+ 227:Core/Src/st7735.c ****         uint8_t data[] = {
+ 877              		.loc 1 227 9 view .LVU180
+ 878              		.loc 1 227 17 is_stmt 0 view .LVU181
+ 879 012a 1A4D     		ldr	r5, .L43+16
+ 880 012c 95E80F00 		ldm	r5, {r0, r1, r2, r3}
+ 881 0130 8DE80F00 		stm	sp, {r0, r1, r2, r3}
+ 228:Core/Src/st7735.c ****             0x05, 0x1A, 0x0B, 0x15,
+ 229:Core/Src/st7735.c ****             0x3D, 0x38, 0x2E, 0x30,
+ 230:Core/Src/st7735.c ****             0x2D, 0x28, 0x30, 0x3B,
+ 231:Core/Src/st7735.c ****             0x00, 0x01, 0x02, 0x10
+ 232:Core/Src/st7735.c ****         };
+ 233:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 882              		.loc 1 233 9 is_stmt 1 view .LVU182
+ 883 0134 1021     		movs	r1, #16
+ 884 0136 6846     		mov	r0, sp
+ 885 0138 FFF7FEFF 		bl	ST7735_WriteData
+ 886              	.LVL97:
+ 887              	.LBE10:
+ 234:Core/Src/st7735.c ****     }
+ 235:Core/Src/st7735.c **** 
+ 236:Core/Src/st7735.c ****     ST7735_WriteCommand(0xE1);
+ 888              		.loc 1 236 5 view .LVU183
+ 889 013c E120     		movs	r0, #225
+ 890 013e FFF7FEFF 		bl	ST7735_WriteCommand
+ 891              	.LVL98:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 21
+
+
+ 892              	.LBB11:
+ 237:Core/Src/st7735.c ****     {
+ 238:Core/Src/st7735.c ****         uint8_t data[] = {
+ 893              		.loc 1 238 9 view .LVU184
+ 894              		.loc 1 238 17 is_stmt 0 view .LVU185
+ 895 0142 1035     		adds	r5, r5, #16
+ 896 0144 95E80F00 		ldm	r5, {r0, r1, r2, r3}
+ 897 0148 8DE80F00 		stm	sp, {r0, r1, r2, r3}
+ 239:Core/Src/st7735.c ****             0x05, 0x1A, 0x0B, 0x15,
+ 240:Core/Src/st7735.c ****             0x36, 0x2E, 0x28, 0x2B,
+ 241:Core/Src/st7735.c ****             0x2B, 0x28, 0x30, 0x3B,
+ 242:Core/Src/st7735.c ****             0x00, 0x01, 0x02, 0x10
+ 243:Core/Src/st7735.c ****         };
+ 244:Core/Src/st7735.c ****         ST7735_WriteData(data, sizeof(data));
+ 898              		.loc 1 244 9 is_stmt 1 view .LVU186
+ 899 014c 1021     		movs	r1, #16
+ 900 014e 6846     		mov	r0, sp
+ 901 0150 FFF7FEFF 		bl	ST7735_WriteData
+ 902              	.LVL99:
+ 903              	.LBE11:
+ 245:Core/Src/st7735.c ****     }
+ 246:Core/Src/st7735.c **** 
+ 247:Core/Src/st7735.c **** /* Display inversion ON */
+ 248:Core/Src/st7735.c **** ST7735_WriteCommand(0x21);
+ 904              		.loc 1 248 1 view .LVU187
+ 905 0154 2120     		movs	r0, #33
+ 906 0156 FFF7FEFF 		bl	ST7735_WriteCommand
+ 907              	.LVL100:
+ 249:Core/Src/st7735.c **** HAL_Delay(10);
+ 908              		.loc 1 249 1 view .LVU188
+ 909 015a 0A20     		movs	r0, #10
+ 910 015c FFF7FEFF 		bl	HAL_Delay
+ 911              	.LVL101:
+ 250:Core/Src/st7735.c **** 
+ 251:Core/Src/st7735.c **** /* Normal display on */
+ 252:Core/Src/st7735.c **** ST7735_WriteCommand(0x13);
+ 912              		.loc 1 252 1 view .LVU189
+ 913 0160 1320     		movs	r0, #19
+ 914 0162 FFF7FEFF 		bl	ST7735_WriteCommand
+ 915              	.LVL102:
+ 253:Core/Src/st7735.c **** HAL_Delay(10);
+ 916              		.loc 1 253 1 view .LVU190
+ 917 0166 0A20     		movs	r0, #10
+ 918 0168 FFF7FEFF 		bl	HAL_Delay
+ 919              	.LVL103:
+ 254:Core/Src/st7735.c **** 
+ 255:Core/Src/st7735.c **** /* Display on */
+ 256:Core/Src/st7735.c **** ST7735_WriteCommand(0x29);
+ 920              		.loc 1 256 1 view .LVU191
+ 921 016c 2920     		movs	r0, #41
+ 922 016e FFF7FEFF 		bl	ST7735_WriteCommand
+ 923              	.LVL104:
+ 257:Core/Src/st7735.c **** HAL_Delay(20);
+ 924              		.loc 1 257 1 view .LVU192
+ 925 0172 1420     		movs	r0, #20
+ 926 0174 FFF7FEFF 		bl	HAL_Delay
+ 927              	.LVL105:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 22
+
+
+ 258:Core/Src/st7735.c **** 
+ 259:Core/Src/st7735.c **** 
+ 260:Core/Src/st7735.c ****     /* 上电先清黑屏 */
+ 261:Core/Src/st7735.c ****     ST7735_FillScreen(ST7735_BLACK);
+ 928              		.loc 1 261 5 view .LVU193
+ 929 0178 0020     		movs	r0, #0
+ 930 017a FFF7FEFF 		bl	ST7735_FillScreen
+ 931              	.LVL106:
+ 262:Core/Src/st7735.c **** }...
+ 932              		.loc 1 262 1 is_stmt 0 view .LVU194
+ 933 017e 04B0     		add	sp, sp, #16
+ 934              	.LCFI24:
+ 935              		.cfi_def_cfa_offset 16
+ 936              		@ sp needed
+ 937 0180 70BD     		pop	{r4, r5, r6, pc}
+ 938              	.L44:
+ 939 0182 00BF     		.align	2
+ 940              	.L43:
+ 941 0184 00040048 		.word	1207960576
+ 942 0188 00000000 		.word	.LC0
+ 943 018c 04000000 		.word	.LC1
+ 944 0190 0C000000 		.word	.LC2
+ 945 0194 00000000 		.word	.LANCHOR0
+ 946              		.cfi_endproc
+ 947              	.LFE236:
+ 949              		.section	.rodata
+ 950              		.align	2
+ 951              		.set	.LANCHOR0,. + 0
+ 952              	.LC3:
+ 953 0000 051A0B15 		.ascii	"\005\032\013\025=8.0-(0;\000\001\002\020"
+ 953      3D382E30 
+ 953      2D28303B 
+ 953      00010210 
+ 954              	.LC4:
+ 955 0010 051A0B15 		.ascii	"\005\032\013\0256.(++(0;\000\001\002\020"
+ 955      362E282B 
+ 955      2B28303B 
+ 955      00010210 
+ 956              		.text
+ 957              	.Letext0:
+ 958              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 959              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 960              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ 961              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 962              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 963              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 964              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
+ 965              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ 966              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 967              		.file 11 "Core/Inc/st7735.h"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s 			page 23
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 st7735.c
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:21     .text.ST7735_WriteData:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:26     .text.ST7735_WriteData:00000000 ST7735_WriteData
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:79     .text.ST7735_WriteData:00000038 $d
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:85     .text.ST7735_WriteCommand:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:90     .text.ST7735_WriteCommand:00000000 ST7735_WriteCommand
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:142    .text.ST7735_WriteCommand:00000040 $d
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:148    .text.ST7735_WriteDataByte:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:153    .text.ST7735_WriteDataByte:00000000 ST7735_WriteDataByte
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:205    .text.ST7735_WriteDataByte:00000040 $d
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:211    .text.ST7735_Reset:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:216    .text.ST7735_Reset:00000000 ST7735_Reset
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:263    .text.ST7735_Reset:00000038 $d
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:268    .text.ST7735_SetAddressWindow:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:274    .text.ST7735_SetAddressWindow:00000000 ST7735_SetAddressWindow
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:388    .text.ST7735_DrawPixel:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:394    .text.ST7735_DrawPixel:00000000 ST7735_DrawPixel
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:464    .text.ST7735_FillRect:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:470    .text.ST7735_FillRect:00000000 ST7735_FillRect
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:604    .text.ST7735_FillRect:0000008c $d
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:610    .text.ST7735_FillScreen:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:616    .text.ST7735_FillScreen:00000000 ST7735_FillScreen
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:651    .rodata.ST7735_Init.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:661    .text.ST7735_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:667    .text.ST7735_Init:00000000 ST7735_Init
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:941    .text.ST7735_Init:00000184 $d
+C:\Users\solar\AppData\Local\Temp\ccxzOAAr.s:950    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_Transmit
+hspi2
+HAL_Delay

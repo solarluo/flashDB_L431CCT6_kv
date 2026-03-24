@@ -1,0 +1,298 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fal_flash_w25q64.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "BSP/src/fal_flash_w25q64.c"
+  20              		.section	.text.erase,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	erase:
+  27              	.LVL0:
+  28              	.LFB234:
+   1:BSP/src/fal_flash_w25q64.c **** #include "fal.h"
+   2:BSP/src/fal_flash_w25q64.c **** #include "w25q64.h"
+   3:BSP/src/fal_flash_w25q64.c **** 
+   4:BSP/src/fal_flash_w25q64.c **** #define W25Q64_FLASH_SIZE   (8 * 1024 * 1024)
+   5:BSP/src/fal_flash_w25q64.c **** #define W25Q64_SECTOR_SIZE  4096
+   6:BSP/src/fal_flash_w25q64.c **** 
+   7:BSP/src/fal_flash_w25q64.c **** static int init(void)
+   8:BSP/src/fal_flash_w25q64.c **** {
+   9:BSP/src/fal_flash_w25q64.c ****     W25Q64_Init();
+  10:BSP/src/fal_flash_w25q64.c ****     return 0;
+  11:BSP/src/fal_flash_w25q64.c **** }
+  12:BSP/src/fal_flash_w25q64.c **** 
+  13:BSP/src/fal_flash_w25q64.c **** static int read(long offset, uint8_t *buf, size_t size)
+  14:BSP/src/fal_flash_w25q64.c **** {
+  15:BSP/src/fal_flash_w25q64.c ****     W25Q64_Read(buf, offset, size);
+  16:BSP/src/fal_flash_w25q64.c ****     return size;
+  17:BSP/src/fal_flash_w25q64.c **** }
+  18:BSP/src/fal_flash_w25q64.c **** 
+  19:BSP/src/fal_flash_w25q64.c **** static int write(long offset, const uint8_t *buf, size_t size)
+  20:BSP/src/fal_flash_w25q64.c **** {
+  21:BSP/src/fal_flash_w25q64.c ****     W25Q64_Write((uint8_t *)buf, offset, size);
+  22:BSP/src/fal_flash_w25q64.c ****     return size;
+  23:BSP/src/fal_flash_w25q64.c **** }
+  24:BSP/src/fal_flash_w25q64.c **** 
+  25:BSP/src/fal_flash_w25q64.c **** static int erase(long offset, size_t size)
+  26:BSP/src/fal_flash_w25q64.c **** {
+  29              		.loc 1 26 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s 			page 2
+
+
+  33              		.loc 1 26 1 is_stmt 0 view .LVU1
+  34 0000 38B5     		push	{r3, r4, r5, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 3, -16
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0546     		mov	r5, r0
+  42 0004 0C46     		mov	r4, r1
+  27:BSP/src/fal_flash_w25q64.c ****     while (size > 0)
+  43              		.loc 1 27 5 is_stmt 1 view .LVU2
+  44              		.loc 1 27 11 is_stmt 0 view .LVU3
+  45 0006 01E0     		b	.L2
+  46              	.LVL1:
+  47              	.L6:
+  28:BSP/src/fal_flash_w25q64.c ****     {
+  29:BSP/src/fal_flash_w25q64.c ****         W25Q64_EraseSector(offset);
+  30:BSP/src/fal_flash_w25q64.c ****         offset += W25Q64_SECTOR_SIZE;
+  31:BSP/src/fal_flash_w25q64.c **** 
+  32:BSP/src/fal_flash_w25q64.c ****         if (size > W25Q64_SECTOR_SIZE)
+  33:BSP/src/fal_flash_w25q64.c ****             size -= W25Q64_SECTOR_SIZE;
+  48              		.loc 1 33 13 is_stmt 1 view .LVU4
+  49              		.loc 1 33 18 is_stmt 0 view .LVU5
+  50 0008 A4F58054 		sub	r4, r4, #4096
+  51              	.LVL2:
+  52              	.L2:
+  27:BSP/src/fal_flash_w25q64.c ****     while (size > 0)
+  53              		.loc 1 27 17 is_stmt 1 view .LVU6
+  54 000c 3CB1     		cbz	r4, .L3
+  29:BSP/src/fal_flash_w25q64.c ****         offset += W25Q64_SECTOR_SIZE;
+  55              		.loc 1 29 9 view .LVU7
+  56 000e 2846     		mov	r0, r5
+  57 0010 FFF7FEFF 		bl	W25Q64_EraseSector
+  58              	.LVL3:
+  30:BSP/src/fal_flash_w25q64.c **** 
+  59              		.loc 1 30 9 view .LVU8
+  30:BSP/src/fal_flash_w25q64.c **** 
+  60              		.loc 1 30 16 is_stmt 0 view .LVU9
+  61 0014 05F58055 		add	r5, r5, #4096
+  62              	.LVL4:
+  32:BSP/src/fal_flash_w25q64.c ****             size -= W25Q64_SECTOR_SIZE;
+  63              		.loc 1 32 9 is_stmt 1 view .LVU10
+  32:BSP/src/fal_flash_w25q64.c ****             size -= W25Q64_SECTOR_SIZE;
+  64              		.loc 1 32 12 is_stmt 0 view .LVU11
+  65 0018 B4F5805F 		cmp	r4, #4096
+  66 001c F4D8     		bhi	.L6
+  67              	.L3:
+  68              	.LVL5:
+  34:BSP/src/fal_flash_w25q64.c ****         else
+  35:BSP/src/fal_flash_w25q64.c ****             size = 0;
+  36:BSP/src/fal_flash_w25q64.c ****     }
+  37:BSP/src/fal_flash_w25q64.c ****     return 0;
+  69              		.loc 1 37 5 is_stmt 1 view .LVU12
+  38:BSP/src/fal_flash_w25q64.c **** }
+  70              		.loc 1 38 1 is_stmt 0 view .LVU13
+  71 001e 0020     		movs	r0, #0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s 			page 3
+
+
+  72 0020 38BD     		pop	{r3, r4, r5, pc}
+  73              		.cfi_endproc
+  74              	.LFE234:
+  76              		.section	.text.write,"ax",%progbits
+  77              		.align	1
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	write:
+  83              	.LVL6:
+  84              	.LFB233:
+  20:BSP/src/fal_flash_w25q64.c ****     W25Q64_Write((uint8_t *)buf, offset, size);
+  85              		.loc 1 20 1 is_stmt 1 view -0
+  86              		.cfi_startproc
+  87              		@ args = 0, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  20:BSP/src/fal_flash_w25q64.c ****     W25Q64_Write((uint8_t *)buf, offset, size);
+  89              		.loc 1 20 1 is_stmt 0 view .LVU15
+  90 0000 10B5     		push	{r4, lr}
+  91              	.LCFI1:
+  92              		.cfi_def_cfa_offset 8
+  93              		.cfi_offset 4, -8
+  94              		.cfi_offset 14, -4
+  95 0002 0B46     		mov	r3, r1
+  96 0004 1446     		mov	r4, r2
+  21:BSP/src/fal_flash_w25q64.c ****     return size;
+  97              		.loc 1 21 5 is_stmt 1 view .LVU16
+  98 0006 0146     		mov	r1, r0
+  99              	.LVL7:
+  21:BSP/src/fal_flash_w25q64.c ****     return size;
+ 100              		.loc 1 21 5 is_stmt 0 view .LVU17
+ 101 0008 1846     		mov	r0, r3
+ 102              	.LVL8:
+  21:BSP/src/fal_flash_w25q64.c ****     return size;
+ 103              		.loc 1 21 5 view .LVU18
+ 104 000a FFF7FEFF 		bl	W25Q64_Write
+ 105              	.LVL9:
+  22:BSP/src/fal_flash_w25q64.c **** }
+ 106              		.loc 1 22 5 is_stmt 1 view .LVU19
+  23:BSP/src/fal_flash_w25q64.c **** 
+ 107              		.loc 1 23 1 is_stmt 0 view .LVU20
+ 108 000e 2046     		mov	r0, r4
+ 109 0010 10BD     		pop	{r4, pc}
+  23:BSP/src/fal_flash_w25q64.c **** 
+ 110              		.loc 1 23 1 view .LVU21
+ 111              		.cfi_endproc
+ 112              	.LFE233:
+ 114              		.section	.text.read,"ax",%progbits
+ 115              		.align	1
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 120              	read:
+ 121              	.LVL10:
+ 122              	.LFB232:
+  14:BSP/src/fal_flash_w25q64.c ****     W25Q64_Read(buf, offset, size);
+ 123              		.loc 1 14 1 is_stmt 1 view -0
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s 			page 4
+
+
+ 124              		.cfi_startproc
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 0, uses_anonymous_args = 0
+  14:BSP/src/fal_flash_w25q64.c ****     W25Q64_Read(buf, offset, size);
+ 127              		.loc 1 14 1 is_stmt 0 view .LVU23
+ 128 0000 10B5     		push	{r4, lr}
+ 129              	.LCFI2:
+ 130              		.cfi_def_cfa_offset 8
+ 131              		.cfi_offset 4, -8
+ 132              		.cfi_offset 14, -4
+ 133 0002 0B46     		mov	r3, r1
+ 134 0004 1446     		mov	r4, r2
+  15:BSP/src/fal_flash_w25q64.c ****     return size;
+ 135              		.loc 1 15 5 is_stmt 1 view .LVU24
+ 136 0006 0146     		mov	r1, r0
+ 137              	.LVL11:
+  15:BSP/src/fal_flash_w25q64.c ****     return size;
+ 138              		.loc 1 15 5 is_stmt 0 view .LVU25
+ 139 0008 1846     		mov	r0, r3
+ 140              	.LVL12:
+  15:BSP/src/fal_flash_w25q64.c ****     return size;
+ 141              		.loc 1 15 5 view .LVU26
+ 142 000a FFF7FEFF 		bl	W25Q64_Read
+ 143              	.LVL13:
+  16:BSP/src/fal_flash_w25q64.c **** }
+ 144              		.loc 1 16 5 is_stmt 1 view .LVU27
+  17:BSP/src/fal_flash_w25q64.c **** 
+ 145              		.loc 1 17 1 is_stmt 0 view .LVU28
+ 146 000e 2046     		mov	r0, r4
+ 147 0010 10BD     		pop	{r4, pc}
+  17:BSP/src/fal_flash_w25q64.c **** 
+ 148              		.loc 1 17 1 view .LVU29
+ 149              		.cfi_endproc
+ 150              	.LFE232:
+ 152              		.section	.text.init,"ax",%progbits
+ 153              		.align	1
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	init:
+ 159              	.LFB231:
+   8:BSP/src/fal_flash_w25q64.c ****     W25Q64_Init();
+ 160              		.loc 1 8 1 is_stmt 1 view -0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164 0000 08B5     		push	{r3, lr}
+ 165              	.LCFI3:
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 3, -8
+ 168              		.cfi_offset 14, -4
+   9:BSP/src/fal_flash_w25q64.c ****     return 0;
+ 169              		.loc 1 9 5 view .LVU31
+ 170 0002 FFF7FEFF 		bl	W25Q64_Init
+ 171              	.LVL14:
+  10:BSP/src/fal_flash_w25q64.c **** }
+ 172              		.loc 1 10 5 view .LVU32
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s 			page 5
+
+
+  11:BSP/src/fal_flash_w25q64.c **** 
+ 173              		.loc 1 11 1 is_stmt 0 view .LVU33
+ 174 0006 0020     		movs	r0, #0
+ 175 0008 08BD     		pop	{r3, pc}
+ 176              		.cfi_endproc
+ 177              	.LFE231:
+ 179              		.global	nor_flash0
+ 180              		.section	.rodata.nor_flash0,"a"
+ 181              		.align	2
+ 184              	nor_flash0:
+ 185 0000 77323571 		.ascii	"w25q64\000"
+ 185      363400
+ 186 0007 00000000 		.space	17
+ 186      00000000 
+ 186      00000000 
+ 186      00000000 
+ 186      00
+ 187 0018 00000000 		.word	0
+ 188 001c 00008000 		.word	8388608
+ 189 0020 00100000 		.word	4096
+ 190 0024 00000000 		.word	init
+ 191 0028 00000000 		.word	read
+ 192 002c 00000000 		.word	write
+ 193 0030 00000000 		.word	erase
+ 194 0034 01000000 		.word	1
+ 195              		.text
+ 196              	.Letext0:
+ 197              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 198              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 199              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
+ 200              		.file 5 "BSP/inc/fal_def.h"
+ 201              		.file 6 "Core/Inc/w25q64.h"
+ 202              		.file 7 "BSP/inc/fal_cfg.h"
+ 203              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fal_flash_w25q64.c
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:21     .text.erase:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:26     .text.erase:00000000 erase
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:77     .text.write:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:82     .text.write:00000000 write
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:115    .text.read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:120    .text.read:00000000 read
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:153    .text.init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:158    .text.init:00000000 init
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:184    .rodata.nor_flash0:00000000 nor_flash0
+C:\Users\solar\AppData\Local\Temp\cc5mNVl1.s:181    .rodata.nor_flash0:00000000 $d
+
+UNDEFINED SYMBOLS
+W25Q64_EraseSector
+W25Q64_Write
+W25Q64_Read
+W25Q64_Init

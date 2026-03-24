@@ -1,0 +1,2224 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fal_partition.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "BSP/src/fal_partition.c"
+  20              		.section	.text.flash_device_find_by_part,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	flash_device_find_by_part:
+  27              	.LVL0:
+  28              	.LFB7:
+   1:BSP/src/fal_partition.c **** /*
+   2:BSP/src/fal_partition.c ****  * Copyright (c) 2006-2018, RT-Thread Development Team
+   3:BSP/src/fal_partition.c ****  *
+   4:BSP/src/fal_partition.c ****  * SPDX-License-Identifier: Apache-2.0
+   5:BSP/src/fal_partition.c ****  *
+   6:BSP/src/fal_partition.c ****  * Change Logs:
+   7:BSP/src/fal_partition.c ****  * Date           Author       Notes
+   8:BSP/src/fal_partition.c ****  * 2018-05-17     armink       the first version
+   9:BSP/src/fal_partition.c ****  */
+  10:BSP/src/fal_partition.c **** 
+  11:BSP/src/fal_partition.c **** #include <fal.h>
+  12:BSP/src/fal_partition.c **** #include <string.h>
+  13:BSP/src/fal_partition.c **** #include <stdlib.h>
+  14:BSP/src/fal_partition.c **** 
+  15:BSP/src/fal_partition.c **** /* partition magic word */
+  16:BSP/src/fal_partition.c **** #define FAL_PART_MAGIC_WORD         0x45503130
+  17:BSP/src/fal_partition.c **** #define FAL_PART_MAGIC_WORD_H       0x4550L
+  18:BSP/src/fal_partition.c **** #define FAL_PART_MAGIC_WORD_L       0x3130L
+  19:BSP/src/fal_partition.c **** 
+  20:BSP/src/fal_partition.c **** struct part_flash_info
+  21:BSP/src/fal_partition.c **** {
+  22:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev;
+  23:BSP/src/fal_partition.c **** };
+  24:BSP/src/fal_partition.c **** 
+  25:BSP/src/fal_partition.c **** /**
+  26:BSP/src/fal_partition.c ****  * FAL partition table config has defined on 'fal_cfg.h'.
+  27:BSP/src/fal_partition.c ****  * When this option is disable, it will auto find the partition table on a specified location in fl
+  28:BSP/src/fal_partition.c ****  */
+  29:BSP/src/fal_partition.c **** #ifdef FAL_PART_HAS_TABLE_CFG
+  30:BSP/src/fal_partition.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 2
+
+
+  31:BSP/src/fal_partition.c **** /* check partition table definition */
+  32:BSP/src/fal_partition.c **** #if !defined(FAL_PART_TABLE)
+  33:BSP/src/fal_partition.c **** #error "You must defined FAL_PART_TABLE on 'fal_cfg.h'"
+  34:BSP/src/fal_partition.c **** #endif
+  35:BSP/src/fal_partition.c **** 
+  36:BSP/src/fal_partition.c **** #ifdef __CC_ARM                        /* ARM Compiler */
+  37:BSP/src/fal_partition.c ****     #define SECTION(x)                 __attribute__((section(x)))
+  38:BSP/src/fal_partition.c ****     #define USED                       __attribute__((used))
+  39:BSP/src/fal_partition.c **** #elif defined (__IAR_SYSTEMS_ICC__)    /* for IAR Compiler */
+  40:BSP/src/fal_partition.c ****     #define SECTION(x)                 @ x
+  41:BSP/src/fal_partition.c ****     #define USED                       __root
+  42:BSP/src/fal_partition.c **** #elif defined (__GNUC__)               /* GNU GCC Compiler */
+  43:BSP/src/fal_partition.c ****     #define SECTION(x)                 __attribute__((section(x)))
+  44:BSP/src/fal_partition.c ****     #define USED                       __attribute__((used))
+  45:BSP/src/fal_partition.c **** #else
+  46:BSP/src/fal_partition.c ****     #error not supported tool chain
+  47:BSP/src/fal_partition.c **** #endif /* __CC_ARM */
+  48:BSP/src/fal_partition.c **** //USED static const struct fal_partition partition_table_def[] SECTION("FalPartTable") = FAL_PART_T
+  49:BSP/src/fal_partition.c **** static const struct fal_partition partition_table_def[] = FAL_PART_TABLE;
+  50:BSP/src/fal_partition.c **** static const struct fal_partition *partition_table = NULL;
+  51:BSP/src/fal_partition.c **** /* partition and flash object information cache table */
+  52:BSP/src/fal_partition.c **** static struct part_flash_info part_flash_cache[sizeof(partition_table_def) / sizeof(partition_table
+  53:BSP/src/fal_partition.c **** 
+  54:BSP/src/fal_partition.c **** #else /* FAL_PART_HAS_TABLE_CFG */
+  55:BSP/src/fal_partition.c **** 
+  56:BSP/src/fal_partition.c **** #if !defined(FAL_PART_TABLE_FLASH_DEV_NAME)
+  57:BSP/src/fal_partition.c **** #error "You must defined FAL_PART_TABLE_FLASH_DEV_NAME on 'fal_cfg.h'"
+  58:BSP/src/fal_partition.c **** #endif
+  59:BSP/src/fal_partition.c **** 
+  60:BSP/src/fal_partition.c **** /* check partition table end offset address definition */
+  61:BSP/src/fal_partition.c **** #if !defined(FAL_PART_TABLE_END_OFFSET)
+  62:BSP/src/fal_partition.c **** #error "You must defined FAL_PART_TABLE_END_OFFSET on 'fal_cfg.h'"
+  63:BSP/src/fal_partition.c **** #endif
+  64:BSP/src/fal_partition.c **** 
+  65:BSP/src/fal_partition.c **** static struct fal_partition *partition_table = NULL;
+  66:BSP/src/fal_partition.c **** static struct part_flash_info *part_flash_cache = NULL;
+  67:BSP/src/fal_partition.c **** #endif /* FAL_PART_HAS_TABLE_CFG */
+  68:BSP/src/fal_partition.c **** 
+  69:BSP/src/fal_partition.c **** static uint8_t init_ok = 0;
+  70:BSP/src/fal_partition.c **** static size_t partition_table_len = 0;
+  71:BSP/src/fal_partition.c **** 
+  72:BSP/src/fal_partition.c **** /**
+  73:BSP/src/fal_partition.c ****  * print the partition table
+  74:BSP/src/fal_partition.c ****  */
+  75:BSP/src/fal_partition.c **** void fal_show_part_table(void)
+  76:BSP/src/fal_partition.c **** {
+  77:BSP/src/fal_partition.c ****     char *item1 = "name", *item2 = "flash_dev";
+  78:BSP/src/fal_partition.c ****     size_t i, part_name_max = strlen(item1), flash_dev_name_max = strlen(item2);
+  79:BSP/src/fal_partition.c ****     const struct fal_partition *part;
+  80:BSP/src/fal_partition.c **** 
+  81:BSP/src/fal_partition.c ****     if (partition_table_len)
+  82:BSP/src/fal_partition.c ****     {
+  83:BSP/src/fal_partition.c ****         for (i = 0; i < partition_table_len; i++)
+  84:BSP/src/fal_partition.c ****         {
+  85:BSP/src/fal_partition.c ****             part = &partition_table[i];
+  86:BSP/src/fal_partition.c ****             if (strlen(part->name) > part_name_max)
+  87:BSP/src/fal_partition.c ****             {
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 3
+
+
+  88:BSP/src/fal_partition.c ****                 part_name_max = strlen(part->name);
+  89:BSP/src/fal_partition.c ****             }
+  90:BSP/src/fal_partition.c ****             if (strlen(part->flash_name) > flash_dev_name_max)
+  91:BSP/src/fal_partition.c ****             {
+  92:BSP/src/fal_partition.c ****                 flash_dev_name_max = strlen(part->flash_name);
+  93:BSP/src/fal_partition.c ****             }
+  94:BSP/src/fal_partition.c ****         }
+  95:BSP/src/fal_partition.c ****     }
+  96:BSP/src/fal_partition.c ****     log_i("==================== FAL partition table ====================");
+  97:BSP/src/fal_partition.c ****     log_i("| %-*.*s | %-*.*s |   offset   |    length  |", part_name_max, FAL_DEV_NAME_MAX, item1, 
+  98:BSP/src/fal_partition.c ****             FAL_DEV_NAME_MAX, item2);
+  99:BSP/src/fal_partition.c ****     log_i("-------------------------------------------------------------");
+ 100:BSP/src/fal_partition.c ****     for (i = 0; i < partition_table_len; i++)
+ 101:BSP/src/fal_partition.c ****     {
+ 102:BSP/src/fal_partition.c **** 
+ 103:BSP/src/fal_partition.c **** #ifdef FAL_PART_HAS_TABLE_CFG
+ 104:BSP/src/fal_partition.c ****         part = &partition_table[i];
+ 105:BSP/src/fal_partition.c **** #else
+ 106:BSP/src/fal_partition.c ****         part = &partition_table[partition_table_len - i - 1];
+ 107:BSP/src/fal_partition.c **** #endif
+ 108:BSP/src/fal_partition.c **** 
+ 109:BSP/src/fal_partition.c ****         log_i("| %-*.*s | %-*.*s | 0x%08lx | 0x%08x |", part_name_max, FAL_DEV_NAME_MAX, part->name
+ 110:BSP/src/fal_partition.c ****                 FAL_DEV_NAME_MAX, part->flash_name, part->offset, part->len);
+ 111:BSP/src/fal_partition.c ****     }
+ 112:BSP/src/fal_partition.c ****     log_i("=============================================================");
+ 113:BSP/src/fal_partition.c **** }
+ 114:BSP/src/fal_partition.c **** 
+ 115:BSP/src/fal_partition.c **** static int check_and_update_part_cache(const struct fal_partition *table, size_t len)
+ 116:BSP/src/fal_partition.c **** {
+ 117:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev = NULL;
+ 118:BSP/src/fal_partition.c ****     size_t i;
+ 119:BSP/src/fal_partition.c **** 
+ 120:BSP/src/fal_partition.c **** #ifndef FAL_PART_HAS_TABLE_CFG
+ 121:BSP/src/fal_partition.c ****     if (part_flash_cache)
+ 122:BSP/src/fal_partition.c ****     {
+ 123:BSP/src/fal_partition.c ****         FAL_FREE(part_flash_cache);
+ 124:BSP/src/fal_partition.c ****     }
+ 125:BSP/src/fal_partition.c ****     part_flash_cache = FAL_MALLOC(len * sizeof(struct part_flash_info));
+ 126:BSP/src/fal_partition.c ****     if (part_flash_cache == NULL)
+ 127:BSP/src/fal_partition.c ****     {
+ 128:BSP/src/fal_partition.c ****         log_e("Initialize failed! No memory for partition table cache");
+ 129:BSP/src/fal_partition.c ****         return -2;
+ 130:BSP/src/fal_partition.c ****     }
+ 131:BSP/src/fal_partition.c **** #endif
+ 132:BSP/src/fal_partition.c **** 
+ 133:BSP/src/fal_partition.c ****     for (i = 0; i < len; i++)
+ 134:BSP/src/fal_partition.c ****     {
+ 135:BSP/src/fal_partition.c ****         flash_dev = fal_flash_device_find(table[i].flash_name);
+ 136:BSP/src/fal_partition.c ****         if (flash_dev == NULL)
+ 137:BSP/src/fal_partition.c ****         {
+ 138:BSP/src/fal_partition.c ****             log_d("Warning: Do NOT found the flash device(%s).", table[i].flash_name);
+ 139:BSP/src/fal_partition.c ****             continue;
+ 140:BSP/src/fal_partition.c ****         }
+ 141:BSP/src/fal_partition.c **** 
+ 142:BSP/src/fal_partition.c ****         if (table[i].offset >= (long)flash_dev->len)
+ 143:BSP/src/fal_partition.c ****         {
+ 144:BSP/src/fal_partition.c ****             log_e("Initialize failed! Partition(%s) offset address(%ld) out of flash bound(<%d).",
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 4
+
+
+ 145:BSP/src/fal_partition.c ****                     table[i].name, table[i].offset, flash_dev->len);
+ 146:BSP/src/fal_partition.c ****             partition_table_len = 0;
+ 147:BSP/src/fal_partition.c **** 
+ 148:BSP/src/fal_partition.c ****             return -1;
+ 149:BSP/src/fal_partition.c ****         }
+ 150:BSP/src/fal_partition.c **** 
+ 151:BSP/src/fal_partition.c ****         part_flash_cache[i].flash_dev = flash_dev;
+ 152:BSP/src/fal_partition.c ****     }
+ 153:BSP/src/fal_partition.c **** 
+ 154:BSP/src/fal_partition.c ****     return 0;
+ 155:BSP/src/fal_partition.c **** }
+ 156:BSP/src/fal_partition.c **** 
+ 157:BSP/src/fal_partition.c **** /**
+ 158:BSP/src/fal_partition.c ****  * Initialize all flash partition on FAL partition table
+ 159:BSP/src/fal_partition.c ****  *
+ 160:BSP/src/fal_partition.c ****  * @return partitions total number
+ 161:BSP/src/fal_partition.c ****  */
+ 162:BSP/src/fal_partition.c **** int fal_partition_init(void)
+ 163:BSP/src/fal_partition.c **** {
+ 164:BSP/src/fal_partition.c **** 
+ 165:BSP/src/fal_partition.c ****     if (init_ok)
+ 166:BSP/src/fal_partition.c ****     {
+ 167:BSP/src/fal_partition.c ****         return partition_table_len;
+ 168:BSP/src/fal_partition.c ****     }
+ 169:BSP/src/fal_partition.c **** 
+ 170:BSP/src/fal_partition.c **** #ifdef FAL_PART_HAS_TABLE_CFG
+ 171:BSP/src/fal_partition.c ****     partition_table = &partition_table_def[0];
+ 172:BSP/src/fal_partition.c ****     partition_table_len = sizeof(partition_table_def) / sizeof(partition_table_def[0]);
+ 173:BSP/src/fal_partition.c **** #else
+ 174:BSP/src/fal_partition.c ****     /* load partition table from the end address FAL_PART_TABLE_END_OFFSET, error return 0 */
+ 175:BSP/src/fal_partition.c ****     long part_table_offset = FAL_PART_TABLE_END_OFFSET;
+ 176:BSP/src/fal_partition.c ****     size_t table_num = 0, table_item_size = 0;
+ 177:BSP/src/fal_partition.c ****     uint8_t part_table_find_ok = 0;
+ 178:BSP/src/fal_partition.c ****     uint32_t read_magic_word;
+ 179:BSP/src/fal_partition.c ****     fal_partition_t new_part = NULL;
+ 180:BSP/src/fal_partition.c ****     size_t i;
+ 181:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev = NULL;
+ 182:BSP/src/fal_partition.c **** 
+ 183:BSP/src/fal_partition.c ****     flash_dev = fal_flash_device_find(FAL_PART_TABLE_FLASH_DEV_NAME);
+ 184:BSP/src/fal_partition.c ****     if (flash_dev == NULL)
+ 185:BSP/src/fal_partition.c ****     {
+ 186:BSP/src/fal_partition.c ****         log_e("Initialize failed! Flash device (%s) NOT found.", FAL_PART_TABLE_FLASH_DEV_NAME);
+ 187:BSP/src/fal_partition.c ****         goto _exit;
+ 188:BSP/src/fal_partition.c ****     }
+ 189:BSP/src/fal_partition.c **** 
+ 190:BSP/src/fal_partition.c ****     /* check partition table offset address */
+ 191:BSP/src/fal_partition.c ****     if (part_table_offset < 0 || part_table_offset >= (long) flash_dev->len)
+ 192:BSP/src/fal_partition.c ****     {
+ 193:BSP/src/fal_partition.c ****         log_e("Setting partition table end offset address(%ld) out of flash bound(<%d).", part_tabl
+ 194:BSP/src/fal_partition.c ****         goto _exit;
+ 195:BSP/src/fal_partition.c ****     }
+ 196:BSP/src/fal_partition.c **** 
+ 197:BSP/src/fal_partition.c ****     table_item_size = sizeof(struct fal_partition);
+ 198:BSP/src/fal_partition.c ****     new_part = (fal_partition_t)FAL_MALLOC(table_item_size);
+ 199:BSP/src/fal_partition.c ****     if (new_part == NULL)
+ 200:BSP/src/fal_partition.c ****     {
+ 201:BSP/src/fal_partition.c ****         log_e("Initialize failed! No memory for table buffer.");
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 5
+
+
+ 202:BSP/src/fal_partition.c ****         goto _exit;
+ 203:BSP/src/fal_partition.c ****     }
+ 204:BSP/src/fal_partition.c **** 
+ 205:BSP/src/fal_partition.c ****     /* find partition table location */
+ 206:BSP/src/fal_partition.c ****     {
+ 207:BSP/src/fal_partition.c ****         uint8_t read_buf[64];
+ 208:BSP/src/fal_partition.c **** 
+ 209:BSP/src/fal_partition.c ****         part_table_offset -= sizeof(read_buf);
+ 210:BSP/src/fal_partition.c ****         while (part_table_offset >= 0)
+ 211:BSP/src/fal_partition.c ****         {
+ 212:BSP/src/fal_partition.c ****             if (flash_dev->ops.read(part_table_offset, read_buf, sizeof(read_buf)) > 0)
+ 213:BSP/src/fal_partition.c ****             {
+ 214:BSP/src/fal_partition.c ****                 /* find magic word in read buf */
+ 215:BSP/src/fal_partition.c ****                 for (i = 0; i < sizeof(read_buf) - sizeof(read_magic_word) + 1; i++)
+ 216:BSP/src/fal_partition.c ****                 {
+ 217:BSP/src/fal_partition.c ****                     read_magic_word = read_buf[0 + i] + (read_buf[1 + i] << 8) + (read_buf[2 + i] <
+ 218:BSP/src/fal_partition.c ****                     if (read_magic_word == ((FAL_PART_MAGIC_WORD_H << 16) + FAL_PART_MAGIC_WORD_L))
+ 219:BSP/src/fal_partition.c ****                     {
+ 220:BSP/src/fal_partition.c ****                         part_table_find_ok = 1;
+ 221:BSP/src/fal_partition.c ****                         part_table_offset += i;
+ 222:BSP/src/fal_partition.c ****                         log_d("Find the partition table on '%s' offset @0x%08lx.", FAL_PART_TABLE_F
+ 223:BSP/src/fal_partition.c ****                                 part_table_offset);
+ 224:BSP/src/fal_partition.c ****                         break;
+ 225:BSP/src/fal_partition.c ****                     }
+ 226:BSP/src/fal_partition.c ****                 }
+ 227:BSP/src/fal_partition.c ****             }
+ 228:BSP/src/fal_partition.c ****             else
+ 229:BSP/src/fal_partition.c ****             {
+ 230:BSP/src/fal_partition.c ****                 /* read failed */
+ 231:BSP/src/fal_partition.c ****                 break;
+ 232:BSP/src/fal_partition.c ****             }
+ 233:BSP/src/fal_partition.c **** 
+ 234:BSP/src/fal_partition.c ****             if (part_table_find_ok)
+ 235:BSP/src/fal_partition.c ****             {
+ 236:BSP/src/fal_partition.c ****                 break;
+ 237:BSP/src/fal_partition.c ****             }
+ 238:BSP/src/fal_partition.c ****             else
+ 239:BSP/src/fal_partition.c ****             {
+ 240:BSP/src/fal_partition.c ****                 /* calculate next read buf position */
+ 241:BSP/src/fal_partition.c ****                 if (part_table_offset >= (long)sizeof(read_buf))
+ 242:BSP/src/fal_partition.c ****                 {
+ 243:BSP/src/fal_partition.c ****                     part_table_offset -= sizeof(read_buf);
+ 244:BSP/src/fal_partition.c ****                     part_table_offset += (sizeof(read_magic_word) - 1);
+ 245:BSP/src/fal_partition.c ****                 }
+ 246:BSP/src/fal_partition.c ****                 else if (part_table_offset != 0)
+ 247:BSP/src/fal_partition.c ****                 {
+ 248:BSP/src/fal_partition.c ****                     part_table_offset = 0;
+ 249:BSP/src/fal_partition.c ****                 }
+ 250:BSP/src/fal_partition.c ****                 else
+ 251:BSP/src/fal_partition.c ****                 {
+ 252:BSP/src/fal_partition.c ****                     /* find failed */
+ 253:BSP/src/fal_partition.c ****                     break;
+ 254:BSP/src/fal_partition.c ****                 }
+ 255:BSP/src/fal_partition.c ****             }
+ 256:BSP/src/fal_partition.c ****         }
+ 257:BSP/src/fal_partition.c ****     }
+ 258:BSP/src/fal_partition.c **** 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 6
+
+
+ 259:BSP/src/fal_partition.c ****     /* load partition table */
+ 260:BSP/src/fal_partition.c ****     while (part_table_find_ok)
+ 261:BSP/src/fal_partition.c ****     {
+ 262:BSP/src/fal_partition.c ****         memset(new_part, 0x00, table_num);
+ 263:BSP/src/fal_partition.c ****         if (flash_dev->ops.read(part_table_offset - table_item_size * (table_num), (uint8_t *) new_
+ 264:BSP/src/fal_partition.c ****                 table_item_size) < 0)
+ 265:BSP/src/fal_partition.c ****         {
+ 266:BSP/src/fal_partition.c ****             log_e("Initialize failed! Flash device (%s) read error!", flash_dev->name);
+ 267:BSP/src/fal_partition.c ****             table_num = 0;
+ 268:BSP/src/fal_partition.c ****             break;
+ 269:BSP/src/fal_partition.c ****         }
+ 270:BSP/src/fal_partition.c **** 
+ 271:BSP/src/fal_partition.c ****         if (new_part->magic_word != ((FAL_PART_MAGIC_WORD_H << 16) + FAL_PART_MAGIC_WORD_L))
+ 272:BSP/src/fal_partition.c ****         {
+ 273:BSP/src/fal_partition.c ****             break;
+ 274:BSP/src/fal_partition.c ****         }
+ 275:BSP/src/fal_partition.c **** 
+ 276:BSP/src/fal_partition.c ****         partition_table = (fal_partition_t) FAL_REALLOC(partition_table, table_item_size * (table_n
+ 277:BSP/src/fal_partition.c ****         if (partition_table == NULL)
+ 278:BSP/src/fal_partition.c ****         {
+ 279:BSP/src/fal_partition.c ****             log_e("Initialize failed! No memory for partition table");
+ 280:BSP/src/fal_partition.c ****             table_num = 0;
+ 281:BSP/src/fal_partition.c ****             break;
+ 282:BSP/src/fal_partition.c ****         }
+ 283:BSP/src/fal_partition.c **** 
+ 284:BSP/src/fal_partition.c ****         memcpy(partition_table + table_num, new_part, table_item_size);
+ 285:BSP/src/fal_partition.c **** 
+ 286:BSP/src/fal_partition.c ****         table_num++;
+ 287:BSP/src/fal_partition.c ****     };
+ 288:BSP/src/fal_partition.c **** 
+ 289:BSP/src/fal_partition.c ****     if (table_num == 0)
+ 290:BSP/src/fal_partition.c ****     {
+ 291:BSP/src/fal_partition.c ****         log_e("Partition table NOT found on flash: %s (len: %d) from offset: 0x%08x.", FAL_PART_TAB
+ 292:BSP/src/fal_partition.c ****                 FAL_DEV_NAME_MAX, FAL_PART_TABLE_END_OFFSET);
+ 293:BSP/src/fal_partition.c ****         goto _exit;
+ 294:BSP/src/fal_partition.c ****     }
+ 295:BSP/src/fal_partition.c ****     else
+ 296:BSP/src/fal_partition.c ****     {
+ 297:BSP/src/fal_partition.c ****         partition_table_len = table_num;
+ 298:BSP/src/fal_partition.c ****     }
+ 299:BSP/src/fal_partition.c **** #endif /* FAL_PART_HAS_TABLE_CFG */
+ 300:BSP/src/fal_partition.c **** 
+ 301:BSP/src/fal_partition.c ****     /* check the partition table device exists */
+ 302:BSP/src/fal_partition.c ****     if (check_and_update_part_cache(partition_table, partition_table_len) != 0)
+ 303:BSP/src/fal_partition.c ****     {
+ 304:BSP/src/fal_partition.c ****         goto _exit;
+ 305:BSP/src/fal_partition.c ****     }
+ 306:BSP/src/fal_partition.c **** 
+ 307:BSP/src/fal_partition.c ****     init_ok = 1;
+ 308:BSP/src/fal_partition.c **** 
+ 309:BSP/src/fal_partition.c **** _exit:
+ 310:BSP/src/fal_partition.c **** 
+ 311:BSP/src/fal_partition.c **** #if FAL_DEBUG
+ 312:BSP/src/fal_partition.c ****     fal_show_part_table();
+ 313:BSP/src/fal_partition.c **** #endif
+ 314:BSP/src/fal_partition.c **** 
+ 315:BSP/src/fal_partition.c **** #ifndef FAL_PART_HAS_TABLE_CFG
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 7
+
+
+ 316:BSP/src/fal_partition.c ****     if (new_part)
+ 317:BSP/src/fal_partition.c ****     {
+ 318:BSP/src/fal_partition.c ****         FAL_FREE(new_part);
+ 319:BSP/src/fal_partition.c ****     }
+ 320:BSP/src/fal_partition.c **** #endif /* !FAL_PART_HAS_TABLE_CFG */
+ 321:BSP/src/fal_partition.c **** 
+ 322:BSP/src/fal_partition.c ****     return partition_table_len;
+ 323:BSP/src/fal_partition.c **** }
+ 324:BSP/src/fal_partition.c **** 
+ 325:BSP/src/fal_partition.c **** /**
+ 326:BSP/src/fal_partition.c ****  * find the partition by name
+ 327:BSP/src/fal_partition.c ****  *
+ 328:BSP/src/fal_partition.c ****  * @param name partition name
+ 329:BSP/src/fal_partition.c ****  *
+ 330:BSP/src/fal_partition.c ****  * @return != NULL: partition
+ 331:BSP/src/fal_partition.c ****  *            NULL: not found
+ 332:BSP/src/fal_partition.c ****  */
+ 333:BSP/src/fal_partition.c **** const struct fal_partition *fal_partition_find(const char *name)
+ 334:BSP/src/fal_partition.c **** {
+ 335:BSP/src/fal_partition.c ****     assert(init_ok);
+ 336:BSP/src/fal_partition.c **** 
+ 337:BSP/src/fal_partition.c ****     size_t i;
+ 338:BSP/src/fal_partition.c **** 
+ 339:BSP/src/fal_partition.c ****     for (i = 0; i < partition_table_len; i++)
+ 340:BSP/src/fal_partition.c ****     {
+ 341:BSP/src/fal_partition.c ****         if (!strcmp(name, partition_table[i].name))
+ 342:BSP/src/fal_partition.c ****         {
+ 343:BSP/src/fal_partition.c ****             return &partition_table[i];
+ 344:BSP/src/fal_partition.c ****         }
+ 345:BSP/src/fal_partition.c ****     }
+ 346:BSP/src/fal_partition.c **** 
+ 347:BSP/src/fal_partition.c ****     return NULL;
+ 348:BSP/src/fal_partition.c **** }
+ 349:BSP/src/fal_partition.c **** 
+ 350:BSP/src/fal_partition.c **** static const struct fal_flash_dev *flash_device_find_by_part(const struct fal_partition *part)
+ 351:BSP/src/fal_partition.c **** {
+  29              		.loc 1 351 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+ 352:BSP/src/fal_partition.c ****     assert(part >= partition_table);
+  34              		.loc 1 352 5 view .LVU1
+  35              		.loc 1 352 36 view .LVU2
+ 353:BSP/src/fal_partition.c ****     assert(part <= &partition_table[partition_table_len - 1]);
+  36              		.loc 1 353 5 view .LVU3
+  37              		.loc 1 353 62 view .LVU4
+ 354:BSP/src/fal_partition.c **** 
+ 355:BSP/src/fal_partition.c ****     return part_flash_cache[part - partition_table].flash_dev;
+  38              		.loc 1 355 5 view .LVU5
+  39              		.loc 1 355 34 is_stmt 0 view .LVU6
+  40 0000 034B     		ldr	r3, .L2
+  41 0002 1B68     		ldr	r3, [r3]
+  42 0004 C01A     		subs	r0, r0, r3
+  43              	.LVL1:
+  44              		.loc 1 355 34 view .LVU7
+  45 0006 8011     		asrs	r0, r0, #6
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 8
+
+
+ 356:BSP/src/fal_partition.c **** }
+  46              		.loc 1 356 1 view .LVU8
+  47 0008 024B     		ldr	r3, .L2+4
+  48 000a 53F82000 		ldr	r0, [r3, r0, lsl #2]
+  49 000e 7047     		bx	lr
+  50              	.L3:
+  51              		.align	2
+  52              	.L2:
+  53 0010 00000000 		.word	partition_table
+  54 0014 00000000 		.word	part_flash_cache
+  55              		.cfi_endproc
+  56              	.LFE7:
+  58              		.section	.rodata.check_and_update_part_cache.str1.4,"aMS",%progbits,1
+  59              		.align	2
+  60              	.LC0:
+  61 0000 1B5B3331 		.ascii	"\033[31;22m[E/FAL] (%s:%d) \000"
+  61      3B32326D 
+  61      5B452F46 
+  61      414C5D20 
+  61      2825733A 
+  62 0019 000000   		.align	2
+  63              	.LC1:
+  64 001c 496E6974 		.ascii	"Initialize failed! Partition(%s) offset address(%ld"
+  64      69616C69 
+  64      7A652066 
+  64      61696C65 
+  64      64212050 
+  65 004f 29206F75 		.ascii	") out of flash bound(<%d).\000"
+  65      74206F66 
+  65      20666C61 
+  65      73682062 
+  65      6F756E64 
+  66 006a 0000     		.align	2
+  67              	.LC2:
+  68 006c 1B5B306D 		.ascii	"\033[0m\000"
+  68      00
+  69              		.section	.text.check_and_update_part_cache,"ax",%progbits
+  70              		.align	1
+  71              		.syntax unified
+  72              		.thumb
+  73              		.thumb_func
+  75              	check_and_update_part_cache:
+  76              	.LVL2:
+  77              	.LFB4:
+ 116:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev = NULL;
+  78              		.loc 1 116 1 is_stmt 1 view -0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev = NULL;
+  82              		.loc 1 116 1 is_stmt 0 view .LVU10
+  83 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  84              	.LCFI0:
+  85              		.cfi_def_cfa_offset 24
+  86              		.cfi_offset 4, -24
+  87              		.cfi_offset 5, -20
+  88              		.cfi_offset 6, -16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 9
+
+
+  89              		.cfi_offset 7, -12
+  90              		.cfi_offset 8, -8
+  91              		.cfi_offset 14, -4
+  92 0004 8046     		mov	r8, r0
+  93 0006 0F46     		mov	r7, r1
+ 117:BSP/src/fal_partition.c ****     size_t i;
+  94              		.loc 1 117 5 is_stmt 1 view .LVU11
+  95              	.LVL3:
+ 118:BSP/src/fal_partition.c **** 
+  96              		.loc 1 118 5 view .LVU12
+ 133:BSP/src/fal_partition.c ****     {
+  97              		.loc 1 133 5 view .LVU13
+ 133:BSP/src/fal_partition.c ****     {
+  98              		.loc 1 133 12 is_stmt 0 view .LVU14
+  99 0008 0024     		movs	r4, #0
+ 133:BSP/src/fal_partition.c ****     {
+ 100              		.loc 1 133 5 view .LVU15
+ 101 000a 03E0     		b	.L5
+ 102              	.LVL4:
+ 103              	.L7:
+ 151:BSP/src/fal_partition.c ****     }
+ 104              		.loc 1 151 9 is_stmt 1 view .LVU16
+ 151:BSP/src/fal_partition.c ****     }
+ 105              		.loc 1 151 39 is_stmt 0 view .LVU17
+ 106 000c 144B     		ldr	r3, .L12
+ 107 000e 43F82400 		str	r0, [r3, r4, lsl #2]
+ 108              	.L6:
+ 133:BSP/src/fal_partition.c ****     {
+ 109              		.loc 1 133 27 is_stmt 1 discriminator 2 view .LVU18
+ 110 0012 0134     		adds	r4, r4, #1
+ 111              	.LVL5:
+ 112              	.L5:
+ 133:BSP/src/fal_partition.c ****     {
+ 113              		.loc 1 133 19 discriminator 1 view .LVU19
+ 114 0014 BC42     		cmp	r4, r7
+ 115 0016 20D2     		bcs	.L11
+ 135:BSP/src/fal_partition.c ****         if (flash_dev == NULL)
+ 116              		.loc 1 135 9 view .LVU20
+ 135:BSP/src/fal_partition.c ****         if (flash_dev == NULL)
+ 117              		.loc 1 135 48 is_stmt 0 view .LVU21
+ 118 0018 08EB8415 		add	r5, r8, r4, lsl #6
+ 135:BSP/src/fal_partition.c ****         if (flash_dev == NULL)
+ 119              		.loc 1 135 21 view .LVU22
+ 120 001c 05F11C00 		add	r0, r5, #28
+ 121 0020 FFF7FEFF 		bl	fal_flash_device_find
+ 122              	.LVL6:
+ 136:BSP/src/fal_partition.c ****         {
+ 123              		.loc 1 136 9 is_stmt 1 view .LVU23
+ 136:BSP/src/fal_partition.c ****         {
+ 124              		.loc 1 136 12 is_stmt 0 view .LVU24
+ 125 0024 0646     		mov	r6, r0
+ 126 0026 0028     		cmp	r0, #0
+ 127 0028 F3D0     		beq	.L6
+ 142:BSP/src/fal_partition.c ****         {
+ 128              		.loc 1 142 9 is_stmt 1 view .LVU25
+ 142:BSP/src/fal_partition.c ****         {
+ 129              		.loc 1 142 21 is_stmt 0 view .LVU26
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 10
+
+
+ 130 002a 6A6B     		ldr	r2, [r5, #52]
+ 142:BSP/src/fal_partition.c ****         {
+ 131              		.loc 1 142 47 view .LVU27
+ 132 002c C369     		ldr	r3, [r0, #28]
+ 142:BSP/src/fal_partition.c ****         {
+ 133              		.loc 1 142 12 view .LVU28
+ 134 002e 9A42     		cmp	r2, r3
+ 135 0030 ECDB     		blt	.L7
+ 144:BSP/src/fal_partition.c ****                     table[i].name, table[i].offset, flash_dev->len);
+ 136              		.loc 1 144 13 is_stmt 1 view .LVU29
+ 137 0032 9022     		movs	r2, #144
+ 138 0034 0B49     		ldr	r1, .L12+4
+ 139 0036 0C48     		ldr	r0, .L12+8
+ 140              	.LVL7:
+ 144:BSP/src/fal_partition.c ****                     table[i].name, table[i].offset, flash_dev->len);
+ 141              		.loc 1 144 13 is_stmt 0 view .LVU30
+ 142 0038 FFF7FEFF 		bl	printf
+ 143              	.LVL8:
+ 144:BSP/src/fal_partition.c ****                     table[i].name, table[i].offset, flash_dev->len);
+ 144              		.loc 1 144 13 is_stmt 1 discriminator 1 view .LVU31
+ 145 003c F369     		ldr	r3, [r6, #28]
+ 146 003e 6A6B     		ldr	r2, [r5, #52]
+ 147 0040 291D     		adds	r1, r5, #4
+ 148 0042 0A48     		ldr	r0, .L12+12
+ 149 0044 FFF7FEFF 		bl	printf
+ 150              	.LVL9:
+ 144:BSP/src/fal_partition.c ****                     table[i].name, table[i].offset, flash_dev->len);
+ 151              		.loc 1 144 13 discriminator 2 view .LVU32
+ 152 0048 0948     		ldr	r0, .L12+16
+ 153 004a FFF7FEFF 		bl	puts
+ 154              	.LVL10:
+ 146:BSP/src/fal_partition.c **** 
+ 155              		.loc 1 146 13 view .LVU33
+ 146:BSP/src/fal_partition.c **** 
+ 156              		.loc 1 146 33 is_stmt 0 view .LVU34
+ 157 004e 094B     		ldr	r3, .L12+20
+ 158 0050 0022     		movs	r2, #0
+ 159 0052 1A60     		str	r2, [r3]
+ 148:BSP/src/fal_partition.c ****         }
+ 160              		.loc 1 148 13 is_stmt 1 view .LVU35
+ 148:BSP/src/fal_partition.c ****         }
+ 161              		.loc 1 148 20 is_stmt 0 view .LVU36
+ 162 0054 4FF0FF30 		mov	r0, #-1
+ 163 0058 00E0     		b	.L4
+ 164              	.LVL11:
+ 165              	.L11:
+ 154:BSP/src/fal_partition.c **** }
+ 166              		.loc 1 154 12 view .LVU37
+ 167 005a 0020     		movs	r0, #0
+ 168              	.L4:
+ 155:BSP/src/fal_partition.c **** 
+ 169              		.loc 1 155 1 view .LVU38
+ 170 005c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 171              	.LVL12:
+ 172              	.L13:
+ 155:BSP/src/fal_partition.c **** 
+ 173              		.loc 1 155 1 view .LVU39
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 11
+
+
+ 174              		.align	2
+ 175              	.L12:
+ 176 0060 00000000 		.word	part_flash_cache
+ 177 0064 00000000 		.word	__func__.3
+ 178 0068 00000000 		.word	.LC0
+ 179 006c 1C000000 		.word	.LC1
+ 180 0070 6C000000 		.word	.LC2
+ 181 0074 00000000 		.word	partition_table_len
+ 182              		.cfi_endproc
+ 183              	.LFE4:
+ 185              		.section	.rodata.fal_show_part_table.str1.4,"aMS",%progbits,1
+ 186              		.align	2
+ 187              	.LC3:
+ 188 0000 1B5B3332 		.ascii	"\033[32;22m[I/FAL] \000"
+ 188      3B32326D 
+ 188      5B492F46 
+ 188      414C5D20 
+ 188      00
+ 189 0011 000000   		.align	2
+ 190              	.LC4:
+ 191 0014 3D3D3D3D 		.ascii	"==================== FAL partition table =========="
+ 191      3D3D3D3D 
+ 191      3D3D3D3D 
+ 191      3D3D3D3D 
+ 191      3D3D3D3D 
+ 192 0047 3D3D3D3D 		.ascii	"==========\000"
+ 192      3D3D3D3D 
+ 192      3D3D00
+ 193 0052 0000     		.align	2
+ 194              	.LC5:
+ 195 0054 6E616D65 		.ascii	"name\000"
+ 195      00
+ 196 0059 000000   		.align	2
+ 197              	.LC6:
+ 198 005c 7C20252D 		.ascii	"| %-*.*s | %-*.*s |   offset   |    length  |\000"
+ 198      2A2E2A73 
+ 198      207C2025 
+ 198      2D2A2E2A 
+ 198      73207C20 
+ 199 008a 0000     		.align	2
+ 200              	.LC7:
+ 201 008c 666C6173 		.ascii	"flash_dev\000"
+ 201      685F6465 
+ 201      7600
+ 202 0096 0000     		.align	2
+ 203              	.LC8:
+ 204 0098 2D2D2D2D 		.ascii	"---------------------------------------------------"
+ 204      2D2D2D2D 
+ 204      2D2D2D2D 
+ 204      2D2D2D2D 
+ 204      2D2D2D2D 
+ 205 00cb 2D2D2D2D 		.ascii	"----------\000"
+ 205      2D2D2D2D 
+ 205      2D2D00
+ 206 00d6 0000     		.align	2
+ 207              	.LC9:
+ 208 00d8 7C20252D 		.ascii	"| %-*.*s | %-*.*s | 0x%08lx | 0x%08x |\000"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 12
+
+
+ 208      2A2E2A73 
+ 208      207C2025 
+ 208      2D2A2E2A 
+ 208      73207C20 
+ 209 00ff 00       		.align	2
+ 210              	.LC10:
+ 211 0100 3D3D3D3D 		.ascii	"==================================================="
+ 211      3D3D3D3D 
+ 211      3D3D3D3D 
+ 211      3D3D3D3D 
+ 211      3D3D3D3D 
+ 212 0133 3D3D3D3D 		.ascii	"==========\000"
+ 212      3D3D3D3D 
+ 212      3D3D00
+ 213              		.section	.text.fal_show_part_table,"ax",%progbits
+ 214              		.align	1
+ 215              		.global	fal_show_part_table
+ 216              		.syntax unified
+ 217              		.thumb
+ 218              		.thumb_func
+ 220              	fal_show_part_table:
+ 221              	.LFB3:
+  76:BSP/src/fal_partition.c ****     char *item1 = "name", *item2 = "flash_dev";
+ 222              		.loc 1 76 1 is_stmt 1 view -0
+ 223              		.cfi_startproc
+ 224              		@ args = 0, pretend = 0, frame = 0
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 227              	.LCFI1:
+ 228              		.cfi_def_cfa_offset 24
+ 229              		.cfi_offset 4, -24
+ 230              		.cfi_offset 5, -20
+ 231              		.cfi_offset 6, -16
+ 232              		.cfi_offset 7, -12
+ 233              		.cfi_offset 8, -8
+ 234              		.cfi_offset 14, -4
+ 235 0004 86B0     		sub	sp, sp, #24
+ 236              	.LCFI2:
+ 237              		.cfi_def_cfa_offset 48
+  77:BSP/src/fal_partition.c ****     size_t i, part_name_max = strlen(item1), flash_dev_name_max = strlen(item2);
+ 238              		.loc 1 77 5 view .LVU41
+ 239              	.LVL13:
+  78:BSP/src/fal_partition.c ****     const struct fal_partition *part;
+ 240              		.loc 1 78 5 view .LVU42
+  79:BSP/src/fal_partition.c **** 
+ 241              		.loc 1 79 5 view .LVU43
+  81:BSP/src/fal_partition.c ****     {
+ 242              		.loc 1 81 5 view .LVU44
+  81:BSP/src/fal_partition.c ****     {
+ 243              		.loc 1 81 9 is_stmt 0 view .LVU45
+ 244 0006 384B     		ldr	r3, .L26
+ 245 0008 D3F80080 		ldr	r8, [r3]
+  81:BSP/src/fal_partition.c ****     {
+ 246              		.loc 1 81 8 view .LVU46
+ 247 000c B8F1000F 		cmp	r8, #0
+ 248 0010 3CD1     		bne	.L22
+  78:BSP/src/fal_partition.c ****     const struct fal_partition *part;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 13
+
+
+ 249              		.loc 1 78 67 discriminator 1 view .LVU47
+ 250 0012 0927     		movs	r7, #9
+  78:BSP/src/fal_partition.c ****     const struct fal_partition *part;
+ 251              		.loc 1 78 31 view .LVU48
+ 252 0014 0426     		movs	r6, #4
+ 253              	.LVL14:
+ 254              	.L16:
+  96:BSP/src/fal_partition.c ****     log_i("| %-*.*s | %-*.*s |   offset   |    length  |", part_name_max, FAL_DEV_NAME_MAX, item1, 
+ 255              		.loc 1 96 5 is_stmt 1 view .LVU49
+ 256 0016 354D     		ldr	r5, .L26+4
+ 257 0018 2846     		mov	r0, r5
+ 258 001a FFF7FEFF 		bl	printf
+ 259              	.LVL15:
+  96:BSP/src/fal_partition.c ****     log_i("| %-*.*s | %-*.*s |   offset   |    length  |", part_name_max, FAL_DEV_NAME_MAX, item1, 
+ 260              		.loc 1 96 5 discriminator 1 view .LVU50
+ 261 001e 3448     		ldr	r0, .L26+8
+ 262 0020 FFF7FEFF 		bl	printf
+ 263              	.LVL16:
+  96:BSP/src/fal_partition.c ****     log_i("| %-*.*s | %-*.*s |   offset   |    length  |", part_name_max, FAL_DEV_NAME_MAX, item1, 
+ 264              		.loc 1 96 5 discriminator 2 view .LVU51
+ 265 0024 334C     		ldr	r4, .L26+12
+ 266 0026 2046     		mov	r0, r4
+ 267 0028 FFF7FEFF 		bl	puts
+ 268              	.LVL17:
+  97:BSP/src/fal_partition.c ****             FAL_DEV_NAME_MAX, item2);
+ 269              		.loc 1 97 5 view .LVU52
+ 270 002c 2846     		mov	r0, r5
+ 271 002e FFF7FEFF 		bl	printf
+ 272              	.LVL18:
+  97:BSP/src/fal_partition.c ****             FAL_DEV_NAME_MAX, item2);
+ 273              		.loc 1 97 5 discriminator 1 view .LVU53
+ 274 0032 314B     		ldr	r3, .L26+16
+ 275 0034 0293     		str	r3, [sp, #8]
+ 276 0036 1822     		movs	r2, #24
+ 277 0038 0192     		str	r2, [sp, #4]
+ 278 003a 0097     		str	r7, [sp]
+ 279 003c 2F4B     		ldr	r3, .L26+20
+ 280 003e 3146     		mov	r1, r6
+ 281 0040 2F48     		ldr	r0, .L26+24
+ 282 0042 FFF7FEFF 		bl	printf
+ 283              	.LVL19:
+  97:BSP/src/fal_partition.c ****             FAL_DEV_NAME_MAX, item2);
+ 284              		.loc 1 97 5 discriminator 2 view .LVU54
+ 285 0046 2046     		mov	r0, r4
+ 286 0048 FFF7FEFF 		bl	puts
+ 287              	.LVL20:
+  99:BSP/src/fal_partition.c ****     for (i = 0; i < partition_table_len; i++)
+ 288              		.loc 1 99 5 view .LVU55
+ 289 004c 2846     		mov	r0, r5
+ 290 004e FFF7FEFF 		bl	printf
+ 291              	.LVL21:
+  99:BSP/src/fal_partition.c ****     for (i = 0; i < partition_table_len; i++)
+ 292              		.loc 1 99 5 discriminator 1 view .LVU56
+ 293 0052 2C48     		ldr	r0, .L26+28
+ 294 0054 FFF7FEFF 		bl	printf
+ 295              	.LVL22:
+  99:BSP/src/fal_partition.c ****     for (i = 0; i < partition_table_len; i++)
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 14
+
+
+ 296              		.loc 1 99 5 discriminator 2 view .LVU57
+ 297 0058 2046     		mov	r0, r4
+ 298 005a FFF7FEFF 		bl	puts
+ 299              	.LVL23:
+ 100:BSP/src/fal_partition.c ****     {
+ 300              		.loc 1 100 5 view .LVU58
+ 100:BSP/src/fal_partition.c ****     {
+ 301              		.loc 1 100 12 is_stmt 0 view .LVU59
+ 302 005e 0025     		movs	r5, #0
+ 100:BSP/src/fal_partition.c ****     {
+ 303              		.loc 1 100 5 view .LVU60
+ 304 0060 32E0     		b	.L20
+ 305              	.LVL24:
+ 306              	.L18:
+  83:BSP/src/fal_partition.c ****         {
+ 307              		.loc 1 83 47 is_stmt 1 discriminator 2 view .LVU61
+ 308 0062 0135     		adds	r5, r5, #1
+ 309              	.LVL25:
+ 310              	.L15:
+  83:BSP/src/fal_partition.c ****         {
+ 311              		.loc 1 83 23 discriminator 1 view .LVU62
+ 312 0064 A845     		cmp	r8, r5
+ 313 0066 D6D9     		bls	.L16
+  85:BSP/src/fal_partition.c ****             if (strlen(part->name) > part_name_max)
+ 314              		.loc 1 85 13 view .LVU63
+  85:BSP/src/fal_partition.c ****             if (strlen(part->name) > part_name_max)
+ 315              		.loc 1 85 20 is_stmt 0 view .LVU64
+ 316 0068 274B     		ldr	r3, .L26+32
+ 317 006a 1C68     		ldr	r4, [r3]
+  85:BSP/src/fal_partition.c ****             if (strlen(part->name) > part_name_max)
+ 318              		.loc 1 85 18 view .LVU65
+ 319 006c 04EB8514 		add	r4, r4, r5, lsl #6
+ 320              	.LVL26:
+  86:BSP/src/fal_partition.c ****             {
+ 321              		.loc 1 86 13 is_stmt 1 view .LVU66
+  86:BSP/src/fal_partition.c ****             {
+ 322              		.loc 1 86 17 is_stmt 0 view .LVU67
+ 323 0070 201D     		adds	r0, r4, #4
+ 324 0072 FFF7FEFF 		bl	strlen
+ 325              	.LVL27:
+  86:BSP/src/fal_partition.c ****             {
+ 326              		.loc 1 86 16 discriminator 1 view .LVU68
+ 327 0076 B042     		cmp	r0, r6
+ 328 0078 00D9     		bls	.L17
+  88:BSP/src/fal_partition.c ****             }
+ 329              		.loc 1 88 33 view .LVU69
+ 330 007a 0646     		mov	r6, r0
+ 331              	.LVL28:
+ 332              	.L17:
+  90:BSP/src/fal_partition.c ****             {
+ 333              		.loc 1 90 13 is_stmt 1 view .LVU70
+  90:BSP/src/fal_partition.c ****             {
+ 334              		.loc 1 90 17 is_stmt 0 view .LVU71
+ 335 007c 04F11C00 		add	r0, r4, #28
+ 336 0080 FFF7FEFF 		bl	strlen
+ 337              	.LVL29:
+  90:BSP/src/fal_partition.c ****             {
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 15
+
+
+ 338              		.loc 1 90 16 discriminator 1 view .LVU72
+ 339 0084 B842     		cmp	r0, r7
+ 340 0086 ECD9     		bls	.L18
+  92:BSP/src/fal_partition.c ****             }
+ 341              		.loc 1 92 38 view .LVU73
+ 342 0088 0746     		mov	r7, r0
+ 343              	.LVL30:
+  92:BSP/src/fal_partition.c ****             }
+ 344              		.loc 1 92 38 view .LVU74
+ 345 008a EAE7     		b	.L18
+ 346              	.LVL31:
+ 347              	.L22:
+  78:BSP/src/fal_partition.c ****     const struct fal_partition *part;
+ 348              		.loc 1 78 67 discriminator 1 view .LVU75
+ 349 008c 0927     		movs	r7, #9
+  78:BSP/src/fal_partition.c ****     const struct fal_partition *part;
+ 350              		.loc 1 78 31 view .LVU76
+ 351 008e 0426     		movs	r6, #4
+  83:BSP/src/fal_partition.c ****         {
+ 352              		.loc 1 83 16 view .LVU77
+ 353 0090 0025     		movs	r5, #0
+ 354 0092 E7E7     		b	.L15
+ 355              	.LVL32:
+ 356              	.L21:
+ 104:BSP/src/fal_partition.c **** #else
+ 357              		.loc 1 104 9 is_stmt 1 view .LVU78
+ 104:BSP/src/fal_partition.c **** #else
+ 358              		.loc 1 104 16 is_stmt 0 view .LVU79
+ 359 0094 1C4B     		ldr	r3, .L26+32
+ 360 0096 1C68     		ldr	r4, [r3]
+ 104:BSP/src/fal_partition.c **** #else
+ 361              		.loc 1 104 14 view .LVU80
+ 362 0098 04EB8514 		add	r4, r4, r5, lsl #6
+ 363              	.LVL33:
+ 109:BSP/src/fal_partition.c ****                 FAL_DEV_NAME_MAX, part->flash_name, part->offset, part->len);
+ 364              		.loc 1 109 9 is_stmt 1 view .LVU81
+ 365 009c 1348     		ldr	r0, .L26+4
+ 366 009e FFF7FEFF 		bl	printf
+ 367              	.LVL34:
+ 109:BSP/src/fal_partition.c ****                 FAL_DEV_NAME_MAX, part->flash_name, part->offset, part->len);
+ 368              		.loc 1 109 9 discriminator 1 view .LVU82
+ 369 00a2 04F11C03 		add	r3, r4, #28
+ 370 00a6 626B     		ldr	r2, [r4, #52]
+ 371 00a8 A16B     		ldr	r1, [r4, #56]
+ 372 00aa 0491     		str	r1, [sp, #16]
+ 373 00ac 0392     		str	r2, [sp, #12]
+ 374 00ae 0293     		str	r3, [sp, #8]
+ 375 00b0 1822     		movs	r2, #24
+ 376 00b2 0192     		str	r2, [sp, #4]
+ 377 00b4 0097     		str	r7, [sp]
+ 378 00b6 231D     		adds	r3, r4, #4
+ 379 00b8 3146     		mov	r1, r6
+ 380 00ba 1448     		ldr	r0, .L26+36
+ 381 00bc FFF7FEFF 		bl	printf
+ 382              	.LVL35:
+ 109:BSP/src/fal_partition.c ****                 FAL_DEV_NAME_MAX, part->flash_name, part->offset, part->len);
+ 383              		.loc 1 109 9 discriminator 2 view .LVU83
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 16
+
+
+ 384 00c0 0C48     		ldr	r0, .L26+12
+ 385 00c2 FFF7FEFF 		bl	puts
+ 386              	.LVL36:
+ 100:BSP/src/fal_partition.c ****     {
+ 387              		.loc 1 100 43 discriminator 3 view .LVU84
+ 388 00c6 0135     		adds	r5, r5, #1
+ 389              	.LVL37:
+ 390              	.L20:
+ 100:BSP/src/fal_partition.c ****     {
+ 391              		.loc 1 100 19 discriminator 1 view .LVU85
+ 392 00c8 074B     		ldr	r3, .L26
+ 393 00ca 1B68     		ldr	r3, [r3]
+ 394 00cc AB42     		cmp	r3, r5
+ 395 00ce E1D8     		bhi	.L21
+ 112:BSP/src/fal_partition.c **** }
+ 396              		.loc 1 112 5 view .LVU86
+ 397 00d0 0648     		ldr	r0, .L26+4
+ 398 00d2 FFF7FEFF 		bl	printf
+ 399              	.LVL38:
+ 112:BSP/src/fal_partition.c **** }
+ 400              		.loc 1 112 5 discriminator 1 view .LVU87
+ 401 00d6 0E48     		ldr	r0, .L26+40
+ 402 00d8 FFF7FEFF 		bl	printf
+ 403              	.LVL39:
+ 112:BSP/src/fal_partition.c **** }
+ 404              		.loc 1 112 5 discriminator 2 view .LVU88
+ 405 00dc 0548     		ldr	r0, .L26+12
+ 406 00de FFF7FEFF 		bl	puts
+ 407              	.LVL40:
+ 113:BSP/src/fal_partition.c **** 
+ 408              		.loc 1 113 1 is_stmt 0 view .LVU89
+ 409 00e2 06B0     		add	sp, sp, #24
+ 410              	.LCFI3:
+ 411              		.cfi_def_cfa_offset 24
+ 412              		@ sp needed
+ 413 00e4 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 414              	.LVL41:
+ 415              	.L27:
+ 113:BSP/src/fal_partition.c **** 
+ 416              		.loc 1 113 1 view .LVU90
+ 417              		.align	2
+ 418              	.L26:
+ 419 00e8 00000000 		.word	partition_table_len
+ 420 00ec 00000000 		.word	.LC3
+ 421 00f0 14000000 		.word	.LC4
+ 422 00f4 6C000000 		.word	.LC2
+ 423 00f8 8C000000 		.word	.LC7
+ 424 00fc 54000000 		.word	.LC5
+ 425 0100 5C000000 		.word	.LC6
+ 426 0104 98000000 		.word	.LC8
+ 427 0108 00000000 		.word	partition_table
+ 428 010c D8000000 		.word	.LC9
+ 429 0110 00010000 		.word	.LC10
+ 430              		.cfi_endproc
+ 431              	.LFE3:
+ 433              		.section	.text.fal_partition_init,"ax",%progbits
+ 434              		.align	1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 17
+
+
+ 435              		.global	fal_partition_init
+ 436              		.syntax unified
+ 437              		.thumb
+ 438              		.thumb_func
+ 440              	fal_partition_init:
+ 441              	.LFB5:
+ 163:BSP/src/fal_partition.c **** 
+ 442              		.loc 1 163 1 is_stmt 1 view -0
+ 443              		.cfi_startproc
+ 444              		@ args = 0, pretend = 0, frame = 0
+ 445              		@ frame_needed = 0, uses_anonymous_args = 0
+ 446 0000 08B5     		push	{r3, lr}
+ 447              	.LCFI4:
+ 448              		.cfi_def_cfa_offset 8
+ 449              		.cfi_offset 3, -8
+ 450              		.cfi_offset 14, -4
+ 165:BSP/src/fal_partition.c ****     {
+ 451              		.loc 1 165 5 view .LVU92
+ 165:BSP/src/fal_partition.c ****     {
+ 452              		.loc 1 165 9 is_stmt 0 view .LVU93
+ 453 0002 0A4B     		ldr	r3, .L33
+ 454 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 165:BSP/src/fal_partition.c ****     {
+ 455              		.loc 1 165 8 view .LVU94
+ 456 0006 13B1     		cbz	r3, .L29
+ 167:BSP/src/fal_partition.c ****     }
+ 457              		.loc 1 167 9 is_stmt 1 view .LVU95
+ 167:BSP/src/fal_partition.c ****     }
+ 458              		.loc 1 167 16 is_stmt 0 view .LVU96
+ 459 0008 094B     		ldr	r3, .L33+4
+ 460 000a 1868     		ldr	r0, [r3]
+ 461              	.L28:
+ 323:BSP/src/fal_partition.c **** 
+ 462              		.loc 1 323 1 view .LVU97
+ 463 000c 08BD     		pop	{r3, pc}
+ 464              	.L29:
+ 171:BSP/src/fal_partition.c ****     partition_table_len = sizeof(partition_table_def) / sizeof(partition_table_def[0]);
+ 465              		.loc 1 171 5 is_stmt 1 view .LVU98
+ 171:BSP/src/fal_partition.c ****     partition_table_len = sizeof(partition_table_def) / sizeof(partition_table_def[0]);
+ 466              		.loc 1 171 21 is_stmt 0 view .LVU99
+ 467 000e 0948     		ldr	r0, .L33+8
+ 468 0010 094B     		ldr	r3, .L33+12
+ 469 0012 1860     		str	r0, [r3]
+ 172:BSP/src/fal_partition.c **** #else
+ 470              		.loc 1 172 5 is_stmt 1 view .LVU100
+ 172:BSP/src/fal_partition.c **** #else
+ 471              		.loc 1 172 25 is_stmt 0 view .LVU101
+ 472 0014 0121     		movs	r1, #1
+ 473 0016 064B     		ldr	r3, .L33+4
+ 474 0018 1960     		str	r1, [r3]
+ 302:BSP/src/fal_partition.c ****     {
+ 475              		.loc 1 302 5 is_stmt 1 view .LVU102
+ 302:BSP/src/fal_partition.c ****     {
+ 476              		.loc 1 302 9 is_stmt 0 view .LVU103
+ 477 001a FFF7FEFF 		bl	check_and_update_part_cache
+ 478              	.LVL42:
+ 302:BSP/src/fal_partition.c ****     {
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 18
+
+
+ 479              		.loc 1 302 8 discriminator 1 view .LVU104
+ 480 001e 10B9     		cbnz	r0, .L31
+ 307:BSP/src/fal_partition.c **** 
+ 481              		.loc 1 307 5 is_stmt 1 view .LVU105
+ 307:BSP/src/fal_partition.c **** 
+ 482              		.loc 1 307 13 is_stmt 0 view .LVU106
+ 483 0020 024B     		ldr	r3, .L33
+ 484 0022 0122     		movs	r2, #1
+ 485 0024 1A70     		strb	r2, [r3]
+ 486              	.L31:
+ 322:BSP/src/fal_partition.c **** }
+ 487              		.loc 1 322 5 is_stmt 1 view .LVU107
+ 322:BSP/src/fal_partition.c **** }
+ 488              		.loc 1 322 12 is_stmt 0 view .LVU108
+ 489 0026 024B     		ldr	r3, .L33+4
+ 490 0028 1868     		ldr	r0, [r3]
+ 491 002a EFE7     		b	.L28
+ 492              	.L34:
+ 493              		.align	2
+ 494              	.L33:
+ 495 002c 00000000 		.word	init_ok
+ 496 0030 00000000 		.word	partition_table_len
+ 497 0034 00000000 		.word	partition_table_def
+ 498 0038 00000000 		.word	partition_table
+ 499              		.cfi_endproc
+ 500              	.LFE5:
+ 502              		.section	.text.fal_partition_find,"ax",%progbits
+ 503              		.align	1
+ 504              		.global	fal_partition_find
+ 505              		.syntax unified
+ 506              		.thumb
+ 507              		.thumb_func
+ 509              	fal_partition_find:
+ 510              	.LVL43:
+ 511              	.LFB6:
+ 334:BSP/src/fal_partition.c ****     assert(init_ok);
+ 512              		.loc 1 334 1 is_stmt 1 view -0
+ 513              		.cfi_startproc
+ 514              		@ args = 0, pretend = 0, frame = 0
+ 515              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334:BSP/src/fal_partition.c ****     assert(init_ok);
+ 516              		.loc 1 334 1 is_stmt 0 view .LVU110
+ 517 0000 70B5     		push	{r4, r5, r6, lr}
+ 518              	.LCFI5:
+ 519              		.cfi_def_cfa_offset 16
+ 520              		.cfi_offset 4, -16
+ 521              		.cfi_offset 5, -12
+ 522              		.cfi_offset 6, -8
+ 523              		.cfi_offset 14, -4
+ 524 0002 0646     		mov	r6, r0
+ 335:BSP/src/fal_partition.c **** 
+ 525              		.loc 1 335 5 is_stmt 1 view .LVU111
+ 335:BSP/src/fal_partition.c **** 
+ 526              		.loc 1 335 20 view .LVU112
+ 337:BSP/src/fal_partition.c **** 
+ 527              		.loc 1 337 5 view .LVU113
+ 339:BSP/src/fal_partition.c ****     {
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 19
+
+
+ 528              		.loc 1 339 5 view .LVU114
+ 529              	.LVL44:
+ 339:BSP/src/fal_partition.c ****     {
+ 530              		.loc 1 339 12 is_stmt 0 view .LVU115
+ 531 0004 0025     		movs	r5, #0
+ 339:BSP/src/fal_partition.c ****     {
+ 532              		.loc 1 339 5 view .LVU116
+ 533 0006 00E0     		b	.L36
+ 534              	.LVL45:
+ 535              	.L41:
+ 339:BSP/src/fal_partition.c ****     {
+ 536              		.loc 1 339 43 is_stmt 1 discriminator 2 view .LVU117
+ 537 0008 0135     		adds	r5, r5, #1
+ 538              	.LVL46:
+ 539              	.L36:
+ 339:BSP/src/fal_partition.c ****     {
+ 540              		.loc 1 339 19 discriminator 1 view .LVU118
+ 541 000a 094B     		ldr	r3, .L42
+ 542 000c 1B68     		ldr	r3, [r3]
+ 543 000e AB42     		cmp	r3, r5
+ 544 0010 0AD9     		bls	.L40
+ 341:BSP/src/fal_partition.c ****         {
+ 545              		.loc 1 341 9 view .LVU119
+ 341:BSP/src/fal_partition.c ****         {
+ 546              		.loc 1 341 42 is_stmt 0 view .LVU120
+ 547 0012 084B     		ldr	r3, .L42+4
+ 548 0014 1C68     		ldr	r4, [r3]
+ 549 0016 04EB8514 		add	r4, r4, r5, lsl #6
+ 341:BSP/src/fal_partition.c ****         {
+ 550              		.loc 1 341 14 view .LVU121
+ 551 001a 211D     		adds	r1, r4, #4
+ 552 001c 3046     		mov	r0, r6
+ 553 001e FFF7FEFF 		bl	strcmp
+ 554              	.LVL47:
+ 341:BSP/src/fal_partition.c ****         {
+ 555              		.loc 1 341 12 discriminator 1 view .LVU122
+ 556 0022 0028     		cmp	r0, #0
+ 557 0024 F0D1     		bne	.L41
+ 558 0026 00E0     		b	.L35
+ 559              	.L40:
+ 347:BSP/src/fal_partition.c **** }
+ 560              		.loc 1 347 12 view .LVU123
+ 561 0028 0024     		movs	r4, #0
+ 562              	.L35:
+ 348:BSP/src/fal_partition.c **** 
+ 563              		.loc 1 348 1 view .LVU124
+ 564 002a 2046     		mov	r0, r4
+ 565 002c 70BD     		pop	{r4, r5, r6, pc}
+ 566              	.LVL48:
+ 567              	.L43:
+ 348:BSP/src/fal_partition.c **** 
+ 568              		.loc 1 348 1 view .LVU125
+ 569 002e 00BF     		.align	2
+ 570              	.L42:
+ 571 0030 00000000 		.word	partition_table_len
+ 572 0034 00000000 		.word	partition_table
+ 573              		.cfi_endproc
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 20
+
+
+ 574              	.LFE6:
+ 576              		.section	.text.fal_get_partition_table,"ax",%progbits
+ 577              		.align	1
+ 578              		.global	fal_get_partition_table
+ 579              		.syntax unified
+ 580              		.thumb
+ 581              		.thumb_func
+ 583              	fal_get_partition_table:
+ 584              	.LVL49:
+ 585              	.LFB8:
+ 357:BSP/src/fal_partition.c **** 
+ 358:BSP/src/fal_partition.c **** /**
+ 359:BSP/src/fal_partition.c ****  * get the partition table
+ 360:BSP/src/fal_partition.c ****  *
+ 361:BSP/src/fal_partition.c ****  * @param len return the partition table length
+ 362:BSP/src/fal_partition.c ****  *
+ 363:BSP/src/fal_partition.c ****  * @return partition table
+ 364:BSP/src/fal_partition.c ****  */
+ 365:BSP/src/fal_partition.c **** const struct fal_partition *fal_get_partition_table(size_t *len)
+ 366:BSP/src/fal_partition.c **** {
+ 586              		.loc 1 366 1 is_stmt 1 view -0
+ 587              		.cfi_startproc
+ 588              		@ args = 0, pretend = 0, frame = 0
+ 589              		@ frame_needed = 0, uses_anonymous_args = 0
+ 590              		@ link register save eliminated.
+ 367:BSP/src/fal_partition.c ****     assert(init_ok);
+ 591              		.loc 1 367 5 view .LVU127
+ 592              		.loc 1 367 20 view .LVU128
+ 368:BSP/src/fal_partition.c ****     assert(len);
+ 593              		.loc 1 368 5 view .LVU129
+ 594              		.loc 1 368 16 view .LVU130
+ 369:BSP/src/fal_partition.c **** 
+ 370:BSP/src/fal_partition.c ****     *len = partition_table_len;
+ 595              		.loc 1 370 5 view .LVU131
+ 596              		.loc 1 370 10 is_stmt 0 view .LVU132
+ 597 0000 024B     		ldr	r3, .L45
+ 598 0002 1B68     		ldr	r3, [r3]
+ 599 0004 0360     		str	r3, [r0]
+ 371:BSP/src/fal_partition.c **** 
+ 372:BSP/src/fal_partition.c ****     return partition_table;
+ 600              		.loc 1 372 5 is_stmt 1 view .LVU133
+ 373:BSP/src/fal_partition.c **** }
+ 601              		.loc 1 373 1 is_stmt 0 view .LVU134
+ 602 0006 024B     		ldr	r3, .L45+4
+ 603 0008 1868     		ldr	r0, [r3]
+ 604              	.LVL50:
+ 605              		.loc 1 373 1 view .LVU135
+ 606 000a 7047     		bx	lr
+ 607              	.L46:
+ 608              		.align	2
+ 609              	.L45:
+ 610 000c 00000000 		.word	partition_table_len
+ 611 0010 00000000 		.word	partition_table
+ 612              		.cfi_endproc
+ 613              	.LFE8:
+ 615              		.section	.text.fal_set_partition_table_temp,"ax",%progbits
+ 616              		.align	1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 21
+
+
+ 617              		.global	fal_set_partition_table_temp
+ 618              		.syntax unified
+ 619              		.thumb
+ 620              		.thumb_func
+ 622              	fal_set_partition_table_temp:
+ 623              	.LVL51:
+ 624              	.LFB9:
+ 374:BSP/src/fal_partition.c **** 
+ 375:BSP/src/fal_partition.c **** /**
+ 376:BSP/src/fal_partition.c ****  * set partition table temporarily
+ 377:BSP/src/fal_partition.c ****  * This setting will modify the partition table temporarily, the setting will be lost after restart
+ 378:BSP/src/fal_partition.c ****  *
+ 379:BSP/src/fal_partition.c ****  * @param table partition table
+ 380:BSP/src/fal_partition.c ****  * @param len partition table length
+ 381:BSP/src/fal_partition.c ****  */
+ 382:BSP/src/fal_partition.c **** void fal_set_partition_table_temp(struct fal_partition *table, size_t len)
+ 383:BSP/src/fal_partition.c **** {
+ 625              		.loc 1 383 1 is_stmt 1 view -0
+ 626              		.cfi_startproc
+ 627              		@ args = 0, pretend = 0, frame = 0
+ 628              		@ frame_needed = 0, uses_anonymous_args = 0
+ 629              		.loc 1 383 1 is_stmt 0 view .LVU137
+ 630 0000 38B5     		push	{r3, r4, r5, lr}
+ 631              	.LCFI6:
+ 632              		.cfi_def_cfa_offset 16
+ 633              		.cfi_offset 3, -16
+ 634              		.cfi_offset 4, -12
+ 635              		.cfi_offset 5, -8
+ 636              		.cfi_offset 14, -4
+ 637 0002 0446     		mov	r4, r0
+ 638 0004 0D46     		mov	r5, r1
+ 384:BSP/src/fal_partition.c ****     assert(init_ok);
+ 639              		.loc 1 384 5 is_stmt 1 view .LVU138
+ 640              		.loc 1 384 20 view .LVU139
+ 385:BSP/src/fal_partition.c ****     assert(table);
+ 641              		.loc 1 385 5 view .LVU140
+ 642              		.loc 1 385 18 view .LVU141
+ 386:BSP/src/fal_partition.c **** 
+ 387:BSP/src/fal_partition.c ****     check_and_update_part_cache(table, len);
+ 643              		.loc 1 387 5 view .LVU142
+ 644 0006 FFF7FEFF 		bl	check_and_update_part_cache
+ 645              	.LVL52:
+ 388:BSP/src/fal_partition.c **** 
+ 389:BSP/src/fal_partition.c ****     partition_table_len = len;
+ 646              		.loc 1 389 5 view .LVU143
+ 647              		.loc 1 389 25 is_stmt 0 view .LVU144
+ 648 000a 024B     		ldr	r3, .L49
+ 649 000c 1D60     		str	r5, [r3]
+ 390:BSP/src/fal_partition.c ****     partition_table = table;
+ 650              		.loc 1 390 5 is_stmt 1 view .LVU145
+ 651              		.loc 1 390 21 is_stmt 0 view .LVU146
+ 652 000e 024B     		ldr	r3, .L49+4
+ 653 0010 1C60     		str	r4, [r3]
+ 391:BSP/src/fal_partition.c **** }
+ 654              		.loc 1 391 1 view .LVU147
+ 655 0012 38BD     		pop	{r3, r4, r5, pc}
+ 656              	.LVL53:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 22
+
+
+ 657              	.L50:
+ 658              		.loc 1 391 1 view .LVU148
+ 659              		.align	2
+ 660              	.L49:
+ 661 0014 00000000 		.word	partition_table_len
+ 662 0018 00000000 		.word	partition_table
+ 663              		.cfi_endproc
+ 664              	.LFE9:
+ 666              		.section	.rodata.fal_partition_read.str1.4,"aMS",%progbits,1
+ 667              		.align	2
+ 668              	.LC11:
+ 669 0000 50617274 		.ascii	"Partition read error! Partition address out of boun"
+ 669      6974696F 
+ 669      6E207265 
+ 669      61642065 
+ 669      72726F72 
+ 670 0033 642E00   		.ascii	"d.\000"
+ 671 0036 0000     		.align	2
+ 672              	.LC12:
+ 673 0038 50617274 		.ascii	"Partition read error! Don't found flash device(%s) "
+ 673      6974696F 
+ 673      6E207265 
+ 673      61642065 
+ 673      72726F72 
+ 674 006b 6F662074 		.ascii	"of the partition(%s).\000"
+ 674      68652070 
+ 674      61727469 
+ 674      74696F6E 
+ 674      28257329 
+ 675 0081 000000   		.align	2
+ 676              	.LC13:
+ 677 0084 50617274 		.ascii	"Partition read error! Flash device(%s) read error!\000"
+ 677      6974696F 
+ 677      6E207265 
+ 677      61642065 
+ 677      72726F72 
+ 678              		.section	.text.fal_partition_read,"ax",%progbits
+ 679              		.align	1
+ 680              		.global	fal_partition_read
+ 681              		.syntax unified
+ 682              		.thumb
+ 683              		.thumb_func
+ 685              	fal_partition_read:
+ 686              	.LVL54:
+ 687              	.LFB10:
+ 392:BSP/src/fal_partition.c **** 
+ 393:BSP/src/fal_partition.c **** /**
+ 394:BSP/src/fal_partition.c ****  * read data from partition
+ 395:BSP/src/fal_partition.c ****  *
+ 396:BSP/src/fal_partition.c ****  * @param part partition
+ 397:BSP/src/fal_partition.c ****  * @param addr relative address for partition
+ 398:BSP/src/fal_partition.c ****  * @param buf read buffer
+ 399:BSP/src/fal_partition.c ****  * @param size read size
+ 400:BSP/src/fal_partition.c ****  *
+ 401:BSP/src/fal_partition.c ****  * @return >= 0: successful read data size
+ 402:BSP/src/fal_partition.c ****  *           -1: error
+ 403:BSP/src/fal_partition.c ****  */
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 23
+
+
+ 404:BSP/src/fal_partition.c **** int fal_partition_read(const struct fal_partition *part, uint32_t addr, uint8_t *buf, size_t size)
+ 405:BSP/src/fal_partition.c **** {
+ 688              		.loc 1 405 1 is_stmt 1 view -0
+ 689              		.cfi_startproc
+ 690              		@ args = 0, pretend = 0, frame = 0
+ 691              		@ frame_needed = 0, uses_anonymous_args = 0
+ 692              		.loc 1 405 1 is_stmt 0 view .LVU150
+ 693 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 694              	.LCFI7:
+ 695              		.cfi_def_cfa_offset 24
+ 696              		.cfi_offset 3, -24
+ 697              		.cfi_offset 4, -20
+ 698              		.cfi_offset 5, -16
+ 699              		.cfi_offset 6, -12
+ 700              		.cfi_offset 7, -8
+ 701              		.cfi_offset 14, -4
+ 702 0002 0446     		mov	r4, r0
+ 703 0004 1E46     		mov	r6, r3
+ 406:BSP/src/fal_partition.c ****     int ret = 0;
+ 704              		.loc 1 406 5 is_stmt 1 view .LVU151
+ 705              	.LVL55:
+ 407:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev = NULL;
+ 706              		.loc 1 407 5 view .LVU152
+ 408:BSP/src/fal_partition.c **** 
+ 409:BSP/src/fal_partition.c ****     assert(part);
+ 707              		.loc 1 409 5 view .LVU153
+ 708              		.loc 1 409 17 view .LVU154
+ 410:BSP/src/fal_partition.c ****     assert(buf);
+ 709              		.loc 1 410 5 view .LVU155
+ 710              		.loc 1 410 16 view .LVU156
+ 411:BSP/src/fal_partition.c **** 
+ 412:BSP/src/fal_partition.c ****     if (addr + size > part->len)
+ 711              		.loc 1 412 5 view .LVU157
+ 712              		.loc 1 412 14 is_stmt 0 view .LVU158
+ 713 0006 C818     		adds	r0, r1, r3
+ 714              	.LVL56:
+ 715              		.loc 1 412 27 view .LVU159
+ 716 0008 A36B     		ldr	r3, [r4, #56]
+ 717              	.LVL57:
+ 718              		.loc 1 412 8 view .LVU160
+ 719 000a 9842     		cmp	r0, r3
+ 720 000c 0FD8     		bhi	.L56
+ 721 000e 0D46     		mov	r5, r1
+ 722 0010 1746     		mov	r7, r2
+ 413:BSP/src/fal_partition.c ****     {
+ 414:BSP/src/fal_partition.c ****         log_e("Partition read error! Partition address out of bound.");
+ 415:BSP/src/fal_partition.c ****         return -1;
+ 416:BSP/src/fal_partition.c ****     }
+ 417:BSP/src/fal_partition.c **** 
+ 418:BSP/src/fal_partition.c ****     flash_dev = flash_device_find_by_part(part);
+ 723              		.loc 1 418 5 is_stmt 1 view .LVU161
+ 724              		.loc 1 418 17 is_stmt 0 view .LVU162
+ 725 0012 2046     		mov	r0, r4
+ 726 0014 FFF7FEFF 		bl	flash_device_find_by_part
+ 727              	.LVL58:
+ 419:BSP/src/fal_partition.c ****     if (flash_dev == NULL)
+ 728              		.loc 1 419 5 is_stmt 1 view .LVU163
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 24
+
+
+ 729              		.loc 1 419 8 is_stmt 0 view .LVU164
+ 730 0018 C0B1     		cbz	r0, .L57
+ 420:BSP/src/fal_partition.c ****     {
+ 421:BSP/src/fal_partition.c ****         log_e("Partition read error! Don't found flash device(%s) of the partition(%s).", part->fla
+ 422:BSP/src/fal_partition.c ****         return -1;
+ 423:BSP/src/fal_partition.c ****     }
+ 424:BSP/src/fal_partition.c **** 
+ 425:BSP/src/fal_partition.c ****     ret = flash_dev->ops.read(part->offset + addr, buf, size);
+ 731              		.loc 1 425 5 is_stmt 1 view .LVU165
+ 732              		.loc 1 425 25 is_stmt 0 view .LVU166
+ 733 001a 836A     		ldr	r3, [r0, #40]
+ 734              		.loc 1 425 35 view .LVU167
+ 735 001c 606B     		ldr	r0, [r4, #52]
+ 736              	.LVL59:
+ 737              		.loc 1 425 11 view .LVU168
+ 738 001e 3246     		mov	r2, r6
+ 739 0020 3946     		mov	r1, r7
+ 740 0022 2844     		add	r0, r0, r5
+ 741 0024 9847     		blx	r3
+ 742              	.LVL60:
+ 426:BSP/src/fal_partition.c ****     if (ret < 0)
+ 743              		.loc 1 426 5 is_stmt 1 view .LVU169
+ 744              		.loc 1 426 8 is_stmt 0 view .LVU170
+ 745 0026 051E     		subs	r5, r0, #0
+ 746              	.LVL61:
+ 747              		.loc 1 426 8 view .LVU171
+ 748 0028 22DB     		blt	.L58
+ 749              	.LVL62:
+ 750              	.L51:
+ 427:BSP/src/fal_partition.c ****     {
+ 428:BSP/src/fal_partition.c ****         log_e("Partition read error! Flash device(%s) read error!", part->flash_name);
+ 429:BSP/src/fal_partition.c ****     }
+ 430:BSP/src/fal_partition.c **** 
+ 431:BSP/src/fal_partition.c ****     return ret;
+ 432:BSP/src/fal_partition.c **** }
+ 751              		.loc 1 432 1 view .LVU172
+ 752 002a 2846     		mov	r0, r5
+ 753 002c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 754              	.LVL63:
+ 755              	.L56:
+ 414:BSP/src/fal_partition.c ****         return -1;
+ 756              		.loc 1 414 9 is_stmt 1 view .LVU173
+ 757 002e 4FF4CF72 		mov	r2, #414
+ 758              	.LVL64:
+ 414:BSP/src/fal_partition.c ****         return -1;
+ 759              		.loc 1 414 9 is_stmt 0 view .LVU174
+ 760 0032 1749     		ldr	r1, .L59
+ 761              	.LVL65:
+ 414:BSP/src/fal_partition.c ****         return -1;
+ 762              		.loc 1 414 9 view .LVU175
+ 763 0034 1748     		ldr	r0, .L59+4
+ 764 0036 FFF7FEFF 		bl	printf
+ 765              	.LVL66:
+ 414:BSP/src/fal_partition.c ****         return -1;
+ 766              		.loc 1 414 9 is_stmt 1 discriminator 1 view .LVU176
+ 767 003a 1748     		ldr	r0, .L59+8
+ 768 003c FFF7FEFF 		bl	printf
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 25
+
+
+ 769              	.LVL67:
+ 414:BSP/src/fal_partition.c ****         return -1;
+ 770              		.loc 1 414 9 discriminator 2 view .LVU177
+ 771 0040 1648     		ldr	r0, .L59+12
+ 772 0042 FFF7FEFF 		bl	puts
+ 773              	.LVL68:
+ 415:BSP/src/fal_partition.c ****     }
+ 774              		.loc 1 415 9 view .LVU178
+ 415:BSP/src/fal_partition.c ****     }
+ 775              		.loc 1 415 16 is_stmt 0 view .LVU179
+ 776 0046 4FF0FF35 		mov	r5, #-1
+ 777 004a EEE7     		b	.L51
+ 778              	.LVL69:
+ 779              	.L57:
+ 421:BSP/src/fal_partition.c ****         return -1;
+ 780              		.loc 1 421 9 is_stmt 1 view .LVU180
+ 781 004c 40F2A512 		movw	r2, #421
+ 782 0050 0F49     		ldr	r1, .L59
+ 783 0052 1048     		ldr	r0, .L59+4
+ 784              	.LVL70:
+ 421:BSP/src/fal_partition.c ****         return -1;
+ 785              		.loc 1 421 9 is_stmt 0 view .LVU181
+ 786 0054 FFF7FEFF 		bl	printf
+ 787              	.LVL71:
+ 421:BSP/src/fal_partition.c ****         return -1;
+ 788              		.loc 1 421 9 is_stmt 1 discriminator 1 view .LVU182
+ 789 0058 221D     		adds	r2, r4, #4
+ 790 005a 04F11C01 		add	r1, r4, #28
+ 791 005e 1048     		ldr	r0, .L59+16
+ 792 0060 FFF7FEFF 		bl	printf
+ 793              	.LVL72:
+ 421:BSP/src/fal_partition.c ****         return -1;
+ 794              		.loc 1 421 9 discriminator 2 view .LVU183
+ 795 0064 0D48     		ldr	r0, .L59+12
+ 796 0066 FFF7FEFF 		bl	puts
+ 797              	.LVL73:
+ 422:BSP/src/fal_partition.c ****     }
+ 798              		.loc 1 422 9 view .LVU184
+ 422:BSP/src/fal_partition.c ****     }
+ 799              		.loc 1 422 16 is_stmt 0 view .LVU185
+ 800 006a 4FF0FF35 		mov	r5, #-1
+ 801              	.LVL74:
+ 422:BSP/src/fal_partition.c ****     }
+ 802              		.loc 1 422 16 view .LVU186
+ 803 006e DCE7     		b	.L51
+ 804              	.LVL75:
+ 805              	.L58:
+ 428:BSP/src/fal_partition.c ****     }
+ 806              		.loc 1 428 9 is_stmt 1 view .LVU187
+ 807 0070 4FF4D672 		mov	r2, #428
+ 808 0074 0649     		ldr	r1, .L59
+ 809 0076 0748     		ldr	r0, .L59+4
+ 810              	.LVL76:
+ 428:BSP/src/fal_partition.c ****     }
+ 811              		.loc 1 428 9 is_stmt 0 view .LVU188
+ 812 0078 FFF7FEFF 		bl	printf
+ 813              	.LVL77:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 26
+
+
+ 428:BSP/src/fal_partition.c ****     }
+ 814              		.loc 1 428 9 is_stmt 1 discriminator 1 view .LVU189
+ 815 007c 04F11C01 		add	r1, r4, #28
+ 816 0080 0848     		ldr	r0, .L59+20
+ 817 0082 FFF7FEFF 		bl	printf
+ 818              	.LVL78:
+ 428:BSP/src/fal_partition.c ****     }
+ 819              		.loc 1 428 9 discriminator 2 view .LVU190
+ 820 0086 0548     		ldr	r0, .L59+12
+ 821 0088 FFF7FEFF 		bl	puts
+ 822              	.LVL79:
+ 823 008c CDE7     		b	.L51
+ 824              	.L60:
+ 825 008e 00BF     		.align	2
+ 826              	.L59:
+ 827 0090 00000000 		.word	__func__.2
+ 828 0094 00000000 		.word	.LC0
+ 829 0098 00000000 		.word	.LC11
+ 830 009c 6C000000 		.word	.LC2
+ 831 00a0 38000000 		.word	.LC12
+ 832 00a4 84000000 		.word	.LC13
+ 833              		.cfi_endproc
+ 834              	.LFE10:
+ 836              		.section	.rodata.fal_partition_write.str1.4,"aMS",%progbits,1
+ 837              		.align	2
+ 838              	.LC14:
+ 839 0000 50617274 		.ascii	"Partition write error! Partition address out of bou"
+ 839      6974696F 
+ 839      6E207772 
+ 839      69746520 
+ 839      6572726F 
+ 840 0033 6E642E00 		.ascii	"nd.\000"
+ 841 0037 00       		.align	2
+ 842              	.LC15:
+ 843 0038 50617274 		.ascii	"Partition write error!  Don't found flash device(%s"
+ 843      6974696F 
+ 843      6E207772 
+ 843      69746520 
+ 843      6572726F 
+ 844 006b 29206F66 		.ascii	") of the partition(%s).\000"
+ 844      20746865 
+ 844      20706172 
+ 844      74697469 
+ 844      6F6E2825 
+ 845 0083 00       		.align	2
+ 846              	.LC16:
+ 847 0084 50617274 		.ascii	"Partition write error! Flash device(%s) write error"
+ 847      6974696F 
+ 847      6E207772 
+ 847      69746520 
+ 847      6572726F 
+ 848 00b7 2100     		.ascii	"!\000"
+ 849              		.section	.text.fal_partition_write,"ax",%progbits
+ 850              		.align	1
+ 851              		.global	fal_partition_write
+ 852              		.syntax unified
+ 853              		.thumb
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 27
+
+
+ 854              		.thumb_func
+ 856              	fal_partition_write:
+ 857              	.LVL80:
+ 858              	.LFB11:
+ 433:BSP/src/fal_partition.c **** 
+ 434:BSP/src/fal_partition.c **** /**
+ 435:BSP/src/fal_partition.c ****  * write data to partition
+ 436:BSP/src/fal_partition.c ****  *
+ 437:BSP/src/fal_partition.c ****  * @param part partition
+ 438:BSP/src/fal_partition.c ****  * @param addr relative address for partition
+ 439:BSP/src/fal_partition.c ****  * @param buf write buffer
+ 440:BSP/src/fal_partition.c ****  * @param size write size
+ 441:BSP/src/fal_partition.c ****  *
+ 442:BSP/src/fal_partition.c ****  * @return >= 0: successful write data size
+ 443:BSP/src/fal_partition.c ****  *           -1: error
+ 444:BSP/src/fal_partition.c ****  */
+ 445:BSP/src/fal_partition.c **** int fal_partition_write(const struct fal_partition *part, uint32_t addr, const uint8_t *buf, size_t
+ 446:BSP/src/fal_partition.c **** {
+ 859              		.loc 1 446 1 view -0
+ 860              		.cfi_startproc
+ 861              		@ args = 0, pretend = 0, frame = 0
+ 862              		@ frame_needed = 0, uses_anonymous_args = 0
+ 863              		.loc 1 446 1 is_stmt 0 view .LVU192
+ 864 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 865              	.LCFI8:
+ 866              		.cfi_def_cfa_offset 24
+ 867              		.cfi_offset 3, -24
+ 868              		.cfi_offset 4, -20
+ 869              		.cfi_offset 5, -16
+ 870              		.cfi_offset 6, -12
+ 871              		.cfi_offset 7, -8
+ 872              		.cfi_offset 14, -4
+ 873 0002 0446     		mov	r4, r0
+ 874 0004 1E46     		mov	r6, r3
+ 447:BSP/src/fal_partition.c ****     int ret = 0;
+ 875              		.loc 1 447 5 is_stmt 1 view .LVU193
+ 876              	.LVL81:
+ 448:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev = NULL;
+ 877              		.loc 1 448 5 view .LVU194
+ 449:BSP/src/fal_partition.c **** 
+ 450:BSP/src/fal_partition.c ****     assert(part);
+ 878              		.loc 1 450 5 view .LVU195
+ 879              		.loc 1 450 17 view .LVU196
+ 451:BSP/src/fal_partition.c ****     assert(buf);
+ 880              		.loc 1 451 5 view .LVU197
+ 881              		.loc 1 451 16 view .LVU198
+ 452:BSP/src/fal_partition.c **** 
+ 453:BSP/src/fal_partition.c ****     if (addr + size > part->len)
+ 882              		.loc 1 453 5 view .LVU199
+ 883              		.loc 1 453 14 is_stmt 0 view .LVU200
+ 884 0006 C818     		adds	r0, r1, r3
+ 885              	.LVL82:
+ 886              		.loc 1 453 27 view .LVU201
+ 887 0008 A36B     		ldr	r3, [r4, #56]
+ 888              	.LVL83:
+ 889              		.loc 1 453 8 view .LVU202
+ 890 000a 9842     		cmp	r0, r3
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 28
+
+
+ 891 000c 0FD8     		bhi	.L66
+ 892 000e 0D46     		mov	r5, r1
+ 893 0010 1746     		mov	r7, r2
+ 454:BSP/src/fal_partition.c ****     {
+ 455:BSP/src/fal_partition.c ****         log_e("Partition write error! Partition address out of bound.");
+ 456:BSP/src/fal_partition.c ****         return -1;
+ 457:BSP/src/fal_partition.c ****     }
+ 458:BSP/src/fal_partition.c **** 
+ 459:BSP/src/fal_partition.c ****     flash_dev = flash_device_find_by_part(part);
+ 894              		.loc 1 459 5 is_stmt 1 view .LVU203
+ 895              		.loc 1 459 17 is_stmt 0 view .LVU204
+ 896 0012 2046     		mov	r0, r4
+ 897 0014 FFF7FEFF 		bl	flash_device_find_by_part
+ 898              	.LVL84:
+ 460:BSP/src/fal_partition.c ****     if (flash_dev == NULL)
+ 899              		.loc 1 460 5 is_stmt 1 view .LVU205
+ 900              		.loc 1 460 8 is_stmt 0 view .LVU206
+ 901 0018 C0B1     		cbz	r0, .L67
+ 461:BSP/src/fal_partition.c ****     {
+ 462:BSP/src/fal_partition.c ****         log_e("Partition write error!  Don't found flash device(%s) of the partition(%s).", part->f
+ 463:BSP/src/fal_partition.c ****         return -1;
+ 464:BSP/src/fal_partition.c ****     }
+ 465:BSP/src/fal_partition.c **** 
+ 466:BSP/src/fal_partition.c ****     ret = flash_dev->ops.write(part->offset + addr, buf, size);
+ 902              		.loc 1 466 5 is_stmt 1 view .LVU207
+ 903              		.loc 1 466 25 is_stmt 0 view .LVU208
+ 904 001a C36A     		ldr	r3, [r0, #44]
+ 905              		.loc 1 466 36 view .LVU209
+ 906 001c 606B     		ldr	r0, [r4, #52]
+ 907              	.LVL85:
+ 908              		.loc 1 466 11 view .LVU210
+ 909 001e 3246     		mov	r2, r6
+ 910 0020 3946     		mov	r1, r7
+ 911 0022 2844     		add	r0, r0, r5
+ 912 0024 9847     		blx	r3
+ 913              	.LVL86:
+ 467:BSP/src/fal_partition.c ****     if (ret < 0)
+ 914              		.loc 1 467 5 is_stmt 1 view .LVU211
+ 915              		.loc 1 467 8 is_stmt 0 view .LVU212
+ 916 0026 051E     		subs	r5, r0, #0
+ 917              	.LVL87:
+ 918              		.loc 1 467 8 view .LVU213
+ 919 0028 22DB     		blt	.L68
+ 920              	.LVL88:
+ 921              	.L61:
+ 468:BSP/src/fal_partition.c ****     {
+ 469:BSP/src/fal_partition.c ****         log_e("Partition write error! Flash device(%s) write error!", part->flash_name);
+ 470:BSP/src/fal_partition.c ****     }
+ 471:BSP/src/fal_partition.c **** 
+ 472:BSP/src/fal_partition.c ****     return ret;
+ 473:BSP/src/fal_partition.c **** }
+ 922              		.loc 1 473 1 view .LVU214
+ 923 002a 2846     		mov	r0, r5
+ 924 002c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 925              	.LVL89:
+ 926              	.L66:
+ 455:BSP/src/fal_partition.c ****         return -1;
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 29
+
+
+ 927              		.loc 1 455 9 is_stmt 1 view .LVU215
+ 928 002e 40F2C712 		movw	r2, #455
+ 929              	.LVL90:
+ 455:BSP/src/fal_partition.c ****         return -1;
+ 930              		.loc 1 455 9 is_stmt 0 view .LVU216
+ 931 0032 1749     		ldr	r1, .L69
+ 932              	.LVL91:
+ 455:BSP/src/fal_partition.c ****         return -1;
+ 933              		.loc 1 455 9 view .LVU217
+ 934 0034 1748     		ldr	r0, .L69+4
+ 935 0036 FFF7FEFF 		bl	printf
+ 936              	.LVL92:
+ 455:BSP/src/fal_partition.c ****         return -1;
+ 937              		.loc 1 455 9 is_stmt 1 discriminator 1 view .LVU218
+ 938 003a 1748     		ldr	r0, .L69+8
+ 939 003c FFF7FEFF 		bl	printf
+ 940              	.LVL93:
+ 455:BSP/src/fal_partition.c ****         return -1;
+ 941              		.loc 1 455 9 discriminator 2 view .LVU219
+ 942 0040 1648     		ldr	r0, .L69+12
+ 943 0042 FFF7FEFF 		bl	puts
+ 944              	.LVL94:
+ 456:BSP/src/fal_partition.c ****     }
+ 945              		.loc 1 456 9 view .LVU220
+ 456:BSP/src/fal_partition.c ****     }
+ 946              		.loc 1 456 16 is_stmt 0 view .LVU221
+ 947 0046 4FF0FF35 		mov	r5, #-1
+ 948 004a EEE7     		b	.L61
+ 949              	.LVL95:
+ 950              	.L67:
+ 462:BSP/src/fal_partition.c ****         return -1;
+ 951              		.loc 1 462 9 is_stmt 1 view .LVU222
+ 952 004c 4FF4E772 		mov	r2, #462
+ 953 0050 0F49     		ldr	r1, .L69
+ 954 0052 1048     		ldr	r0, .L69+4
+ 955              	.LVL96:
+ 462:BSP/src/fal_partition.c ****         return -1;
+ 956              		.loc 1 462 9 is_stmt 0 view .LVU223
+ 957 0054 FFF7FEFF 		bl	printf
+ 958              	.LVL97:
+ 462:BSP/src/fal_partition.c ****         return -1;
+ 959              		.loc 1 462 9 is_stmt 1 discriminator 1 view .LVU224
+ 960 0058 221D     		adds	r2, r4, #4
+ 961 005a 04F11C01 		add	r1, r4, #28
+ 962 005e 1048     		ldr	r0, .L69+16
+ 963 0060 FFF7FEFF 		bl	printf
+ 964              	.LVL98:
+ 462:BSP/src/fal_partition.c ****         return -1;
+ 965              		.loc 1 462 9 discriminator 2 view .LVU225
+ 966 0064 0D48     		ldr	r0, .L69+12
+ 967 0066 FFF7FEFF 		bl	puts
+ 968              	.LVL99:
+ 463:BSP/src/fal_partition.c ****     }
+ 969              		.loc 1 463 9 view .LVU226
+ 463:BSP/src/fal_partition.c ****     }
+ 970              		.loc 1 463 16 is_stmt 0 view .LVU227
+ 971 006a 4FF0FF35 		mov	r5, #-1
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 30
+
+
+ 972              	.LVL100:
+ 463:BSP/src/fal_partition.c ****     }
+ 973              		.loc 1 463 16 view .LVU228
+ 974 006e DCE7     		b	.L61
+ 975              	.LVL101:
+ 976              	.L68:
+ 469:BSP/src/fal_partition.c ****     }
+ 977              		.loc 1 469 9 is_stmt 1 view .LVU229
+ 978 0070 40F2D512 		movw	r2, #469
+ 979 0074 0649     		ldr	r1, .L69
+ 980 0076 0748     		ldr	r0, .L69+4
+ 981              	.LVL102:
+ 469:BSP/src/fal_partition.c ****     }
+ 982              		.loc 1 469 9 is_stmt 0 view .LVU230
+ 983 0078 FFF7FEFF 		bl	printf
+ 984              	.LVL103:
+ 469:BSP/src/fal_partition.c ****     }
+ 985              		.loc 1 469 9 is_stmt 1 discriminator 1 view .LVU231
+ 986 007c 04F11C01 		add	r1, r4, #28
+ 987 0080 0848     		ldr	r0, .L69+20
+ 988 0082 FFF7FEFF 		bl	printf
+ 989              	.LVL104:
+ 469:BSP/src/fal_partition.c ****     }
+ 990              		.loc 1 469 9 discriminator 2 view .LVU232
+ 991 0086 0548     		ldr	r0, .L69+12
+ 992 0088 FFF7FEFF 		bl	puts
+ 993              	.LVL105:
+ 994 008c CDE7     		b	.L61
+ 995              	.L70:
+ 996 008e 00BF     		.align	2
+ 997              	.L69:
+ 998 0090 00000000 		.word	__func__.1
+ 999 0094 00000000 		.word	.LC0
+ 1000 0098 00000000 		.word	.LC14
+ 1001 009c 6C000000 		.word	.LC2
+ 1002 00a0 38000000 		.word	.LC15
+ 1003 00a4 84000000 		.word	.LC16
+ 1004              		.cfi_endproc
+ 1005              	.LFE11:
+ 1007              		.section	.rodata.fal_partition_erase.str1.4,"aMS",%progbits,1
+ 1008              		.align	2
+ 1009              	.LC17:
+ 1010 0000 50617274 		.ascii	"Partition erase error! Partition address out of bou"
+ 1010      6974696F 
+ 1010      6E206572 
+ 1010      61736520 
+ 1010      6572726F 
+ 1011 0033 6E642E00 		.ascii	"nd.\000"
+ 1012 0037 00       		.align	2
+ 1013              	.LC18:
+ 1014 0038 50617274 		.ascii	"Partition erase error! Don't found flash device(%s)"
+ 1014      6974696F 
+ 1014      6E206572 
+ 1014      61736520 
+ 1014      6572726F 
+ 1015 006b 206F6620 		.ascii	" of the partition(%s).\000"
+ 1015      74686520 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 31
+
+
+ 1015      70617274 
+ 1015      6974696F 
+ 1015      6E282573 
+ 1016 0082 0000     		.align	2
+ 1017              	.LC19:
+ 1018 0084 50617274 		.ascii	"Partition erase error! Flash device(%s) erase error"
+ 1018      6974696F 
+ 1018      6E206572 
+ 1018      61736520 
+ 1018      6572726F 
+ 1019 00b7 2100     		.ascii	"!\000"
+ 1020              		.section	.text.fal_partition_erase,"ax",%progbits
+ 1021              		.align	1
+ 1022              		.global	fal_partition_erase
+ 1023              		.syntax unified
+ 1024              		.thumb
+ 1025              		.thumb_func
+ 1027              	fal_partition_erase:
+ 1028              	.LVL106:
+ 1029              	.LFB12:
+ 474:BSP/src/fal_partition.c **** 
+ 475:BSP/src/fal_partition.c **** /**
+ 476:BSP/src/fal_partition.c ****  * erase partition data
+ 477:BSP/src/fal_partition.c ****  *
+ 478:BSP/src/fal_partition.c ****  * @param part partition
+ 479:BSP/src/fal_partition.c ****  * @param addr relative address for partition
+ 480:BSP/src/fal_partition.c ****  * @param size erase size
+ 481:BSP/src/fal_partition.c ****  *
+ 482:BSP/src/fal_partition.c ****  * @return >= 0: successful erased data size
+ 483:BSP/src/fal_partition.c ****  *           -1: error
+ 484:BSP/src/fal_partition.c ****  */
+ 485:BSP/src/fal_partition.c **** int fal_partition_erase(const struct fal_partition *part, uint32_t addr, size_t size)
+ 486:BSP/src/fal_partition.c **** {
+ 1030              		.loc 1 486 1 view -0
+ 1031              		.cfi_startproc
+ 1032              		@ args = 0, pretend = 0, frame = 0
+ 1033              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1034              		.loc 1 486 1 is_stmt 0 view .LVU234
+ 1035 0000 70B5     		push	{r4, r5, r6, lr}
+ 1036              	.LCFI9:
+ 1037              		.cfi_def_cfa_offset 16
+ 1038              		.cfi_offset 4, -16
+ 1039              		.cfi_offset 5, -12
+ 1040              		.cfi_offset 6, -8
+ 1041              		.cfi_offset 14, -4
+ 1042 0002 1646     		mov	r6, r2
+ 487:BSP/src/fal_partition.c ****     int ret = 0;
+ 1043              		.loc 1 487 5 is_stmt 1 view .LVU235
+ 1044              	.LVL107:
+ 488:BSP/src/fal_partition.c ****     const struct fal_flash_dev *flash_dev = NULL;
+ 1045              		.loc 1 488 5 view .LVU236
+ 489:BSP/src/fal_partition.c **** 
+ 490:BSP/src/fal_partition.c ****     assert(part);
+ 1046              		.loc 1 490 5 view .LVU237
+ 1047              		.loc 1 490 17 view .LVU238
+ 491:BSP/src/fal_partition.c **** 
+ 492:BSP/src/fal_partition.c ****     if (addr + size > part->len)
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 32
+
+
+ 1048              		.loc 1 492 5 view .LVU239
+ 1049              		.loc 1 492 14 is_stmt 0 view .LVU240
+ 1050 0004 8A18     		adds	r2, r1, r2
+ 1051              	.LVL108:
+ 1052              		.loc 1 492 27 view .LVU241
+ 1053 0006 836B     		ldr	r3, [r0, #56]
+ 1054              		.loc 1 492 8 view .LVU242
+ 1055 0008 9A42     		cmp	r2, r3
+ 1056 000a 0DD8     		bhi	.L76
+ 1057 000c 0446     		mov	r4, r0
+ 1058 000e 0D46     		mov	r5, r1
+ 493:BSP/src/fal_partition.c ****     {
+ 494:BSP/src/fal_partition.c ****         log_e("Partition erase error! Partition address out of bound.");
+ 495:BSP/src/fal_partition.c ****         return -1;
+ 496:BSP/src/fal_partition.c ****     }
+ 497:BSP/src/fal_partition.c **** 
+ 498:BSP/src/fal_partition.c ****     flash_dev = flash_device_find_by_part(part);
+ 1059              		.loc 1 498 5 is_stmt 1 view .LVU243
+ 1060              		.loc 1 498 17 is_stmt 0 view .LVU244
+ 1061 0010 FFF7FEFF 		bl	flash_device_find_by_part
+ 1062              	.LVL109:
+ 499:BSP/src/fal_partition.c ****     if (flash_dev == NULL)
+ 1063              		.loc 1 499 5 is_stmt 1 view .LVU245
+ 1064              		.loc 1 499 8 is_stmt 0 view .LVU246
+ 1065 0014 B8B1     		cbz	r0, .L77
+ 500:BSP/src/fal_partition.c ****     {
+ 501:BSP/src/fal_partition.c ****         log_e("Partition erase error! Don't found flash device(%s) of the partition(%s).", part->fl
+ 502:BSP/src/fal_partition.c ****         return -1;
+ 503:BSP/src/fal_partition.c ****     }
+ 504:BSP/src/fal_partition.c **** 
+ 505:BSP/src/fal_partition.c ****     ret = flash_dev->ops.erase(part->offset + addr, size);
+ 1066              		.loc 1 505 5 is_stmt 1 view .LVU247
+ 1067              		.loc 1 505 25 is_stmt 0 view .LVU248
+ 1068 0016 036B     		ldr	r3, [r0, #48]
+ 1069              		.loc 1 505 36 view .LVU249
+ 1070 0018 606B     		ldr	r0, [r4, #52]
+ 1071              	.LVL110:
+ 1072              		.loc 1 505 11 view .LVU250
+ 1073 001a 3146     		mov	r1, r6
+ 1074 001c 2844     		add	r0, r0, r5
+ 1075 001e 9847     		blx	r3
+ 1076              	.LVL111:
+ 506:BSP/src/fal_partition.c ****     if (ret < 0)
+ 1077              		.loc 1 506 5 is_stmt 1 view .LVU251
+ 1078              		.loc 1 506 8 is_stmt 0 view .LVU252
+ 1079 0020 051E     		subs	r5, r0, #0
+ 1080              	.LVL112:
+ 1081              		.loc 1 506 8 view .LVU253
+ 1082 0022 22DB     		blt	.L78
+ 1083              	.LVL113:
+ 1084              	.L71:
+ 507:BSP/src/fal_partition.c ****     {
+ 508:BSP/src/fal_partition.c ****         log_e("Partition erase error! Flash device(%s) erase error!", part->flash_name);
+ 509:BSP/src/fal_partition.c ****     }
+ 510:BSP/src/fal_partition.c **** 
+ 511:BSP/src/fal_partition.c ****     return ret;
+ 512:BSP/src/fal_partition.c **** }
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 33
+
+
+ 1085              		.loc 1 512 1 view .LVU254
+ 1086 0024 2846     		mov	r0, r5
+ 1087 0026 70BD     		pop	{r4, r5, r6, pc}
+ 1088              	.LVL114:
+ 1089              	.L76:
+ 494:BSP/src/fal_partition.c ****         return -1;
+ 1090              		.loc 1 494 9 is_stmt 1 view .LVU255
+ 1091 0028 4FF4F772 		mov	r2, #494
+ 1092 002c 1649     		ldr	r1, .L79
+ 1093              	.LVL115:
+ 494:BSP/src/fal_partition.c ****         return -1;
+ 1094              		.loc 1 494 9 is_stmt 0 view .LVU256
+ 1095 002e 1748     		ldr	r0, .L79+4
+ 1096              	.LVL116:
+ 494:BSP/src/fal_partition.c ****         return -1;
+ 1097              		.loc 1 494 9 view .LVU257
+ 1098 0030 FFF7FEFF 		bl	printf
+ 1099              	.LVL117:
+ 494:BSP/src/fal_partition.c ****         return -1;
+ 1100              		.loc 1 494 9 is_stmt 1 discriminator 1 view .LVU258
+ 1101 0034 1648     		ldr	r0, .L79+8
+ 1102 0036 FFF7FEFF 		bl	printf
+ 1103              	.LVL118:
+ 494:BSP/src/fal_partition.c ****         return -1;
+ 1104              		.loc 1 494 9 discriminator 2 view .LVU259
+ 1105 003a 1648     		ldr	r0, .L79+12
+ 1106 003c FFF7FEFF 		bl	puts
+ 1107              	.LVL119:
+ 495:BSP/src/fal_partition.c ****     }
+ 1108              		.loc 1 495 9 view .LVU260
+ 495:BSP/src/fal_partition.c ****     }
+ 1109              		.loc 1 495 16 is_stmt 0 view .LVU261
+ 1110 0040 4FF0FF35 		mov	r5, #-1
+ 1111 0044 EEE7     		b	.L71
+ 1112              	.LVL120:
+ 1113              	.L77:
+ 501:BSP/src/fal_partition.c ****         return -1;
+ 1114              		.loc 1 501 9 is_stmt 1 view .LVU262
+ 1115 0046 40F2F512 		movw	r2, #501
+ 1116 004a 0F49     		ldr	r1, .L79
+ 1117 004c 0F48     		ldr	r0, .L79+4
+ 1118              	.LVL121:
+ 501:BSP/src/fal_partition.c ****         return -1;
+ 1119              		.loc 1 501 9 is_stmt 0 view .LVU263
+ 1120 004e FFF7FEFF 		bl	printf
+ 1121              	.LVL122:
+ 501:BSP/src/fal_partition.c ****         return -1;
+ 1122              		.loc 1 501 9 is_stmt 1 discriminator 1 view .LVU264
+ 1123 0052 221D     		adds	r2, r4, #4
+ 1124 0054 04F11C01 		add	r1, r4, #28
+ 1125 0058 0F48     		ldr	r0, .L79+16
+ 1126 005a FFF7FEFF 		bl	printf
+ 1127              	.LVL123:
+ 501:BSP/src/fal_partition.c ****         return -1;
+ 1128              		.loc 1 501 9 discriminator 2 view .LVU265
+ 1129 005e 0D48     		ldr	r0, .L79+12
+ 1130 0060 FFF7FEFF 		bl	puts
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 34
+
+
+ 1131              	.LVL124:
+ 502:BSP/src/fal_partition.c ****     }
+ 1132              		.loc 1 502 9 view .LVU266
+ 502:BSP/src/fal_partition.c ****     }
+ 1133              		.loc 1 502 16 is_stmt 0 view .LVU267
+ 1134 0064 4FF0FF35 		mov	r5, #-1
+ 1135              	.LVL125:
+ 502:BSP/src/fal_partition.c ****     }
+ 1136              		.loc 1 502 16 view .LVU268
+ 1137 0068 DCE7     		b	.L71
+ 1138              	.LVL126:
+ 1139              	.L78:
+ 508:BSP/src/fal_partition.c ****     }
+ 1140              		.loc 1 508 9 is_stmt 1 view .LVU269
+ 1141 006a 4FF4FE72 		mov	r2, #508
+ 1142 006e 0649     		ldr	r1, .L79
+ 1143 0070 0648     		ldr	r0, .L79+4
+ 1144              	.LVL127:
+ 508:BSP/src/fal_partition.c ****     }
+ 1145              		.loc 1 508 9 is_stmt 0 view .LVU270
+ 1146 0072 FFF7FEFF 		bl	printf
+ 1147              	.LVL128:
+ 508:BSP/src/fal_partition.c ****     }
+ 1148              		.loc 1 508 9 is_stmt 1 discriminator 1 view .LVU271
+ 1149 0076 04F11C01 		add	r1, r4, #28
+ 1150 007a 0848     		ldr	r0, .L79+20
+ 1151 007c FFF7FEFF 		bl	printf
+ 1152              	.LVL129:
+ 508:BSP/src/fal_partition.c ****     }
+ 1153              		.loc 1 508 9 discriminator 2 view .LVU272
+ 1154 0080 0448     		ldr	r0, .L79+12
+ 1155 0082 FFF7FEFF 		bl	puts
+ 1156              	.LVL130:
+ 1157 0086 CDE7     		b	.L71
+ 1158              	.L80:
+ 1159              		.align	2
+ 1160              	.L79:
+ 1161 0088 00000000 		.word	__func__.0
+ 1162 008c 00000000 		.word	.LC0
+ 1163 0090 00000000 		.word	.LC17
+ 1164 0094 6C000000 		.word	.LC2
+ 1165 0098 38000000 		.word	.LC18
+ 1166 009c 84000000 		.word	.LC19
+ 1167              		.cfi_endproc
+ 1168              	.LFE12:
+ 1170              		.section	.text.fal_partition_erase_all,"ax",%progbits
+ 1171              		.align	1
+ 1172              		.global	fal_partition_erase_all
+ 1173              		.syntax unified
+ 1174              		.thumb
+ 1175              		.thumb_func
+ 1177              	fal_partition_erase_all:
+ 1178              	.LVL131:
+ 1179              	.LFB13:
+ 513:BSP/src/fal_partition.c **** 
+ 514:BSP/src/fal_partition.c **** /**
+ 515:BSP/src/fal_partition.c ****  * erase partition all data
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 35
+
+
+ 516:BSP/src/fal_partition.c ****  *
+ 517:BSP/src/fal_partition.c ****  * @param part partition
+ 518:BSP/src/fal_partition.c ****  *
+ 519:BSP/src/fal_partition.c ****  * @return >= 0: successful erased data size
+ 520:BSP/src/fal_partition.c ****  *           -1: error
+ 521:BSP/src/fal_partition.c ****  */
+ 522:BSP/src/fal_partition.c **** int fal_partition_erase_all(const struct fal_partition *part)
+ 523:BSP/src/fal_partition.c **** {
+ 1180              		.loc 1 523 1 view -0
+ 1181              		.cfi_startproc
+ 1182              		@ args = 0, pretend = 0, frame = 0
+ 1183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1184              		.loc 1 523 1 is_stmt 0 view .LVU274
+ 1185 0000 08B5     		push	{r3, lr}
+ 1186              	.LCFI10:
+ 1187              		.cfi_def_cfa_offset 8
+ 1188              		.cfi_offset 3, -8
+ 1189              		.cfi_offset 14, -4
+ 524:BSP/src/fal_partition.c ****     return fal_partition_erase(part, 0, part->len);
+ 1190              		.loc 1 524 5 is_stmt 1 view .LVU275
+ 1191              		.loc 1 524 12 is_stmt 0 view .LVU276
+ 1192 0002 826B     		ldr	r2, [r0, #56]
+ 1193 0004 0021     		movs	r1, #0
+ 1194 0006 FFF7FEFF 		bl	fal_partition_erase
+ 1195              	.LVL132:
+ 525:BSP/src/fal_partition.c **** }
+ 1196              		.loc 1 525 1 view .LVU277
+ 1197 000a 08BD     		pop	{r3, pc}
+ 1198              		.cfi_endproc
+ 1199              	.LFE13:
+ 1201              		.section	.rodata.__func__.0,"a"
+ 1202              		.align	2
+ 1205              	__func__.0:
+ 1206 0000 66616C5F 		.ascii	"fal_partition_erase\000"
+ 1206      70617274 
+ 1206      6974696F 
+ 1206      6E5F6572 
+ 1206      61736500 
+ 1207              		.section	.rodata.__func__.1,"a"
+ 1208              		.align	2
+ 1211              	__func__.1:
+ 1212 0000 66616C5F 		.ascii	"fal_partition_write\000"
+ 1212      70617274 
+ 1212      6974696F 
+ 1212      6E5F7772 
+ 1212      69746500 
+ 1213              		.section	.rodata.__func__.2,"a"
+ 1214              		.align	2
+ 1217              	__func__.2:
+ 1218 0000 66616C5F 		.ascii	"fal_partition_read\000"
+ 1218      70617274 
+ 1218      6974696F 
+ 1218      6E5F7265 
+ 1218      616400
+ 1219              		.section	.rodata.__func__.3,"a"
+ 1220              		.align	2
+ 1223              	__func__.3:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 36
+
+
+ 1224 0000 63686563 		.ascii	"check_and_update_part_cache\000"
+ 1224      6B5F616E 
+ 1224      645F7570 
+ 1224      64617465 
+ 1224      5F706172 
+ 1225              		.section	.bss.partition_table_len,"aw",%nobits
+ 1226              		.align	2
+ 1229              	partition_table_len:
+ 1230 0000 00000000 		.space	4
+ 1231              		.section	.bss.init_ok,"aw",%nobits
+ 1234              	init_ok:
+ 1235 0000 00       		.space	1
+ 1236              		.section	.bss.part_flash_cache,"aw",%nobits
+ 1237              		.align	2
+ 1240              	part_flash_cache:
+ 1241 0000 00000000 		.space	4
+ 1242              		.section	.bss.partition_table,"aw",%nobits
+ 1243              		.align	2
+ 1246              	partition_table:
+ 1247 0000 00000000 		.space	4
+ 1248              		.section	.rodata.partition_table_def,"a"
+ 1249              		.align	2
+ 1252              	partition_table_def:
+ 1253 0000 30315045 		.word	1162883376
+ 1254 0004 6664625F 		.ascii	"fdb_kv\000"
+ 1254      6B7600
+ 1255 000b 00000000 		.space	17
+ 1255      00000000 
+ 1255      00000000 
+ 1255      00000000 
+ 1255      00
+ 1256 001c 77323571 		.ascii	"w25q64\000"
+ 1256      363400
+ 1257 0023 00000000 		.space	17
+ 1257      00000000 
+ 1257      00000000 
+ 1257      00000000 
+ 1257      00
+ 1258 0034 00000000 		.word	0
+ 1259 0038 00000400 		.word	262144
+ 1260 003c 00000000 		.word	0
+ 1261              		.text
+ 1262              	.Letext0:
+ 1263              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 1264              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 1265              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
+ 1266              		.file 5 "BSP/inc/fal_def.h"
+ 1267              		.file 6 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ 1268              		.file 7 "BSP/inc/fal.h"
+ 1269              		.file 8 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ 1270              		.file 9 "<built-in>"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 37
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fal_partition.c
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:21     .text.flash_device_find_by_part:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:26     .text.flash_device_find_by_part:00000000 flash_device_find_by_part
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:53     .text.flash_device_find_by_part:00000010 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1246   .bss.partition_table:00000000 partition_table
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1240   .bss.part_flash_cache:00000000 part_flash_cache
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:59     .rodata.check_and_update_part_cache.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:70     .text.check_and_update_part_cache:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:75     .text.check_and_update_part_cache:00000000 check_and_update_part_cache
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:176    .text.check_and_update_part_cache:00000060 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1223   .rodata.__func__.3:00000000 __func__.3
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1229   .bss.partition_table_len:00000000 partition_table_len
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:186    .rodata.fal_show_part_table.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:214    .text.fal_show_part_table:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:220    .text.fal_show_part_table:00000000 fal_show_part_table
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:419    .text.fal_show_part_table:000000e8 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:434    .text.fal_partition_init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:440    .text.fal_partition_init:00000000 fal_partition_init
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:495    .text.fal_partition_init:0000002c $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1234   .bss.init_ok:00000000 init_ok
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1252   .rodata.partition_table_def:00000000 partition_table_def
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:503    .text.fal_partition_find:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:509    .text.fal_partition_find:00000000 fal_partition_find
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:571    .text.fal_partition_find:00000030 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:577    .text.fal_get_partition_table:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:583    .text.fal_get_partition_table:00000000 fal_get_partition_table
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:610    .text.fal_get_partition_table:0000000c $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:616    .text.fal_set_partition_table_temp:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:622    .text.fal_set_partition_table_temp:00000000 fal_set_partition_table_temp
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:661    .text.fal_set_partition_table_temp:00000014 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:667    .rodata.fal_partition_read.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:679    .text.fal_partition_read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:685    .text.fal_partition_read:00000000 fal_partition_read
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:827    .text.fal_partition_read:00000090 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1217   .rodata.__func__.2:00000000 __func__.2
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:837    .rodata.fal_partition_write.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:850    .text.fal_partition_write:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:856    .text.fal_partition_write:00000000 fal_partition_write
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:998    .text.fal_partition_write:00000090 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1211   .rodata.__func__.1:00000000 __func__.1
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1008   .rodata.fal_partition_erase.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1021   .text.fal_partition_erase:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1027   .text.fal_partition_erase:00000000 fal_partition_erase
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1161   .text.fal_partition_erase:00000088 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1205   .rodata.__func__.0:00000000 __func__.0
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1171   .text.fal_partition_erase_all:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1177   .text.fal_partition_erase_all:00000000 fal_partition_erase_all
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1202   .rodata.__func__.0:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1208   .rodata.__func__.1:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1214   .rodata.__func__.2:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1220   .rodata.__func__.3:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1226   .bss.partition_table_len:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1235   .bss.init_ok:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1237   .bss.part_flash_cache:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1243   .bss.partition_table:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s:1249   .rodata.partition_table_def:00000000 $d
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccJ7i1aT.s 			page 38
+
+
+
+UNDEFINED SYMBOLS
+fal_flash_device_find
+printf
+puts
+strlen
+strcmp

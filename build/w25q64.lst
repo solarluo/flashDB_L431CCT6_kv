@@ -1,0 +1,741 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"w25q64.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/w25q64.c"
+  20              		.section	.text.W25Q64_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	W25Q64_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	W25Q64_Init:
+  28              	.LFB228:
+   1:Core/Src/w25q64.c **** #include "w25q64.h"
+   2:Core/Src/w25q64.c **** #include "spi.h"
+   3:Core/Src/w25q64.c **** 
+   4:Core/Src/w25q64.c **** #define W25_CS_PORT   GPIOA
+   5:Core/Src/w25q64.c **** #define W25_CS_PIN    GPIO_PIN_4
+   6:Core/Src/w25q64.c **** 
+   7:Core/Src/w25q64.c **** #define W25_CS_LOW()   HAL_GPIO_WritePin(W25_CS_PORT, W25_CS_PIN, GPIO_PIN_RESET)
+   8:Core/Src/w25q64.c **** #define W25_CS_HIGH()  HAL_GPIO_WritePin(W25_CS_PORT, W25_CS_PIN, GPIO_PIN_SET)
+   9:Core/Src/w25q64.c **** 
+  10:Core/Src/w25q64.c **** void W25Q64_Init(void)
+  11:Core/Src/w25q64.c **** {
+  29              		.loc 1 11 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  12:Core/Src/w25q64.c ****     W25_CS_HIGH();
+  38              		.loc 1 12 5 view .LVU1
+  39 0002 0122     		movs	r2, #1
+  40 0004 1021     		movs	r1, #16
+  41 0006 4FF09040 		mov	r0, #1207959552
+  42 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  43              	.LVL0:
+  13:Core/Src/w25q64.c **** }
+  44              		.loc 1 13 1 is_stmt 0 view .LVU2
+  45 000e 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 2
+
+
+  46              		.cfi_endproc
+  47              	.LFE228:
+  49              		.section	.text.W25Q64_ReadWriteByte,"ax",%progbits
+  50              		.align	1
+  51              		.global	W25Q64_ReadWriteByte
+  52              		.syntax unified
+  53              		.thumb
+  54              		.thumb_func
+  56              	W25Q64_ReadWriteByte:
+  57              	.LVL1:
+  58              	.LFB229:
+  14:Core/Src/w25q64.c **** 
+  15:Core/Src/w25q64.c **** uint8_t W25Q64_ReadWriteByte(uint8_t txData)
+  16:Core/Src/w25q64.c **** {
+  59              		.loc 1 16 1 is_stmt 1 view -0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 16
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              		.loc 1 16 1 is_stmt 0 view .LVU4
+  64 0000 00B5     		push	{lr}
+  65              	.LCFI1:
+  66              		.cfi_def_cfa_offset 4
+  67              		.cfi_offset 14, -4
+  68 0002 87B0     		sub	sp, sp, #28
+  69              	.LCFI2:
+  70              		.cfi_def_cfa_offset 32
+  71 0004 8DF80F00 		strb	r0, [sp, #15]
+  17:Core/Src/w25q64.c ****     uint8_t rxData = 0;
+  72              		.loc 1 17 5 is_stmt 1 view .LVU5
+  73              		.loc 1 17 13 is_stmt 0 view .LVU6
+  74 0008 0023     		movs	r3, #0
+  75 000a 8DF81730 		strb	r3, [sp, #23]
+  18:Core/Src/w25q64.c ****     HAL_SPI_TransmitReceive(&hspi1, &txData, &rxData, 1, HAL_MAX_DELAY);
+  76              		.loc 1 18 5 is_stmt 1 view .LVU7
+  77 000e 4FF0FF33 		mov	r3, #-1
+  78 0012 0093     		str	r3, [sp]
+  79 0014 0123     		movs	r3, #1
+  80 0016 0DF11702 		add	r2, sp, #23
+  81 001a 0DF10F01 		add	r1, sp, #15
+  82 001e 0448     		ldr	r0, .L5
+  83              	.LVL2:
+  84              		.loc 1 18 5 is_stmt 0 view .LVU8
+  85 0020 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+  86              	.LVL3:
+  19:Core/Src/w25q64.c ****     return rxData;
+  87              		.loc 1 19 5 is_stmt 1 view .LVU9
+  20:Core/Src/w25q64.c **** }
+  88              		.loc 1 20 1 is_stmt 0 view .LVU10
+  89 0024 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+  90 0028 07B0     		add	sp, sp, #28
+  91              	.LCFI3:
+  92              		.cfi_def_cfa_offset 4
+  93              		@ sp needed
+  94 002a 5DF804FB 		ldr	pc, [sp], #4
+  95              	.L6:
+  96 002e 00BF     		.align	2
+  97              	.L5:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 3
+
+
+  98 0030 00000000 		.word	hspi1
+  99              		.cfi_endproc
+ 100              	.LFE229:
+ 102              		.section	.text.W25Q64_ReadJEDECID,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	W25Q64_ReadJEDECID
+ 105              		.syntax unified
+ 106              		.thumb
+ 107              		.thumb_func
+ 109              	W25Q64_ReadJEDECID:
+ 110              	.LVL4:
+ 111              	.LFB230:
+  21:Core/Src/w25q64.c **** 
+  22:Core/Src/w25q64.c **** void W25Q64_ReadJEDECID(uint8_t *mid, uint8_t *type, uint8_t *capacity)
+  23:Core/Src/w25q64.c **** {
+ 112              		.loc 1 23 1 is_stmt 1 view -0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              		.loc 1 23 1 is_stmt 0 view .LVU12
+ 117 0000 70B5     		push	{r4, r5, r6, lr}
+ 118              	.LCFI4:
+ 119              		.cfi_def_cfa_offset 16
+ 120              		.cfi_offset 4, -16
+ 121              		.cfi_offset 5, -12
+ 122              		.cfi_offset 6, -8
+ 123              		.cfi_offset 14, -4
+ 124 0002 0646     		mov	r6, r0
+ 125 0004 0D46     		mov	r5, r1
+ 126 0006 1446     		mov	r4, r2
+  24:Core/Src/w25q64.c ****     W25_CS_LOW();
+ 127              		.loc 1 24 5 is_stmt 1 view .LVU13
+ 128 0008 0022     		movs	r2, #0
+ 129              	.LVL5:
+ 130              		.loc 1 24 5 is_stmt 0 view .LVU14
+ 131 000a 1021     		movs	r1, #16
+ 132              	.LVL6:
+ 133              		.loc 1 24 5 view .LVU15
+ 134 000c 4FF09040 		mov	r0, #1207959552
+ 135              	.LVL7:
+ 136              		.loc 1 24 5 view .LVU16
+ 137 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 138              	.LVL8:
+  25:Core/Src/w25q64.c **** 
+  26:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(0x9F);
+ 139              		.loc 1 26 5 is_stmt 1 view .LVU17
+ 140 0014 9F20     		movs	r0, #159
+ 141 0016 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 142              	.LVL9:
+  27:Core/Src/w25q64.c ****     *mid      = W25Q64_ReadWriteByte(0xFF);
+ 143              		.loc 1 27 5 view .LVU18
+ 144              		.loc 1 27 17 is_stmt 0 view .LVU19
+ 145 001a FF20     		movs	r0, #255
+ 146 001c FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 147              	.LVL10:
+ 148              		.loc 1 27 15 discriminator 1 view .LVU20
+ 149 0020 3070     		strb	r0, [r6]
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 4
+
+
+  28:Core/Src/w25q64.c ****     *type     = W25Q64_ReadWriteByte(0xFF);
+ 150              		.loc 1 28 5 is_stmt 1 view .LVU21
+ 151              		.loc 1 28 17 is_stmt 0 view .LVU22
+ 152 0022 FF20     		movs	r0, #255
+ 153 0024 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 154              	.LVL11:
+ 155              		.loc 1 28 15 discriminator 1 view .LVU23
+ 156 0028 2870     		strb	r0, [r5]
+  29:Core/Src/w25q64.c ****     *capacity = W25Q64_ReadWriteByte(0xFF);
+ 157              		.loc 1 29 5 is_stmt 1 view .LVU24
+ 158              		.loc 1 29 17 is_stmt 0 view .LVU25
+ 159 002a FF20     		movs	r0, #255
+ 160 002c FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 161              	.LVL12:
+ 162              		.loc 1 29 15 discriminator 1 view .LVU26
+ 163 0030 2070     		strb	r0, [r4]
+  30:Core/Src/w25q64.c **** 
+  31:Core/Src/w25q64.c ****     W25_CS_HIGH();
+ 164              		.loc 1 31 5 is_stmt 1 view .LVU27
+ 165 0032 0122     		movs	r2, #1
+ 166 0034 1021     		movs	r1, #16
+ 167 0036 4FF09040 		mov	r0, #1207959552
+ 168 003a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 169              	.LVL13:
+  32:Core/Src/w25q64.c **** }
+ 170              		.loc 1 32 1 is_stmt 0 view .LVU28
+ 171 003e 70BD     		pop	{r4, r5, r6, pc}
+ 172              		.loc 1 32 1 view .LVU29
+ 173              		.cfi_endproc
+ 174              	.LFE230:
+ 176              		.section	.text.W25Q64_WriteEnable,"ax",%progbits
+ 177              		.align	1
+ 178              		.global	W25Q64_WriteEnable
+ 179              		.syntax unified
+ 180              		.thumb
+ 181              		.thumb_func
+ 183              	W25Q64_WriteEnable:
+ 184              	.LFB231:
+  33:Core/Src/w25q64.c **** 
+  34:Core/Src/w25q64.c **** /* 写使能 */
+  35:Core/Src/w25q64.c **** void W25Q64_WriteEnable(void)
+  36:Core/Src/w25q64.c **** {
+ 185              		.loc 1 36 1 is_stmt 1 view -0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189 0000 08B5     		push	{r3, lr}
+ 190              	.LCFI5:
+ 191              		.cfi_def_cfa_offset 8
+ 192              		.cfi_offset 3, -8
+ 193              		.cfi_offset 14, -4
+  37:Core/Src/w25q64.c ****     W25_CS_LOW();
+ 194              		.loc 1 37 5 view .LVU31
+ 195 0002 0022     		movs	r2, #0
+ 196 0004 1021     		movs	r1, #16
+ 197 0006 4FF09040 		mov	r0, #1207959552
+ 198 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 5
+
+
+ 199              	.LVL14:
+  38:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(0x06);
+ 200              		.loc 1 38 5 view .LVU32
+ 201 000e 0620     		movs	r0, #6
+ 202 0010 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 203              	.LVL15:
+  39:Core/Src/w25q64.c ****     W25_CS_HIGH();
+ 204              		.loc 1 39 5 view .LVU33
+ 205 0014 0122     		movs	r2, #1
+ 206 0016 1021     		movs	r1, #16
+ 207 0018 4FF09040 		mov	r0, #1207959552
+ 208 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 209              	.LVL16:
+  40:Core/Src/w25q64.c **** }
+ 210              		.loc 1 40 1 is_stmt 0 view .LVU34
+ 211 0020 08BD     		pop	{r3, pc}
+ 212              		.cfi_endproc
+ 213              	.LFE231:
+ 215              		.section	.text.W25Q64_WaitBusy,"ax",%progbits
+ 216              		.align	1
+ 217              		.global	W25Q64_WaitBusy
+ 218              		.syntax unified
+ 219              		.thumb
+ 220              		.thumb_func
+ 222              	W25Q64_WaitBusy:
+ 223              	.LFB232:
+  41:Core/Src/w25q64.c **** 
+  42:Core/Src/w25q64.c **** /* 等待忙结束 */
+  43:Core/Src/w25q64.c **** void W25Q64_WaitBusy(void)
+  44:Core/Src/w25q64.c **** {
+ 224              		.loc 1 44 1 is_stmt 1 view -0
+ 225              		.cfi_startproc
+ 226              		@ args = 0, pretend = 0, frame = 0
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228 0000 08B5     		push	{r3, lr}
+ 229              	.LCFI6:
+ 230              		.cfi_def_cfa_offset 8
+ 231              		.cfi_offset 3, -8
+ 232              		.cfi_offset 14, -4
+  45:Core/Src/w25q64.c ****     uint8_t status;
+ 233              		.loc 1 45 5 view .LVU36
+  46:Core/Src/w25q64.c **** 
+  47:Core/Src/w25q64.c ****     W25_CS_LOW();
+ 234              		.loc 1 47 5 view .LVU37
+ 235 0002 0022     		movs	r2, #0
+ 236 0004 1021     		movs	r1, #16
+ 237 0006 4FF09040 		mov	r0, #1207959552
+ 238 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 239              	.LVL17:
+  48:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(0x05);   // 读状态寄存器1
+ 240              		.loc 1 48 5 view .LVU38
+ 241 000e 0520     		movs	r0, #5
+ 242 0010 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 243              	.LVL18:
+ 244              	.L12:
+  49:Core/Src/w25q64.c ****     do
+ 245              		.loc 1 49 5 view .LVU39
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 6
+
+
+  50:Core/Src/w25q64.c ****     {
+  51:Core/Src/w25q64.c ****         status = W25Q64_ReadWriteByte(0xFF);
+ 246              		.loc 1 51 9 view .LVU40
+ 247              		.loc 1 51 18 is_stmt 0 view .LVU41
+ 248 0014 FF20     		movs	r0, #255
+ 249 0016 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 250              	.LVL19:
+  52:Core/Src/w25q64.c ****     } while (status & 0x01);
+ 251              		.loc 1 52 14 is_stmt 1 discriminator 1 view .LVU42
+ 252 001a 10F0010F 		tst	r0, #1
+ 253 001e F9D1     		bne	.L12
+  53:Core/Src/w25q64.c ****     W25_CS_HIGH();
+ 254              		.loc 1 53 5 view .LVU43
+ 255 0020 0122     		movs	r2, #1
+ 256 0022 1021     		movs	r1, #16
+ 257 0024 4FF09040 		mov	r0, #1207959552
+ 258              	.LVL20:
+ 259              		.loc 1 53 5 is_stmt 0 view .LVU44
+ 260 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 261              	.LVL21:
+  54:Core/Src/w25q64.c **** }
+ 262              		.loc 1 54 1 view .LVU45
+ 263 002c 08BD     		pop	{r3, pc}
+ 264              		.cfi_endproc
+ 265              	.LFE232:
+ 267              		.section	.text.W25Q64_Read,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	W25Q64_Read
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 274              	W25Q64_Read:
+ 275              	.LVL22:
+ 276              	.LFB233:
+  55:Core/Src/w25q64.c **** 
+  56:Core/Src/w25q64.c **** /* 读取任意长度数据 */
+  57:Core/Src/w25q64.c **** void W25Q64_Read(uint8_t *buf, uint32_t addr, uint32_t size)
+  58:Core/Src/w25q64.c **** {
+ 277              		.loc 1 58 1 is_stmt 1 view -0
+ 278              		.cfi_startproc
+ 279              		@ args = 0, pretend = 0, frame = 0
+ 280              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281              		.loc 1 58 1 is_stmt 0 view .LVU47
+ 282 0000 70B5     		push	{r4, r5, r6, lr}
+ 283              	.LCFI7:
+ 284              		.cfi_def_cfa_offset 16
+ 285              		.cfi_offset 4, -16
+ 286              		.cfi_offset 5, -12
+ 287              		.cfi_offset 6, -8
+ 288              		.cfi_offset 14, -4
+ 289 0002 0646     		mov	r6, r0
+ 290 0004 0C46     		mov	r4, r1
+ 291 0006 1546     		mov	r5, r2
+  59:Core/Src/w25q64.c ****     uint32_t i;
+ 292              		.loc 1 59 5 is_stmt 1 view .LVU48
+  60:Core/Src/w25q64.c **** 
+  61:Core/Src/w25q64.c ****     W25_CS_LOW();
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 7
+
+
+ 293              		.loc 1 61 5 view .LVU49
+ 294 0008 0022     		movs	r2, #0
+ 295              	.LVL23:
+ 296              		.loc 1 61 5 is_stmt 0 view .LVU50
+ 297 000a 1021     		movs	r1, #16
+ 298              	.LVL24:
+ 299              		.loc 1 61 5 view .LVU51
+ 300 000c 4FF09040 		mov	r0, #1207959552
+ 301              	.LVL25:
+ 302              		.loc 1 61 5 view .LVU52
+ 303 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 304              	.LVL26:
+  62:Core/Src/w25q64.c **** 
+  63:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(0x03);   // Read Data
+ 305              		.loc 1 63 5 is_stmt 1 view .LVU53
+ 306 0014 0320     		movs	r0, #3
+ 307 0016 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 308              	.LVL27:
+  64:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte((addr >> 16) & 0xFF);
+ 309              		.loc 1 64 5 view .LVU54
+ 310 001a C4F30740 		ubfx	r0, r4, #16, #8
+ 311 001e FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 312              	.LVL28:
+  65:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte((addr >> 8) & 0xFF);
+ 313              		.loc 1 65 5 view .LVU55
+ 314 0022 C4F30720 		ubfx	r0, r4, #8, #8
+ 315 0026 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 316              	.LVL29:
+  66:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(addr & 0xFF);
+ 317              		.loc 1 66 5 view .LVU56
+ 318 002a E0B2     		uxtb	r0, r4
+ 319 002c FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 320              	.LVL30:
+  67:Core/Src/w25q64.c **** 
+  68:Core/Src/w25q64.c ****     for (i = 0; i < size; i++)
+ 321              		.loc 1 68 5 view .LVU57
+ 322              		.loc 1 68 12 is_stmt 0 view .LVU58
+ 323 0030 0024     		movs	r4, #0
+ 324              	.LVL31:
+ 325              		.loc 1 68 5 view .LVU59
+ 326 0032 04E0     		b	.L15
+ 327              	.LVL32:
+ 328              	.L16:
+  69:Core/Src/w25q64.c ****     {
+  70:Core/Src/w25q64.c ****         buf[i] = W25Q64_ReadWriteByte(0xFF);
+ 329              		.loc 1 70 9 is_stmt 1 view .LVU60
+ 330              		.loc 1 70 18 is_stmt 0 view .LVU61
+ 331 0034 FF20     		movs	r0, #255
+ 332 0036 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 333              	.LVL33:
+ 334              		.loc 1 70 16 discriminator 1 view .LVU62
+ 335 003a 3055     		strb	r0, [r6, r4]
+  68:Core/Src/w25q64.c ****     {
+ 336              		.loc 1 68 28 is_stmt 1 discriminator 3 view .LVU63
+ 337 003c 0134     		adds	r4, r4, #1
+ 338              	.LVL34:
+ 339              	.L15:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 8
+
+
+  68:Core/Src/w25q64.c ****     {
+ 340              		.loc 1 68 19 discriminator 1 view .LVU64
+ 341 003e AC42     		cmp	r4, r5
+ 342 0040 F8D3     		bcc	.L16
+  71:Core/Src/w25q64.c ****     }
+  72:Core/Src/w25q64.c **** 
+  73:Core/Src/w25q64.c ****     W25_CS_HIGH();
+ 343              		.loc 1 73 5 view .LVU65
+ 344 0042 0122     		movs	r2, #1
+ 345 0044 1021     		movs	r1, #16
+ 346 0046 4FF09040 		mov	r0, #1207959552
+ 347 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 348              	.LVL35:
+  74:Core/Src/w25q64.c **** }
+ 349              		.loc 1 74 1 is_stmt 0 view .LVU66
+ 350 004e 70BD     		pop	{r4, r5, r6, pc}
+ 351              		.loc 1 74 1 view .LVU67
+ 352              		.cfi_endproc
+ 353              	.LFE233:
+ 355              		.section	.text.W25Q64_EraseSector,"ax",%progbits
+ 356              		.align	1
+ 357              		.global	W25Q64_EraseSector
+ 358              		.syntax unified
+ 359              		.thumb
+ 360              		.thumb_func
+ 362              	W25Q64_EraseSector:
+ 363              	.LVL36:
+ 364              	.LFB234:
+  75:Core/Src/w25q64.c **** 
+  76:Core/Src/w25q64.c **** /* 4KB 扇区擦除 */
+  77:Core/Src/w25q64.c **** void W25Q64_EraseSector(uint32_t addr)
+  78:Core/Src/w25q64.c **** {
+ 365              		.loc 1 78 1 is_stmt 1 view -0
+ 366              		.cfi_startproc
+ 367              		@ args = 0, pretend = 0, frame = 0
+ 368              		@ frame_needed = 0, uses_anonymous_args = 0
+ 369              		.loc 1 78 1 is_stmt 0 view .LVU69
+ 370 0000 10B5     		push	{r4, lr}
+ 371              	.LCFI8:
+ 372              		.cfi_def_cfa_offset 8
+ 373              		.cfi_offset 4, -8
+ 374              		.cfi_offset 14, -4
+ 375 0002 0446     		mov	r4, r0
+  79:Core/Src/w25q64.c ****     W25Q64_WriteEnable();
+ 376              		.loc 1 79 5 is_stmt 1 view .LVU70
+ 377 0004 FFF7FEFF 		bl	W25Q64_WriteEnable
+ 378              	.LVL37:
+  80:Core/Src/w25q64.c **** 
+  81:Core/Src/w25q64.c ****     W25_CS_LOW();
+ 379              		.loc 1 81 5 view .LVU71
+ 380 0008 0022     		movs	r2, #0
+ 381 000a 1021     		movs	r1, #16
+ 382 000c 4FF09040 		mov	r0, #1207959552
+ 383 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 384              	.LVL38:
+  82:Core/Src/w25q64.c **** 
+  83:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(0x20);   // Sector Erase 4KB
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 9
+
+
+ 385              		.loc 1 83 5 view .LVU72
+ 386 0014 2020     		movs	r0, #32
+ 387 0016 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 388              	.LVL39:
+  84:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte((addr >> 16) & 0xFF);
+ 389              		.loc 1 84 5 view .LVU73
+ 390 001a C4F30740 		ubfx	r0, r4, #16, #8
+ 391 001e FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 392              	.LVL40:
+  85:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte((addr >> 8) & 0xFF);
+ 393              		.loc 1 85 5 view .LVU74
+ 394 0022 C4F30720 		ubfx	r0, r4, #8, #8
+ 395 0026 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 396              	.LVL41:
+  86:Core/Src/w25q64.c ****     W25Q64_ReadWriteByte(addr & 0xFF);
+ 397              		.loc 1 86 5 view .LVU75
+ 398 002a E0B2     		uxtb	r0, r4
+ 399 002c FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 400              	.LVL42:
+  87:Core/Src/w25q64.c **** 
+  88:Core/Src/w25q64.c ****     W25_CS_HIGH();
+ 401              		.loc 1 88 5 view .LVU76
+ 402 0030 0122     		movs	r2, #1
+ 403 0032 1021     		movs	r1, #16
+ 404 0034 4FF09040 		mov	r0, #1207959552
+ 405 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 406              	.LVL43:
+  89:Core/Src/w25q64.c **** 
+  90:Core/Src/w25q64.c ****     W25Q64_WaitBusy();
+ 407              		.loc 1 90 5 view .LVU77
+ 408 003c FFF7FEFF 		bl	W25Q64_WaitBusy
+ 409              	.LVL44:
+  91:Core/Src/w25q64.c **** }
+ 410              		.loc 1 91 1 is_stmt 0 view .LVU78
+ 411 0040 10BD     		pop	{r4, pc}
+ 412              		.loc 1 91 1 view .LVU79
+ 413              		.cfi_endproc
+ 414              	.LFE234:
+ 416              		.section	.text.W25Q64_Write,"ax",%progbits
+ 417              		.align	1
+ 418              		.global	W25Q64_Write
+ 419              		.syntax unified
+ 420              		.thumb
+ 421              		.thumb_func
+ 423              	W25Q64_Write:
+ 424              	.LVL45:
+ 425              	.LFB235:
+  92:Core/Src/w25q64.c **** 
+  93:Core/Src/w25q64.c **** /* 页写，自动处理跨页 */
+  94:Core/Src/w25q64.c **** void W25Q64_Write(uint8_t *buf, uint32_t addr, uint32_t size)
+  95:Core/Src/w25q64.c **** {
+ 426              		.loc 1 95 1 is_stmt 1 view -0
+ 427              		.cfi_startproc
+ 428              		@ args = 0, pretend = 0, frame = 0
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430              		.loc 1 95 1 is_stmt 0 view .LVU81
+ 431 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 10
+
+
+ 432              	.LCFI9:
+ 433              		.cfi_def_cfa_offset 24
+ 434              		.cfi_offset 4, -24
+ 435              		.cfi_offset 5, -20
+ 436              		.cfi_offset 6, -16
+ 437              		.cfi_offset 7, -12
+ 438              		.cfi_offset 8, -8
+ 439              		.cfi_offset 14, -4
+ 440 0004 0646     		mov	r6, r0
+ 441 0006 0F46     		mov	r7, r1
+ 442 0008 9046     		mov	r8, r2
+  96:Core/Src/w25q64.c ****     uint32_t page_remain;
+ 443              		.loc 1 96 5 is_stmt 1 view .LVU82
+  97:Core/Src/w25q64.c ****     uint32_t write_size;
+ 444              		.loc 1 97 5 view .LVU83
+  98:Core/Src/w25q64.c ****     uint32_t i;
+ 445              		.loc 1 98 5 view .LVU84
+  99:Core/Src/w25q64.c **** 
+ 100:Core/Src/w25q64.c ****     while (size > 0)
+ 446              		.loc 1 100 5 view .LVU85
+ 447              		.loc 1 100 11 is_stmt 0 view .LVU86
+ 448 000a 11E0     		b	.L21
+ 449              	.LVL46:
+ 450              	.L23:
+ 101:Core/Src/w25q64.c ****     {
+ 102:Core/Src/w25q64.c ****         page_remain = 256 - (addr % 256);
+ 103:Core/Src/w25q64.c ****         write_size = (size < page_remain) ? size : page_remain;
+ 104:Core/Src/w25q64.c **** 
+ 105:Core/Src/w25q64.c ****         W25Q64_WriteEnable();
+ 106:Core/Src/w25q64.c **** 
+ 107:Core/Src/w25q64.c ****         W25_CS_LOW();
+ 108:Core/Src/w25q64.c **** 
+ 109:Core/Src/w25q64.c ****         W25Q64_ReadWriteByte(0x02);   // Page Program
+ 110:Core/Src/w25q64.c ****         W25Q64_ReadWriteByte((addr >> 16) & 0xFF);
+ 111:Core/Src/w25q64.c ****         W25Q64_ReadWriteByte((addr >> 8) & 0xFF);
+ 112:Core/Src/w25q64.c ****         W25Q64_ReadWriteByte(addr & 0xFF);
+ 113:Core/Src/w25q64.c **** 
+ 114:Core/Src/w25q64.c ****         for (i = 0; i < write_size; i++)
+ 115:Core/Src/w25q64.c ****         {
+ 116:Core/Src/w25q64.c ****             W25Q64_ReadWriteByte(buf[i]);
+ 451              		.loc 1 116 13 is_stmt 1 view .LVU87
+ 452 000c 305D     		ldrb	r0, [r6, r4]	@ zero_extendqisi2
+ 453 000e FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 454              	.LVL47:
+ 114:Core/Src/w25q64.c ****         {
+ 455              		.loc 1 114 38 discriminator 3 view .LVU88
+ 456 0012 0134     		adds	r4, r4, #1
+ 457              	.LVL48:
+ 458              	.L22:
+ 114:Core/Src/w25q64.c ****         {
+ 459              		.loc 1 114 23 discriminator 1 view .LVU89
+ 460 0014 AC42     		cmp	r4, r5
+ 461 0016 F9D3     		bcc	.L23
+ 117:Core/Src/w25q64.c ****         }
+ 118:Core/Src/w25q64.c **** 
+ 119:Core/Src/w25q64.c ****         W25_CS_HIGH();
+ 462              		.loc 1 119 9 view .LVU90
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 11
+
+
+ 463 0018 0122     		movs	r2, #1
+ 464 001a 1021     		movs	r1, #16
+ 465 001c 4FF09040 		mov	r0, #1207959552
+ 466 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 467              	.LVL49:
+ 120:Core/Src/w25q64.c **** 
+ 121:Core/Src/w25q64.c ****         W25Q64_WaitBusy();
+ 468              		.loc 1 121 9 view .LVU91
+ 469 0024 FFF7FEFF 		bl	W25Q64_WaitBusy
+ 470              	.LVL50:
+ 122:Core/Src/w25q64.c **** 
+ 123:Core/Src/w25q64.c ****         addr += write_size;
+ 471              		.loc 1 123 9 view .LVU92
+ 472              		.loc 1 123 14 is_stmt 0 view .LVU93
+ 473 0028 2F44     		add	r7, r7, r5
+ 474              	.LVL51:
+ 124:Core/Src/w25q64.c ****         buf  += write_size;
+ 475              		.loc 1 124 9 is_stmt 1 view .LVU94
+ 476              		.loc 1 124 14 is_stmt 0 view .LVU95
+ 477 002a 2E44     		add	r6, r6, r5
+ 478              	.LVL52:
+ 125:Core/Src/w25q64.c ****         size -= write_size;
+ 479              		.loc 1 125 9 is_stmt 1 view .LVU96
+ 480              		.loc 1 125 14 is_stmt 0 view .LVU97
+ 481 002c A8EB0508 		sub	r8, r8, r5
+ 482              	.LVL53:
+ 483              	.L21:
+ 100:Core/Src/w25q64.c ****     {
+ 484              		.loc 1 100 17 is_stmt 1 view .LVU98
+ 485 0030 B8F1000F 		cmp	r8, #0
+ 486 0034 1DD0     		beq	.L26
+ 102:Core/Src/w25q64.c ****         write_size = (size < page_remain) ? size : page_remain;
+ 487              		.loc 1 102 9 view .LVU99
+ 102:Core/Src/w25q64.c ****         write_size = (size < page_remain) ? size : page_remain;
+ 488              		.loc 1 102 35 is_stmt 0 view .LVU100
+ 489 0036 FCB2     		uxtb	r4, r7
+ 102:Core/Src/w25q64.c ****         write_size = (size < page_remain) ? size : page_remain;
+ 490              		.loc 1 102 21 view .LVU101
+ 491 0038 C4F58075 		rsb	r5, r4, #256
+ 492              	.LVL54:
+ 103:Core/Src/w25q64.c **** 
+ 493              		.loc 1 103 9 is_stmt 1 view .LVU102
+ 103:Core/Src/w25q64.c **** 
+ 494              		.loc 1 103 20 is_stmt 0 view .LVU103
+ 495 003c 4545     		cmp	r5, r8
+ 496 003e 28BF     		it	cs
+ 497 0040 4546     		movcs	r5, r8
+ 498              	.LVL55:
+ 105:Core/Src/w25q64.c **** 
+ 499              		.loc 1 105 9 is_stmt 1 view .LVU104
+ 500 0042 FFF7FEFF 		bl	W25Q64_WriteEnable
+ 501              	.LVL56:
+ 107:Core/Src/w25q64.c **** 
+ 502              		.loc 1 107 9 view .LVU105
+ 503 0046 0022     		movs	r2, #0
+ 504 0048 1021     		movs	r1, #16
+ 505 004a 4FF09040 		mov	r0, #1207959552
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 12
+
+
+ 506 004e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 507              	.LVL57:
+ 109:Core/Src/w25q64.c ****         W25Q64_ReadWriteByte((addr >> 16) & 0xFF);
+ 508              		.loc 1 109 9 view .LVU106
+ 509 0052 0220     		movs	r0, #2
+ 510 0054 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 511              	.LVL58:
+ 110:Core/Src/w25q64.c ****         W25Q64_ReadWriteByte((addr >> 8) & 0xFF);
+ 512              		.loc 1 110 9 view .LVU107
+ 513 0058 C7F30740 		ubfx	r0, r7, #16, #8
+ 514 005c FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 515              	.LVL59:
+ 111:Core/Src/w25q64.c ****         W25Q64_ReadWriteByte(addr & 0xFF);
+ 516              		.loc 1 111 9 view .LVU108
+ 517 0060 C7F30720 		ubfx	r0, r7, #8, #8
+ 518 0064 FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 519              	.LVL60:
+ 112:Core/Src/w25q64.c **** 
+ 520              		.loc 1 112 9 view .LVU109
+ 521 0068 2046     		mov	r0, r4
+ 522 006a FFF7FEFF 		bl	W25Q64_ReadWriteByte
+ 523              	.LVL61:
+ 114:Core/Src/w25q64.c ****         {
+ 524              		.loc 1 114 9 view .LVU110
+ 114:Core/Src/w25q64.c ****         {
+ 525              		.loc 1 114 16 is_stmt 0 view .LVU111
+ 526 006e 0024     		movs	r4, #0
+ 527              	.LVL62:
+ 114:Core/Src/w25q64.c ****         {
+ 528              		.loc 1 114 9 view .LVU112
+ 529 0070 D0E7     		b	.L22
+ 530              	.LVL63:
+ 531              	.L26:
+ 126:Core/Src/w25q64.c ****     }
+ 127:Core/Src/w25q64.c **** }...
+ 532              		.loc 1 127 1 view .LVU113
+ 533 0072 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 534              		.loc 1 127 1 view .LVU114
+ 535              		.cfi_endproc
+ 536              	.LFE235:
+ 538              		.text
+ 539              	.Letext0:
+ 540              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 541              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 542              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l431xx.h"
+ 543              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 544              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 545              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 546              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
+ 547              		.file 9 "Core/Inc/spi.h"
+ 548              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_ll_dma.h"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\cczoaj8w.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 w25q64.c
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:21     .text.W25Q64_Init:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:27     .text.W25Q64_Init:00000000 W25Q64_Init
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:50     .text.W25Q64_ReadWriteByte:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:56     .text.W25Q64_ReadWriteByte:00000000 W25Q64_ReadWriteByte
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:98     .text.W25Q64_ReadWriteByte:00000030 $d
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:103    .text.W25Q64_ReadJEDECID:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:109    .text.W25Q64_ReadJEDECID:00000000 W25Q64_ReadJEDECID
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:177    .text.W25Q64_WriteEnable:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:183    .text.W25Q64_WriteEnable:00000000 W25Q64_WriteEnable
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:216    .text.W25Q64_WaitBusy:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:222    .text.W25Q64_WaitBusy:00000000 W25Q64_WaitBusy
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:268    .text.W25Q64_Read:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:274    .text.W25Q64_Read:00000000 W25Q64_Read
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:356    .text.W25Q64_EraseSector:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:362    .text.W25Q64_EraseSector:00000000 W25Q64_EraseSector
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:417    .text.W25Q64_Write:00000000 $t
+C:\Users\solar\AppData\Local\Temp\cczoaj8w.s:423    .text.W25Q64_Write:00000000 W25Q64_Write
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_TransmitReceive
+hspi1

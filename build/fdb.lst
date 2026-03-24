@@ -1,0 +1,1067 @@
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fdb.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "BSP/src/fdb.c"
+  20              		.section	.rodata._fdb_init_ex.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 5B466C61 		.ascii	"[FlashDB]\000"
+  23      73684442 
+  23      5D00
+  24 000a 0000     		.align	2
+  25              	.LC1:
+  26 000c 646200   		.ascii	"db\000"
+  27 000f 00       		.align	2
+  28              	.LC2:
+  29 0010 28257329 		.ascii	"(%s) has assert failed at %s.\012\000"
+  29      20686173 
+  29      20617373 
+  29      65727420 
+  29      6661696C 
+  30 002f 00       		.align	2
+  31              	.LC3:
+  32 0030 6E616D65 		.ascii	"name\000"
+  32      00
+  33 0035 000000   		.align	2
+  34              	.LC4:
+  35 0038 70617468 		.ascii	"path\000"
+  35      00
+  36 003d 000000   		.align	2
+  37              	.LC5:
+  38 0040 4572726F 		.ascii	"Error: Partition (%s) not found.\012\000"
+  38      723A2050 
+  38      61727469 
+  38      74696F6E 
+  38      20282573 
+  39 0062 0000     		.align	2
+  40              	.LC6:
+  41 0064 4572726F 		.ascii	"Error: db sector size (%lu) MUST align with block s"
+  41      723A2064 
+  41      62207365 
+  41      63746F72 
+  41      2073697A 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 2
+
+
+  42 0097 697A6520 		.ascii	"ize (%zu).\012\000"
+  42      28257A75 
+  42      292E0A00 
+  43 00a3 00       		.align	2
+  44              	.LC7:
+  45 00a4 2864622D 		.ascii	"(db->sec_size & (db->sec_size - 1)) == 0\000"
+  45      3E736563 
+  45      5F73697A 
+  45      65202620 
+  45      2864622D 
+  46 00cd 000000   		.align	2
+  47              	.LC8:
+  48 00d0 4572726F 		.ascii	"Error: db total size (%lu) MUST align with sector s"
+  48      723A2064 
+  48      6220746F 
+  48      74616C20 
+  48      73697A65 
+  49 0103 697A6520 		.ascii	"ize (%lu).\012\000"
+  49      28256C75 
+  49      292E0A00 
+  50 010f 00       		.align	2
+  51              	.LC9:
+  52 0110 4572726F 		.ascii	"Error: db MUST has more than or equal 2 sectors, cu"
+  52      723A2064 
+  52      62204D55 
+  52      53542068 
+  52      6173206D 
+  53 0143 7272656E 		.ascii	"rrent has %lu sector(s)\012\000"
+  53      74206861 
+  53      7320256C 
+  53      75207365 
+  53      63746F72 
+  54              		.section	.text._fdb_init_ex,"ax",%progbits
+  55              		.align	1
+  56              		.global	_fdb_init_ex
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+  61              	_fdb_init_ex:
+  62              	.LVL0:
+  63              	.LFB3:
+   1:BSP/src/fdb.c **** /*
+   2:BSP/src/fdb.c ****  * Copyright (c) 2020, Armink, <armink.ztl@gmail.com>
+   3:BSP/src/fdb.c ****  *
+   4:BSP/src/fdb.c ****  * SPDX-License-Identifier: Apache-2.0
+   5:BSP/src/fdb.c ****  */
+   6:BSP/src/fdb.c **** 
+   7:BSP/src/fdb.c **** /**
+   8:BSP/src/fdb.c ****  * @file
+   9:BSP/src/fdb.c ****  * @brief Initialize interface.
+  10:BSP/src/fdb.c ****  *
+  11:BSP/src/fdb.c ****  * Some initialize interface for this library.
+  12:BSP/src/fdb.c ****  */
+  13:BSP/src/fdb.c **** 
+  14:BSP/src/fdb.c **** #include <flashdb.h>
+  15:BSP/src/fdb.c **** #include <fdb_low_lvl.h>
+  16:BSP/src/fdb.c **** #include <string.h>
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 3
+
+
+  17:BSP/src/fdb.c **** #include <inttypes.h>
+  18:BSP/src/fdb.c **** 
+  19:BSP/src/fdb.c **** #ifdef FDB_USING_FILE_POSIX_MODE
+  20:BSP/src/fdb.c **** #if !defined(_MSC_VER)
+  21:BSP/src/fdb.c **** #include <unistd.h>
+  22:BSP/src/fdb.c **** #endif
+  23:BSP/src/fdb.c **** #endif /* FDB_USING_FILE_POSIX_MODE */
+  24:BSP/src/fdb.c **** 
+  25:BSP/src/fdb.c **** #define FDB_LOG_TAG ""
+  26:BSP/src/fdb.c **** 
+  27:BSP/src/fdb.c **** #if !defined(FDB_USING_FAL_MODE) && !defined(FDB_USING_FILE_MODE)
+  28:BSP/src/fdb.c **** #error "Please defined the FDB_USING_FAL_MODE or FDB_USING_FILE_MODE macro"
+  29:BSP/src/fdb.c **** #endif
+  30:BSP/src/fdb.c **** 
+  31:BSP/src/fdb.c **** fdb_err_t _fdb_init_ex(fdb_db_t db, const char *name, const char *path, fdb_db_type type, void *use
+  32:BSP/src/fdb.c **** {
+  64              		.loc 1 32 1 view -0
+  65              		.cfi_startproc
+  66              		@ args = 4, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              		.loc 1 32 1 is_stmt 0 view .LVU1
+  69 0000 38B5     		push	{r3, r4, r5, lr}
+  70              	.LCFI0:
+  71              		.cfi_def_cfa_offset 16
+  72              		.cfi_offset 3, -16
+  73              		.cfi_offset 4, -12
+  74              		.cfi_offset 5, -8
+  75              		.cfi_offset 14, -4
+  33:BSP/src/fdb.c ****     FDB_ASSERT(db);
+  76              		.loc 1 33 5 is_stmt 1 view .LVU2
+  77 0002 00B3     		cbz	r0, .L19
+  78 0004 1546     		mov	r5, r2
+  79 0006 0446     		mov	r4, r0
+  80              		.loc 1 33 19 view .LVU3
+  34:BSP/src/fdb.c ****     FDB_ASSERT(name);
+  81              		.loc 1 34 5 view .LVU4
+  82 0008 49B3     		cbz	r1, .L20
+  83              		.loc 1 34 21 view .LVU5
+  35:BSP/src/fdb.c ****     FDB_ASSERT(path);
+  84              		.loc 1 35 5 view .LVU6
+  85 000a 002A     		cmp	r2, #0
+  86 000c 33D0     		beq	.L21
+  87              		.loc 1 35 21 view .LVU7
+  36:BSP/src/fdb.c **** 
+  37:BSP/src/fdb.c ****     if (db->init_ok) {
+  88              		.loc 1 37 5 view .LVU8
+  89              		.loc 1 37 11 is_stmt 0 view .LVU9
+  90 000e 027E     		ldrb	r2, [r0, #24]	@ zero_extendqisi2
+  91              	.LVL1:
+  92              		.loc 1 37 8 view .LVU10
+  93 0010 002A     		cmp	r2, #0
+  94 0012 40F09580 		bne	.L16
+  38:BSP/src/fdb.c ****         return FDB_NO_ERR;
+  39:BSP/src/fdb.c ****     }
+  40:BSP/src/fdb.c **** 
+  41:BSP/src/fdb.c ****     db->name = name;
+  95              		.loc 1 41 5 is_stmt 1 view .LVU11
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 4
+
+
+  96              		.loc 1 41 14 is_stmt 0 view .LVU12
+  97 0016 0160     		str	r1, [r0]
+  42:BSP/src/fdb.c ****     db->type = type;
+  98              		.loc 1 42 5 is_stmt 1 view .LVU13
+  99              		.loc 1 42 14 is_stmt 0 view .LVU14
+ 100 0018 0371     		strb	r3, [r0, #4]
+  43:BSP/src/fdb.c ****     db->user_data = user_data;
+ 101              		.loc 1 43 5 is_stmt 1 view .LVU15
+ 102              		.loc 1 43 19 is_stmt 0 view .LVU16
+ 103 001a 049B     		ldr	r3, [sp, #16]
+ 104              	.LVL2:
+ 105              		.loc 1 43 19 view .LVU17
+ 106 001c 4362     		str	r3, [r0, #36]
+  44:BSP/src/fdb.c **** 
+  45:BSP/src/fdb.c ****     if (db->file_mode) {
+ 107              		.loc 1 45 5 is_stmt 1 view .LVU18
+ 108              		.loc 1 45 11 is_stmt 0 view .LVU19
+ 109 001e 437E     		ldrb	r3, [r0, #25]	@ zero_extendqisi2
+ 110              		.loc 1 45 8 view .LVU20
+ 111 0020 002B     		cmp	r3, #0
+ 112 0022 34D0     		beq	.L22
+ 113              	.LVL3:
+ 114              	.L9:
+  46:BSP/src/fdb.c **** #ifdef FDB_USING_FILE_MODE
+  47:BSP/src/fdb.c ****         memset(db->cur_file_sec, FDB_FAILED_ADDR, FDB_FILE_CACHE_TABLE_SIZE * sizeof(db->cur_file_s
+  48:BSP/src/fdb.c ****         /* must set when using file mode */
+  49:BSP/src/fdb.c ****         FDB_ASSERT(db->sec_size != 0);
+  50:BSP/src/fdb.c ****         FDB_ASSERT(db->max_size != 0);
+  51:BSP/src/fdb.c **** #ifdef FDB_USING_FILE_POSIX_MODE
+  52:BSP/src/fdb.c ****         memset(db->cur_file, -1, FDB_FILE_CACHE_TABLE_SIZE * sizeof(db->cur_file[0]));
+  53:BSP/src/fdb.c **** #else
+  54:BSP/src/fdb.c ****         memset(db->cur_file, 0, FDB_FILE_CACHE_TABLE_SIZE * sizeof(db->cur_file[0]));
+  55:BSP/src/fdb.c **** #endif
+  56:BSP/src/fdb.c ****         db->storage.dir = path;
+  57:BSP/src/fdb.c ****         FDB_ASSERT(strlen(path) != 0)
+  58:BSP/src/fdb.c **** #endif
+  59:BSP/src/fdb.c ****     } else {
+  60:BSP/src/fdb.c **** #ifdef FDB_USING_FAL_MODE
+  61:BSP/src/fdb.c ****         size_t block_size;
+  62:BSP/src/fdb.c **** 
+  63:BSP/src/fdb.c ****         /* FAL (Flash Abstraction Layer) initialization */
+  64:BSP/src/fdb.c ****         fal_init();
+  65:BSP/src/fdb.c ****         /* check the flash partition */
+  66:BSP/src/fdb.c ****         if ((db->storage.part = fal_partition_find(path)) == NULL) {
+  67:BSP/src/fdb.c ****             FDB_INFO("Error: Partition (%s) not found.\n", path);
+  68:BSP/src/fdb.c ****             return FDB_PART_NOT_FOUND;
+  69:BSP/src/fdb.c ****         }
+  70:BSP/src/fdb.c **** 
+  71:BSP/src/fdb.c ****         block_size = fal_flash_device_find(db->storage.part->flash_name)->blk_size;
+  72:BSP/src/fdb.c ****         if (db->sec_size == 0) {
+  73:BSP/src/fdb.c ****             db->sec_size = block_size;
+  74:BSP/src/fdb.c ****         } else {
+  75:BSP/src/fdb.c ****             /* must be aligned with block size */
+  76:BSP/src/fdb.c ****             if (db->sec_size % block_size != 0) {
+  77:BSP/src/fdb.c ****                 FDB_INFO("Error: db sector size (%" PRIu32 ") MUST align with block size (%zu).\n",
+  78:BSP/src/fdb.c ****                 return FDB_INIT_FAILED;
+  79:BSP/src/fdb.c ****             }
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 5
+
+
+  80:BSP/src/fdb.c ****         }
+  81:BSP/src/fdb.c **** 
+  82:BSP/src/fdb.c ****         db->max_size = db->storage.part->len;
+  83:BSP/src/fdb.c **** #endif /* FDB_USING_FAL_MODE */
+  84:BSP/src/fdb.c ****     }
+  85:BSP/src/fdb.c **** 
+  86:BSP/src/fdb.c ****     /* the block size MUST to be the Nth power of 2 */
+  87:BSP/src/fdb.c ****     FDB_ASSERT((db->sec_size & (db->sec_size - 1)) == 0);
+ 115              		.loc 1 87 5 is_stmt 1 view .LVU21
+ 116 0024 E368     		ldr	r3, [r4, #12]
+ 117 0026 5A1E     		subs	r2, r3, #1
+ 118 0028 1342     		tst	r3, r2
+ 119 002a 61D1     		bne	.L23
+ 120              		.loc 1 87 57 view .LVU22
+  88:BSP/src/fdb.c ****     /* must align with sector size */
+  89:BSP/src/fdb.c ****     if (db->max_size % db->sec_size != 0) {
+ 121              		.loc 1 89 5 view .LVU23
+ 122              		.loc 1 89 11 is_stmt 0 view .LVU24
+ 123 002c 2269     		ldr	r2, [r4, #16]
+ 124              		.loc 1 89 22 view .LVU25
+ 125 002e B2FBF3F1 		udiv	r1, r2, r3
+ 126 0032 03FB1121 		mls	r1, r3, r1, r2
+ 127              		.loc 1 89 8 view .LVU26
+ 128 0036 0029     		cmp	r1, #0
+ 129 0038 66D1     		bne	.L24
+  90:BSP/src/fdb.c ****         FDB_INFO("Error: db total size (%" PRIu32 ") MUST align with sector size (%" PRIu32 ").\n",
+  91:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+  92:BSP/src/fdb.c ****     }
+  93:BSP/src/fdb.c ****     /* must has more than or equal 2 sectors */
+  94:BSP/src/fdb.c ****     if (db->max_size / db->sec_size < 2) {
+ 130              		.loc 1 94 5 is_stmt 1 view .LVU27
+ 131              		.loc 1 94 22 is_stmt 0 view .LVU28
+ 132 003a B2FBF3F2 		udiv	r2, r2, r3
+ 133              		.loc 1 94 8 view .LVU29
+ 134 003e 012A     		cmp	r2, #1
+ 135 0040 6FD9     		bls	.L25
+  95:BSP/src/fdb.c ****         FDB_INFO("Error: db MUST has more than or equal 2 sectors, current has %" PRIu32 " sector(s
+  96:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+  97:BSP/src/fdb.c ****     }
+  98:BSP/src/fdb.c **** 
+  99:BSP/src/fdb.c ****     return FDB_NO_ERR;
+ 136              		.loc 1 99 12 view .LVU30
+ 137 0042 0020     		movs	r0, #0
+ 138 0044 7DE0     		b	.L8
+ 139              	.LVL4:
+ 140              	.L19:
+  33:BSP/src/fdb.c ****     FDB_ASSERT(name);
+ 141              		.loc 1 33 5 is_stmt 1 discriminator 1 view .LVU31
+ 142 0046 3F48     		ldr	r0, .L27
+ 143              	.LVL5:
+  33:BSP/src/fdb.c ****     FDB_ASSERT(name);
+ 144              		.loc 1 33 5 is_stmt 0 discriminator 1 view .LVU32
+ 145 0048 FFF7FEFF 		bl	printf
+ 146              	.LVL6:
+  33:BSP/src/fdb.c ****     FDB_ASSERT(name);
+ 147              		.loc 1 33 5 is_stmt 1 discriminator 1 view .LVU33
+ 148 004c 2020     		movs	r0, #32
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 6
+
+
+ 149 004e FFF7FEFF 		bl	putchar
+ 150              	.LVL7:
+  33:BSP/src/fdb.c ****     FDB_ASSERT(name);
+ 151              		.loc 1 33 5 discriminator 2 view .LVU34
+ 152 0052 3D4A     		ldr	r2, .L27+4
+ 153 0054 3D49     		ldr	r1, .L27+8
+ 154 0056 3E48     		ldr	r0, .L27+12
+ 155 0058 FFF7FEFF 		bl	printf
+ 156              	.LVL8:
+ 157              	.L3:
+  33:BSP/src/fdb.c ****     FDB_ASSERT(name);
+ 158              		.loc 1 33 5 view .LVU35
+  33:BSP/src/fdb.c ****     FDB_ASSERT(name);
+ 159              		.loc 1 33 5 view .LVU36
+ 160 005c FEE7     		b	.L3
+ 161              	.LVL9:
+ 162              	.L20:
+  34:BSP/src/fdb.c ****     FDB_ASSERT(path);
+ 163              		.loc 1 34 5 discriminator 1 view .LVU37
+ 164 005e 3948     		ldr	r0, .L27
+ 165              	.LVL10:
+  34:BSP/src/fdb.c ****     FDB_ASSERT(path);
+ 166              		.loc 1 34 5 is_stmt 0 discriminator 1 view .LVU38
+ 167 0060 FFF7FEFF 		bl	printf
+ 168              	.LVL11:
+  34:BSP/src/fdb.c ****     FDB_ASSERT(path);
+ 169              		.loc 1 34 5 is_stmt 1 discriminator 1 view .LVU39
+ 170 0064 2020     		movs	r0, #32
+ 171 0066 FFF7FEFF 		bl	putchar
+ 172              	.LVL12:
+  34:BSP/src/fdb.c ****     FDB_ASSERT(path);
+ 173              		.loc 1 34 5 discriminator 2 view .LVU40
+ 174 006a 374A     		ldr	r2, .L27+4
+ 175 006c 3949     		ldr	r1, .L27+16
+ 176 006e 3848     		ldr	r0, .L27+12
+ 177 0070 FFF7FEFF 		bl	printf
+ 178              	.LVL13:
+ 179              	.L5:
+  34:BSP/src/fdb.c ****     FDB_ASSERT(path);
+ 180              		.loc 1 34 5 view .LVU41
+  34:BSP/src/fdb.c ****     FDB_ASSERT(path);
+ 181              		.loc 1 34 5 view .LVU42
+ 182 0074 FEE7     		b	.L5
+ 183              	.LVL14:
+ 184              	.L21:
+  35:BSP/src/fdb.c **** 
+ 185              		.loc 1 35 5 discriminator 1 view .LVU43
+ 186 0076 3348     		ldr	r0, .L27
+ 187              	.LVL15:
+  35:BSP/src/fdb.c **** 
+ 188              		.loc 1 35 5 is_stmt 0 discriminator 1 view .LVU44
+ 189 0078 FFF7FEFF 		bl	printf
+ 190              	.LVL16:
+  35:BSP/src/fdb.c **** 
+ 191              		.loc 1 35 5 is_stmt 1 discriminator 1 view .LVU45
+ 192 007c 2020     		movs	r0, #32
+ 193 007e FFF7FEFF 		bl	putchar
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 7
+
+
+ 194              	.LVL17:
+  35:BSP/src/fdb.c **** 
+ 195              		.loc 1 35 5 discriminator 2 view .LVU46
+ 196 0082 314A     		ldr	r2, .L27+4
+ 197 0084 3449     		ldr	r1, .L27+20
+ 198 0086 3248     		ldr	r0, .L27+12
+ 199 0088 FFF7FEFF 		bl	printf
+ 200              	.LVL18:
+ 201              	.L7:
+  35:BSP/src/fdb.c **** 
+ 202              		.loc 1 35 5 view .LVU47
+  35:BSP/src/fdb.c **** 
+ 203              		.loc 1 35 5 view .LVU48
+ 204 008c FEE7     		b	.L7
+ 205              	.LVL19:
+ 206              	.L22:
+ 207              	.LBB2:
+  61:BSP/src/fdb.c **** 
+ 208              		.loc 1 61 9 view .LVU49
+  64:BSP/src/fdb.c ****         /* check the flash partition */
+ 209              		.loc 1 64 9 view .LVU50
+ 210 008e FFF7FEFF 		bl	fal_init
+ 211              	.LVL20:
+  66:BSP/src/fdb.c ****             FDB_INFO("Error: Partition (%s) not found.\n", path);
+ 212              		.loc 1 66 9 view .LVU51
+  66:BSP/src/fdb.c ****             FDB_INFO("Error: Partition (%s) not found.\n", path);
+ 213              		.loc 1 66 33 is_stmt 0 view .LVU52
+ 214 0092 2846     		mov	r0, r5
+ 215 0094 FFF7FEFF 		bl	fal_partition_find
+ 216              	.LVL21:
+  66:BSP/src/fdb.c ****             FDB_INFO("Error: Partition (%s) not found.\n", path);
+ 217              		.loc 1 66 31 discriminator 1 view .LVU53
+ 218 0098 A060     		str	r0, [r4, #8]
+  66:BSP/src/fdb.c ****             FDB_INFO("Error: Partition (%s) not found.\n", path);
+ 219              		.loc 1 66 12 discriminator 1 view .LVU54
+ 220 009a 50B1     		cbz	r0, .L26
+  71:BSP/src/fdb.c ****         if (db->sec_size == 0) {
+ 221              		.loc 1 71 9 is_stmt 1 view .LVU55
+  71:BSP/src/fdb.c ****         if (db->sec_size == 0) {
+ 222              		.loc 1 71 22 is_stmt 0 view .LVU56
+ 223 009c 1C30     		adds	r0, r0, #28
+ 224 009e FFF7FEFF 		bl	fal_flash_device_find
+ 225              	.LVL22:
+  71:BSP/src/fdb.c ****         if (db->sec_size == 0) {
+ 226              		.loc 1 71 20 discriminator 1 view .LVU57
+ 227 00a2 056A     		ldr	r5, [r0, #32]
+ 228              	.LVL23:
+  72:BSP/src/fdb.c ****             db->sec_size = block_size;
+ 229              		.loc 1 72 9 is_stmt 1 view .LVU58
+  72:BSP/src/fdb.c ****             db->sec_size = block_size;
+ 230              		.loc 1 72 15 is_stmt 0 view .LVU59
+ 231 00a4 E368     		ldr	r3, [r4, #12]
+  72:BSP/src/fdb.c ****             db->sec_size = block_size;
+ 232              		.loc 1 72 12 view .LVU60
+ 233 00a6 83B9     		cbnz	r3, .L11
+  73:BSP/src/fdb.c ****         } else {
+ 234              		.loc 1 73 13 is_stmt 1 view .LVU61
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 8
+
+
+  73:BSP/src/fdb.c ****         } else {
+ 235              		.loc 1 73 26 is_stmt 0 view .LVU62
+ 236 00a8 E560     		str	r5, [r4, #12]
+ 237              	.L12:
+  82:BSP/src/fdb.c **** #endif /* FDB_USING_FAL_MODE */
+ 238              		.loc 1 82 9 is_stmt 1 view .LVU63
+  82:BSP/src/fdb.c **** #endif /* FDB_USING_FAL_MODE */
+ 239              		.loc 1 82 35 is_stmt 0 view .LVU64
+ 240 00aa A368     		ldr	r3, [r4, #8]
+  82:BSP/src/fdb.c **** #endif /* FDB_USING_FAL_MODE */
+ 241              		.loc 1 82 40 view .LVU65
+ 242 00ac 9B6B     		ldr	r3, [r3, #56]
+  82:BSP/src/fdb.c **** #endif /* FDB_USING_FAL_MODE */
+ 243              		.loc 1 82 22 view .LVU66
+ 244 00ae 2361     		str	r3, [r4, #16]
+ 245 00b0 B8E7     		b	.L9
+ 246              	.LVL24:
+ 247              	.L26:
+  67:BSP/src/fdb.c ****             return FDB_PART_NOT_FOUND;
+ 248              		.loc 1 67 13 is_stmt 1 view .LVU67
+ 249 00b2 2448     		ldr	r0, .L27
+ 250 00b4 FFF7FEFF 		bl	printf
+ 251              	.LVL25:
+  67:BSP/src/fdb.c ****             return FDB_PART_NOT_FOUND;
+ 252              		.loc 1 67 13 discriminator 1 view .LVU68
+ 253 00b8 2020     		movs	r0, #32
+ 254 00ba FFF7FEFF 		bl	putchar
+ 255              	.LVL26:
+  67:BSP/src/fdb.c ****             return FDB_PART_NOT_FOUND;
+ 256              		.loc 1 67 13 discriminator 2 view .LVU69
+ 257 00be 2946     		mov	r1, r5
+ 258 00c0 2648     		ldr	r0, .L27+24
+ 259 00c2 FFF7FEFF 		bl	printf
+ 260              	.LVL27:
+  68:BSP/src/fdb.c ****         }
+ 261              		.loc 1 68 13 view .LVU70
+  68:BSP/src/fdb.c ****         }
+ 262              		.loc 1 68 20 is_stmt 0 view .LVU71
+ 263 00c6 0420     		movs	r0, #4
+ 264 00c8 3BE0     		b	.L8
+ 265              	.LVL28:
+ 266              	.L11:
+  76:BSP/src/fdb.c ****                 FDB_INFO("Error: db sector size (%" PRIu32 ") MUST align with block size (%zu).\n",
+ 267              		.loc 1 76 13 is_stmt 1 view .LVU72
+  76:BSP/src/fdb.c ****                 FDB_INFO("Error: db sector size (%" PRIu32 ") MUST align with block size (%zu).\n",
+ 268              		.loc 1 76 30 is_stmt 0 view .LVU73
+ 269 00ca B3FBF5F2 		udiv	r2, r3, r5
+ 270 00ce 05FB1233 		mls	r3, r5, r2, r3
+  76:BSP/src/fdb.c ****                 FDB_INFO("Error: db sector size (%" PRIu32 ") MUST align with block size (%zu).\n",
+ 271              		.loc 1 76 16 view .LVU74
+ 272 00d2 002B     		cmp	r3, #0
+ 273 00d4 E9D0     		beq	.L12
+  77:BSP/src/fdb.c ****                 return FDB_INIT_FAILED;
+ 274              		.loc 1 77 17 is_stmt 1 view .LVU75
+ 275 00d6 1B48     		ldr	r0, .L27
+ 276 00d8 FFF7FEFF 		bl	printf
+ 277              	.LVL29:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 9
+
+
+  77:BSP/src/fdb.c ****                 return FDB_INIT_FAILED;
+ 278              		.loc 1 77 17 discriminator 1 view .LVU76
+ 279 00dc 2020     		movs	r0, #32
+ 280 00de FFF7FEFF 		bl	putchar
+ 281              	.LVL30:
+  77:BSP/src/fdb.c ****                 return FDB_INIT_FAILED;
+ 282              		.loc 1 77 17 discriminator 2 view .LVU77
+ 283 00e2 2A46     		mov	r2, r5
+ 284 00e4 E168     		ldr	r1, [r4, #12]
+ 285 00e6 1E48     		ldr	r0, .L27+28
+ 286 00e8 FFF7FEFF 		bl	printf
+ 287              	.LVL31:
+  78:BSP/src/fdb.c ****             }
+ 288              		.loc 1 78 17 view .LVU78
+  78:BSP/src/fdb.c ****             }
+ 289              		.loc 1 78 24 is_stmt 0 view .LVU79
+ 290 00ec 0820     		movs	r0, #8
+ 291 00ee 28E0     		b	.L8
+ 292              	.LVL32:
+ 293              	.L23:
+  78:BSP/src/fdb.c ****             }
+ 294              		.loc 1 78 24 view .LVU80
+ 295              	.LBE2:
+  87:BSP/src/fdb.c ****     /* must align with sector size */
+ 296              		.loc 1 87 5 is_stmt 1 discriminator 1 view .LVU81
+ 297 00f0 1448     		ldr	r0, .L27
+ 298 00f2 FFF7FEFF 		bl	printf
+ 299              	.LVL33:
+  87:BSP/src/fdb.c ****     /* must align with sector size */
+ 300              		.loc 1 87 5 discriminator 1 view .LVU82
+ 301 00f6 2020     		movs	r0, #32
+ 302 00f8 FFF7FEFF 		bl	putchar
+ 303              	.LVL34:
+  87:BSP/src/fdb.c ****     /* must align with sector size */
+ 304              		.loc 1 87 5 discriminator 2 view .LVU83
+ 305 00fc 124A     		ldr	r2, .L27+4
+ 306 00fe 1949     		ldr	r1, .L27+32
+ 307 0100 1348     		ldr	r0, .L27+12
+ 308 0102 FFF7FEFF 		bl	printf
+ 309              	.LVL35:
+ 310              	.L14:
+  87:BSP/src/fdb.c ****     /* must align with sector size */
+ 311              		.loc 1 87 5 view .LVU84
+  87:BSP/src/fdb.c ****     /* must align with sector size */
+ 312              		.loc 1 87 5 view .LVU85
+ 313 0106 FEE7     		b	.L14
+ 314              	.L24:
+  90:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+ 315              		.loc 1 90 9 view .LVU86
+ 316 0108 0E48     		ldr	r0, .L27
+ 317 010a FFF7FEFF 		bl	printf
+ 318              	.LVL36:
+  90:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+ 319              		.loc 1 90 9 discriminator 1 view .LVU87
+ 320 010e 2020     		movs	r0, #32
+ 321 0110 FFF7FEFF 		bl	putchar
+ 322              	.LVL37:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 10
+
+
+  90:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+ 323              		.loc 1 90 9 discriminator 2 view .LVU88
+ 324 0114 E268     		ldr	r2, [r4, #12]
+ 325 0116 2169     		ldr	r1, [r4, #16]
+ 326 0118 1348     		ldr	r0, .L27+36
+ 327 011a FFF7FEFF 		bl	printf
+ 328              	.LVL38:
+  91:BSP/src/fdb.c ****     }
+ 329              		.loc 1 91 9 view .LVU89
+  91:BSP/src/fdb.c ****     }
+ 330              		.loc 1 91 16 is_stmt 0 view .LVU90
+ 331 011e 0820     		movs	r0, #8
+ 332 0120 0FE0     		b	.L8
+ 333              	.L25:
+  95:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+ 334              		.loc 1 95 9 is_stmt 1 view .LVU91
+ 335 0122 0848     		ldr	r0, .L27
+ 336 0124 FFF7FEFF 		bl	printf
+ 337              	.LVL39:
+  95:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+ 338              		.loc 1 95 9 discriminator 1 view .LVU92
+ 339 0128 2020     		movs	r0, #32
+ 340 012a FFF7FEFF 		bl	putchar
+ 341              	.LVL40:
+  95:BSP/src/fdb.c ****         return FDB_INIT_FAILED;
+ 342              		.loc 1 95 9 discriminator 2 view .LVU93
+ 343 012e 2169     		ldr	r1, [r4, #16]
+ 344 0130 E368     		ldr	r3, [r4, #12]
+ 345 0132 B1FBF3F1 		udiv	r1, r1, r3
+ 346 0136 0D48     		ldr	r0, .L27+40
+ 347 0138 FFF7FEFF 		bl	printf
+ 348              	.LVL41:
+  96:BSP/src/fdb.c ****     }
+ 349              		.loc 1 96 9 view .LVU94
+  96:BSP/src/fdb.c ****     }
+ 350              		.loc 1 96 16 is_stmt 0 view .LVU95
+ 351 013c 0820     		movs	r0, #8
+ 352 013e 00E0     		b	.L8
+ 353              	.LVL42:
+ 354              	.L16:
+  38:BSP/src/fdb.c ****     }
+ 355              		.loc 1 38 16 view .LVU96
+ 356 0140 0020     		movs	r0, #0
+ 357              	.LVL43:
+ 358              	.L8:
+ 100:BSP/src/fdb.c **** }
+ 359              		.loc 1 100 1 view .LVU97
+ 360 0142 38BD     		pop	{r3, r4, r5, pc}
+ 361              	.LVL44:
+ 362              	.L28:
+ 363              		.loc 1 100 1 view .LVU98
+ 364              		.align	2
+ 365              	.L27:
+ 366 0144 00000000 		.word	.LC0
+ 367 0148 00000000 		.word	__func__.2
+ 368 014c 0C000000 		.word	.LC1
+ 369 0150 10000000 		.word	.LC2
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 11
+
+
+ 370 0154 30000000 		.word	.LC3
+ 371 0158 38000000 		.word	.LC4
+ 372 015c 40000000 		.word	.LC5
+ 373 0160 64000000 		.word	.LC6
+ 374 0164 A4000000 		.word	.LC7
+ 375 0168 D0000000 		.word	.LC8
+ 376 016c 10010000 		.word	.LC9
+ 377              		.cfi_endproc
+ 378              	.LFE3:
+ 380              		.section	.text._fdb_deinit,"ax",%progbits
+ 381              		.align	1
+ 382              		.global	_fdb_deinit
+ 383              		.syntax unified
+ 384              		.thumb
+ 385              		.thumb_func
+ 387              	_fdb_deinit:
+ 388              	.LVL45:
+ 389              	.LFB5:
+ 101:BSP/src/fdb.c **** 
+ 102:BSP/src/fdb.c **** void _fdb_init_finish(fdb_db_t db, fdb_err_t result)
+ 103:BSP/src/fdb.c **** {
+ 104:BSP/src/fdb.c ****     static bool log_is_show = false;
+ 105:BSP/src/fdb.c ****     if (result == FDB_NO_ERR) {
+ 106:BSP/src/fdb.c ****         db->init_ok = true;
+ 107:BSP/src/fdb.c ****         if (!log_is_show) {
+ 108:BSP/src/fdb.c ****             FDB_INFO("FlashDB V%s is initialize success.\n", FDB_SW_VERSION);
+ 109:BSP/src/fdb.c ****             FDB_INFO("You can get the latest version on https://github.com/armink/FlashDB .\n");
+ 110:BSP/src/fdb.c ****             log_is_show = true;
+ 111:BSP/src/fdb.c ****         }
+ 112:BSP/src/fdb.c ****     } else if (!db->not_formatable) {
+ 113:BSP/src/fdb.c ****         FDB_INFO("Error: %s (%s@%s) is initialize fail (%d).\n", db->type == FDB_DB_TYPE_KV ? "KVDB
+ 114:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 115:BSP/src/fdb.c ****     }
+ 116:BSP/src/fdb.c **** }
+ 117:BSP/src/fdb.c **** 
+ 118:BSP/src/fdb.c **** void _fdb_deinit(fdb_db_t db)
+ 119:BSP/src/fdb.c **** {
+ 390              		.loc 1 119 1 is_stmt 1 view -0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+ 394              		.loc 1 119 1 is_stmt 0 view .LVU100
+ 395 0000 08B5     		push	{r3, lr}
+ 396              	.LCFI1:
+ 397              		.cfi_def_cfa_offset 8
+ 398              		.cfi_offset 3, -8
+ 399              		.cfi_offset 14, -4
+ 120:BSP/src/fdb.c ****     FDB_ASSERT(db);
+ 400              		.loc 1 120 5 is_stmt 1 view .LVU101
+ 401 0002 10B1     		cbz	r0, .L33
+ 402              		.loc 1 120 19 view .LVU102
+ 121:BSP/src/fdb.c **** 
+ 122:BSP/src/fdb.c ****     if (db->init_ok) {
+ 403              		.loc 1 122 5 view .LVU103
+ 123:BSP/src/fdb.c **** #ifdef FDB_USING_FILE_MODE
+ 124:BSP/src/fdb.c ****         for (int i = 0; i < FDB_FILE_CACHE_TABLE_SIZE; i++) {
+ 125:BSP/src/fdb.c **** #ifdef FDB_USING_FILE_POSIX_MODE
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 12
+
+
+ 126:BSP/src/fdb.c ****             if (db->cur_file[i] > 0) {
+ 127:BSP/src/fdb.c ****                 close(db->cur_file[i]);
+ 128:BSP/src/fdb.c ****             }
+ 129:BSP/src/fdb.c **** #else
+ 130:BSP/src/fdb.c ****             if (db->cur_file[i] != 0) {
+ 131:BSP/src/fdb.c ****                 fclose(db->cur_file[i]);
+ 132:BSP/src/fdb.c ****             }
+ 133:BSP/src/fdb.c **** #endif /* FDB_USING_FILE_POSIX_MODE */
+ 134:BSP/src/fdb.c ****         }
+ 135:BSP/src/fdb.c **** #endif /* FDB_USING_FILE_MODE */
+ 136:BSP/src/fdb.c ****     }
+ 404              		.loc 1 136 5 view .LVU104
+ 137:BSP/src/fdb.c **** 
+ 138:BSP/src/fdb.c ****     db->init_ok = false;
+ 405              		.loc 1 138 5 view .LVU105
+ 406              		.loc 1 138 17 is_stmt 0 view .LVU106
+ 407 0004 0022     		movs	r2, #0
+ 408 0006 0276     		strb	r2, [r0, #24]
+ 139:BSP/src/fdb.c **** }
+ 409              		.loc 1 139 1 view .LVU107
+ 410 0008 08BD     		pop	{r3, pc}
+ 411              	.L33:
+ 120:BSP/src/fdb.c **** 
+ 412              		.loc 1 120 5 is_stmt 1 discriminator 1 view .LVU108
+ 413 000a 0648     		ldr	r0, .L34
+ 414              	.LVL46:
+ 120:BSP/src/fdb.c **** 
+ 415              		.loc 1 120 5 is_stmt 0 discriminator 1 view .LVU109
+ 416 000c FFF7FEFF 		bl	printf
+ 417              	.LVL47:
+ 120:BSP/src/fdb.c **** 
+ 418              		.loc 1 120 5 is_stmt 1 discriminator 1 view .LVU110
+ 419 0010 2020     		movs	r0, #32
+ 420 0012 FFF7FEFF 		bl	putchar
+ 421              	.LVL48:
+ 120:BSP/src/fdb.c **** 
+ 422              		.loc 1 120 5 discriminator 2 view .LVU111
+ 423 0016 044A     		ldr	r2, .L34+4
+ 424 0018 0449     		ldr	r1, .L34+8
+ 425 001a 0548     		ldr	r0, .L34+12
+ 426 001c FFF7FEFF 		bl	printf
+ 427              	.LVL49:
+ 428              	.L31:
+ 120:BSP/src/fdb.c **** 
+ 429              		.loc 1 120 5 view .LVU112
+ 120:BSP/src/fdb.c **** 
+ 430              		.loc 1 120 5 view .LVU113
+ 431 0020 FEE7     		b	.L31
+ 432              	.L35:
+ 433 0022 00BF     		.align	2
+ 434              	.L34:
+ 435 0024 00000000 		.word	.LC0
+ 436 0028 00000000 		.word	__func__.0
+ 437 002c 0C000000 		.word	.LC1
+ 438 0030 10000000 		.word	.LC2
+ 439              		.cfi_endproc
+ 440              	.LFE5:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 13
+
+
+ 442              		.section	.text._fdb_db_path,"ax",%progbits
+ 443              		.align	1
+ 444              		.global	_fdb_db_path
+ 445              		.syntax unified
+ 446              		.thumb
+ 447              		.thumb_func
+ 449              	_fdb_db_path:
+ 450              	.LVL50:
+ 451              	.LFB6:
+ 140:BSP/src/fdb.c **** 
+ 141:BSP/src/fdb.c **** const char *_fdb_db_path(fdb_db_t db)
+ 142:BSP/src/fdb.c **** {
+ 452              		.loc 1 142 1 view -0
+ 453              		.cfi_startproc
+ 454              		@ args = 0, pretend = 0, frame = 0
+ 455              		@ frame_needed = 0, uses_anonymous_args = 0
+ 456              		@ link register save eliminated.
+ 143:BSP/src/fdb.c ****     if (db->file_mode) {
+ 457              		.loc 1 143 5 view .LVU115
+ 458              		.loc 1 143 11 is_stmt 0 view .LVU116
+ 459 0000 437E     		ldrb	r3, [r0, #25]	@ zero_extendqisi2
+ 460              		.loc 1 143 8 view .LVU117
+ 461 0002 13B9     		cbnz	r3, .L38
+ 144:BSP/src/fdb.c **** #ifdef FDB_USING_FILE_MODE
+ 145:BSP/src/fdb.c ****         return db->storage.dir;
+ 146:BSP/src/fdb.c **** #else
+ 147:BSP/src/fdb.c ****         return NULL;
+ 148:BSP/src/fdb.c **** #endif
+ 149:BSP/src/fdb.c ****     }
+ 150:BSP/src/fdb.c ****     else {
+ 151:BSP/src/fdb.c **** #ifdef FDB_USING_FAL_MODE
+ 152:BSP/src/fdb.c ****         return db->storage.part->name;
+ 462              		.loc 1 152 9 is_stmt 1 view .LVU118
+ 463              		.loc 1 152 27 is_stmt 0 view .LVU119
+ 464 0004 8068     		ldr	r0, [r0, #8]
+ 465              	.LVL51:
+ 466              		.loc 1 152 16 view .LVU120
+ 467 0006 0430     		adds	r0, r0, #4
+ 468 0008 7047     		bx	lr
+ 469              	.LVL52:
+ 470              	.L38:
+ 147:BSP/src/fdb.c **** #endif
+ 471              		.loc 1 147 16 view .LVU121
+ 472 000a 0020     		movs	r0, #0
+ 473              	.LVL53:
+ 153:BSP/src/fdb.c **** #else
+ 154:BSP/src/fdb.c ****         return NULL;
+ 155:BSP/src/fdb.c **** #endif
+ 156:BSP/src/fdb.c ****     }
+ 157:BSP/src/fdb.c **** }
+ 474              		.loc 1 157 1 view .LVU122
+ 475 000c 7047     		bx	lr
+ 476              		.cfi_endproc
+ 477              	.LFE6:
+ 479              		.section	.rodata._fdb_init_finish.str1.4,"aMS",%progbits,1
+ 480              		.align	2
+ 481              	.LC10:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 14
+
+
+ 482 0000 4B564442 		.ascii	"KVDB\000"
+ 482      00
+ 483 0005 000000   		.align	2
+ 484              	.LC11:
+ 485 0008 54534442 		.ascii	"TSDB\000"
+ 485      00
+ 486 000d 000000   		.align	2
+ 487              	.LC12:
+ 488 0010 322E312E 		.ascii	"2.1.99\000"
+ 488      393900
+ 489 0017 00       		.align	2
+ 490              	.LC13:
+ 491 0018 466C6173 		.ascii	"FlashDB V%s is initialize success.\012\000"
+ 491      68444220 
+ 491      56257320 
+ 491      69732069 
+ 491      6E697469 
+ 492              		.align	2
+ 493              	.LC14:
+ 494 003c 596F7520 		.ascii	"You can get the latest version on https://github.co"
+ 494      63616E20 
+ 494      67657420 
+ 494      74686520 
+ 494      6C617465 
+ 495 006f 6D2F6172 		.ascii	"m/armink/FlashDB .\000"
+ 495      6D696E6B 
+ 495      2F466C61 
+ 495      73684442 
+ 495      202E00
+ 496 0082 0000     		.align	2
+ 497              	.LC15:
+ 498 0084 4572726F 		.ascii	"Error: %s (%s@%s) is initialize fail (%d).\012\000"
+ 498      723A2025 
+ 498      73202825 
+ 498      73402573 
+ 498      29206973 
+ 499              		.section	.text._fdb_init_finish,"ax",%progbits
+ 500              		.align	1
+ 501              		.global	_fdb_init_finish
+ 502              		.syntax unified
+ 503              		.thumb
+ 504              		.thumb_func
+ 506              	_fdb_init_finish:
+ 507              	.LVL54:
+ 508              	.LFB4:
+ 103:BSP/src/fdb.c ****     static bool log_is_show = false;
+ 509              		.loc 1 103 1 is_stmt 1 view -0
+ 510              		.cfi_startproc
+ 511              		@ args = 0, pretend = 0, frame = 0
+ 512              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103:BSP/src/fdb.c ****     static bool log_is_show = false;
+ 513              		.loc 1 103 1 is_stmt 0 view .LVU124
+ 514 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 515              	.LCFI2:
+ 516              		.cfi_def_cfa_offset 20
+ 517              		.cfi_offset 4, -20
+ 518              		.cfi_offset 5, -16
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 15
+
+
+ 519              		.cfi_offset 6, -12
+ 520              		.cfi_offset 7, -8
+ 521              		.cfi_offset 14, -4
+ 522 0002 83B0     		sub	sp, sp, #12
+ 523              	.LCFI3:
+ 524              		.cfi_def_cfa_offset 32
+ 525 0004 0446     		mov	r4, r0
+ 104:BSP/src/fdb.c ****     if (result == FDB_NO_ERR) {
+ 526              		.loc 1 104 5 is_stmt 1 view .LVU125
+ 105:BSP/src/fdb.c ****         db->init_ok = true;
+ 527              		.loc 1 105 5 view .LVU126
+ 105:BSP/src/fdb.c ****         db->init_ok = true;
+ 528              		.loc 1 105 8 is_stmt 0 view .LVU127
+ 529 0006 F1B9     		cbnz	r1, .L40
+ 106:BSP/src/fdb.c ****         if (!log_is_show) {
+ 530              		.loc 1 106 9 is_stmt 1 view .LVU128
+ 106:BSP/src/fdb.c ****         if (!log_is_show) {
+ 531              		.loc 1 106 21 is_stmt 0 view .LVU129
+ 532 0008 0123     		movs	r3, #1
+ 533 000a 0376     		strb	r3, [r0, #24]
+ 107:BSP/src/fdb.c ****             FDB_INFO("FlashDB V%s is initialize success.\n", FDB_SW_VERSION);
+ 534              		.loc 1 107 9 is_stmt 1 view .LVU130
+ 107:BSP/src/fdb.c ****             FDB_INFO("FlashDB V%s is initialize success.\n", FDB_SW_VERSION);
+ 535              		.loc 1 107 13 is_stmt 0 view .LVU131
+ 536 000c 1B4B     		ldr	r3, .L46
+ 537 000e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 107:BSP/src/fdb.c ****             FDB_INFO("FlashDB V%s is initialize success.\n", FDB_SW_VERSION);
+ 538              		.loc 1 107 12 view .LVU132
+ 539 0010 0BB1     		cbz	r3, .L45
+ 540              	.LVL55:
+ 541              	.L39:
+ 116:BSP/src/fdb.c **** 
+ 542              		.loc 1 116 1 view .LVU133
+ 543 0012 03B0     		add	sp, sp, #12
+ 544              	.LCFI4:
+ 545              		.cfi_remember_state
+ 546              		.cfi_def_cfa_offset 20
+ 547              		@ sp needed
+ 548 0014 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 549              	.LVL56:
+ 550              	.L45:
+ 551              	.LCFI5:
+ 552              		.cfi_restore_state
+ 108:BSP/src/fdb.c ****             FDB_INFO("You can get the latest version on https://github.com/armink/FlashDB .\n");
+ 553              		.loc 1 108 13 is_stmt 1 view .LVU134
+ 554 0016 1A4C     		ldr	r4, .L46+4
+ 555 0018 2046     		mov	r0, r4
+ 556              	.LVL57:
+ 108:BSP/src/fdb.c ****             FDB_INFO("You can get the latest version on https://github.com/armink/FlashDB .\n");
+ 557              		.loc 1 108 13 is_stmt 0 view .LVU135
+ 558 001a FFF7FEFF 		bl	printf
+ 559              	.LVL58:
+ 108:BSP/src/fdb.c ****             FDB_INFO("You can get the latest version on https://github.com/armink/FlashDB .\n");
+ 560              		.loc 1 108 13 is_stmt 1 discriminator 1 view .LVU136
+ 561 001e 2020     		movs	r0, #32
+ 562 0020 FFF7FEFF 		bl	putchar
+ 563              	.LVL59:
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 16
+
+
+ 108:BSP/src/fdb.c ****             FDB_INFO("You can get the latest version on https://github.com/armink/FlashDB .\n");
+ 564              		.loc 1 108 13 discriminator 2 view .LVU137
+ 565 0024 1749     		ldr	r1, .L46+8
+ 566 0026 1848     		ldr	r0, .L46+12
+ 567 0028 FFF7FEFF 		bl	printf
+ 568              	.LVL60:
+ 109:BSP/src/fdb.c ****             log_is_show = true;
+ 569              		.loc 1 109 13 view .LVU138
+ 570 002c 2046     		mov	r0, r4
+ 571 002e FFF7FEFF 		bl	printf
+ 572              	.LVL61:
+ 109:BSP/src/fdb.c ****             log_is_show = true;
+ 573              		.loc 1 109 13 discriminator 1 view .LVU139
+ 574 0032 2020     		movs	r0, #32
+ 575 0034 FFF7FEFF 		bl	putchar
+ 576              	.LVL62:
+ 109:BSP/src/fdb.c ****             log_is_show = true;
+ 577              		.loc 1 109 13 discriminator 2 view .LVU140
+ 578 0038 1448     		ldr	r0, .L46+16
+ 579 003a FFF7FEFF 		bl	puts
+ 580              	.LVL63:
+ 110:BSP/src/fdb.c ****         }
+ 581              		.loc 1 110 13 view .LVU141
+ 110:BSP/src/fdb.c ****         }
+ 582              		.loc 1 110 25 is_stmt 0 view .LVU142
+ 583 003e 0F4B     		ldr	r3, .L46
+ 584 0040 0122     		movs	r2, #1
+ 585 0042 1A70     		strb	r2, [r3]
+ 586 0044 E5E7     		b	.L39
+ 587              	.LVL64:
+ 588              	.L40:
+ 110:BSP/src/fdb.c ****         }
+ 589              		.loc 1 110 25 view .LVU143
+ 590 0046 0D46     		mov	r5, r1
+ 112:BSP/src/fdb.c ****         FDB_INFO("Error: %s (%s@%s) is initialize fail (%d).\n", db->type == FDB_DB_TYPE_KV ? "KVDB
+ 591              		.loc 1 112 12 is_stmt 1 view .LVU144
+ 112:BSP/src/fdb.c ****         FDB_INFO("Error: %s (%s@%s) is initialize fail (%d).\n", db->type == FDB_DB_TYPE_KV ? "KVDB
+ 592              		.loc 1 112 19 is_stmt 0 view .LVU145
+ 593 0048 837E     		ldrb	r3, [r0, #26]	@ zero_extendqisi2
+ 112:BSP/src/fdb.c ****         FDB_INFO("Error: %s (%s@%s) is initialize fail (%d).\n", db->type == FDB_DB_TYPE_KV ? "KVDB
+ 594              		.loc 1 112 15 view .LVU146
+ 595 004a 002B     		cmp	r3, #0
+ 596 004c E1D1     		bne	.L39
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 597              		.loc 1 113 9 is_stmt 1 view .LVU147
+ 598 004e 0C48     		ldr	r0, .L46+4
+ 599              	.LVL65:
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 600              		.loc 1 113 9 is_stmt 0 view .LVU148
+ 601 0050 FFF7FEFF 		bl	printf
+ 602              	.LVL66:
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 603              		.loc 1 113 9 is_stmt 1 discriminator 1 view .LVU149
+ 604 0054 2020     		movs	r0, #32
+ 605 0056 FFF7FEFF 		bl	putchar
+ 606              	.LVL67:
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 17
+
+
+ 607              		.loc 1 113 9 discriminator 2 view .LVU150
+ 608 005a 2379     		ldrb	r3, [r4, #4]	@ zero_extendqisi2
+ 609 005c 63B9     		cbnz	r3, .L43
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 610              		.loc 1 113 9 is_stmt 0 discriminator 1 view .LVU151
+ 611 005e 0C4F     		ldr	r7, .L46+20
+ 612              	.L42:
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 613              		.loc 1 113 9 discriminator 4 view .LVU152
+ 614 0060 2668     		ldr	r6, [r4]
+ 615 0062 2046     		mov	r0, r4
+ 616 0064 FFF7FEFF 		bl	_fdb_db_path
+ 617              	.LVL68:
+ 618 0068 0346     		mov	r3, r0
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 619              		.loc 1 113 9 discriminator 1 view .LVU153
+ 620 006a 0095     		str	r5, [sp]
+ 621 006c 3246     		mov	r2, r6
+ 622 006e 3946     		mov	r1, r7
+ 623 0070 0848     		ldr	r0, .L46+24
+ 624 0072 FFF7FEFF 		bl	printf
+ 625              	.LVL69:
+ 116:BSP/src/fdb.c **** 
+ 626              		.loc 1 116 1 view .LVU154
+ 627 0076 CCE7     		b	.L39
+ 628              	.L43:
+ 113:BSP/src/fdb.c ****                 db->name, _fdb_db_path(db), (int)result);
+ 629              		.loc 1 113 9 discriminator 2 view .LVU155
+ 630 0078 074F     		ldr	r7, .L46+28
+ 631 007a F1E7     		b	.L42
+ 632              	.L47:
+ 633              		.align	2
+ 634              	.L46:
+ 635 007c 00000000 		.word	log_is_show.1
+ 636 0080 00000000 		.word	.LC0
+ 637 0084 10000000 		.word	.LC12
+ 638 0088 18000000 		.word	.LC13
+ 639 008c 3C000000 		.word	.LC14
+ 640 0090 00000000 		.word	.LC10
+ 641 0094 84000000 		.word	.LC15
+ 642 0098 08000000 		.word	.LC11
+ 643              		.cfi_endproc
+ 644              	.LFE4:
+ 646              		.section	.rodata.__func__.0,"a"
+ 647              		.align	2
+ 650              	__func__.0:
+ 651 0000 5F666462 		.ascii	"_fdb_deinit\000"
+ 651      5F646569 
+ 651      6E697400 
+ 652              		.section	.bss.log_is_show.1,"aw",%nobits
+ 655              	log_is_show.1:
+ 656 0000 00       		.space	1
+ 657              		.section	.rodata.__func__.2,"a"
+ 658              		.align	2
+ 661              	__func__.2:
+ 662 0000 5F666462 		.ascii	"_fdb_init_ex\000"
+ 662      5F696E69 
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 18
+
+
+ 662      745F6578 
+ 662      00
+ 663              		.text
+ 664              	.Letext0:
+ 665              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 666              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 667              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/lib/gcc/arm-none-eabi/14
+ 668              		.file 5 "BSP/inc/fal_def.h"
+ 669              		.file 6 "BSP/inc/fdb_def.h"
+ 670              		.file 7 "BSP/inc/fal.h"
+ 671              		.file 8 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/st
+ 672              		.file 9 "<built-in>"
+ARM GAS  C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fdb.c
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:21     .rodata._fdb_init_ex.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:55     .text._fdb_init_ex:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:61     .text._fdb_init_ex:00000000 _fdb_init_ex
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:366    .text._fdb_init_ex:00000144 $d
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:661    .rodata.__func__.2:00000000 __func__.2
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:381    .text._fdb_deinit:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:387    .text._fdb_deinit:00000000 _fdb_deinit
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:435    .text._fdb_deinit:00000024 $d
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:650    .rodata.__func__.0:00000000 __func__.0
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:443    .text._fdb_db_path:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:449    .text._fdb_db_path:00000000 _fdb_db_path
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:480    .rodata._fdb_init_finish.str1.4:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:500    .text._fdb_init_finish:00000000 $t
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:506    .text._fdb_init_finish:00000000 _fdb_init_finish
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:635    .text._fdb_init_finish:0000007c $d
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:655    .bss.log_is_show.1:00000000 log_is_show.1
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:647    .rodata.__func__.0:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:656    .bss.log_is_show.1:00000000 $d
+C:\Users\solar\AppData\Local\Temp\ccZHVGUV.s:658    .rodata.__func__.2:00000000 $d
+
+UNDEFINED SYMBOLS
+printf
+putchar
+fal_init
+fal_partition_find
+fal_flash_device_find
+puts
