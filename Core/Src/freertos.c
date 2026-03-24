@@ -194,6 +194,7 @@ void StartDefaultTask(void *argument)
   uint8_t last_log_sec = 255;
   fdb_err_t ts_ret;
 
+  
   LCD_ClearArea(0, 0, 80, 80, ST7735_BLACK);
 
   ts_ret = MX_TSDB_Init();

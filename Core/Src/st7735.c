@@ -260,3 +260,27 @@ HAL_Delay(20);
     /* 上电先清黑屏 */
     ST7735_FillScreen(ST7735_BLACK);
 }
+void ST7735_PushColors(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint16_t *colors)
+{
+    uint32_t pixel_count;
+    uint32_t byte_count;
+
+    if (colors == NULL) return;
+    if (x >= ST7735_WIDTH || y >= ST7735_HEIGHT) return;
+    if ((x + w) > ST7735_WIDTH)  w = ST7735_WIDTH - x;
+    if ((y + h) > ST7735_HEIGHT) h = ST7735_HEIGHT - y;
+    if (w == 0 || h == 0) return;
+
+    ST7735_SetAddressWindow(x, y, x + w - 1, y + h - 1);
+
+    pixel_count = (uint32_t)w * h;
+    byte_count  = pixel_count * 2U;
+
+    LCD_CS_LOW();
+    LCD_DC_HIGH();
+
+    /* 你的屏现在就是 RGB565 16-bit 模式 */
+    HAL_SPI_Transmit(&hspi2, (uint8_t *)colors, byte_count, HAL_MAX_DELAY);
+
+    LCD_CS_HIGH();
+}
